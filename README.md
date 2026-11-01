@@ -5,7 +5,8 @@ cycle of services kept by kathismas and Jesus Prayers, a built-in Psalter, and
 a record of what was kept, with reports and optional sharing with a chosen
 member (a nastavnik).
 
-**Status:** early development. Nothing usable yet.
+**Status:** early development. The admin side works (Psalter, prayers,
+orders, kathismas, preview); the members' pages come next.
 
 ## Privacy
 
@@ -27,7 +28,31 @@ numbering and without titles:
 - Brenton's English Septuagint
 
 `tools/fetch_sources.py` downloads the source texts into `sources/` (not kept
-in git); a build script turns them into the plugin's Psalter file.
+in git); `tools/build_psalter.py` turns them into `data/psalter.json`, which
+the plugin loads into its own table on activation (and again whenever the
+file changes).
+
+## In the admin (Prayer Rule menu)
+
+- **Prayers** – texts written on the site (the usual beginning, troparia,
+  the prayers between stases, prayers for the departed …). Each has a
+  *short name*, e.g. `usual-beginning`, used by orders.
+- **Orders** – a reading order, one item per line: a prayer's short name,
+  `stasis 1`/`2`/`3`, or `kathisma` (all three stases, each followed by the
+  "after each stasis" prayer). `{n}` in a name becomes the kathisma number,
+  so `troparia-{n}` reads `troparia-7` with the seventh kathisma.
+- **Kathismas** – the twenty kathismas and their stases, editable.
+- **Preview** – any order with any kathisma and translation.
+- **Settings** – who may use it (anyone logged in, or chosen Paid
+  Memberships Pro levels), the default translation, Coverdale's colons.
+
+## Making the plugin zip
+
+```
+cd ~ && rm -f prayer-rule.zip && zip -r prayer-rule.zip prayer-rule \
+  -x 'prayer-rule/.git/*' 'prayer-rule/sources/*' 'prayer-rule/tools/*' \
+     'prayer-rule/*/__pycache__/*'
+```
 
 ## License
 

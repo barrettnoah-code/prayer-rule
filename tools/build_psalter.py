@@ -67,6 +67,7 @@ def hebrew_to_lxx(psalms, label, split_116, split_147):
 # Slips in the web text: (Hebrew psalm, verse, wrong, right).
 COVERDALE_FIXES = [
     (9, 1, "I Will give", "I will give"),
+    (47, 1, ": O Sing unto God", ": O sing unto God"),
 ]
 
 
