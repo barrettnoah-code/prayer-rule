@@ -286,14 +286,14 @@ class Render {
 	/** The reading styles (preview, members' page, prayer editor). */
 	public static function css() {
 		$red = self::RED;
-		return ".prayer-rule-reading{--pr-red:{$red};max-width:42em;font-size:1.05em;line-height:1.6}
+		return ".prayer-rule-reading{--pr-red:{$red};max-width:42em}
 .prayer-rule-reading .pr-kathisma{color:var(--pr-red);text-align:center;font-size:1.25em;margin:2em 0 .5em}
 .prayer-rule-reading .pr-stasis-label{color:var(--pr-red);font-size:.8em;text-transform:uppercase;letter-spacing:.06em;margin:1.6em 0 0}
 .prayer-rule-reading .pr-psalm{color:var(--pr-red);font-size:1.05em;margin:1.2em 0 .4em}
 .prayer-rule-reading .pr-verse{margin:0 0 .35em}
-.prayer-rule-reading .pr-say::first-letter{color:var(--pr-red);font-size:1.35em;font-weight:600}
+.prayer-rule-reading .pr-say::first-letter{color:var(--pr-red)}
 .prayer-rule-reading .pr-vn{font-size:.7em;color:#8c8f94;vertical-align:super;margin-right:.2em}
-.pr-initial,.prayer-rule-reading .is-style-prayer::first-letter,.editor-styles-wrapper .is-style-prayer::first-letter{color:{$red};font-size:1.35em;font-weight:600}
+.pr-initial,.prayer-rule-reading .is-style-prayer::first-letter,.editor-styles-wrapper .is-style-prayer::first-letter{color:{$red}}
 .pr-red,.pr-rubric,.is-style-rubric{color:{$red}}
 .prayer-rule-reading .pr-problem{background:#fcf0f1;border-left:4px solid #d63638;padding:.4em .8em;color:#1d2327}";
 	}
