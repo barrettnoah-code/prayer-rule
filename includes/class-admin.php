@@ -476,7 +476,7 @@ class Admin {
 		foreach ( $service['portions'] as $portion => $p ) {
 			$portions[ $portion ] = array(
 				'kathismas' => isset( $given[ $portion ]['kathismas'] ) ? absint( $given[ $portion ]['kathismas'] ) : (int) ( $p['kathismas'][0] ?? 0 ),
-				'start'     => isset( $given[ $portion ]['start'] ) ? min( 20, max( 1, absint( $given[ $portion ]['start'] ) ) ) : 1,
+				'start'     => 'main' !== $portion ? 0 : ( isset( $given[ $portion ]['start'] ) ? min( 20, max( 1, absint( $given[ $portion ]['start'] ) ) ) : 1 ),
 				'ladders'   => isset( $given[ $portion ]['ladders'] ) ? (float) $given[ $portion ]['ladders'] : 0,
 			);
 		}
@@ -512,13 +512,17 @@ class Admin {
 							<?php endfor; ?>
 						</select>
 					</label>
-					<label><?php esc_html_e( 'from kathisma', 'prayer-rule' ); ?>
-						<select name="p[<?php echo esc_attr( $portion ); ?>][start]">
-							<?php for ( $n = 1; $n <= 20; $n++ ) : ?>
-								<option value="<?php echo (int) $n; ?>" <?php selected( $portions[ $portion ]['start'], $n ); ?>><?php echo (int) $n; ?></option>
-							<?php endfor; ?>
-						</select>
-					</label>
+					<?php if ( 'main' === $portion ) : ?>
+						<label><?php esc_html_e( 'from kathisma', 'prayer-rule' ); ?>
+							<select name="p[<?php echo esc_attr( $portion ); ?>][start]">
+								<?php for ( $n = 1; $n <= 20; $n++ ) : ?>
+									<option value="<?php echo (int) $n; ?>" <?php selected( $portions[ $portion ]['start'], $n ); ?>><?php echo (int) $n; ?></option>
+								<?php endfor; ?>
+							</select>
+						</label>
+					<?php else : ?>
+						<span class="description"><?php esc_html_e( '(continues from the kathisma after the one before)', 'prayer-rule' ); ?></span>
+					<?php endif; ?>
 					<label><?php esc_html_e( 'ladders', 'prayer-rule' ); ?>
 						<select name="p[<?php echo esc_attr( $portion ); ?>][ladders]">
 							<?php for ( $n = 0; $n <= 14; $n++ ) : ?>

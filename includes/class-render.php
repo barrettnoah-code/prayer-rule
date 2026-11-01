@@ -38,6 +38,7 @@ class Render {
 	 *   'translation' => id
 	 *   'lent'        => bool (Great Lent: troparia after kathismas, bows to the ground)
 	 *   'portions'    => array( 'main' => array( 'kathismas' => 2, 'start' => 7, 'ladders' => 0 ), … )
+	 *                    a portion without 'start' continues where the one before it stopped
 	 *   'date'        => the civil date the service belongs to (YYYY-MM-DD); gives
 	 *                    the day of the week, Great Lent and the saint (Calendar::day)
 	 *   'day'         => without a date: liturgical day, 0 (Sunday) … 6 or a day name
@@ -64,9 +65,15 @@ class Render {
 		self::$saint       = isset( $context['saint'] ) && '' !== $context['saint'] ? (string) $context['saint'] : null;
 		$day               = Dismissals::day_key( $context['day'] ?? '' );
 		$out               = array();
+		$bookmark          = null;   // next kathisma, carried from one portion to the next
 		foreach ( Orders::steps( $service['order'] ) as $step ) {
 			if ( 'rule' === $step['type'] ) {
 				$portion = $context['portions'][ $step['portion'] ] ?? array();
+				if ( empty( $portion['start'] ) && null !== $bookmark ) {
+					$portion['start'] = $bookmark;
+				}
+				$first    = min( 20, max( 1, (int) ( $portion['start'] ?? 1 ) ) );
+				$bookmark = ( ( $first - 1 + max( 0, (int) ( $portion['kathismas'] ?? 0 ) ) ) % 20 ) + 1;
 				$name    = $service['portions'][ $step['portion'] ]['name'] ?? $step['portion'];
 				$out     = array_merge( $out, self::rule_steps( $portion, $name, $translation, ! empty( $context['lent'] ) ) );
 			} elseif ( 'psalm' === $step['type'] ) {

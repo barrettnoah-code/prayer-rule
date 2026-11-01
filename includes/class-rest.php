@@ -117,7 +117,7 @@ class Rest {
 		foreach ( $given as $portion => $values ) {
 			$portions[ sanitize_key( $portion ) ] = array(
 				'kathismas' => min( 20, absint( $values['kathismas'] ?? 0 ) ),
-				'start'     => absint( $values['start'] ?? 1 ),
+				'start'     => absint( $values['start'] ?? 0 ),   // 0: continue from the portion before
 				'ladders'   => min( 50, (float) ( $values['ladders'] ?? 0 ) ),
 			);
 		}
