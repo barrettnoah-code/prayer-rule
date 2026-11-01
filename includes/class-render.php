@@ -38,8 +38,11 @@ class Render {
 	 *   'translation' => id
 	 *   'lent'        => bool (Great Lent: troparia after kathismas, bows to the ground)
 	 *   'portions'    => array( 'main' => array( 'kathismas' => 2, 'start' => 7, 'ladders' => 0 ), … )
-	 *   'day'         => liturgical day, 0 (Sunday) … 6 or a day name; default today
-	 *   'saint'       => the saint as named in the dismissal, e.g. "our venerable father Sergius"
+	 *   'date'        => the civil date the service belongs to (YYYY-MM-DD); gives
+	 *                    the day of the week, Great Lent and the saint (Calendar::day)
+	 *   'day'         => without a date: liturgical day, 0 (Sunday) … 6 or a day name
+	 *   'saint'       => the saint as named in the dismissal (overrides the date's)
+	 *   'lent'        => overrides the date's Great Lent
 	 *
 	 * Steps: text, psalm, say, rubric, kathisma (heading), stasis, ladders,
 	 * missing, unknown, empty-rule.
@@ -52,6 +55,12 @@ class Render {
 		$translation       = Psalter::translation( $context['translation'] ?? '' );
 		$previous          = array( self::$translation, self::$saint );
 		self::$translation = $translation;
+		if ( ! empty( $context['date'] ) ) {
+			$info                = Calendar::day( $context['date'] );
+			$context['day']      = $info['day'];
+			$context['lent']     = $context['lent'] ?? $info['lent'];
+			$context['saint']    = $context['saint'] ?? $info['saint'];
+		}
 		self::$saint       = isset( $context['saint'] ) && '' !== $context['saint'] ? (string) $context['saint'] : null;
 		$day               = Dismissals::day_key( $context['day'] ?? '' );
 		$out               = array();

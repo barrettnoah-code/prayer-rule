@@ -104,7 +104,7 @@ class Rest {
 
 	/**
 	 * A service with a portion given in the request, e.g.
-	 * ?translation=kjv&lent=1&day=sunday&p[main][kathismas]=2&p[main][start]=7&p[main][ladders]=0
+	 * ?translation=kjv&date=2026-11-01&p[main][kathismas]=2&p[main][start]=7&p[main][ladders]=0
 	 * (Phase 9 replaces the given portion with the member's own rule.)
 	 */
 	public static function reading( \WP_REST_Request $request ) {
@@ -125,9 +125,10 @@ class Rest {
 			$key,
 			array(
 				'translation' => $request['translation'],
-				'lent'        => (bool) $request['lent'],
+				'lent'        => null === $request['lent'] ? null : (bool) $request['lent'],
 				'portions'    => $portions,
 				'day'         => $request['day'],
+				'date'        => $request['date'] ? Calendar::civil( (string) $request['date'] ) : '',
 			)
 		);
 		// Members see only what exists; problems are for the admin preview.
@@ -139,8 +140,21 @@ class Rest {
 				}
 			)
 		);
+		$day = null;
+		if ( $request['date'] ) {
+			$info = Calendar::day( (string) $request['date'] );
+			$day  = array(
+				'date'   => $info['civil'],
+				'julian' => $info['julian']['iso'],
+				'label'  => $info['label'],
+				'lines'  => $info['lines'],
+				'saint'  => $info['saint'],
+				'lent'   => $info['lent'],
+			);
+		}
 		return array(
 			'service'     => $key,
+			'day'         => $day,
 			'translation' => Psalter::translation( $request['translation'] ),
 			'steps'       => $steps,
 		);

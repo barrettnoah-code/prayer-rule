@@ -6,7 +6,7 @@ a record of what was kept, with reports and optional sharing with a chosen
 member (a nastavnik).
 
 **Status:** early development. The admin side works (Psalter, prayers,
-orders, dismissals, kathismas, preview); the members' pages come next.
+orders, dismissals, saints, kathismas, preview); the members' pages come next.
 
 ## Privacy
 
@@ -61,9 +61,14 @@ already on the site is overwritten.
 - **Dismissals** – which dismissal ends each service on each day of the
   week (the day begins at sundown: Sunday Vespers is read on Saturday
   evening). In a dismissal, `[saint]` stands for the saint of the day.
+- **Saints** – the saint each day's dismissal names, taken from the
+  Orthodox Liturgical Calendar plugin (its highest-ranked commemoration,
+  worded for the dismissal), with the wording editable per church date.
+  The calendar itself is never changed; without it, dismissals say
+  "Saint N.".
 - **Kathismas** – the twenty kathismas and their stases, editable.
-- **Preview** – any service with any portion, translation, day of the
-  week, and Great Lent.
+- **Preview** – any service on any date (the day of the week, Great Lent
+  and the saint follow from the date), with any portion and translation.
 - **Settings** – who may use it, the default translation, Coverdale's
   colons, verse numbers.
 

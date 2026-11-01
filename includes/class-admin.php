@@ -22,6 +22,7 @@ class Admin {
 		add_action( 'admin_post_prayer_rule_services', array( __CLASS__, 'save_services' ) );
 		add_action( 'admin_post_prayer_rule_dismissals', array( __CLASS__, 'save_dismissals' ) );
 		add_action( 'admin_post_prayer_rule_ustav', array( __CLASS__, 'import_ustav' ) );
+		add_action( 'admin_post_prayer_rule_saints', array( __CLASS__, 'save_saints' ) );
 		add_filter( 'manage_' . Texts::TYPE . '_posts_columns', array( __CLASS__, 'text_columns' ) );
 		add_action( 'manage_' . Texts::TYPE . '_posts_custom_column', array( __CLASS__, 'text_column' ), 10, 2 );
 	}
@@ -31,18 +32,19 @@ class Admin {
 		add_submenu_page( self::SLUG, __( 'Overview', 'prayer-rule' ), __( 'Overview', 'prayer-rule' ), 'edit_pages', self::SLUG, array( __CLASS__, 'page_overview' ) );
 		add_submenu_page( self::SLUG, __( 'Services', 'prayer-rule' ), __( 'Services', 'prayer-rule' ), 'manage_options', 'prayer-rule-services', array( __CLASS__, 'page_services' ) );
 		add_submenu_page( self::SLUG, __( 'Dismissals', 'prayer-rule' ), __( 'Dismissals', 'prayer-rule' ), 'manage_options', 'prayer-rule-dismissals', array( __CLASS__, 'page_dismissals' ) );
+		add_submenu_page( self::SLUG, __( 'Saints', 'prayer-rule' ), __( 'Saints', 'prayer-rule' ), 'manage_options', 'prayer-rule-saints', array( __CLASS__, 'page_saints' ) );
 		add_submenu_page( self::SLUG, __( 'Kathismas', 'prayer-rule' ), __( 'Kathismas', 'prayer-rule' ), 'manage_options', 'prayer-rule-kathismas', array( __CLASS__, 'page_kathismas' ) );
 		add_submenu_page( self::SLUG, __( 'Preview', 'prayer-rule' ), __( 'Preview', 'prayer-rule' ), 'edit_pages', 'prayer-rule-preview', array( __CLASS__, 'page_preview' ) );
 		add_submenu_page( self::SLUG, __( 'Settings', 'prayer-rule' ), __( 'Settings', 'prayer-rule' ), 'manage_options', 'prayer-rule-settings', array( __CLASS__, 'page_settings' ) );
 	}
 
-	/** Overview, Prayers, Orders, Services, Dismissals, Kathismas, Preview, Settings. */
+	/** Overview, Prayers, Orders, Services, Dismissals, Saints, Kathismas, Preview, Settings. */
 	public static function menu_order() {
 		global $submenu;
 		if ( empty( $submenu[ self::SLUG ] ) ) {
 			return;
 		}
-		$want = array( self::SLUG, 'edit.php?post_type=' . Texts::TYPE, 'edit.php?post_type=' . Orders::TYPE, 'prayer-rule-services', 'prayer-rule-dismissals', 'prayer-rule-kathismas', 'prayer-rule-preview', 'prayer-rule-settings' );
+		$want = array( self::SLUG, 'edit.php?post_type=' . Texts::TYPE, 'edit.php?post_type=' . Orders::TYPE, 'prayer-rule-services', 'prayer-rule-dismissals', 'prayer-rule-saints', 'prayer-rule-kathismas', 'prayer-rule-preview', 'prayer-rule-settings' );
 		usort(
 			$submenu[ self::SLUG ],
 			function ( $a, $b ) use ( $want ) {
@@ -291,7 +293,7 @@ class Admin {
 			<?php self::notice(); ?>
 			<p><?php esc_html_e( 'The dismissal that a "dismissal" line in an order shows, by service and day of the week. The lists offer the prayers whose short name begins with "dismissal"; "Home Ustav\'s choice" goes back to the original.', 'prayer-rule' ); ?></p>
 			<p><?php esc_html_e( 'The day begins at sundown, so Vespers belongs to the next day: Sunday Vespers is read on Saturday evening.', 'prayer-rule' ); ?></p>
-			<p class="description"><?php esc_html_e( 'In a dismissal\'s text, [saint] stands for the saint of the day ("Saint N." until the calendar is linked).', 'prayer-rule' ); ?></p>
+			<p class="description"><?php esc_html_e( 'In a dismissal\'s text, [saint] stands for the saint of the day, from the calendar (see Saints); "Saint N." when there is none.', 'prayer-rule' ); ?></p>
 			<form method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>">
 				<input type="hidden" name="action" value="prayer_rule_dismissals">
 				<?php wp_nonce_field( 'prayer_rule_dismissals' ); ?>
@@ -355,6 +357,110 @@ class Admin {
 		self::back( self::SLUG, sprintf( __( 'Added %1$d prayers and %2$d orders.', 'prayer-rule' ), $count['prayers'], $count['orders'] ) );
 	}
 
+	// ------------------------------------------------------------ Saints
+
+	public static function page_saints() {
+		// phpcs:ignore WordPress.Security.NonceVerification -- read-only choice of month
+		$jm    = isset( $_GET['month'] ) ? min( 12, max( 1, absint( $_GET['month'] ) ) ) : Calendar::day( '' )['julian']['m'];
+		$days  = Calendar::month( $jm );
+		$names = Calendar::names();
+		global $wp_locale;
+		?>
+		<div class="wrap">
+			<h1><?php esc_html_e( 'Saints in the dismissals', 'prayer-rule' ); ?></h1>
+			<?php self::notice(); ?>
+			<?php if ( ! Calendar::available() ) : ?>
+				<div class="notice notice-warning inline"><p><?php esc_html_e( 'The Orthodox Liturgical Calendar plugin is not active, so there are no saints to show. Dismissals say "Saint N." until it is.', 'prayer-rule' ); ?></p></div>
+			<?php endif; ?>
+			<p><?php esc_html_e( 'The saint of each day comes from the calendar: its highest-ranked commemoration for the date, worded for the dismissal ("and of …, whose day it is"). Where the wording is not right, type it as it should be said. An empty box goes back to the calendar\'s wording.', 'prayer-rule' ); ?></p>
+			<p class="description"><?php esc_html_e( 'Church (Julian) dates. The calendar itself is not changed.', 'prayer-rule' ); ?></p>
+			<form method="get" style="margin:1em 0">
+				<input type="hidden" name="page" value="prayer-rule-saints">
+				<select name="month" onchange="this.form.submit()">
+					<?php for ( $m = 1; $m <= 12; $m++ ) : ?>
+						<option value="<?php echo (int) $m; ?>" <?php selected( $jm, $m ); ?>><?php echo esc_html( $wp_locale->get_month( $m ) ); ?></option>
+					<?php endfor; ?>
+				</select>
+				<noscript><?php submit_button( __( 'Show', 'prayer-rule' ), 'secondary', '', false ); ?></noscript>
+			</form>
+			<form method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>">
+				<input type="hidden" name="action" value="prayer_rule_saints">
+				<input type="hidden" name="month" value="<?php echo (int) $jm; ?>">
+				<?php wp_nonce_field( 'prayer_rule_saints' ); ?>
+				<table class="widefat striped" style="max-width:1100px">
+					<thead><tr>
+						<th style="width:4em"><?php esc_html_e( 'Day', 'prayer-rule' ); ?></th>
+						<th><?php esc_html_e( 'In the calendar', 'prayer-rule' ); ?></th>
+						<th style="width:40%"><?php esc_html_e( 'Named in the dismissal', 'prayer-rule' ); ?></th>
+					</tr></thead>
+					<tbody>
+					<?php for ( $d = 1; $d <= ( 2 === $jm ? 29 : ( in_array( $jm, array( 4, 6, 9, 11 ), true ) ? 30 : 31 ) ); $d++ ) : ?>
+						<?php
+						$key  = $jm . '-' . $d;
+						$auto = $days[ $d ]['name'] ?? '';
+						?>
+						<tr>
+							<td><?php echo (int) $d; ?></td>
+							<td><?php echo esc_html( implode( ' · ', $days[ $d ]['lines'] ?? array() ) ); ?></td>
+							<td>
+								<input type="text" style="width:100%" name="saints[<?php echo esc_attr( $key ); ?>]" value="<?php echo esc_attr( $names[ $key ] ?? '' ); ?>" placeholder="<?php echo esc_attr( $auto ); ?>">
+							</td>
+						</tr>
+					<?php endfor; ?>
+					</tbody>
+				</table>
+				<?php submit_button( __( 'Save names', 'prayer-rule' ) ); ?>
+			</form>
+		</div>
+		<?php
+	}
+
+	public static function save_saints() {
+		if ( ! current_user_can( 'manage_options' ) ) {
+			wp_die( esc_html__( 'Not allowed.', 'prayer-rule' ) );
+		}
+		check_admin_referer( 'prayer_rule_saints' );
+		$posted = isset( $_POST['saints'] ) ? map_deep( wp_unslash( (array) $_POST['saints'] ), 'sanitize_text_field' ) : array(); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput
+		Calendar::save_names( $posted );
+		self::back( 'prayer-rule-saints', __( 'Names saved.', 'prayer-rule' ), false, array( 'month' => isset( $_POST['month'] ) ? absint( $_POST['month'] ) : 1 ) );
+	}
+
+	/** The line above the preview: the day, its saint, Great Lent, Vespers on the eve. */
+	private static function day_box( $service, $info ) {
+		$parts = array( wp_date( 'l, F j, Y', strtotime( $info['civil'] . ' 12:00' ) ) );
+		/* translators: %s: Julian date, e.g. October 20 */
+		$parts[] = sprintf( __( 'church calendar %s', 'prayer-rule' ), Calendar::julian_label( $info['julian'] ) );
+		if ( '' !== $info['label'] ) {
+			$parts[] = $info['label'];
+		}
+		if ( $info['lent'] ) {
+			$parts[] = __( 'Great Lent', 'prayer-rule' );
+		}
+		echo '<div style="max-width:52em;margin:0 0 1em">';
+		echo '<p><strong>' . esc_html( implode( ' · ', $parts ) ) . '</strong></p>';
+		if ( $info['lines'] ) {
+			echo '<p>' . esc_html( implode( ' · ', $info['lines'] ) ) . '</p>';
+		}
+		if ( '' !== $info['saint'] ) {
+			$link = add_query_arg(
+				array(
+					'page'  => 'prayer-rule-saints',
+					'month' => $info['julian']['m'],
+				),
+				admin_url( 'admin.php' )
+			);
+			/* translators: %s: the saint as named in the dismissal */
+			echo '<p>' . esc_html( sprintf( __( 'In the dismissal: "and of %s, whose day it is".', 'prayer-rule' ), $info['saint'] ) ) . ' <a href="' . esc_url( $link ) . '">' . esc_html__( 'Change the wording', 'prayer-rule' ) . '</a></p>';
+		} elseif ( ! Calendar::available() ) {
+			echo '<p class="description">' . esc_html__( 'The calendar plugin is not active: the dismissal says "Saint N.".', 'prayer-rule' ) . '</p>';
+		}
+		if ( in_array( $service, array( 'vespers', 'compline' ), true ) ) {
+			/* translators: %s: the evening before, e.g. Saturday */
+			echo '<p class="description">' . esc_html( sprintf( __( 'This day\'s Vespers and Compline are read on the evening before: %s.', 'prayer-rule' ), wp_date( 'l, F j', strtotime( Calendar::eve( $info['civil'] ) . ' 12:00' ) ) ) ) . '</p>';
+		}
+		echo '</div>';
+	}
+
 	// ------------------------------------------------------------ Preview
 
 	public static function page_preview() {
@@ -363,8 +469,8 @@ class Admin {
 		$key         = isset( $_GET['service'], $services[ sanitize_key( $_GET['service'] ) ] ) ? sanitize_key( $_GET['service'] ) : 'vespers';
 		$service     = $services[ $key ];
 		$translation = Psalter::translation( isset( $_GET['translation'] ) ? sanitize_key( $_GET['translation'] ) : '' );
-		$lent        = ! empty( $_GET['lent'] );
-		$day         = Dismissals::day_key( isset( $_GET['day'] ) ? sanitize_key( $_GET['day'] ) : '' );
+		$date        = Calendar::civil( isset( $_GET['date'] ) ? sanitize_text_field( wp_unslash( $_GET['date'] ) ) : '' );
+		$info        = Calendar::day( $date );
 		$given       = isset( $_GET['p'] ) && is_array( $_GET['p'] ) ? wp_unslash( $_GET['p'] ) : array();
 		$portions    = array();
 		foreach ( $service['portions'] as $portion => $p ) {
@@ -394,14 +500,9 @@ class Admin {
 						<?php endforeach; ?>
 					</select>
 				</label>
-				<label><?php esc_html_e( 'Day', 'prayer-rule' ); ?>
-					<select name="day">
-						<?php foreach ( Dismissals::days() as $d => $d_name ) : ?>
-							<option value="<?php echo esc_attr( $d ); ?>" <?php selected( $day, $d ); ?>><?php echo esc_html( $d_name ); ?></option>
-						<?php endforeach; ?>
-					</select>
+				<label><?php esc_html_e( 'Date', 'prayer-rule' ); ?>
+					<input type="date" name="date" value="<?php echo esc_attr( $date ); ?>">
 				</label>
-				<label><input type="checkbox" name="lent" value="1" <?php checked( $lent ); ?>> <?php esc_html_e( 'Great Lent', 'prayer-rule' ); ?></label>
 				<?php foreach ( $service['portions'] as $portion => $p ) : ?>
 					<br><strong><?php echo esc_html( $p['name'] ); ?>:</strong>
 					<label><?php esc_html_e( 'kathismas', 'prayer-rule' ); ?>
@@ -447,17 +548,11 @@ class Admin {
 				$key,
 				array(
 					'translation' => $translation,
-					'lent'        => $lent,
 					'portions'    => $portions,
-					'day'         => $day,
+					'date'        => $date,
 				)
 			);
-			if ( 'vespers' === $key ) {
-				$days = array_keys( Dismissals::days() );
-				$eve  = Dismissals::days()[ $days[ ( array_search( $day, $days, true ) + 6 ) % 7 ] ];
-				/* translators: 1: day, 2: the evening before */
-				echo '<p class="description">' . esc_html( sprintf( __( '%1$s Vespers is read on %2$s evening.', 'prayer-rule' ), Dismissals::days()[ $day ], $eve ) ) . '</p>';
-			}
+			self::day_box( $key, $info );
 			echo Render::html( $steps, true ); // phpcs:ignore WordPress.Security.EscapeOutput -- escaped in Render::html
 			?>
 		</div>

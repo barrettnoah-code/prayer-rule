@@ -24,6 +24,7 @@ foreach ( array(
 	'prayer_rule_rule_texts',
 	'prayer_rule_dismissals',
 	'prayer_rule_ustav_hash',
+	'prayer_rule_saints',
 ) as $option ) {
 	delete_option( $option );
 }
