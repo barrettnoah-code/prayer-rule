@@ -1,0 +1,7 @@
+# Downloaded source texts (rebuilt by tools/fetch_sources.py)
+sources/
+__pycache__/
+*.pyc
+# Never commit site passwords or local settings
+*.local.json
+.env
