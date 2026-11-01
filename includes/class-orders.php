@@ -9,6 +9,7 @@
  *   rule                   the member's kathismas and/or ladders
  *   rule first-hour        a second portion (the 1st Hour at the end of Matins)
  *   dismissal              the dismissal for the day (Prayer Rule → Dismissals)
+ *   additions              the daily additions for the day (Prayer Rule → Dismissals)
  *   > Lord, have mercy. (12 times)
  *                          a short line said as written; (parentheses) in red
  *   ! Then, for the first hour:
@@ -75,7 +76,8 @@ class Orders {
 			<li><code>psalm 50</code>, <code>psalm 90-91</code>, <code>psalm 118:1-72</code> — <?php esc_html_e( 'psalms in the reader\'s own translation', 'prayer-rule' ); ?></li>
 			<li><code>rule</code> — <?php esc_html_e( 'where the member\'s kathismas or ladders are read', 'prayer-rule' ); ?></li>
 			<li><code>rule first-hour</code> — <?php esc_html_e( 'the 1st Hour\'s portion, in the Matins order', 'prayer-rule' ); ?></li>
-			<li><code>dismissal</code> — <?php esc_html_e( 'the dismissal for the day of the week (see Prayer Rule → Dismissals)', 'prayer-rule' ); ?></li>
+			<li><code>dismissal</code> — <?php esc_html_e( 'the dismissal for the day: a feast\'s, or the weekday\'s (see Prayer Rule → Dismissals)', 'prayer-rule' ); ?></li>
+			<li><code>additions</code> — <?php esc_html_e( 'the daily additions for the day (see Prayer Rule → Dismissals)', 'prayer-rule' ); ?></li>
 			<li><code>&gt; Lord, have mercy. (12 times)</code> — <?php esc_html_e( 'a short line said as written, with the words in parentheses in red', 'prayer-rule' ); ?></li>
 			<li><code>! Then, for the first hour:</code> — <?php esc_html_e( 'a rubric, all in red', 'prayer-rule' ); ?></li>
 			<li><code># …</code> — <?php esc_html_e( 'a note, ignored', 'prayer-rule' ); ?></li>
@@ -155,7 +157,7 @@ class Orders {
 	 *   array( 'type' => 'text', 'slug' => … )
 	 *   array( 'type' => 'psalm', 'pieces' => … )
 	 *   array( 'type' => 'rule', 'portion' => 'main' | 'first-hour' )
-	 *   array( 'type' => 'dismissal' )
+	 *   array( 'type' => 'dismissal' | 'additions' )
 	 *   array( 'type' => 'say' | 'rubric', 'line' => … )
 	 *   array( 'type' => 'unknown', 'line' => … )
 	 */
@@ -174,8 +176,8 @@ class Orders {
 				continue;
 			}
 			$lower = strtolower( preg_replace( '/\s+/', ' ', $line ) );
-			if ( 'dismissal' === $lower ) {
-				$steps[] = array( 'type' => 'dismissal' );
+			if ( 'dismissal' === $lower || 'additions' === $lower ) {
+				$steps[] = array( 'type' => $lower );
 			} elseif ( preg_match( '/^rule(?: ([a-z-]+))?$/', $lower, $m ) && in_array( $m[1] ?? 'main', array( 'main', 'first-hour' ), true ) ) {
 				$steps[] = array(
 					'type'    => 'rule',
@@ -214,6 +216,15 @@ class Orders {
 				$missing[ $step['slug'] ] = true;
 			} elseif ( 'rule' === $step['type'] ) {
 				++$rules;
+			} elseif ( 'dismissal' === $step['type'] || 'additions' === $step['type'] ) {
+				foreach ( self::services_of( $order_id ) as $service ) {
+					foreach ( array_keys( Dismissals::days() ) as $day ) {
+						$slug = Dismissals::slug( $service, $day, 'additions' === $step['type'] ? 'additions' : 'dismissals' );
+						if ( '' !== $slug && ! Texts::find( $slug ) ) {
+							$missing[ $slug ] = true;
+						}
+					}
+				}
 			}
 		}
 		foreach ( array_keys( $missing ) as $slug ) {

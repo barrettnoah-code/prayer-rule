@@ -1,6 +1,6 @@
 {
  "format": "prayer-rule-ustav/1",
- "source": "Home Ustav (1910), On Prayer at Home, ch. 4, and the dismissals for the week; English translation",
+ "source": "Home Ustav (1910), On Prayer at Home, ch. 4, and the dismissals for the whole year (fol. 226-253); English translation",
  "prayers": [
   {
    "slug": "entrance-opening",
@@ -226,38 +226,414 @@
    "slug": "dismissal-canon-universal",
    "title": "Saturday after the canon: the general universal dismissal",
    "content": "<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">O Lord Jesus Christ, Son of God, for the prayers of thy most pure Mother, and of our venerable and God-bearing fathers, and of all the saints, have mercy on and give rest to the souls of those who have fallen asleep before us and are ever remembered, our blessed founders, fathers and brethren, who lie here, and of Orthodox Christians everywhere, unto the endless ages, for thou art good and the lover of mankind.</p>\n<!-- /wp:paragraph -->"
+  },
+  {
+   "slug": "additions-vespers",
+   "title": "Daily additions: Vespers",
+   "content": "<!-- wp:paragraph {\"className\":\"is-style-rubric\"} -->\n<p class=\"is-style-rubric\">After finishing the kathismas or the lestovkas of Jesus Prayers, pray to the most holy God-bearer as much as you are able and wish: a lestovka, or 50 prostrations, or 12. Do the same for the saints who fall on that date.</p>\n<!-- /wp:paragraph -->"
+  },
+  {
+   "slug": "additions-vespers-sunday",
+   "title": "Daily additions: Vespers on Saturday evening",
+   "content": "<!-- wp:paragraph {\"className\":\"is-style-rubric\"} -->\n<p class=\"is-style-rubric\">After finishing the kathismas or the lestovkas of Jesus Prayers, pray to the most holy God-bearer as much as you are able and wish: a lestovka, or 50 prostrations, or 12. Do the same for the saints who fall on that date. On Saturday, pray to the Cross and the Resurrection.</p>\n<!-- /wp:paragraph -->"
+  },
+  {
+   "slug": "additions-vespers-feast",
+   "title": "Daily additions: Vespers of a feast",
+   "content": "<!-- wp:paragraph {\"className\":\"is-style-rubric\"} -->\n<p class=\"is-style-rubric\">After finishing the kathismas or the lestovkas of Jesus Prayers, pray to the most holy God-bearer as much as you are able and wish: a lestovka, or 50 prostrations, or 12. Do the same for the saints who fall on that date. On a feast, pray to the feast.</p>\n<!-- /wp:paragraph -->"
+  },
+  {
+   "slug": "additions-compline",
+   "title": "Daily additions: Compline",
+   "content": "<!-- wp:paragraph {\"className\":\"is-style-rubric\"} -->\n<p class=\"is-style-rubric\">After the kathisma or the lestovkas, pray to the God-bearer as your strength allows, in place of her canon. Laypeople who do not always pray the rule should pray to the guardian angel after the prostrations to the God-bearer.</p>\n<!-- /wp:paragraph -->"
+  },
+  {
+   "slug": "additions-compline-friday",
+   "title": "Daily additions: Compline on Friday evening",
+   "content": "<!-- wp:paragraph {\"className\":\"is-style-rubric\"} -->\n<p class=\"is-style-rubric\">On Friday evening, when it is not a feast, make as many prostrations as you wish in place of the canon for the departed, before the prostrations to the God-bearer.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-rubric\"} -->\n<p class=\"is-style-rubric\">After the kathisma or the lestovkas, pray to the God-bearer as your strength allows, in place of her canon. Laypeople who do not always pray the rule should pray to the guardian angel after the prostrations to the God-bearer.</p>\n<!-- /wp:paragraph -->"
+  },
+  {
+   "slug": "additions-midnight",
+   "title": "Daily additions: Midnight Office",
+   "content": "<!-- wp:paragraph {\"className\":\"is-style-rubric\"} -->\n<p class=\"is-style-rubric\">Make some prostrations for the reposed: 12, or fewer, or more.</p>\n<!-- /wp:paragraph -->"
+  },
+  {
+   "slug": "additions-matins-sunday",
+   "title": "Daily additions: Matins on Sunday",
+   "content": "<!-- wp:paragraph {\"className\":\"is-style-rubric\"} -->\n<p class=\"is-style-rubric\">After the kathismas, pray first to the Cross and the Resurrection, and after that to the God-bearer. Pray also to the saint who falls on that date.</p>\n<!-- /wp:paragraph -->"
+  },
+  {
+   "slug": "additions-matins-monday",
+   "title": "Daily additions: Matins on Monday",
+   "content": "<!-- wp:paragraph {\"className\":\"is-style-rubric\"} -->\n<p class=\"is-style-rubric\">After the kathismas, pray to the God-bearer and to the archangels. Pray also to the saint who falls on that date.</p>\n<!-- /wp:paragraph -->"
+  },
+  {
+   "slug": "additions-matins-tuesday",
+   "title": "Daily additions: Matins on Tuesday",
+   "content": "<!-- wp:paragraph {\"className\":\"is-style-rubric\"} -->\n<p class=\"is-style-rubric\">After the kathismas, pray to the God-bearer and to the Forerunner. Pray also to the saint who falls on that date.</p>\n<!-- /wp:paragraph -->"
+  },
+  {
+   "slug": "additions-matins-cross",
+   "title": "Daily additions: Matins on Wednesday and Friday",
+   "content": "<!-- wp:paragraph {\"className\":\"is-style-rubric\"} -->\n<p class=\"is-style-rubric\">After the kathismas, pray first to the honorable Cross, and after that to the God-bearer. Pray also to the saint who falls on that date.</p>\n<!-- /wp:paragraph -->"
+  },
+  {
+   "slug": "additions-matins-thursday",
+   "title": "Daily additions: Matins on Thursday",
+   "content": "<!-- wp:paragraph {\"className\":\"is-style-rubric\"} -->\n<p class=\"is-style-rubric\">After the kathismas, pray to the God-bearer and to the apostles and Nicholas. Pray also to the saint who falls on that date.</p>\n<!-- /wp:paragraph -->"
+  },
+  {
+   "slug": "additions-matins-saturday",
+   "title": "Daily additions: Matins on Saturday",
+   "content": "<!-- wp:paragraph {\"className\":\"is-style-rubric\"} -->\n<p class=\"is-style-rubric\">After the kathismas, pray to the God-bearer and to all the saints. Pray also to the saint who falls on that date.</p>\n<!-- /wp:paragraph -->"
+  },
+  {
+   "slug": "additions-matins-feast",
+   "title": "Daily additions: Matins of a great feast of the Lord on a Sunday",
+   "content": "<!-- wp:paragraph {\"className\":\"is-style-rubric\"} -->\n<p class=\"is-style-rubric\">When a great feast of the Lord falls on a Sunday, do not pray to the Resurrection; pray to the feast. After that, pray to the God-bearer, and to the saint who falls on that date.</p>\n<!-- /wp:paragraph -->"
+  },
+  {
+   "slug": "additions-hours",
+   "title": "Daily additions: the Hours",
+   "content": "<!-- wp:paragraph {\"className\":\"is-style-rubric\"} -->\n<p class=\"is-style-rubric\">After the kathismas, make as many prostrations to the God-bearer as you wish, and pray to the saint who falls on that date.</p>\n<!-- /wp:paragraph -->"
+  },
+  {
+   "slug": "additions-hours-sunday",
+   "title": "Daily additions: the Hours on Sunday",
+   "content": "<!-- wp:paragraph {\"className\":\"is-style-rubric\"} -->\n<p class=\"is-style-rubric\">On Sunday, the day of the Resurrection, after the kathismas or lestovkas, pray first to the Resurrection, and then to the God-bearer and to the saint who falls on that date.</p>\n<!-- /wp:paragraph -->"
+  },
+  {
+   "slug": "additions-hours-feast",
+   "title": "Daily additions: the Hours of a great feast of the Lord on a Sunday",
+   "content": "<!-- wp:paragraph {\"className\":\"is-style-rubric\"} -->\n<p class=\"is-style-rubric\">When a great feast of the Lord falls on a Sunday, do not pray to the Resurrection; after the kathismas or lestovkas, pray first to the feast, and then to the God-bearer and to the saint who falls on that date.</p>\n<!-- /wp:paragraph -->"
+  },
+  {
+   "slug": "dismissal-sep-01",
+   "title": "Dismissal: Sep 1, the Indiction",
+   "content": "<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">O Thou who by thine almighty and ineffable wisdom didst establish the beginning of the indiction, that is, of the new year: O Lord Jesus Christ, Son of God, for the prayers of thy most pure Mother, and of her honorable and glorious synaxis in Miasena; and of our venerable father Symeon the Stylite and archimandrite, and of his mother Martha; and of the holy martyr Aithalas; and of the holy forty women, and of holy Ammon the deacon, their teacher; and of the holy martyrs Callistus, Evodus and Hermogenes, brothers according to the flesh; and of Joshua the son of Nun, and of all the saints, have mercy on us and save us, for thou art good and the lover of mankind.</p>\n<!-- /wp:paragraph -->"
+  },
+  {
+   "slug": "dismissal-sep-06",
+   "title": "Dismissal: Sep 6, the Archangel Michael",
+   "content": "<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">O Lord Jesus Christ, Son of God, for the prayers of thy most pure Mother, and through the intercession of the holy and great captain of the hosts, the Archistrategos Michael, and of all the saints, have mercy on us and save us, for thou art good and the lover of mankind.</p>\n<!-- /wp:paragraph -->"
+  },
+  {
+   "slug": "dismissal-sep-08",
+   "title": "Dismissal: Sep 8, the Nativity of the God-bearer",
+   "content": "<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">O Lord Jesus Christ, Son of God, for the prayers of thy most pure Mother, and of her honorable and glorious Nativity, and of all the saints, have mercy on us and save us, for thou art good and the lover of mankind.</p>\n<!-- /wp:paragraph -->"
+  },
+  {
+   "slug": "dismissal-sep-13",
+   "title": "Dismissal: Sep 13, the Renewal of the Temple",
+   "content": "<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">O Thou who didst fulfill all thy dispensation for our sake, and wast well pleased that the holy church be built and renewed by consecration in the name of thy holy Resurrection: O Lord Jesus Christ, Son of God, for the prayers of thy most pure Mother, and of the holy, glorious and all-praised apostles, and of all the saints, have mercy on us and save us, for thou art good and the lover of mankind.</p>\n<!-- /wp:paragraph -->"
+  },
+  {
+   "slug": "dismissal-sep-14",
+   "title": "Dismissal: Sep 14, the Exaltation of the Cross of the Lord",
+   "content": "<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">O Lord Jesus Christ, Son of God, for the prayers of thy most pure Mother, by the power of the honorable and life-giving Cross, and of all the saints, have mercy on us and save us, for thou art good and the lover of mankind.</p>\n<!-- /wp:paragraph -->"
+  },
+  {
+   "slug": "dismissal-sep-23",
+   "title": "Dismissal: Sep 23, the Conception of John the Baptist",
+   "content": "<!-- wp:paragraph {\"className\":\"is-style-rubric\"} -->\n<p class=\"is-style-rubric\">Said on all the feasts of John the Baptist.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">O Lord Jesus Christ, Son of God, for the prayers of thy most pure Mother, and of the honorable and glorious prophet, forerunner and baptist John, and of all the saints, have mercy on us and save us, for thou art good and the lover of mankind.</p>\n<!-- /wp:paragraph -->"
+  },
+  {
+   "slug": "dismissal-sep-25",
+   "title": "Dismissal: Sep 25, the Sign from the Icon of the God-bearer in the City of Pskov",
+   "content": "<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">O Lord Jesus Christ, Son of God, for the prayers of thy most pure Mother, and of the honorable and glorious sign that came to pass from her icon in the city of Pskov, and of all the saints, have mercy on us and save us, for thou art good and the lover of mankind.</p>\n<!-- /wp:paragraph -->"
+  },
+  {
+   "slug": "dismissal-oct-01",
+   "title": "Dismissal: Oct 1, the Protection of the God-bearer",
+   "content": "<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">O Lord Jesus Christ, Son of God, for the prayers of thy most pure Mother, and of her honorable and glorious Protection, and of all the saints, have mercy on us and save us, for thou art good and the lover of mankind.</p>\n<!-- /wp:paragraph -->"
+  },
+  {
+   "slug": "dismissal-oct-11",
+   "title": "Dismissal: Oct 11, the Synaxis of the Holy Fathers",
+   "content": "<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">O Thou who didst rise from the dead: O Lord Jesus Christ, Son of God, for the prayers of thy most pure Mother, by the power of the honorable and life-giving Cross, and of the holy, glorious and all-praised apostles, and of our fathers among the saints, the ecumenical teachers, who assembled in Nicaea the second time for the destruction of the iconoclasts, and of [saint], whose day it is, and of all the saints, have mercy on us and save us, for thou art good and the lover of mankind.</p>\n<!-- /wp:paragraph -->"
+  },
+  {
+   "slug": "dismissal-oct-22",
+   "title": "Dismissal: Oct 22, the Kazan Icon of the God-bearer",
+   "content": "<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">O Lord Jesus Christ, Son of God, for the prayers of thy most pure Mother, and of the honorable and glorious feast of her wonderworking Kazan icon, for the deliverance of the reigning city of Moscow from Lithuania, and of all the saints, have mercy on us and save us, for thou art good and the lover of mankind.</p>\n<!-- /wp:paragraph -->"
+  },
+  {
+   "slug": "dismissal-oct-26",
+   "title": "Dismissal: Oct 26, the Commemoration of the Earthquake",
+   "content": "<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">O Thou who by thine ineffable power didst shake the earth with a fearful earthquake: O Lord Jesus Christ, Son of God, for the prayers of thy most pure Mother, and of the holy great-martyr Demetrius, and of all the saints, have mercy on us and save us, for thou art good and the lover of mankind.</p>\n<!-- /wp:paragraph -->"
+  },
+  {
+   "slug": "dismissal-nov-08",
+   "title": "Dismissal: Nov 8, the Synaxis of the Archangel Michael",
+   "content": "<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">O Lord Jesus Christ, Son of God, for the prayers of thy most pure Mother, and through the intercession of the holy and great captain of the hosts, the Archistrategos Michael, and of the other holy heavenly bodiless powers, and of all the saints, have mercy on us and save us, for thou art good and the lover of mankind.</p>\n<!-- /wp:paragraph -->"
+  },
+  {
+   "slug": "dismissal-nov-21",
+   "title": "Dismissal: Nov 21, the Entry of the God-bearer",
+   "content": "<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">O Lord Jesus Christ, Son of God, for the prayers of thy most pure Mother, and of her honorable and glorious Entry, and of all the saints, have mercy on us and save us, for thou art good and the lover of mankind.</p>\n<!-- /wp:paragraph -->"
+  },
+  {
+   "slug": "dismissal-nov-27",
+   "title": "Dismissal: Nov 27, the Sign of the God-bearer in Novgorod",
+   "content": "<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">O Lord Jesus Christ, Son of God, for the prayers of thy most pure Mother, and of the honorable and glorious sign that came to pass from her icon in Great Novgorod, and of all the saints, have mercy on us and save us, for thou art good and the lover of mankind.</p>\n<!-- /wp:paragraph -->"
+  },
+  {
+   "slug": "dismissal-dec-09",
+   "title": "Dismissal: Dec 9, the Conception of the God-bearer",
+   "content": "<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">O Lord Jesus Christ, Son of God, for the prayers of thy most pure Mother, and of her honorable and glorious Conception, and of all the saints, have mercy on us and save us, for thou art good and the lover of mankind.</p>\n<!-- /wp:paragraph -->"
+  },
+  {
+   "slug": "dismissal-forefathers",
+   "title": "Dismissal: Sunday of the Holy Forefathers",
+   "content": "<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">O Thou who didst rise from the dead: O Lord Jesus Christ, Son of God, for the prayers of thy most pure Mother, by the power of the honorable and life-giving Cross, and of the holy, glorious and all-praised apostles, and of the holy forefathers, and of [saint], whose day it is, and of all the saints, have mercy on us and save us, for thou art good and the lover of mankind.</p>\n<!-- /wp:paragraph -->"
+  },
+  {
+   "slug": "dismissal-fathers-before-nativity",
+   "title": "Dismissal: Sunday of the Holy Fathers before the Nativity",
+   "content": "<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">O Thou who didst rise from the dead: O Lord Jesus Christ, Son of God, for the prayers of thy most pure Mother, by the power of the honorable and life-giving Cross, and of the holy, glorious and all-praised apostles, and of the holy fathers, and of [saint], whose day it is, and of all the saints, have mercy on us and save us, for thou art good and the lover of mankind.</p>\n<!-- /wp:paragraph -->"
+  },
+  {
+   "slug": "dismissal-dec-25",
+   "title": "Dismissal: Dec 25, the Nativity of Christ",
+   "content": "<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">O Thou who wast born in Bethlehem of Judaea and didst lie in a manger: O Lord Jesus Christ, Son of God, for the prayers of thy most pure Mother and of all the saints, have mercy on us and save us, for thou art good and the lover of mankind.</p>\n<!-- /wp:paragraph -->"
+  },
+  {
+   "slug": "dismissal-dec-26",
+   "title": "Dismissal: Dec 26, the Synaxis of the God-bearer",
+   "content": "<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">O Thou who wast born in Bethlehem of Judaea and didst lie in a manger: O Lord Jesus Christ, Son of God, for the prayers of thy most pure Mother, and of her honorable and glorious synaxis, and of all the saints, have mercy on us and save us, for thou art good and the lover of mankind.</p>\n<!-- /wp:paragraph -->"
+  },
+  {
+   "slug": "dismissal-sunday-after-nativity",
+   "title": "Dismissal: Sunday after the Nativity of Christ",
+   "content": "<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">O Thou who didst rise from the dead: O Lord Jesus Christ, Son of God, for the prayers of thy most pure Mother, by the power of the honorable and life-giving Cross, and of the holy, glorious and all-praised apostles, and of the holy and righteous ancestors of God, Joseph the betrothed, and David the king, and James thy brother according to the flesh, and of [saint], whose day it is, and of all the saints, have mercy on us and save us, for thou art good and the lover of mankind.</p>\n<!-- /wp:paragraph -->"
+  },
+  {
+   "slug": "dismissal-jan-01",
+   "title": "Dismissal: Jan 1, the Circumcision of the Lord",
+   "content": "<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">O Thou who according to the law didst receive circumcision on the eighth day: O Lord Jesus Christ, Son of God, for the prayers of thy most pure Mother, and of our father among the saints Basil the Great, archbishop of Caesarea in Cappadocia, and of all the saints, have mercy on us and save us, for thou art good and the lover of mankind.</p>\n<!-- /wp:paragraph -->"
+  },
+  {
+   "slug": "dismissal-jan-06",
+   "title": "Dismissal: Jan 6, the Theophany of the Lord",
+   "content": "<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">O Thou who wast baptized by John in the Jordan: O Lord Jesus Christ, Son of God, for the prayers of thy most pure Mother and of all the saints, have mercy on us and save us, for thou art good and the lover of mankind.</p>\n<!-- /wp:paragraph -->"
+  },
+  {
+   "slug": "dismissal-jan-07",
+   "title": "Dismissal: Jan 7, the Synaxis of John the Baptist",
+   "content": "<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">O Thou who wast baptized by John in the Jordan: O Lord Jesus Christ, Son of God, for the prayers of thy most pure Mother, and of the honorable and glorious prophet, forerunner and baptist John, and of all the saints, have mercy on us and save us, for thou art good and the lover of mankind.</p>\n<!-- /wp:paragraph -->"
+  },
+  {
+   "slug": "dismissal-feb-02",
+   "title": "Dismissal: Feb 2, the Meeting of the Lord",
+   "content": "<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">O Thou who wast held in the arms of righteous Symeon: O Lord Jesus Christ, Son of God, for the prayers of thy most pure Mother and of all the saints, have mercy on us and save us, for thou art good and the lover of mankind.</p>\n<!-- /wp:paragraph -->"
+  },
+  {
+   "slug": "dismissal-mar-25",
+   "title": "Dismissal: Mar 25, the Annunciation of the God-bearer",
+   "content": "<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">O Lord Jesus Christ, Son of God, for the prayers of thy most pure Mother, and of her honorable and glorious Annunciation, and of all the saints, have mercy on us and save us, for thou art good and the lover of mankind.</p>\n<!-- /wp:paragraph -->"
+  },
+  {
+   "slug": "dismissal-mar-26",
+   "title": "Dismissal: Mar 26, the Synaxis of the Archangel Gabriel",
+   "content": "<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">O Lord Jesus Christ, Son of God, for the prayers of thy most pure Mother, and through the intercession of the holy and great captain of the hosts, the Archistrategos Gabriel, and of all the saints, have mercy on us and save us, for thou art good and the lover of mankind.</p>\n<!-- /wp:paragraph -->"
+  },
+  {
+   "slug": "dismissal-may-07",
+   "title": "Dismissal: May 7, the Commemoration of the Sign of the Cross of the Lord",
+   "content": "<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">O Lord Jesus Christ, Son of God, for the prayers of thy most pure Mother, by the power of the honorable and life-giving Cross, and of [saint], whose day it is, and of all the saints, have mercy on us and save us, for thou art good and the lover of mankind.</p>\n<!-- /wp:paragraph -->"
+  },
+  {
+   "slug": "dismissal-may-21",
+   "title": "Dismissal: May 21, the Meeting of the Wonderworking Vladimir Icon",
+   "content": "<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">O Lord Jesus Christ, Son of God, for the prayers of thy most pure Mother, and of the honorable and glorious meeting of her wonderworking Vladimir icon, and of all the saints, have mercy on us and save us, for thou art good and the lover of mankind.</p>\n<!-- /wp:paragraph -->"
+  },
+  {
+   "slug": "dismissal-jun-26",
+   "title": "Dismissal: Jun 26, the Appearance of the Tikhvin Icon of the Hodegetria",
+   "content": "<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">O Lord Jesus Christ, Son of God, for the prayers of thy most pure Mother, and of the honorable and glorious appearance of her wonderworking icon at Tikhvin, and of all the saints, have mercy on us and save us, for thou art good and the lover of mankind.</p>\n<!-- /wp:paragraph -->"
+  },
+  {
+   "slug": "dismissal-jun-29",
+   "title": "Dismissal: Jun 29, Peter and Paul",
+   "content": "<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">O Lord Jesus Christ, Son of God, for the prayers of thy most pure Mother, and of the holy, glorious and all-praised chief apostles Peter and Paul, and of all the saints, have mercy on us and save us, for thou art good and the lover of mankind.</p>\n<!-- /wp:paragraph -->"
+  },
+  {
+   "slug": "dismissal-jul-02",
+   "title": "Dismissal: Jul 2, the Placing of the Robe of the God-bearer",
+   "content": "<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">O Lord Jesus Christ, Son of God, for the prayers of thy most pure Mother, and of the honorable and glorious placing of her robe in the church at Blachernae, and of all the saints, have mercy on us and save us, for thou art good and the lover of mankind.</p>\n<!-- /wp:paragraph -->"
+  },
+  {
+   "slug": "dismissal-jul-08",
+   "title": "Dismissal: Jul 8, the Appearance of the Kazan Icon of the God-bearer",
+   "content": "<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">O Lord Jesus Christ, Son of God, for the prayers of thy most pure Mother, and of the honorable and glorious appearance of her wonderworking icon in the city of Kazan, and of all the saints, have mercy on us and save us, for thou art good and the lover of mankind.</p>\n<!-- /wp:paragraph -->"
+  },
+  {
+   "slug": "dismissal-jul-09",
+   "title": "Dismissal: Jul 9, the Appearance of the Mozhaisk Icon of the God-bearer",
+   "content": "<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">O Lord Jesus Christ, Son of God, for the prayers of thy most pure Mother, and of the honorable and glorious appearance of her wonderworking icon in the city of Mozhaisk, which is at Kolocha, and of all the saints, have mercy on us and save us, for thou art good and the lover of mankind.</p>\n<!-- /wp:paragraph -->"
+  },
+  {
+   "slug": "dismissal-jul-10",
+   "title": "Dismissal: Jul 10, the Placing of the Robe of the Lord",
+   "content": "<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">O Thou who didst deign to wear thine honorable, glorious and healing robe, that is, the tunic, and that it should be laid in the glorious and most renowned reigning city of Moscow: O Lord Jesus Christ, Son of God, for the prayers of thy most pure Mother and of all the saints, have mercy on us and save us, for thou art good and the lover of mankind.</p>\n<!-- /wp:paragraph -->"
+  },
+  {
+   "slug": "dismissal-jul-10-sunday",
+   "title": "Dismissal: Jul 10, the Placing of the Robe of the Lord, on a Sunday",
+   "content": "<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">O Thou who didst rise from the dead: O Lord Jesus Christ, Son of God, for the prayers of thy most pure Mother, by the power of the honorable and life-giving Cross, and by the placing of the honorable, glorious and healing robe, that is, the tunic, in the glorious and most renowned reigning city of Moscow, and of the holy, glorious and all-praised apostles, and of all the saints, have mercy on us and save us, for thou art good and the lover of mankind.</p>\n<!-- /wp:paragraph -->"
+  },
+  {
+   "slug": "dismissal-jul-16",
+   "title": "Dismissal: Jul 16, the Synaxis of the Holy Fathers",
+   "content": "<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">O Thou who didst rise from the dead: O Lord Jesus Christ, Son of God, for the prayers of thy most pure Mother, by the power of the honorable and life-giving Cross, and of the holy, glorious and all-praised apostles, and of our holy and God-bearing fathers, the ecumenical teachers, who assembled at the six ecumenical councils for the destruction of heresies, and of [saint], whose day it is, and of all the saints, have mercy on us and save us, for thou art good and the lover of mankind.</p>\n<!-- /wp:paragraph -->"
+  },
+  {
+   "slug": "dismissal-jul-28",
+   "title": "Dismissal: Jul 28, the Appearance of the Smolensk Icon of the God-bearer, the Hodegetria",
+   "content": "<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">O Lord Jesus Christ, Son of God, for the prayers of thy most pure Mother, and of the honorable and glorious appearance of her wonderworking Smolensk icon, the Hodegetria, and of all the saints, have mercy on us and save us, for thou art good and the lover of mankind.</p>\n<!-- /wp:paragraph -->"
+  },
+  {
+   "slug": "dismissal-aug-01",
+   "title": "Dismissal: Aug 1, the All-Merciful Saviour",
+   "content": "<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">O Lord Jesus Christ, Son of God, for the prayers of thy most pure Mother, by the power of the honorable and life-giving Cross, and of the holy martyrs, the seven Maccabees, brothers according to the flesh, and of Eleazar their teacher, and of Solomonia their mother, and of all the saints, have mercy on us and save us, for thou art good and the lover of mankind.</p>\n<!-- /wp:paragraph -->"
+  },
+  {
+   "slug": "dismissal-aug-06",
+   "title": "Dismissal: Aug 6, the Transfiguration of the Lord",
+   "content": "<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">O Thou who wast transfigured in majestic glory on Mount Tabor before thy disciples: O Lord Jesus Christ, Son of God, for the prayers of thy most pure Mother, and of the holy, glorious and all-praised apostles, and of all the saints, have mercy on us and save us, for thou art good and the lover of mankind.</p>\n<!-- /wp:paragraph -->"
+  },
+  {
+   "slug": "dismissal-aug-15",
+   "title": "Dismissal: Aug 15, the Dormition of the God-bearer",
+   "content": "<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">O Lord Jesus Christ, Son of God, for the prayers of thy most pure Mother, and of her honorable and glorious Dormition, and of the holy, glorious and all-praised apostles, and of all the saints, have mercy on us and save us, for thou art good and the lover of mankind.</p>\n<!-- /wp:paragraph -->"
+  },
+  {
+   "slug": "dismissal-aug-16",
+   "title": "Dismissal: Aug 16, the Image Not Made by Hands",
+   "content": "<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">O Thou who by thine ineffable providence, before thy voluntary Passion, wast well pleased to imprint the most holy image not made by hands of thy most pure and divine-human face upon a cloth, that is, the holy Mandylion: O Lord Jesus Christ, Son of God, for the prayers of thy most pure Mother and of all the saints, have mercy on us and save us, for thou art good and the lover of mankind.</p>\n<!-- /wp:paragraph -->"
+  },
+  {
+   "slug": "dismissal-aug-31",
+   "title": "Dismissal: Aug 31, the Placing of the Belt of the Most Holy God-bearer",
+   "content": "<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">O Lord Jesus Christ, Son of God, for the prayers of thy most pure Mother, and of the honorable and glorious placing of her belt in Chalkoprateia, and of all the saints, have mercy on us and save us, for thou art good and the lover of mankind.</p>\n<!-- /wp:paragraph -->"
+  },
+  {
+   "slug": "dismissal-lazarus-saturday",
+   "title": "Dismissal: Lazarus Saturday",
+   "content": "<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">O Thou who didst come to Bethany to raise up thy friend, righteous Lazarus: O Lord Jesus Christ, Son of God, for the prayers of thy most pure Mother and of all the saints, have mercy on us and save us, for thou art good and the lover of mankind.</p>\n<!-- /wp:paragraph -->"
+  },
+  {
+   "slug": "dismissal-palm-sunday",
+   "title": "Dismissal: Palm Sunday",
+   "content": "<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">O Thou who ridest upon the throne of the cherubim, and wast pleased to sit upon the colt of an ass: O Lord Jesus Christ, Son of God, for the prayers of thy most pure Mother and of all the saints, have mercy on us and save us, for thou art good and the lover of mankind.</p>\n<!-- /wp:paragraph -->"
+  },
+  {
+   "slug": "dismissal-palm-sunday-another",
+   "title": "Dismissal: Palm Sunday (another)",
+   "content": "<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">O Thou who didst come into the city of Jerusalem, and didst receive praise from the children of the Hebrews: O Lord Jesus Christ, Son of God, for the prayers of thy most pure Mother and of all the saints, have mercy on us and save us, for thou art good and the lover of mankind.</p>\n<!-- /wp:paragraph -->"
+  },
+  {
+   "slug": "dismissal-holy-week",
+   "title": "Dismissal: Holy Week, until Great Saturday",
+   "content": "<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">O Thou who didst come to thy voluntary Passion: O Lord Jesus Christ, Son of God, for the prayers of thy most pure Mother and of all the saints, have mercy on us and save us, for thou art good and the lover of mankind.</p>\n<!-- /wp:paragraph -->"
+  },
+  {
+   "slug": "dismissal-great-saturday",
+   "title": "Dismissal: Great Saturday",
+   "content": "<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">O Thou who for our sake wast of thine own will laid in the tomb: O Lord Jesus Christ, Son of God, for the prayers of thy most pure Mother and of all the saints, have mercy on us and save us, for thou art good and the lover of mankind.</p>\n<!-- /wp:paragraph -->"
+  },
+  {
+   "slug": "dismissal-great-saturday-another",
+   "title": "Dismissal: Great Saturday (another)",
+   "content": "<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">O Thou who for us men and for our salvation didst humble thyself, and wast clothed in our poverty, and of thine own will didst endure the passion, and didst taste death, and wast laid in the tomb: O Lord Jesus Christ, Son of God, for the prayers of thy most pure Mother and of all the saints, have mercy on us and save us, for thou art good and the lover of mankind.</p>\n<!-- /wp:paragraph -->"
+  },
+  {
+   "slug": "dismissal-pascha",
+   "title": "Dismissal: Pascha and Bright Week (and the leave-taking of Pascha, at the Hours)",
+   "content": "<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">O Thou who didst rise from the dead: O Lord Jesus Christ, Son of God, for the prayers of thy most pure Mother, by the power of the honorable and life-giving Cross, and of the holy, glorious and all-praised apostles, and of all the saints, have mercy on us and save us, for thou art good and the lover of mankind.</p>\n<!-- /wp:paragraph -->"
+  },
+  {
+   "slug": "dismissal-thomas-sunday",
+   "title": "Dismissal: Thomas Sunday",
+   "content": "<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">O Thou who didst come in to thy disciples when the doors were shut, and didst assure Thomas: O Lord Jesus Christ, Son of God, for the prayers of thy most pure Mother, by the power of the honorable and life-giving Cross, and of the holy, glorious and all-praised apostles, and of all the saints, have mercy on us and save us, for thou art good and the lover of mankind.</p>\n<!-- /wp:paragraph -->"
+  },
+  {
+   "slug": "dismissal-myrrhbearers",
+   "title": "Dismissal: Sunday of the Myrrhbearers",
+   "content": "<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">O Thou who didst rise from the dead: O Lord Jesus Christ, Son of God, for the prayers of thy most pure Mother, by the power of the honorable and life-giving Cross, and of the holy, glorious and all-praised apostles, and of the holy and righteous Joseph of Arimathaea, and Nicodemus, and of the holy myrrhbearing women, and of [saint], whose day it is, and of all the saints, have mercy on us and save us, for thou art good and the lover of mankind.</p>\n<!-- /wp:paragraph -->"
+  },
+  {
+   "slug": "dismissal-mid-pentecost",
+   "title": "Dismissal: Mid-Pentecost",
+   "content": "<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">O Thou who at the midfeast of Pentecost didst enter the temple and teach the Pharisees and Sadducees: O Lord Jesus Christ, Son of God, for the prayers of thy most pure Mother and of all the saints, have mercy on us and save us, for thou art good and the lover of mankind.</p>\n<!-- /wp:paragraph -->"
+  },
+  {
+   "slug": "dismissal-ascension",
+   "title": "Dismissal: Ascension",
+   "content": "<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">O Thou who didst ascend in glory into the heavens: O Lord Jesus Christ, Son of God, for the prayers of thy most pure Mother, and of the holy, glorious and all-praised apostles, and of all the saints, have mercy on us and save us, for thou art good and the lover of mankind.</p>\n<!-- /wp:paragraph -->"
+  },
+  {
+   "slug": "dismissal-seventh-sunday-pascha",
+   "title": "Dismissal: Seventh Sunday after Pascha",
+   "content": "<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">O Thou who didst rise from the dead: O Lord Jesus Christ, Son of God, for the prayers of thy most pure Mother, by the power of the honorable and life-giving Cross, and of the holy, glorious and all-praised apostles, and of our holy and God-bearing fathers, the three hundred and eighteen ecumenical teachers, who assembled in Nicaea the first time against the godless Arius, and of [saint], whose day it is, and of all the saints, have mercy on us and save us, for thou art good and the lover of mankind.</p>\n<!-- /wp:paragraph -->"
+  },
+  {
+   "slug": "dismissal-pentecost",
+   "title": "Dismissal: Pentecost",
+   "content": "<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">O Thou who in the form of fiery tongues didst send down the most Holy Spirit on the day of Pentecost upon thy holy disciples and apostles: O Lord Jesus Christ, Son of God, for the prayers of thy most pure Mother, and of the holy, glorious and all-praised apostles, and of all the saints, have mercy on us and save us, for thou art good and the lover of mankind.</p>\n<!-- /wp:paragraph -->"
+  },
+  {
+   "slug": "dismissal-pentecost-vespers",
+   "title": "Dismissal: Pentecost Sunday at Vespers (Monday of the Holy Spirit)",
+   "content": "<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">O Thou who didst empty thyself from the Father's divine bosom, and didst come down from heaven to earth, and didst take upon thyself our whole human nature and deify it, and with it didst straightway ascend into the heavens and sit at the right hand of God the Father; and who didst send down the divine and holy, life-giving and almighty, consubstantial and co-enthroned Spirit, equal in glory and in worship, upon thy sacred and holy disciples and apostles, and didst enlighten them thereby, and through them didst enlighten the whole world: O Lord Jesus Christ, Son of God, for the prayers of thy most pure Mother, and of thine all-glorious and all-praised Spirit-bearing holy disciples and apostles, and of all the saints, have mercy on us and save us, for thou art good and the lover of mankind.</p>\n<!-- /wp:paragraph -->"
   }
  ],
  "orders": [
   {
    "service": "vespers",
    "title": "Vespers (Home Ustav)",
-   "items": "! When the time for vespers comes, put aside all worldly cares, stand before the image of God and say:\nentrance-opening\nthrough-the-prayers\nheavenly-king\ntrisagion-our-father\n> Lord, have mercy. (12 times)\nglory-both-now\no-come\nrule\n> Lord, have mercy. (3 times)\nglory-both-now\nending-more-honorable\ndismissal\ndeparting-opening"
+   "items": "! When the time for vespers comes, put aside all worldly cares, stand before the image of God and say:\nentrance-opening\nthrough-the-prayers\nheavenly-king\ntrisagion-our-father\n> Lord, have mercy. (12 times)\nglory-both-now\no-come\nrule\nadditions\n> Lord, have mercy. (3 times)\nglory-both-now\nending-more-honorable\ndismissal\ndeparting-opening",
+   "previous": [
+    "98194148d3fa9cdbc217fd8731c2154b"
+   ]
   },
   {
    "service": "compline",
    "title": "Compline (Home Ustav)",
-   "items": "entrance-opening\nthrough-the-prayers\nheavenly-king\ntrisagion-our-father\n> Lord, have mercy. (12 times)\no-come\npsalm 50\ncreed\nrule\n> Lord, have mercy. (3 times)\nending-glory-no-prostrations\ndismissal\nprayer-of-forgiveness\nforgive-them-that-hate"
+   "items": "entrance-opening\nthrough-the-prayers\nheavenly-king\ntrisagion-our-father\n> Lord, have mercy. (12 times)\no-come\npsalm 50\ncreed\nrule\nadditions\n> Lord, have mercy. (3 times)\nending-glory-no-prostrations\ndismissal\nprayer-of-forgiveness\nforgive-them-that-hate",
+   "previous": [
+    "ee1e2f5bf5a93755f259b7cb4acc1766"
+   ]
   },
   {
    "service": "midnight",
    "title": "Midnight Office (Home Ustav)",
-   "items": "entrance-opening\nthrough-the-prayers\nglory-to-thee-for-all\nmacarius-three-prostrations\nheavenly-king\ntrisagion-our-father\n> Lord, have mercy. (12 times)\nprayer-having-risen\no-come\npsalm 50\ncreed\nrule\n> Lord, have mercy. (3 times)\nending-glory-no-prostrations\ndismissal\nprayer-of-forgiveness\nforgive-them-that-hate"
+   "items": "entrance-opening\nthrough-the-prayers\nglory-to-thee-for-all\nmacarius-three-prostrations\nheavenly-king\ntrisagion-our-father\n> Lord, have mercy. (12 times)\nprayer-having-risen\no-come\npsalm 50\ncreed\nrule\nadditions\n> Lord, have mercy. (3 times)\nending-glory-no-prostrations\ndismissal\nprayer-of-forgiveness\nforgive-them-that-hate",
+   "previous": [
+    "075e15bf3b38795cad9feb0079cdfe8e"
+   ]
   },
   {
    "service": "matins",
    "title": "Matins and the 1st Hour (Home Ustav)",
-   "items": "through-the-prayers\ntrisagion-our-father\n> Lord, have mercy. (12 times)\nglory-both-now\no-come\nrule\n> Lord, have mercy. (3 times)\nglory-both-now\no-come\n! Then, for the first hour:\nrule first-hour\nending-glory-prostrations\ndismissal"
+   "items": "through-the-prayers\ntrisagion-our-father\n> Lord, have mercy. (12 times)\nglory-both-now\no-come\nrule\nadditions\n> Lord, have mercy. (3 times)\nglory-both-now\no-come\n! Then, for the first hour:\nrule first-hour\nending-glory-prostrations\ndismissal",
+   "previous": [
+    "409c74c4728fcbf2feba9423d3007a02"
+   ]
   },
   {
    "service": "hours",
    "title": "Hours (Home Ustav)",
-   "items": "entrance-opening\nthrough-the-prayers\nheavenly-king\ntrisagion-our-father\n> Lord, have mercy. (12 times)\nglory-both-now\no-come\nrule\n> Lord, have mercy. (3 times)\nglory-both-now\nending-truly-meet\ndismissal"
+   "items": "entrance-opening\nthrough-the-prayers\nheavenly-king\ntrisagion-our-father\n> Lord, have mercy. (12 times)\nglory-both-now\no-come\nrule\nadditions\n> Lord, have mercy. (3 times)\nglory-both-now\nending-truly-meet\ndismissal",
+   "previous": [
+    "a8b801f5bfc32e93595c8f63b10d163e"
+   ]
   },
   {
    "service": "cell-rule",
    "title": "Cell Rule (Home Ustav)",
-   "items": "cell-twelve-prostrations\nprayer-macarius\nprayer-isaac-the-syrian\nprayer-stephen-of-thebes\nprayer-chrysostom\nprayer-fifth-cell\ncross-blessing\nglory-to-thee-for-all\nthrough-the-prayers\nheavenly-king\ntrisagion-our-father\n> Lord, have mercy. (12 times)\nglory-both-now\no-come\npsalm 50\ncreed\nrule\ngod-bearer-prayers\nit-is-truly-meet\ntrisagion-our-father\ncell-troparia\nending-cell-rule\ndismissal"
+   "items": "cell-twelve-prostrations\nprayer-macarius\nprayer-isaac-the-syrian\nprayer-stephen-of-thebes\nprayer-chrysostom\nprayer-fifth-cell\ncross-blessing\nglory-to-thee-for-all\nthrough-the-prayers\nheavenly-king\ntrisagion-our-father\n> Lord, have mercy. (12 times)\nglory-both-now\no-come\npsalm 50\ncreed\nrule\ngod-bearer-prayers\nit-is-truly-meet\ntrisagion-our-father\ncell-troparia\nending-cell-rule\ndismissal",
+   "previous": []
   }
  ],
  "dismissals": {
@@ -315,5 +691,1214 @@
    "friday": "dismissal-fathers",
    "saturday": "dismissal-fathers"
   }
+ },
+ "additions": {
+  "vespers": {
+   "sunday": "additions-vespers-sunday",
+   "monday": "additions-vespers",
+   "tuesday": "additions-vespers",
+   "wednesday": "additions-vespers",
+   "thursday": "additions-vespers",
+   "friday": "additions-vespers",
+   "saturday": "additions-vespers"
+  },
+  "compline": {
+   "sunday": "additions-compline",
+   "monday": "additions-compline",
+   "tuesday": "additions-compline",
+   "wednesday": "additions-compline",
+   "thursday": "additions-compline",
+   "friday": "additions-compline",
+   "saturday": "additions-compline-friday"
+  },
+  "midnight": {
+   "sunday": "",
+   "monday": "additions-midnight",
+   "tuesday": "additions-midnight",
+   "wednesday": "additions-midnight",
+   "thursday": "additions-midnight",
+   "friday": "additions-midnight",
+   "saturday": "additions-midnight"
+  },
+  "matins": {
+   "sunday": "additions-matins-sunday",
+   "monday": "additions-matins-monday",
+   "tuesday": "additions-matins-tuesday",
+   "wednesday": "additions-matins-cross",
+   "thursday": "additions-matins-thursday",
+   "friday": "additions-matins-cross",
+   "saturday": "additions-matins-saturday"
+  },
+  "hours": {
+   "sunday": "additions-hours-sunday",
+   "monday": "additions-hours",
+   "tuesday": "additions-hours",
+   "wednesday": "additions-hours",
+   "thursday": "additions-hours",
+   "friday": "additions-hours",
+   "saturday": "additions-hours"
+  },
+  "cell-rule": {
+   "sunday": "",
+   "monday": "",
+   "tuesday": "",
+   "wednesday": "",
+   "thursday": "",
+   "friday": "",
+   "saturday": ""
+  }
+ },
+ "additions_feast": {
+  "any": {
+   "vespers": "additions-vespers-feast",
+   "compline": "additions-compline",
+   "midnight": ""
+  },
+  "sunday": {
+   "matins": "additions-matins-feast",
+   "hours": "additions-hours-feast"
+  }
+ },
+ "feasts": [
+  {
+   "slug": "dismissal-sep-01",
+   "title": "Sep 1, the Indiction",
+   "menaion": [
+    [
+     9,
+     1
+    ]
+   ],
+   "sunday": [],
+   "pascha": [],
+   "services": [
+    "vespers",
+    "matins",
+    "hours"
+   ],
+   "on_sunday": "weekly",
+   "lordly": false,
+   "additions": "feast"
+  },
+  {
+   "slug": "dismissal-sep-06",
+   "title": "Sep 6, the Archangel Michael",
+   "menaion": [
+    [
+     9,
+     6
+    ]
+   ],
+   "sunday": [],
+   "pascha": [],
+   "services": [
+    "vespers",
+    "matins",
+    "hours"
+   ],
+   "on_sunday": "weekly",
+   "lordly": false,
+   "additions": "feast"
+  },
+  {
+   "slug": "dismissal-sep-08",
+   "title": "Sep 8, the Nativity of the God-bearer",
+   "menaion": [
+    [
+     9,
+     8
+    ]
+   ],
+   "sunday": [],
+   "pascha": [],
+   "services": [
+    "vespers",
+    "matins",
+    "hours"
+   ],
+   "on_sunday": "weekly",
+   "lordly": false,
+   "additions": "feast"
+  },
+  {
+   "slug": "dismissal-sep-13",
+   "title": "Sep 13, the Renewal of the Temple",
+   "menaion": [
+    [
+     9,
+     13
+    ]
+   ],
+   "sunday": [],
+   "pascha": [],
+   "services": [
+    "vespers",
+    "matins",
+    "hours"
+   ],
+   "on_sunday": "weekly",
+   "lordly": false,
+   "additions": "feast"
+  },
+  {
+   "slug": "dismissal-sep-14",
+   "title": "Sep 14, the Exaltation of the Cross of the Lord",
+   "menaion": [
+    [
+     9,
+     14
+    ]
+   ],
+   "sunday": [],
+   "pascha": [],
+   "services": [
+    "vespers",
+    "matins",
+    "hours"
+   ],
+   "on_sunday": "feast",
+   "lordly": true,
+   "additions": "feast"
+  },
+  {
+   "slug": "dismissal-sep-23",
+   "title": "Sep 23, the Conception of John the Baptist",
+   "menaion": [
+    [
+     9,
+     23
+    ],
+    [
+     6,
+     24
+    ],
+    [
+     8,
+     29
+    ],
+    [
+     2,
+     24
+    ],
+    [
+     5,
+     25
+    ]
+   ],
+   "sunday": [],
+   "pascha": [],
+   "services": [
+    "vespers",
+    "matins",
+    "hours"
+   ],
+   "on_sunday": "weekly",
+   "lordly": false,
+   "additions": "feast"
+  },
+  {
+   "slug": "dismissal-sep-25",
+   "title": "Sep 25, the Sign from the Icon of the God-bearer in the City of Pskov",
+   "menaion": [
+    [
+     9,
+     25
+    ]
+   ],
+   "sunday": [],
+   "pascha": [],
+   "services": [
+    "vespers",
+    "matins",
+    "hours"
+   ],
+   "on_sunday": "weekly",
+   "lordly": false,
+   "additions": "feast"
+  },
+  {
+   "slug": "dismissal-oct-01",
+   "title": "Oct 1, the Protection of the God-bearer",
+   "menaion": [
+    [
+     10,
+     1
+    ]
+   ],
+   "sunday": [],
+   "pascha": [],
+   "services": [
+    "vespers",
+    "matins",
+    "hours"
+   ],
+   "on_sunday": "weekly",
+   "lordly": false,
+   "additions": "feast"
+  },
+  {
+   "slug": "dismissal-oct-11",
+   "title": "Oct 11, the Synaxis of the Holy Fathers",
+   "menaion": [],
+   "sunday": [
+    [
+     10,
+     11,
+     10,
+     17
+    ]
+   ],
+   "pascha": [],
+   "services": [
+    "vespers",
+    "matins",
+    "hours"
+   ],
+   "on_sunday": "feast",
+   "lordly": false,
+   "additions": "weekly"
+  },
+  {
+   "slug": "dismissal-oct-22",
+   "title": "Oct 22, the Kazan Icon of the God-bearer",
+   "menaion": [
+    [
+     10,
+     22
+    ]
+   ],
+   "sunday": [],
+   "pascha": [],
+   "services": [
+    "vespers",
+    "matins",
+    "hours"
+   ],
+   "on_sunday": "weekly",
+   "lordly": false,
+   "additions": "feast"
+  },
+  {
+   "slug": "dismissal-oct-26",
+   "title": "Oct 26, the Commemoration of the Earthquake",
+   "menaion": [
+    [
+     10,
+     26
+    ]
+   ],
+   "sunday": [],
+   "pascha": [],
+   "services": [
+    "vespers",
+    "matins",
+    "hours"
+   ],
+   "on_sunday": "weekly",
+   "lordly": false,
+   "additions": "feast"
+  },
+  {
+   "slug": "dismissal-nov-08",
+   "title": "Nov 8, the Synaxis of the Archangel Michael",
+   "menaion": [
+    [
+     11,
+     8
+    ]
+   ],
+   "sunday": [],
+   "pascha": [],
+   "services": [
+    "vespers",
+    "matins",
+    "hours"
+   ],
+   "on_sunday": "weekly",
+   "lordly": false,
+   "additions": "feast"
+  },
+  {
+   "slug": "dismissal-nov-21",
+   "title": "Nov 21, the Entry of the God-bearer",
+   "menaion": [
+    [
+     11,
+     21
+    ]
+   ],
+   "sunday": [],
+   "pascha": [],
+   "services": [
+    "vespers",
+    "matins",
+    "hours"
+   ],
+   "on_sunday": "weekly",
+   "lordly": false,
+   "additions": "feast"
+  },
+  {
+   "slug": "dismissal-nov-27",
+   "title": "Nov 27, the Sign of the God-bearer in Novgorod",
+   "menaion": [
+    [
+     11,
+     27
+    ]
+   ],
+   "sunday": [],
+   "pascha": [],
+   "services": [
+    "vespers",
+    "matins",
+    "hours"
+   ],
+   "on_sunday": "weekly",
+   "lordly": false,
+   "additions": "feast"
+  },
+  {
+   "slug": "dismissal-dec-09",
+   "title": "Dec 9, the Conception of the God-bearer",
+   "menaion": [
+    [
+     12,
+     9
+    ]
+   ],
+   "sunday": [],
+   "pascha": [],
+   "services": [
+    "vespers",
+    "matins",
+    "hours"
+   ],
+   "on_sunday": "weekly",
+   "lordly": false,
+   "additions": "feast"
+  },
+  {
+   "slug": "dismissal-forefathers",
+   "title": "Sunday of the Holy Forefathers",
+   "menaion": [],
+   "sunday": [
+    [
+     12,
+     11,
+     12,
+     17
+    ]
+   ],
+   "pascha": [],
+   "services": [
+    "vespers",
+    "matins",
+    "hours"
+   ],
+   "on_sunday": "feast",
+   "lordly": false,
+   "additions": "weekly"
+  },
+  {
+   "slug": "dismissal-fathers-before-nativity",
+   "title": "Sunday of the Holy Fathers before the Nativity",
+   "menaion": [],
+   "sunday": [
+    [
+     12,
+     18,
+     12,
+     24
+    ]
+   ],
+   "pascha": [],
+   "services": [
+    "vespers",
+    "matins",
+    "hours"
+   ],
+   "on_sunday": "feast",
+   "lordly": false,
+   "additions": "weekly"
+  },
+  {
+   "slug": "dismissal-dec-25",
+   "title": "Dec 25, the Nativity of Christ",
+   "menaion": [
+    [
+     12,
+     25
+    ]
+   ],
+   "sunday": [],
+   "pascha": [],
+   "services": [
+    "vespers",
+    "matins",
+    "hours"
+   ],
+   "on_sunday": "feast",
+   "lordly": true,
+   "additions": "feast"
+  },
+  {
+   "slug": "dismissal-dec-26",
+   "title": "Dec 26, the Synaxis of the God-bearer",
+   "menaion": [
+    [
+     12,
+     26
+    ]
+   ],
+   "sunday": [],
+   "pascha": [],
+   "services": [
+    "vespers",
+    "matins",
+    "hours"
+   ],
+   "on_sunday": "weekly",
+   "lordly": false,
+   "additions": "feast"
+  },
+  {
+   "slug": "dismissal-sunday-after-nativity",
+   "title": "Sunday after the Nativity of Christ",
+   "menaion": [],
+   "sunday": [
+    [
+     12,
+     26,
+     12,
+     31
+    ]
+   ],
+   "pascha": [],
+   "services": [
+    "vespers",
+    "matins",
+    "hours"
+   ],
+   "on_sunday": "feast",
+   "lordly": false,
+   "additions": "weekly"
+  },
+  {
+   "slug": "dismissal-jan-01",
+   "title": "Jan 1, the Circumcision of the Lord",
+   "menaion": [
+    [
+     1,
+     1
+    ]
+   ],
+   "sunday": [],
+   "pascha": [],
+   "services": [
+    "vespers",
+    "matins",
+    "hours"
+   ],
+   "on_sunday": "weekly",
+   "lordly": false,
+   "additions": "feast"
+  },
+  {
+   "slug": "dismissal-jan-06",
+   "title": "Jan 6, the Theophany of the Lord",
+   "menaion": [
+    [
+     1,
+     6
+    ]
+   ],
+   "sunday": [],
+   "pascha": [],
+   "services": [
+    "vespers",
+    "matins",
+    "hours"
+   ],
+   "on_sunday": "feast",
+   "lordly": true,
+   "additions": "feast"
+  },
+  {
+   "slug": "dismissal-jan-07",
+   "title": "Jan 7, the Synaxis of John the Baptist",
+   "menaion": [
+    [
+     1,
+     7
+    ]
+   ],
+   "sunday": [],
+   "pascha": [],
+   "services": [
+    "vespers",
+    "matins",
+    "hours"
+   ],
+   "on_sunday": "weekly",
+   "lordly": false,
+   "additions": "feast"
+  },
+  {
+   "slug": "dismissal-feb-02",
+   "title": "Feb 2, the Meeting of the Lord",
+   "menaion": [
+    [
+     2,
+     2
+    ]
+   ],
+   "sunday": [],
+   "pascha": [],
+   "services": [
+    "vespers",
+    "matins",
+    "hours"
+   ],
+   "on_sunday": "weekly",
+   "lordly": false,
+   "additions": "feast"
+  },
+  {
+   "slug": "dismissal-mar-25",
+   "title": "Mar 25, the Annunciation of the God-bearer",
+   "menaion": [
+    [
+     3,
+     25
+    ]
+   ],
+   "sunday": [],
+   "pascha": [],
+   "services": [
+    "vespers",
+    "matins",
+    "hours"
+   ],
+   "on_sunday": "weekly",
+   "lordly": false,
+   "additions": "feast"
+  },
+  {
+   "slug": "dismissal-mar-26",
+   "title": "Mar 26, the Synaxis of the Archangel Gabriel",
+   "menaion": [
+    [
+     3,
+     26
+    ],
+    [
+     7,
+     13
+    ]
+   ],
+   "sunday": [],
+   "pascha": [],
+   "services": [
+    "vespers",
+    "matins",
+    "hours"
+   ],
+   "on_sunday": "weekly",
+   "lordly": false,
+   "additions": "feast"
+  },
+  {
+   "slug": "dismissal-may-07",
+   "title": "May 7, the Commemoration of the Sign of the Cross of the Lord",
+   "menaion": [
+    [
+     5,
+     7
+    ]
+   ],
+   "sunday": [],
+   "pascha": [],
+   "services": [
+    "vespers",
+    "matins",
+    "hours"
+   ],
+   "on_sunday": "weekly",
+   "lordly": false,
+   "additions": "feast"
+  },
+  {
+   "slug": "dismissal-may-21",
+   "title": "May 21, the Meeting of the Wonderworking Vladimir Icon",
+   "menaion": [
+    [
+     5,
+     21
+    ],
+    [
+     8,
+     26
+    ],
+    [
+     6,
+     23
+    ]
+   ],
+   "sunday": [],
+   "pascha": [],
+   "services": [
+    "vespers",
+    "matins",
+    "hours"
+   ],
+   "on_sunday": "weekly",
+   "lordly": false,
+   "additions": "feast"
+  },
+  {
+   "slug": "dismissal-jun-26",
+   "title": "Jun 26, the Appearance of the Tikhvin Icon of the Hodegetria",
+   "menaion": [
+    [
+     6,
+     26
+    ]
+   ],
+   "sunday": [],
+   "pascha": [],
+   "services": [
+    "vespers",
+    "matins",
+    "hours"
+   ],
+   "on_sunday": "weekly",
+   "lordly": false,
+   "additions": "feast"
+  },
+  {
+   "slug": "dismissal-jun-29",
+   "title": "Jun 29, Peter and Paul",
+   "menaion": [
+    [
+     6,
+     29
+    ]
+   ],
+   "sunday": [],
+   "pascha": [],
+   "services": [
+    "vespers",
+    "matins",
+    "hours"
+   ],
+   "on_sunday": "weekly",
+   "lordly": false,
+   "additions": "feast"
+  },
+  {
+   "slug": "dismissal-jul-02",
+   "title": "Jul 2, the Placing of the Robe of the God-bearer",
+   "menaion": [
+    [
+     7,
+     2
+    ]
+   ],
+   "sunday": [],
+   "pascha": [],
+   "services": [
+    "vespers",
+    "matins",
+    "hours"
+   ],
+   "on_sunday": "weekly",
+   "lordly": false,
+   "additions": "feast"
+  },
+  {
+   "slug": "dismissal-jul-08",
+   "title": "Jul 8, the Appearance of the Kazan Icon of the God-bearer",
+   "menaion": [
+    [
+     7,
+     8
+    ]
+   ],
+   "sunday": [],
+   "pascha": [],
+   "services": [
+    "vespers",
+    "matins",
+    "hours"
+   ],
+   "on_sunday": "weekly",
+   "lordly": false,
+   "additions": "feast"
+  },
+  {
+   "slug": "dismissal-jul-09",
+   "title": "Jul 9, the Appearance of the Mozhaisk Icon of the God-bearer",
+   "menaion": [
+    [
+     7,
+     9
+    ]
+   ],
+   "sunday": [],
+   "pascha": [],
+   "services": [
+    "vespers",
+    "matins",
+    "hours"
+   ],
+   "on_sunday": "weekly",
+   "lordly": false,
+   "additions": "feast"
+  },
+  {
+   "slug": "dismissal-jul-10",
+   "title": "Jul 10, the Placing of the Robe of the Lord",
+   "menaion": [
+    [
+     7,
+     10
+    ]
+   ],
+   "sunday": [],
+   "pascha": [],
+   "services": [
+    "vespers",
+    "matins",
+    "hours"
+   ],
+   "on_sunday": "dismissal-jul-10-sunday",
+   "lordly": false,
+   "additions": "feast"
+  },
+  {
+   "slug": "dismissal-jul-16",
+   "title": "Jul 16, the Synaxis of the Holy Fathers",
+   "menaion": [],
+   "sunday": [
+    [
+     7,
+     13,
+     7,
+     19
+    ]
+   ],
+   "pascha": [],
+   "services": [
+    "vespers",
+    "matins",
+    "hours"
+   ],
+   "on_sunday": "feast",
+   "lordly": false,
+   "additions": "weekly"
+  },
+  {
+   "slug": "dismissal-jul-28",
+   "title": "Jul 28, the Appearance of the Smolensk Icon of the God-bearer, the Hodegetria",
+   "menaion": [
+    [
+     7,
+     28
+    ]
+   ],
+   "sunday": [],
+   "pascha": [],
+   "services": [
+    "vespers",
+    "matins",
+    "hours"
+   ],
+   "on_sunday": "weekly",
+   "lordly": false,
+   "additions": "feast"
+  },
+  {
+   "slug": "dismissal-aug-01",
+   "title": "Aug 1, the All-Merciful Saviour",
+   "menaion": [
+    [
+     8,
+     1
+    ]
+   ],
+   "sunday": [],
+   "pascha": [],
+   "services": [
+    "vespers",
+    "matins",
+    "hours"
+   ],
+   "on_sunday": "weekly",
+   "lordly": false,
+   "additions": "feast"
+  },
+  {
+   "slug": "dismissal-aug-06",
+   "title": "Aug 6, the Transfiguration of the Lord",
+   "menaion": [
+    [
+     8,
+     6
+    ]
+   ],
+   "sunday": [],
+   "pascha": [],
+   "services": [
+    "vespers",
+    "matins",
+    "hours"
+   ],
+   "on_sunday": "feast",
+   "lordly": true,
+   "additions": "feast"
+  },
+  {
+   "slug": "dismissal-aug-15",
+   "title": "Aug 15, the Dormition of the God-bearer",
+   "menaion": [
+    [
+     8,
+     15
+    ]
+   ],
+   "sunday": [],
+   "pascha": [],
+   "services": [
+    "vespers",
+    "matins",
+    "hours"
+   ],
+   "on_sunday": "weekly",
+   "lordly": false,
+   "additions": "feast"
+  },
+  {
+   "slug": "dismissal-aug-16",
+   "title": "Aug 16, the Image Not Made by Hands",
+   "menaion": [
+    [
+     8,
+     16
+    ]
+   ],
+   "sunday": [],
+   "pascha": [],
+   "services": [
+    "vespers",
+    "matins",
+    "hours"
+   ],
+   "on_sunday": "weekly",
+   "lordly": false,
+   "additions": "feast"
+  },
+  {
+   "slug": "dismissal-aug-31",
+   "title": "Aug 31, the Placing of the Belt of the Most Holy God-bearer",
+   "menaion": [
+    [
+     8,
+     31
+    ]
+   ],
+   "sunday": [],
+   "pascha": [],
+   "services": [
+    "vespers",
+    "matins",
+    "hours"
+   ],
+   "on_sunday": "weekly",
+   "lordly": false,
+   "additions": "feast"
+  },
+  {
+   "slug": "dismissal-lazarus-saturday",
+   "title": "Lazarus Saturday",
+   "menaion": [],
+   "sunday": [],
+   "pascha": [
+    [
+     -8,
+     -8,
+     []
+    ]
+   ],
+   "services": [
+    "vespers",
+    "matins",
+    "hours"
+   ],
+   "on_sunday": "weekly",
+   "lordly": false,
+   "additions": "feast"
+  },
+  {
+   "slug": "dismissal-palm-sunday",
+   "title": "Palm Sunday",
+   "menaion": [],
+   "sunday": [],
+   "pascha": [
+    [
+     -7,
+     -7,
+     []
+    ]
+   ],
+   "services": [
+    "vespers",
+    "matins",
+    "hours"
+   ],
+   "on_sunday": "feast",
+   "lordly": true,
+   "additions": "feast"
+  },
+  {
+   "slug": "dismissal-holy-week",
+   "title": "Holy Week, until Great Saturday",
+   "menaion": [],
+   "sunday": [],
+   "pascha": [
+    [
+     -6,
+     -2,
+     []
+    ]
+   ],
+   "services": [
+    "vespers",
+    "matins",
+    "hours"
+   ],
+   "on_sunday": "weekly",
+   "lordly": false,
+   "additions": "feast"
+  },
+  {
+   "slug": "dismissal-great-saturday",
+   "title": "Great Saturday",
+   "menaion": [],
+   "sunday": [],
+   "pascha": [
+    [
+     -1,
+     -1,
+     []
+    ]
+   ],
+   "services": [
+    "vespers",
+    "matins",
+    "hours"
+   ],
+   "on_sunday": "weekly",
+   "lordly": false,
+   "additions": "feast"
+  },
+  {
+   "slug": "dismissal-pascha",
+   "title": "Pascha and Bright Week (and the leave-taking of Pascha, at the Hours)",
+   "menaion": [],
+   "sunday": [],
+   "pascha": [
+    [
+     0,
+     6,
+     []
+    ],
+    [
+     38,
+     38,
+     [
+      "hours"
+     ]
+    ]
+   ],
+   "services": [
+    "vespers",
+    "compline",
+    "midnight",
+    "matins",
+    "hours",
+    "cell-rule"
+   ],
+   "on_sunday": "feast",
+   "lordly": false,
+   "additions": "feast"
+  },
+  {
+   "slug": "dismissal-thomas-sunday",
+   "title": "Thomas Sunday",
+   "menaion": [],
+   "sunday": [],
+   "pascha": [
+    [
+     7,
+     7,
+     []
+    ]
+   ],
+   "services": [
+    "vespers",
+    "matins",
+    "hours"
+   ],
+   "on_sunday": "feast",
+   "lordly": false,
+   "additions": "weekly"
+  },
+  {
+   "slug": "dismissal-myrrhbearers",
+   "title": "Sunday of the Myrrhbearers",
+   "menaion": [],
+   "sunday": [],
+   "pascha": [
+    [
+     14,
+     14,
+     []
+    ]
+   ],
+   "services": [
+    "vespers",
+    "matins",
+    "hours"
+   ],
+   "on_sunday": "feast",
+   "lordly": false,
+   "additions": "weekly"
+  },
+  {
+   "slug": "dismissal-mid-pentecost",
+   "title": "Mid-Pentecost",
+   "menaion": [],
+   "sunday": [],
+   "pascha": [
+    [
+     24,
+     24,
+     []
+    ]
+   ],
+   "services": [
+    "vespers",
+    "matins",
+    "hours"
+   ],
+   "on_sunday": "weekly",
+   "lordly": false,
+   "additions": "feast"
+  },
+  {
+   "slug": "dismissal-ascension",
+   "title": "Ascension",
+   "menaion": [],
+   "sunday": [],
+   "pascha": [
+    [
+     39,
+     39,
+     []
+    ]
+   ],
+   "services": [
+    "vespers",
+    "matins",
+    "hours"
+   ],
+   "on_sunday": "weekly",
+   "lordly": false,
+   "additions": "feast"
+  },
+  {
+   "slug": "dismissal-seventh-sunday-pascha",
+   "title": "Seventh Sunday after Pascha",
+   "menaion": [],
+   "sunday": [],
+   "pascha": [
+    [
+     42,
+     42,
+     []
+    ]
+   ],
+   "services": [
+    "vespers",
+    "matins",
+    "hours"
+   ],
+   "on_sunday": "feast",
+   "lordly": false,
+   "additions": "weekly"
+  },
+  {
+   "slug": "dismissal-pentecost",
+   "title": "Pentecost",
+   "menaion": [],
+   "sunday": [],
+   "pascha": [
+    [
+     49,
+     49,
+     []
+    ],
+    [
+     50,
+     50,
+     [
+      "matins",
+      "hours"
+     ]
+    ]
+   ],
+   "services": [
+    "vespers",
+    "matins",
+    "hours"
+   ],
+   "on_sunday": "feast",
+   "lordly": true,
+   "additions": "feast"
+  },
+  {
+   "slug": "dismissal-pentecost-vespers",
+   "title": "Pentecost Sunday at Vespers (Monday of the Holy Spirit)",
+   "menaion": [],
+   "sunday": [],
+   "pascha": [
+    [
+     50,
+     50,
+     [
+      "vespers"
+     ]
+    ]
+   ],
+   "services": [
+    "vespers",
+    "matins",
+    "hours"
+   ],
+   "on_sunday": "weekly",
+   "lordly": false,
+   "additions": "feast"
+  }
+ ],
+ "paschal_prefix": {
+  "from": 8,
+  "to": 38,
+  "services": [
+   "vespers",
+   "matins",
+   "hours"
+  ],
+  "text": "O Thou who didst rise from the dead: "
  }
 }

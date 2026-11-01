@@ -5,7 +5,9 @@
  *
  * They are added to the site as ordinary Prayers and Orders, which you
  * then edit freely. Adding only creates what is missing (by short name,
- * or by service for orders); nothing already on the site is overwritten.
+ * or by service for orders); nothing already on the site is overwritten,
+ * except a service order that is still exactly as an earlier version of
+ * the plugin made it: that one is brought up to date.
  */
 
 namespace PrayerRule;
@@ -61,6 +63,7 @@ class Ustav {
 		$count = array(
 			'prayers' => 0,
 			'orders'  => 0,
+			'updated' => 0,
 		);
 		foreach ( $data['prayers'] ?? array() as $prayer ) {
 			$slug = sanitize_title( $prayer['slug'] );
@@ -108,12 +111,20 @@ class Ustav {
 					continue;
 				}
 				++$count['orders'];
+			} elseif ( in_array( self::items_hash( (string) get_post_meta( $id, Orders::META_ITEMS, true ) ), $order['previous'] ?? array(), true ) ) {
+				update_post_meta( $id, Orders::META_ITEMS, wp_slash( $order['items'] ) );   // never edited: bring up to date
+				++$count['updated'];
 			}
 			if ( $assign || ! Services::get( $service )['order'] ) {
 				Services::set_order( $service, $id );
 			}
 		}
 		return $count;
+	}
+
+	/** md5 of an order's lines, ignoring line-ending differences. */
+	private static function items_hash( $items ) {
+		return md5( trim( str_replace( array( "\r\n", "\r" ), "\n", $items ) ) );
 	}
 
 	/** The Home Ustav order already made for a service (not in the trash), or 0. */

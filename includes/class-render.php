@@ -56,6 +56,7 @@ class Render {
 		$translation       = Psalter::translation( $context['translation'] ?? '' );
 		$previous          = array( self::$translation, self::$saint );
 		self::$translation = $translation;
+		$info              = null;
 		if ( ! empty( $context['date'] ) ) {
 			$info                = Calendar::day( $context['date'] );
 			$context['day']      = $info['day'];
@@ -64,6 +65,10 @@ class Render {
 		}
 		self::$saint       = isset( $context['saint'] ) && '' !== $context['saint'] ? (string) $context['saint'] : null;
 		$day               = Dismissals::day_key( $context['day'] ?? '' );
+		// The feast of the day for this service, and for the day as a whole
+		// (for the daily additions at Compline and the Midnight Office).
+		$feast             = $info ? Feasts::find( $info, $service_key ) : null;
+		$day_feast         = $info ? ( Feasts::find( $info, 'matins' ) ?? Feasts::find( $info, 'vespers' ) ) : null;
 		$out               = array();
 		$bookmark          = null;   // next kathisma, carried from one portion to the next
 		foreach ( Orders::steps( $service['order'] ) as $step ) {
@@ -84,11 +89,24 @@ class Render {
 			} elseif ( 'text' === $step['type'] ) {
 				$out[] = self::text_step( $step['slug'] );
 			} elseif ( 'dismissal' === $step['type'] ) {
-				$slug  = Dismissals::slug( $service_key, $day );
-				$out[] = '' !== $slug ? self::text_step( $slug ) : array(
-					'type' => 'missing',
-					'slug' => 'dismissal',
-				);
+				$slug = $feast ? $feast['slug'] : Dismissals::slug( $service_key, $day );
+				if ( '' === $slug ) {
+					$out[] = array(
+						'type' => 'missing',
+						'slug' => 'dismissal',
+					);
+					continue;
+				}
+				$text = self::text_step( $slug );
+				if ( ! $feast && $info && 'text' === $text['type'] ) {
+					$text['html'] = Feasts::add_prefix( $text['html'], Feasts::paschal_prefix( $info, $service_key ) );
+				}
+				$out[] = $text;
+			} elseif ( 'additions' === $step['type'] ) {
+				$slug = $info ? Dismissals::additions( $service_key, $info, 'compline' === $service_key || 'midnight' === $service_key ? $day_feast : $feast ) : Dismissals::slug( $service_key, $day, 'additions' );
+				if ( '' !== $slug ) {
+					$out[] = self::text_step( $slug );
+				}
 			} else {
 				$out[] = $step;
 			}

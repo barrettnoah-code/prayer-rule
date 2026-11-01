@@ -36,7 +36,10 @@ file changes).
 
 `tools/ustav/home-ustav.txt` holds the English translation of the Home
 Ustav (1910) chapter on prayer at home: the openings and endings of the six
-services, the cell rule, and the dismissals for the week.
+services, the cell rule, the dismissals for the week and the daily
+additions. `tools/ustav/feasts.txt` holds the dismissals for the feasts of
+the year and of the Triodion and Pentecostarion, each with the dates it
+applies to.
 `tools/build_ustav.py` turns it into `data/ustav.json`. The plugin adds
 these as ordinary Prayers and Orders the first time an administrator opens
 the admin, and again (missing ones only) whenever the file changes. Nothing
@@ -51,7 +54,7 @@ already on the site is overwritten.
 - **Orders** – a service's opening and ending, one item per line: a
   prayer's short name, `psalm 50`, and `rule` where the member's kathismas
   or ladders are read (`rule first-hour` for the 1st Hour inside Matins),
-  `dismissal` for the day's dismissal, `> Lord, have mercy. (12 times)` for
+  `dismissal` for the day's dismissal, `additions` for the daily additions, `> Lord, have mercy. (12 times)` for
   a short line said as written, and `! …` for a rubric.
   Inside a prayer, `[psalm 50]` gives the psalm in the reader's translation.
 - **Services** – the six services (Vespers, Compline, Midnight Office,
@@ -59,8 +62,10 @@ already on the site is overwritten.
   suggested amounts, and the prayers inside the rule (after each stasis,
   after each kathisma in Great Lent, with the ladders).
 - **Dismissals** – which dismissal ends each service on each day of the
-  week (the day begins at sundown: Sunday Vespers is read on Saturday
-  evening). In a dismissal, `[saint]` stands for the saint of the day.
+  week, and which daily additions follow the kathismas (the day begins at
+  sundown: Sunday Vespers is read on Saturday evening); and the list of
+  feast dismissals, which take the weekday one's place on their days. In a
+  dismissal, `[saint]` stands for the saint of the day.
 - **Saints** – the saint each day's dismissal names, taken from the
   Orthodox Liturgical Calendar plugin (its highest-ranked commemoration,
   worded for the dismissal), with the wording editable per church date.

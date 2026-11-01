@@ -7,7 +7,7 @@
 #   any other line                a paragraph with a red first letter
 #   {text}                        red words inside a line (bows, Glory:)
 #   *text*                        italic
-#   [saint]                       the saint of the day (N. until the calendar is linked)
+#   [saint]                       the saint of the day (from the calendar)
 # Lines starting with # are comments in the prayers part only.
 
 # ---------------------------------------------------------------- openings
@@ -230,6 +230,59 @@ O Lord Jesus Christ, Son of God, for the prayers of thy most pure Mother, and of
 === dismissal-canon-universal | Saturday after the canon: the general universal dismissal
 O Lord Jesus Christ, Son of God, for the prayers of thy most pure Mother, and of our venerable and God-bearing fathers, and of all the saints, have mercy on and give rest to the souls of those who have fallen asleep before us and are ever remembered, our blessed founders, fathers and brethren, who lie here, and of Orthodox Christians everywhere, unto the endless ages, for thou art good and the lover of mankind.
 
+# ---------------------------------------------------------------- daily additions
+# For those deprived of the common service (fol. 252-253). Shown by an
+# "additions" line in an order, chosen by service and day (Dismissals screen).
+
+=== additions-vespers | Daily additions: Vespers
+! After finishing the kathismas or the lestovkas of Jesus Prayers, pray to the most holy God-bearer as much as you are able and wish: a lestovka, or 50 prostrations, or 12. Do the same for the saints who fall on that date.
+
+=== additions-vespers-sunday | Daily additions: Vespers on Saturday evening
+! After finishing the kathismas or the lestovkas of Jesus Prayers, pray to the most holy God-bearer as much as you are able and wish: a lestovka, or 50 prostrations, or 12. Do the same for the saints who fall on that date. On Saturday, pray to the Cross and the Resurrection.
+
+=== additions-vespers-feast | Daily additions: Vespers of a feast
+! After finishing the kathismas or the lestovkas of Jesus Prayers, pray to the most holy God-bearer as much as you are able and wish: a lestovka, or 50 prostrations, or 12. Do the same for the saints who fall on that date. On a feast, pray to the feast.
+
+=== additions-compline | Daily additions: Compline
+! After the kathisma or the lestovkas, pray to the God-bearer as your strength allows, in place of her canon. Laypeople who do not always pray the rule should pray to the guardian angel after the prostrations to the God-bearer.
+
+=== additions-compline-friday | Daily additions: Compline on Friday evening
+! On Friday evening, when it is not a feast, make as many prostrations as you wish in place of the canon for the departed, before the prostrations to the God-bearer.
+! After the kathisma or the lestovkas, pray to the God-bearer as your strength allows, in place of her canon. Laypeople who do not always pray the rule should pray to the guardian angel after the prostrations to the God-bearer.
+
+=== additions-midnight | Daily additions: Midnight Office
+! Make some prostrations for the reposed: 12, or fewer, or more.
+
+=== additions-matins-sunday | Daily additions: Matins on Sunday
+! After the kathismas, pray first to the Cross and the Resurrection, and after that to the God-bearer. Pray also to the saint who falls on that date.
+
+=== additions-matins-monday | Daily additions: Matins on Monday
+! After the kathismas, pray to the God-bearer and to the archangels. Pray also to the saint who falls on that date.
+
+=== additions-matins-tuesday | Daily additions: Matins on Tuesday
+! After the kathismas, pray to the God-bearer and to the Forerunner. Pray also to the saint who falls on that date.
+
+=== additions-matins-cross | Daily additions: Matins on Wednesday and Friday
+! After the kathismas, pray first to the honorable Cross, and after that to the God-bearer. Pray also to the saint who falls on that date.
+
+=== additions-matins-thursday | Daily additions: Matins on Thursday
+! After the kathismas, pray to the God-bearer and to the apostles and Nicholas. Pray also to the saint who falls on that date.
+
+=== additions-matins-saturday | Daily additions: Matins on Saturday
+! After the kathismas, pray to the God-bearer and to all the saints. Pray also to the saint who falls on that date.
+
+=== additions-matins-feast | Daily additions: Matins of a great feast of the Lord on a Sunday
+! When a great feast of the Lord falls on a Sunday, do not pray to the Resurrection; pray to the feast. After that, pray to the God-bearer, and to the saint who falls on that date.
+
+=== additions-hours | Daily additions: the Hours
+! After the kathismas, make as many prostrations to the God-bearer as you wish, and pray to the saint who falls on that date.
+
+=== additions-hours-sunday | Daily additions: the Hours on Sunday
+! On Sunday, the day of the Resurrection, after the kathismas or lestovkas, pray first to the Resurrection, and then to the God-bearer and to the saint who falls on that date.
+
+=== additions-hours-feast | Daily additions: the Hours of a great feast of the Lord on a Sunday
+! When a great feast of the Lord falls on a Sunday, do not pray to the Resurrection; after the kathismas or lestovkas, pray first to the feast, and then to the God-bearer and to the saint who falls on that date.
+
 # ================================================================ orders
 # Order lines as on the Orders screen; "> text" is a short line said as
 # written, with (parentheses) in red; "! text" is a rubric.
@@ -244,6 +297,7 @@ trisagion-our-father
 glory-both-now
 o-come
 rule
+additions
 > Lord, have mercy. (3 times)
 glory-both-now
 ending-more-honorable
@@ -260,6 +314,7 @@ o-come
 psalm 50
 creed
 rule
+additions
 > Lord, have mercy. (3 times)
 ending-glory-no-prostrations
 dismissal
@@ -279,6 +334,7 @@ o-come
 psalm 50
 creed
 rule
+additions
 > Lord, have mercy. (3 times)
 ending-glory-no-prostrations
 dismissal
@@ -292,6 +348,7 @@ trisagion-our-father
 glory-both-now
 o-come
 rule
+additions
 > Lord, have mercy. (3 times)
 glory-both-now
 o-come
@@ -309,6 +366,7 @@ trisagion-our-father
 glory-both-now
 o-come
 rule
+additions
 > Lord, have mercy. (3 times)
 glory-both-now
 ending-truly-meet
