@@ -37,7 +37,7 @@ COE_PAGES = [
 ]
 BRENTON = ("https://www.divinerevelations.info/documents/bible/all_html2/"
            "brenton_english_septuagint/PSA{:03d}.htm")
-KJV_ZIP = "https://ebible.org/Scriptures/eng-kjv_vpl.zip"
+KJV_ZIP = "https://ebible.org/Scriptures/eng-kjv_usfm.zip"
 DOUAY = "https://www.gutenberg.org/cache/epub/8321/pg8321.txt"
 
 
@@ -62,7 +62,8 @@ def save(url, path, problems):
 
 
 def fetch_kjv(problems):
-    target = SOURCES / "kjv" / "kjv-psalms.txt"
+    """The KJV Psalms as USFM, which marks titles (\\d) apart from verses."""
+    target = SOURCES / "kjv" / "kjv-psalms.usfm"
     if target.exists() and target.stat().st_size > 0:
         return
     try:
@@ -70,16 +71,14 @@ def fetch_kjv(problems):
     except Exception as error:
         problems.append(f"{KJV_ZIP}\n    {error}")
         return
-    lines = []
     for name in archive.namelist():
-        if name.lower().endswith(".txt"):
+        if name.lower().endswith((".usfm", ".sfm")):
             text = archive.read(name).decode("utf-8-sig")
-            lines += [l for l in text.splitlines() if l.startswith("PSA ")]
-    if not lines:
-        problems.append(f"{KJV_ZIP}\n    no PSA lines found in the zip")
-        return
-    target.parent.mkdir(parents=True, exist_ok=True)
-    target.write_text("\n".join(lines) + "\n", encoding="utf-8")
+            if text.lstrip().startswith("\\id PSA"):
+                target.parent.mkdir(parents=True, exist_ok=True)
+                target.write_text(text, encoding="utf-8")
+                return
+    problems.append(f"{KJV_ZIP}\n    no Psalms file found in the zip")
 
 
 def main():
