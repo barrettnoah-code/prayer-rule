@@ -6,8 +6,8 @@
  * They are added to the site as ordinary Prayers and Orders, which you
  * then edit freely. Adding only creates what is missing (by short name,
  * or by service for orders); nothing already on the site is overwritten,
- * except a service order that is still exactly as an earlier version of
- * the plugin made it: that one is brought up to date.
+ * except a prayer or service order that is still exactly as an earlier
+ * version of the plugin made it: that one is brought up to date.
  */
 
 namespace PrayerRule;
@@ -67,7 +67,22 @@ class Ustav {
 		);
 		foreach ( $data['prayers'] ?? array() as $prayer ) {
 			$slug = sanitize_title( $prayer['slug'] );
-			if ( '' === $slug || Texts::exists( $slug ) ) {
+			if ( '' === $slug ) {
+				continue;
+			}
+			if ( Texts::exists( $slug ) ) {
+				// Never edited since an earlier version made it: bring it up to date.
+				$post = Texts::find( $slug );
+				if ( $post && ! empty( $prayer['previous'] ) && 'home-ustav' === get_post_meta( $post->ID, self::META_SOURCE, true )
+					&& in_array( self::items_hash( $post->post_content ), $prayer['previous'], true ) ) {
+					wp_update_post(
+						array(
+							'ID'           => $post->ID,
+							'post_content' => wp_slash( $prayer['content'] ),
+						)
+					);
+					++$count['updated'];
+				}
 				continue;
 			}
 			$id = wp_insert_post(

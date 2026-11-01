@@ -3,8 +3,8 @@
 
 Run from the plugin folder:  python3 tools/build_ustav.py
 The plugin adds any prayers and orders it does not have yet; it never
-overwrites ones already on the site, except that a service order still
-exactly as an earlier version shipped it is brought up to date.
+overwrites ones already on the site, except that a prayer or service order
+still exactly as an earlier version shipped it is brought up to date.
 """
 import hashlib
 import html
@@ -256,14 +256,20 @@ def main():
 
     # Earlier versions of each order (md5 of its lines), so that an order
     # nobody has edited can be brought up to date.
-    previous = {}
+    md5 = lambda text: hashlib.md5(text.strip().encode('utf-8')).hexdigest()
+    previous, previous_prayers = {}, {}
     if TARGET.exists():
         old = json.loads(TARGET.read_text(encoding='utf-8'))
         for o in old.get('orders', []):
-            previous[o['service']] = set(o.get('previous', [])) | {hashlib.md5(o['items'].encode('utf-8')).hexdigest()}
+            previous[o['service']] = set(o.get('previous', [])) | {md5(o['items'])}
+        for p in old.get('prayers', []):
+            previous_prayers[p['slug']] = set(p.get('previous', [])) | {md5(p['content'])}
     for o in out_orders:
-        now = hashlib.md5(o['items'].encode('utf-8')).hexdigest()
-        o['previous'] = sorted(previous.get(o['service'], set()) - {now})
+        o['previous'] = sorted(previous.get(o['service'], set()) - {md5(o['items'])})
+    for p in out_prayers:
+        prev = sorted(previous_prayers.get(p['slug'], set()) - {md5(p['content'])})
+        if prev:
+            p['previous'] = prev
 
     data = {
         'format': 'prayer-rule-ustav/1',

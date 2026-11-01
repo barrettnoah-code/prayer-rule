@@ -27,6 +27,7 @@ foreach ( array(
 	'prayer_rule_saints',
 	'prayer_rule_additions',
 	'prayer_rule_fasting',
+	'prayer_rule_evening',
 ) as $option ) {
 	delete_option( $option );
 }

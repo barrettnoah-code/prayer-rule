@@ -70,6 +70,12 @@ COVERDALE_FIXES = [
     (47, 1, ": O Sing unto God", ": O sing unto God"),
 ]
 
+# Verses the CoE page runs together, with the next verse numbers typed
+# into the text: (Hebrew psalm, verse). Split at each embedded number.
+COVERDALE_SPLITS = [
+    (17, 14),   # "... hid treasure. 15 They have children ... 16 But as for me ..."
+]
+
 
 def read_coverdale():
     """Hebrew-numbered Psalter from the 60 Church of England pages."""
@@ -120,6 +126,11 @@ def read_coverdale():
         if wrong not in verse:
             raise SystemExit(f"Coverdale fix not found: {wrong!r}")
         result[number][index - 1] = verse.replace(wrong, right)
+    for number, index in COVERDALE_SPLITS:
+        parts = [p.strip() for p in re.split(r"\s\d{1,3}\s+(?=[A-Z])", result[number][index - 1])]
+        if len(parts) < 2:
+            raise SystemExit(f"Coverdale split not found: Psalm {number}:{index}")
+        result[number][index - 1:index] = parts
     return hebrew_to_lxx(result, "Coverdale",
                          "I believed", "Praise the Lord, O Jerusalem")
 

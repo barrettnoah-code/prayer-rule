@@ -23,13 +23,31 @@ class Render {
 	/** The saint of the day as named in a dismissal, when known (calendar). */
 	private static $saint = null;
 
+	/**
+	 * "God-bearer", never "Theotokos": applied to every prayer and calendar
+	 * line the plugin shows, whatever the source text says.
+	 */
+	public static function god_bearer( $text ) {
+		return preg_replace( '/\btheotokos\b/iu', 'God-bearer', (string) $text );
+	}
+
 	/** Show Coverdale's half-verse colons ( : )? Default yes. */
 	public static function show_colons() {
 		return '0' !== (string) get_option( self::OPT_COLONS, '1' );
 	}
 
+	/** The reader's own choice, for this request (null: the site setting). */
+	private static $verses = null;
+
+	public static function set_verse_numbers( $show ) {
+		self::$verses = null === $show ? null : (bool) $show;
+	}
+
 	/** Show verse numbers in psalms? Default no. */
 	public static function show_verse_numbers() {
+		if ( null !== self::$verses ) {
+			return self::$verses;
+		}
 		return '1' === (string) get_option( self::OPT_VERSES, '0' );
 	}
 

@@ -6,7 +6,17 @@ a record of what was kept, with reports and optional sharing with a chosen
 member (a nastavnik).
 
 **Status:** early development. The admin side works (Psalter, prayers,
-orders, dismissals, saints, kathismas, preview); the members' pages come next.
+orders, dismissals, fasting, saints, kathismas, preview), and members can
+read any service on the reading page. The private rule and its record come
+next.
+
+## The reading page
+
+Put `[prayer_rule]` on any page. A member chooses the day and the service
+and reads it, with the day's church date, commemorations and fasting, and
+their own kathismas or ladders in place. Until the private rule is built,
+the portion, the next kathisma, the Psalter translation and verse numbers
+are chosen on the page and kept only in the member's own browser.
 
 ## Privacy
 
@@ -80,7 +90,8 @@ already on the site is overwritten.
   the saint, the feast and the fast follow from the date), with any portion
   and translation.
 - **Settings** – who may use it, the default translation, Coverdale's
-  colons, verse numbers.
+  colons, verse numbers, and the hour from which the reading page opens on
+  the next day.
 
 ## Making the plugin zip
 

@@ -144,6 +144,7 @@ class Admin {
 				<li><?php esc_html_e( 'The Home Ustav prayers and the six service orders are already added. Edit them under Prayers and Orders, or add your own; a prayer\'s short name (in the side box) is how orders refer to it.', 'prayer-rule' ); ?></li>
 				<li><?php esc_html_e( 'Under Services, check the order for each service and the suggested amounts.', 'prayer-rule' ); ?></li>
 				<li><?php esc_html_e( 'Under Dismissals, check which dismissal ends each service on each day.', 'prayer-rule' ); ?></li>
+				<li><?php esc_html_e( 'Put [prayer_rule] on a page: that is the members\' reading page.', 'prayer-rule' ); ?></li>
 				<li><?php esc_html_e( 'Check the result under Preview, with any portion and translation.', 'prayer-rule' ); ?></li>
 			</ol>
 		</div>
@@ -423,8 +424,8 @@ class Admin {
 		}
 		check_admin_referer( 'prayer_rule_ustav' );
 		$count = Ustav::import( false );
-		/* translators: 1: prayers added, 2: orders added, 3: orders brought up to date */
-		self::back( self::SLUG, sprintf( __( 'Added %1$d prayers and %2$d orders; brought %3$d unedited orders up to date.', 'prayer-rule' ), $count['prayers'], $count['orders'], $count['updated'] ) );
+		/* translators: 1: prayers added, 2: orders added, 3: prayers and orders brought up to date */
+		self::back( self::SLUG, sprintf( __( 'Added %1$d prayers and %2$d orders; brought %3$d unedited prayers and orders up to date.', 'prayer-rule' ), $count['prayers'], $count['orders'], $count['updated'] ) );
 	}
 
 	// ------------------------------------------------------------ Fasting
@@ -766,7 +767,20 @@ class Admin {
 					</tr>
 					<tr>
 						<th scope="row"><?php esc_html_e( 'Psalms', 'prayer-rule' ); ?></th>
-						<td><label><input type="checkbox" name="show_verse_numbers" value="1" <?php checked( Render::show_verse_numbers() ); ?>> <?php esc_html_e( 'Show verse numbers', 'prayer-rule' ); ?></label></td>
+						<td><label><input type="checkbox" name="show_verse_numbers" value="1" <?php checked( Render::show_verse_numbers() ); ?>> <?php esc_html_e( 'Show verse numbers', 'prayer-rule' ); ?></label>
+							<p class="description"><?php esc_html_e( 'The default; each member can change it on the reading page.', 'prayer-rule' ); ?></p></td>
+					</tr>
+					<tr>
+						<th scope="row"><label for="pr-evening"><?php esc_html_e( 'Reading page', 'prayer-rule' ); ?></label></th>
+						<td>
+							<?php esc_html_e( 'The next day begins at', 'prayer-rule' ); ?>
+							<select id="pr-evening" name="evening">
+								<?php for ( $h = 12; $h <= 23; $h++ ) : ?>
+									<option value="<?php echo (int) $h; ?>" <?php selected( Reader::evening_hour(), $h ); ?>><?php echo esc_html( sprintf( '%02d:00', $h ) ); ?></option>
+								<?php endfor; ?>
+							</select>
+							<p class="description"><?php esc_html_e( 'From this hour (by the member\'s own clock) the reading page opens on the next day, since the day begins at sundown. Put [prayer_rule] on a page to make the reading page.', 'prayer-rule' ); ?></p>
+						</td>
 					</tr>
 				</table>
 				<p>
@@ -803,6 +817,7 @@ class Admin {
 		}
 		update_option( Render::OPT_COLONS, isset( $_POST['show_colons'] ) ? '1' : '0' );
 		update_option( Render::OPT_VERSES, isset( $_POST['show_verse_numbers'] ) ? '1' : '0' );
+		update_option( Reader::OPT_EVENING, isset( $_POST['evening'] ) ? min( 23, max( 0, absint( $_POST['evening'] ) ) ) : 18 );
 		self::back( 'prayer-rule-settings', __( 'Settings saved.', 'prayer-rule' ) );
 	}
 }

@@ -138,7 +138,7 @@ class Texts {
 		$content = $post->post_content;
 		$html    = has_blocks( $content ) ? do_blocks( $content ) : wpautop( $content );
 		$html    = shortcode_unautop( wptexturize( $html ) );
-		return do_shortcode( $html );
+		return Render::god_bearer( do_shortcode( $html ) );
 	}
 
 	/** All published short names => titles (for the order screen's list). */

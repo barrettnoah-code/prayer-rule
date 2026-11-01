@@ -47,7 +47,7 @@ class Rest {
 			self::NS,
 			'/services/(?P<service>[a-z-]+)/reading',
 			array(
-				'methods'             => 'GET',
+				'methods'             => array( 'GET', 'POST' ),   // the reading page posts, so the portion stays out of URLs and logs
 				'callback'            => array( __CLASS__, 'reading' ),
 				'permission_callback' => $member,
 			)
@@ -104,7 +104,7 @@ class Rest {
 
 	/**
 	 * A service with a portion given in the request, e.g.
-	 * ?translation=kjv&date=2026-11-01&p[main][kathismas]=2&p[main][start]=7&p[main][ladders]=0
+	 * ?translation=kjv&date=2026-11-01&verses=0&p[main][kathismas]=2&p[main][start]=7&p[main][ladders]=0
 	 * (Phase 9 replaces the given portion with the member's own rule.)
 	 */
 	public static function reading( \WP_REST_Request $request ) {
@@ -120,6 +120,9 @@ class Rest {
 				'start'     => absint( $values['start'] ?? 0 ),   // 0: continue from the portion before
 				'ladders'   => min( 50, (float) ( $values['ladders'] ?? 0 ) ),
 			);
+		}
+		if ( null !== $request['verses'] ) {
+			Render::set_verse_numbers( (bool) $request['verses'] );
 		}
 		$steps = Render::assemble_service(
 			$key,
@@ -158,6 +161,8 @@ class Rest {
 			'day'         => $day,
 			'translation' => Psalter::translation( $request['translation'] ),
 			'steps'       => $steps,
+			'html'        => Render::html( $steps ),
+			'day_html'    => $request['date'] ? Reader::day_html( Calendar::day( (string) $request['date'] ), $key ) : '',
 		);
 	}
 }

@@ -89,7 +89,7 @@ class Calendar {
 		}
 		$set = self::names()[ $jm . '-' . $jd ] ?? '';
 		if ( '' !== $set ) {
-			$out['saint']        = $set;
+			$out['saint']        = Render::god_bearer( $set );
 			$out['saint_source'] = 'set';
 		} elseif ( $top ) {
 			$out['saint']        = self::dismissal_name( $top['body'] );
@@ -106,7 +106,7 @@ class Calendar {
 	/** Calendar text as plain text. */
 	public static function plain( $html ) {
 		$text = html_entity_decode( wp_strip_all_tags( (string) $html ), ENT_QUOTES, 'UTF-8' );
-		return trim( preg_replace( '/\s+/u', ' ', $text ) );
+		return Render::god_bearer( trim( preg_replace( '/\s+/u', ' ', $text ) ) );
 	}
 
 	/**
