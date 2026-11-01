@@ -36,29 +36,20 @@ class Rest {
 		);
 		register_rest_route(
 			self::NS,
-			'/orders',
+			'/services',
 			array(
 				'methods'             => 'GET',
-				'callback'            => array( __CLASS__, 'orders' ),
+				'callback'            => array( __CLASS__, 'services' ),
 				'permission_callback' => $member,
 			)
 		);
 		register_rest_route(
 			self::NS,
-			'/orders/(?P<id>\d+)/reading',
+			'/services/(?P<service>[a-z-]+)/reading',
 			array(
 				'methods'             => 'GET',
 				'callback'            => array( __CLASS__, 'reading' ),
 				'permission_callback' => $member,
-				'args'                => array(
-					'kathisma'    => array(
-						'required'          => true,
-						'validate_callback' => function ( $value ) {
-							return is_numeric( $value ) && $value >= 1 && $value <= 20;
-						},
-					),
-					'translation' => array( 'required' => false ),
-				),
 			)
 		);
 	}
@@ -88,35 +79,67 @@ class Rest {
 		return $list;
 	}
 
-	public static function orders() {
+	/** Services with their portions and suggested amounts. */
+	public static function services() {
 		$list = array();
-		foreach ( Orders::index() as $id => $title ) {
+		foreach ( Services::all() as $key => $service ) {
+			$portions = array();
+			foreach ( $service['portions'] as $portion => $p ) {
+				$portions[] = array(
+					'key'       => $portion,
+					'name'      => $p['name'],
+					'kathismas' => $p['kathismas'],
+					'ladders'   => $p['ladders'],
+				);
+			}
 			$list[] = array(
-				'id'    => $id,
-				'title' => $title,
+				'key'      => $key,
+				'name'     => $service['name'],
+				'ready'    => (bool) $service['order'],
+				'portions' => $portions,
 			);
 		}
 		return $list;
 	}
 
+	/**
+	 * A service with a portion given in the request, e.g.
+	 * ?translation=kjv&lent=1&p[main][kathismas]=2&p[main][start]=7&p[main][ladders]=0
+	 * (Phase 9 replaces the given portion with the member's own rule.)
+	 */
 	public static function reading( \WP_REST_Request $request ) {
-		$id = (int) $request['id'];
-		if ( 'publish' !== get_post_status( $id ) || Orders::TYPE !== get_post_type( $id ) ) {
-			return new \WP_Error( 'prayer_rule_no_order', 'No such order.', array( 'status' => 404 ) );
+		$key = sanitize_key( $request['service'] );
+		if ( ! Services::get( $key ) || ! Services::get( $key )['order'] ) {
+			return new \WP_Error( 'prayer_rule_no_service', 'No such service.', array( 'status' => 404 ) );
 		}
-		$steps = Render::assemble( $id, (int) $request['kathisma'], $request['translation'] );
+		$given    = (array) $request->get_param( 'p' );
+		$portions = array();
+		foreach ( $given as $portion => $values ) {
+			$portions[ sanitize_key( $portion ) ] = array(
+				'kathismas' => min( 20, absint( $values['kathismas'] ?? 0 ) ),
+				'start'     => absint( $values['start'] ?? 1 ),
+				'ladders'   => min( 50, (float) ( $values['ladders'] ?? 0 ) ),
+			);
+		}
+		$steps = Render::assemble_service(
+			$key,
+			array(
+				'translation' => $request['translation'],
+				'lent'        => (bool) $request['lent'],
+				'portions'    => $portions,
+			)
+		);
 		// Members see only what exists; problems are for the admin preview.
 		$steps = array_values(
 			array_filter(
 				$steps,
 				function ( $step ) {
-					return in_array( $step['type'], array( 'text', 'stasis', 'psalm' ), true );
+					return in_array( $step['type'], array( 'text', 'psalm', 'kathisma', 'stasis', 'ladders' ), true );
 				}
 			)
 		);
 		return array(
-			'order'       => $id,
-			'kathisma'    => (int) $request['kathisma'],
+			'service'     => $key,
 			'translation' => Psalter::translation( $request['translation'] ),
 			'steps'       => $steps,
 		);

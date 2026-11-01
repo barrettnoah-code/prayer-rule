@@ -34,19 +34,22 @@ file changes).
 
 ## In the admin (Prayer Rule menu)
 
-- **Prayers** – texts written on the site (the usual beginning, troparia,
-  the prayers between stases, prayers for the departed …). Each has a
-  *short name*, e.g. `usual-beginning`, used by orders.
-- **Orders** – a reading order, one item per line: a prayer's short name,
-  `stasis 1`/`2`/`3`, or `kathisma` (all three stases, each followed by the
-  "after each stasis" prayer). `{n}` in a name becomes the kathisma number,
-  so `troparia-{n}` reads `troparia-7` with the seventh kathisma.
-  `psalm 50` (or `psalm 90-91`, `psalm 118:1-72`) adds psalms in the
-  reader's own translation; inside a prayer's text, write `[psalm 50]`.
+- **Prayers** – texts written on the site, each with a *short name*
+  (e.g. `vespers-beginning`) used by orders. Red lettering (#921a0a):
+  paragraph style *Prayer* (red first letter), paragraph style *Rubric*
+  (all red), and the *Red* button for words such as bows or the speaker.
+- **Orders** – a service's opening and ending, one item per line: a
+  prayer's short name, `psalm 50`, and `rule` where the member's kathismas
+  or ladders are read (`rule first-hour` for the 1st Hour inside Matins).
+  Inside a prayer, `[psalm 50]` gives the psalm in the reader's translation.
+- **Services** – the six services (Vespers, Compline, Midnight Office,
+  Matins with the 1st Hour, Hours, Cell Rule): which order each uses, the
+  suggested amounts, and the prayers inside the rule (after each stasis,
+  after each kathisma in Great Lent, with the ladders).
 - **Kathismas** – the twenty kathismas and their stases, editable.
-- **Preview** – any order with any kathisma and translation.
-- **Settings** – who may use it (anyone logged in, or chosen Paid
-  Memberships Pro levels), the default translation, Coverdale's colons.
+- **Preview** – any service with any portion, translation, and Great Lent.
+- **Settings** – who may use it, the default translation, Coverdale's
+  colons, verse numbers.
 
 ## Making the plugin zip
 

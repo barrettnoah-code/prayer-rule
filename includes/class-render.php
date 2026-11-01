@@ -1,6 +1,7 @@
 <?php
 /**
- * Assembling and showing an order for one kathisma in one translation.
+ * Assembling and showing a service: its order, with the member's rule
+ * (kathismas and/or ladders) put in place of each `rule` line.
  * The same data feeds the admin preview now and the members' reader later.
  */
 
@@ -13,6 +14,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 class Render {
 
 	const OPT_COLONS = 'prayer_rule_show_colons';
+	const OPT_VERSES = 'prayer_rule_show_verse_numbers';
+	const RED        = '#921a0a';
 
 	/** Translation of the reading being assembled (for [psalm] in prayers). */
 	private static $translation = null;
@@ -22,55 +25,109 @@ class Render {
 		return '0' !== (string) get_option( self::OPT_COLONS, '1' );
 	}
 
+	/** Show verse numbers in psalms? Default no. */
+	public static function show_verse_numbers() {
+		return '1' === (string) get_option( self::OPT_VERSES, '0' );
+	}
+
 	/**
-	 * The order as data:
-	 *   array( 'type' => 'text', 'slug', 'title', 'html' )
-	 *   array( 'type' => 'stasis', 'stasis', 'label', 'psalms' =>
-	 *          array( array( 'psalm' => 50, 'verses' => array( n => text ) ) ) )
-	 *   array( 'type' => 'missing', 'slug' ) / array( 'type' => 'unknown', 'line' )
+	 * A service as data. $context:
+	 *   'translation' => id
+	 *   'lent'        => bool (Great Lent: troparia after kathismas, bows to the ground)
+	 *   'portions'    => array( 'main' => array( 'kathismas' => 2, 'start' => 7, 'ladders' => 0 ), … )
+	 *
+	 * Steps: text, psalm, kathisma (heading), stasis, ladders, missing,
+	 * unknown, empty-rule.
 	 */
-	public static function assemble( $order_id, $kathisma, $translation ) {
-		$kathisma    = (int) $kathisma;
-		$division    = Kathismas::get( $kathisma );
-		$translation = Psalter::translation( $translation );
-		$out         = array();
-		if ( ! $division ) {
-			return $out;
+	public static function assemble_service( $service_key, $context ) {
+		$service = Services::get( $service_key );
+		if ( ! $service || ! $service['order'] ) {
+			return array();
 		}
+		$translation       = Psalter::translation( $context['translation'] ?? '' );
 		$previous          = self::$translation;
 		self::$translation = $translation;
-		foreach ( Orders::steps( $order_id, $kathisma ) as $step ) {
-			if ( 'stasis' === $step['type'] ) {
-				$pieces = $division[ $step['stasis'] - 1 ];
-				$out[]  = array(
-					'type'   => 'stasis',
-					'stasis' => $step['stasis'],
-					'label'  => Kathismas::label( $pieces ),
-					'psalms' => self::stasis_psalms( $pieces, $translation ),
-				);
+		$out               = array();
+		foreach ( Orders::steps( $service['order'] ) as $step ) {
+			if ( 'rule' === $step['type'] ) {
+				$portion = $context['portions'][ $step['portion'] ] ?? array();
+				$name    = $service['portions'][ $step['portion'] ]['name'] ?? $step['portion'];
+				$out     = array_merge( $out, self::rule_steps( $portion, $name, $translation, ! empty( $context['lent'] ) ) );
 			} elseif ( 'psalm' === $step['type'] ) {
 				$out[] = array(
 					'type'   => 'psalm',
-					'label'  => Kathismas::label( $step['pieces'] ),
-					'psalms' => self::stasis_psalms( $step['pieces'], $translation ),
+					'psalms' => self::psalms( $step['pieces'], $translation ),
 				);
 			} elseif ( 'text' === $step['type'] ) {
-				$post = Texts::find( $step['slug'] );
-				$out[] = $post ? array(
-					'type'  => 'text',
-					'slug'  => $step['slug'],
-					'title' => get_the_title( $post ),
-					'html'  => Texts::html( $post ),
-				) : array(
-					'type' => 'missing',
-					'slug' => $step['slug'],
-				);
+				$out[] = self::text_step( $step['slug'] );
 			} else {
 				$out[] = $step;
 			}
 		}
 		self::$translation = $previous;
 		return $out;
+	}
+
+	/** The member's portion: kathismas from the bookmark, then ladders. */
+	private static function rule_steps( $portion, $name, $translation, $lent ) {
+		$kathismas = max( 0, (int) ( $portion['kathismas'] ?? 0 ) );
+		$start     = min( 20, max( 1, (int) ( $portion['start'] ?? 1 ) ) );
+		$ladders   = max( 0, round( (float) ( $portion['ladders'] ?? 0 ) * 2 ) / 2 );
+		$texts     = Services::rule_texts();
+		$steps     = array();
+		for ( $i = 0; $i < $kathismas; $i++ ) {
+			$number   = ( ( $start - 1 + $i ) % 20 ) + 1;
+			$division = Kathismas::get( $number );
+			$steps[]  = array(
+				'type'   => 'kathisma',
+				'number' => $number,
+			);
+			foreach ( $division as $s => $pieces ) {
+				$steps[] = array(
+					'type'     => 'stasis',
+					'kathisma' => $number,
+					'stasis'   => $s + 1,
+					'label'    => Kathismas::label( $pieces ),
+					'psalms'   => self::psalms( $pieces, $translation ),
+				);
+				if ( '' !== $texts['after_stasis'] ) {
+					$steps[] = self::text_step( $texts['after_stasis'] );
+				}
+			}
+			if ( $lent && '' !== $texts['after_kathisma'] ) {
+				$steps[] = self::text_step( str_replace( '{n}', (string) $number, $texts['after_kathisma'] ) );
+			}
+		}
+		if ( $ladders > 0 ) {
+			$prayer  = '' !== $texts['jesus_prayer'] ? Texts::find( $texts['jesus_prayer'] ) : null;
+			$steps[] = array(
+				'type'    => 'ladders',
+				'ladders' => $ladders,
+				'label'   => Services::ladders_label( $ladders ),
+				'html'    => $prayer ? Texts::html( $prayer ) : '',
+				'lent'    => $lent,
+			);
+		}
+		if ( ! $steps ) {
+			$steps[] = array(
+				'type' => 'empty-rule',
+				'name' => $name,
+			);
+		}
+		return $steps;
+	}
+
+	private static function text_step( $slug ) {
+		$post = Texts::find( $slug );
+		return $post ? array(
+			'type'  => 'text',
+			'slug'  => $slug,
+			'title' => get_the_title( $post ),
+			'html'  => Texts::html( $post ),
+		) : array(
+			'type' => 'missing',
+			'slug' => $slug,
+		);
 	}
 
 	/**
@@ -84,23 +141,11 @@ class Render {
 			return current_user_can( 'edit_pages' ) ? '<p class="pr-problem">' . esc_html( sprintf( 'Not understood: [psalm %s]', $typed ) ) . '</p>' : '';
 		}
 		$translation = self::$translation ? self::$translation : Psalter::default_translation();
-		return self::psalms_html( self::stasis_psalms( $pieces, $translation ) );
+		return self::psalms_html( self::psalms( $pieces, $translation ) );
 	}
 
-	/** Psalm headings and numbered verses. */
-	private static function psalms_html( $psalms ) {
-		$html = '';
-		foreach ( $psalms as $psalm ) {
-			/* translators: %d: psalm number */
-			$html .= '<h3 class="pr-psalm">' . esc_html( sprintf( __( 'Psalm %d', 'prayer-rule' ), $psalm['psalm'] ) ) . '</h3>';
-			foreach ( $psalm['verses'] as $number => $text ) {
-				$html .= '<p class="pr-verse"><span class="pr-vn">' . (int) $number . '</span> ' . esc_html( $text ) . '</p>';
-			}
-		}
-		return $html;
-	}
-
-	private static function stasis_psalms( $pieces, $translation ) {
+	/** Verses of the pieces: array( array( 'psalm' => 50, 'verses' => array( n => text ) ) ). */
+	private static function psalms( $pieces, $translation ) {
 		$psalms = array();
 		foreach ( $pieces as $piece ) {
 			list( $psalm, $from, $to ) = $piece;
@@ -116,6 +161,7 @@ class Render {
 			if ( $verses ) {
 				$psalms[] = array(
 					'psalm'  => $psalm,
+					'whole'  => ! $from,
 					'verses' => $verses,
 				);
 			}
@@ -123,21 +169,65 @@ class Render {
 		return $psalms;
 	}
 
+	/** Psalm headings and verses; the first letter of a psalm in red. */
+	private static function psalms_html( $psalms ) {
+		$numbers = self::show_verse_numbers();
+		$html    = '';
+		foreach ( $psalms as $psalm ) {
+			/* translators: %d: psalm number */
+			$html .= '<h3 class="pr-psalm">' . esc_html( sprintf( __( 'Psalm %d', 'prayer-rule' ), $psalm['psalm'] ) ) . '</h3>';
+			$first = true;
+			foreach ( $psalm['verses'] as $number => $text ) {
+				$words = esc_html( $text );
+				if ( $first && $psalm['whole'] ) {
+					$words = self::initial( $text );
+				}
+				$first = false;
+				$html .= '<p class="pr-verse">' . ( $numbers ? '<span class="pr-vn">' . (int) $number . '</span> ' : '' ) . $words . '</p>';
+			}
+		}
+		return $html;
+	}
+
+	/** Escaped text with its first letter wrapped as a red initial. */
+	private static function initial( $text ) {
+		if ( ! preg_match( '/^(\W*)(\w)(.*)$/us', $text, $m ) ) {
+			return esc_html( $text );
+		}
+		return esc_html( $m[1] ) . '<span class="pr-initial">' . esc_html( $m[2] ) . '</span>' . esc_html( $m[3] );
+	}
+
 	/** HTML for assembled steps. $admin shows problems instead of hiding them. */
-	public static function html( $steps, $kathisma, $admin = false ) {
+	public static function html( $steps, $admin = false ) {
 		$html = '<div class="prayer-rule-reading">';
 		foreach ( $steps as $step ) {
 			switch ( $step['type'] ) {
 				case 'text':
 					$html .= '<section class="pr-text">' . $step['html'] . '</section>';
 					break;
-				case 'stasis':
-					/* translators: 1: kathisma number, 2: stasis number */
-					$html .= '<section class="pr-stasis"><p class="pr-stasis-label">' . esc_html( sprintf( __( 'Kathisma %1$d, stasis %2$d', 'prayer-rule' ), $kathisma, $step['stasis'] ) ) . '</p>';
-					$html .= self::psalms_html( $step['psalms'] ) . '</section>';
-					break;
 				case 'psalm':
 					$html .= '<section class="pr-psalms">' . self::psalms_html( $step['psalms'] ) . '</section>';
+					break;
+				case 'kathisma':
+					/* translators: %d: kathisma number */
+					$html .= '<h2 class="pr-kathisma">' . esc_html( sprintf( __( 'Kathisma %d', 'prayer-rule' ), $step['number'] ) ) . '</h2>';
+					break;
+				case 'stasis':
+					/* translators: %d: stasis number */
+					$html .= '<section class="pr-stasis"><p class="pr-stasis-label">' . esc_html( sprintf( __( 'Stasis %d', 'prayer-rule' ), $step['stasis'] ) ) . '</p>' . self::psalms_html( $step['psalms'] ) . '</section>';
+					break;
+				case 'ladders':
+					$html .= '<section class="pr-ladders"><p class="pr-rubric">' . esc_html( $step['label'] ) . '</p>' . $step['html'];
+					if ( $step['lent'] ) {
+						$html .= '<p class="pr-rubric">' . esc_html__( 'In Great Lent, make 17 prostrations to the ground for each ladder.', 'prayer-rule' ) . '</p>';
+					}
+					$html .= '</section>';
+					break;
+				case 'empty-rule':
+					if ( $admin ) {
+						/* translators: %s: portion name */
+						$html .= '<p class="pr-problem">' . esc_html( sprintf( __( '%s: no kathismas or ladders chosen.', 'prayer-rule' ), $step['name'] ) ) . '</p>';
+					}
 					break;
 				case 'missing':
 					if ( $admin ) {
@@ -154,5 +244,20 @@ class Render {
 			}
 		}
 		return $html . '</div>';
+	}
+
+	/** The reading styles (preview, members' page, prayer editor). */
+	public static function css() {
+		$red = self::RED;
+		return ".prayer-rule-reading{--pr-red:{$red};max-width:42em;font-size:1.05em;line-height:1.6}
+.prayer-rule-reading .pr-kathisma{color:var(--pr-red);text-align:center;font-size:1.25em;margin:2em 0 .5em}
+.prayer-rule-reading .pr-stasis-label{color:var(--pr-red);font-size:.8em;text-transform:uppercase;letter-spacing:.06em;margin:1.6em 0 0}
+.prayer-rule-reading .pr-psalm{color:var(--pr-red);font-size:1.05em;margin:1.2em 0 .4em}
+.prayer-rule-reading .pr-verse{margin:0 0 .35em}
+.prayer-rule-reading .pr-vn{font-size:.7em;color:#8c8f94;vertical-align:super;margin-right:.2em}
+.pr-initial,.prayer-rule-reading .is-style-prayer::first-letter,.editor-styles-wrapper .is-style-prayer::first-letter{color:{$red};font-size:1.35em;font-weight:600}
+.pr-red,.pr-rubric,.is-style-rubric{color:{$red}}
+.prayer-rule-reading .pr-rubric{font-style:italic}
+.prayer-rule-reading .pr-problem{background:#fcf0f1;border-left:4px solid #d63638;padding:.4em .8em;color:#1d2327}";
 	}
 }

@@ -1,14 +1,16 @@
 <?php
 /**
- * Orders: the reading order for a kathisma, built from prayers and the
- * kathisma's stases. Typed one item per line:
+ * Orders: the opening and ending of a service, with the member's rule in
+ * the middle. Typed one item per line:
  *
  *   usual-beginning        a prayer, by its short name
- *   stasis 1               the psalms of the first stasis (also 2, 3)
- *   kathisma               all three stases, each followed by the
- *                          "after each stasis" prayer
- *   troparia-{n}           {n} becomes the kathisma's number
+ *   psalm 50               psalms in the reader's translation
+ *                          (also: psalm 90-91, psalms 142, 50, psalm 118:1-72)
+ *   rule                   the member's kathismas and/or ladders
+ *   rule first-hour        a second portion (the 1st Hour at the end of Matins)
  *   # a note               ignored
+ *
+ * Which order each service uses is chosen on the Services screen.
  */
 
 namespace PrayerRule;
@@ -19,9 +21,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 class Orders {
 
-	const TYPE        = 'pr_order';
-	const META_ITEMS  = '_prayer_rule_items';
-	const META_STASIS = '_prayer_rule_after_stasis';
+	const TYPE       = 'pr_order';
+	const META_ITEMS = '_prayer_rule_items';
 
 	public static function register() {
 		register_post_type(
@@ -54,31 +55,30 @@ class Orders {
 	}
 
 	public static function meta_boxes() {
-		add_meta_box( 'prayer-rule-items', __( 'Reading order', 'prayer-rule' ), array( __CLASS__, 'box_items' ), self::TYPE, 'normal', 'high' );
+		add_meta_box( 'prayer-rule-items', __( 'Order of the service', 'prayer-rule' ), array( __CLASS__, 'box_items' ), self::TYPE, 'normal', 'high' );
 		add_meta_box( 'prayer-rule-prayers', __( 'Prayers you can use', 'prayer-rule' ), array( __CLASS__, 'box_prayers' ), self::TYPE, 'side' );
 	}
 
 	public static function box_items( $post ) {
 		wp_nonce_field( 'prayer_rule_order', 'prayer_rule_order_nonce' );
-		$items  = get_post_meta( $post->ID, self::META_ITEMS, true );
-		$stasis = get_post_meta( $post->ID, self::META_STASIS, true );
+		$items = get_post_meta( $post->ID, self::META_ITEMS, true );
+		$used  = self::used_by( $post->ID );
 		?>
 		<p><?php esc_html_e( 'One item per line, read from top to bottom:', 'prayer-rule' ); ?></p>
 		<ul style="list-style:disc;margin-left:20px">
 			<li><code>usual-beginning</code> — <?php esc_html_e( 'a prayer, by its short name', 'prayer-rule' ); ?></li>
-			<li><code>stasis 1</code>, <code>stasis 2</code>, <code>stasis 3</code> — <?php esc_html_e( 'the psalms of that stasis', 'prayer-rule' ); ?></li>
-			<li><code>kathisma</code> — <?php esc_html_e( 'all three stases, each followed by the prayer below', 'prayer-rule' ); ?></li>
 			<li><code>psalm 50</code>, <code>psalm 90-91</code>, <code>psalm 118:1-72</code> — <?php esc_html_e( 'psalms in the reader\'s own translation', 'prayer-rule' ); ?></li>
-			<li><code>troparia-{n}</code> — <?php esc_html_e( '{n} becomes the kathisma number (troparia-7)', 'prayer-rule' ); ?></li>
+			<li><code>rule</code> — <?php esc_html_e( 'where the member\'s kathismas or ladders are read', 'prayer-rule' ); ?></li>
+			<li><code>rule first-hour</code> — <?php esc_html_e( 'the 1st Hour\'s portion, in the Matins order', 'prayer-rule' ); ?></li>
 			<li><code># …</code> — <?php esc_html_e( 'a note, ignored', 'prayer-rule' ); ?></li>
 		</ul>
 		<p class="description"><?php esc_html_e( 'Inside a prayer\'s own text, write [psalm 50] where a psalm belongs; it too appears in the reader\'s translation.', 'prayer-rule' ); ?></p>
-		<textarea name="prayer_rule_items" rows="14" style="width:100%;font-family:monospace"><?php echo esc_textarea( $items ); ?></textarea>
-		<p>
-			<label for="prayer_rule_after_stasis"><strong><?php esc_html_e( 'After each stasis (used by "kathisma")', 'prayer-rule' ); ?></strong></label><br>
-			<input type="text" id="prayer_rule_after_stasis" name="prayer_rule_after_stasis" value="<?php echo esc_attr( $stasis ); ?>" class="regular-text" placeholder="glory-between-stases">
-		</p>
+		<textarea name="prayer_rule_items" rows="16" style="width:100%;font-family:monospace"><?php echo esc_textarea( $items ); ?></textarea>
 		<?php
+		echo '<p>' . ( $used
+			/* translators: %s: service names */
+			? esc_html( sprintf( __( 'Used for: %s.', 'prayer-rule' ), implode( ', ', $used ) ) )
+			: esc_html__( 'Not yet chosen for any service (Prayer Rule → Services).', 'prayer-rule' ) ) . '</p>';
 		$problems = self::problems( $post->ID );
 		if ( $problems ) {
 			echo '<div class="notice notice-warning inline"><p><strong>' . esc_html__( 'To fix:', 'prayer-rule' ) . '</strong></p><ul style="list-style:disc;margin-left:20px">';
@@ -86,16 +86,6 @@ class Orders {
 				echo '<li>' . esc_html( $problem ) . '</li>';
 			}
 			echo '</ul></div>';
-		}
-		if ( 'publish' === $post->post_status || 'draft' === $post->post_status ) {
-			$url = add_query_arg(
-				array(
-					'page'  => 'prayer-rule-preview',
-					'order' => $post->ID,
-				),
-				admin_url( 'admin.php' )
-			);
-			echo '<p><a class="button" href="' . esc_url( $url ) . '">' . esc_html__( 'Preview with a kathisma', 'prayer-rule' ) . '</a></p>';
 		}
 	}
 
@@ -122,62 +112,54 @@ class Orders {
 		if ( ! current_user_can( 'edit_post', $post_id ) ) {
 			return;
 		}
-		$items  = isset( $_POST['prayer_rule_items'] ) ? sanitize_textarea_field( wp_unslash( $_POST['prayer_rule_items'] ) ) : '';
-		$stasis = isset( $_POST['prayer_rule_after_stasis'] ) ? sanitize_title( wp_unslash( $_POST['prayer_rule_after_stasis'] ) ) : '';
+		$items = isset( $_POST['prayer_rule_items'] ) ? sanitize_textarea_field( wp_unslash( $_POST['prayer_rule_items'] ) ) : '';
 		update_post_meta( $post_id, self::META_ITEMS, $items );
-		update_post_meta( $post_id, self::META_STASIS, $stasis );
+	}
+
+	/** Names of the services that use this order. */
+	public static function used_by( $order_id ) {
+		$names = array();
+		foreach ( Services::all() as $service ) {
+			if ( (int) $order_id === $service['order'] ) {
+				$names[] = $service['name'];
+			}
+		}
+		return $names;
+	}
+
+	public static function steps( $order_id ) {
+		return self::parse_steps( (string) get_post_meta( $order_id, self::META_ITEMS, true ) );
 	}
 
 	/**
-	 * The order as steps for one kathisma: each step is
+	 * Steps from typed lines:
 	 *   array( 'type' => 'text', 'slug' => … )
-	 *   array( 'type' => 'stasis', 'stasis' => 1-3 )
+	 *   array( 'type' => 'psalm', 'pieces' => … )
+	 *   array( 'type' => 'rule', 'portion' => 'main' | 'first-hour' )
 	 *   array( 'type' => 'unknown', 'line' => … )
 	 */
-	public static function steps( $order_id, $kathisma ) {
-		return self::parse_steps(
-			(string) get_post_meta( $order_id, self::META_ITEMS, true ),
-			(string) get_post_meta( $order_id, self::META_STASIS, true ),
-			$kathisma
-		);
-	}
-
-	/** Steps from typed lines; $kathisma = null keeps {n} as typed. */
-	public static function parse_steps( $items, $after, $kathisma ) {
-		$steps  = array();
+	public static function parse_steps( $items ) {
+		$steps = array();
 		foreach ( preg_split( '/\r\n|\r|\n/', $items ) as $line ) {
 			$line = trim( $line );
 			if ( '' === $line || '#' === $line[0] ) {
 				continue;
 			}
-			$lower = strtolower( $line );
-			if ( preg_match( '/^stasis\s+([123])$/', $lower, $m ) ) {
+			$lower = strtolower( preg_replace( '/\s+/', ' ', $line ) );
+			if ( preg_match( '/^rule(?: ([a-z-]+))?$/', $lower, $m ) && in_array( $m[1] ?? 'main', array( 'main', 'first-hour' ), true ) ) {
 				$steps[] = array(
-					'type'   => 'stasis',
-					'stasis' => (int) $m[1],
+					'type'    => 'rule',
+					'portion' => $m[1] ?? 'main',
 				);
-			} elseif ( preg_match( '/^psalms?\s+(.+)$/', $lower, $m ) && Kathismas::pieces( $m[1] ) ) {
+			} elseif ( preg_match( '/^psalms? (.+)$/', $lower, $m ) && Kathismas::pieces( $m[1] ) ) {
 				$steps[] = array(
 					'type'   => 'psalm',
 					'pieces' => Kathismas::pieces( $m[1] ),
 				);
-			} elseif ( 'kathisma' === $lower ) {
-				for ( $s = 1; $s <= 3; $s++ ) {
-					$steps[] = array(
-						'type'   => 'stasis',
-						'stasis' => $s,
-					);
-					if ( '' !== $after ) {
-						$steps[] = array(
-							'type' => 'text',
-							'slug' => $after,
-						);
-					}
-				}
-			} elseif ( preg_match( '/^[a-z0-9{}_-]+$/', $lower ) ) {
+			} elseif ( preg_match( '/^[a-z0-9_-]+$/', $lower ) ) {
 				$steps[] = array(
 					'type' => 'text',
-					'slug' => null === $kathisma ? $lower : str_replace( '{n}', (string) (int) $kathisma, $lower ),
+					'slug' => $lower,
 				);
 			} else {
 				$steps[] = array(
@@ -189,81 +171,32 @@ class Orders {
 		return $steps;
 	}
 
-	/**
-	 * Problems with an order: lines not understood, and prayers not found
-	 * (a {n} name is checked for every kathisma, 1-20).
-	 */
+	/** Lines not understood, and prayers not found. */
 	public static function problems( $order_id ) {
 		$problems = array();
-		$missing  = array();                   // typed name => kathismas
-		$base     = self::steps( $order_id, 1 );
-		$count    = count( $base );
-		$typed    = self::typed_names( $order_id );
-		for ( $n = 1; $n <= 20; $n++ ) {
-			$steps = ( 1 === $n ) ? $base : self::steps( $order_id, $n );
-			for ( $i = 0; $i < $count; $i++ ) {
-				$step = $steps[ $i ];
-				if ( 'unknown' === $step['type'] && 1 === $n ) {
-					/* translators: %s: the line as typed */
-					$problems[] = sprintf( __( 'Not understood: "%s"', 'prayer-rule' ), $step['line'] );
-				} elseif ( 'text' === $step['type'] && ! Texts::find( $step['slug'] ) ) {
-					$name               = $typed[ $i ] ?? $step['slug'];
-					$missing[ $name ][] = $n;
-				}
+		$missing  = array();
+		$rules    = 0;
+		foreach ( self::steps( $order_id ) as $step ) {
+			if ( 'unknown' === $step['type'] ) {
+				/* translators: %s: the line as typed */
+				$problems[] = sprintf( __( 'Not understood: "%s"', 'prayer-rule' ), $step['line'] );
+			} elseif ( 'text' === $step['type'] && ! Texts::find( $step['slug'] ) ) {
+				$missing[ $step['slug'] ] = true;
+			} elseif ( 'rule' === $step['type'] ) {
+				++$rules;
 			}
 		}
-		foreach ( $missing as $name => $numbers ) {
-			$numbers = array_unique( $numbers );
-			if ( false === strpos( $name, '{n}' ) ) {
-				/* translators: %s: a prayer's short name */
-				$problems[] = sprintf( __( 'No published prayer with the short name "%s"', 'prayer-rule' ), $name );
-			} else {
-				/* translators: 1: a prayer's short name with {n}, 2: kathisma numbers */
-				$problems[] = sprintf( __( 'No published prayer "%1$s" for kathisma %2$s', 'prayer-rule' ), $name, self::ranges( $numbers ) );
-			}
+		foreach ( array_keys( $missing ) as $slug ) {
+			/* translators: %s: a prayer's short name */
+			$problems[] = sprintf( __( 'No published prayer with the short name "%s"', 'prayer-rule' ), $slug );
+		}
+		if ( ! $rules ) {
+			$problems[] = __( 'There is no "rule" line, so the member\'s kathismas or ladders have nowhere to go.', 'prayer-rule' );
 		}
 		return $problems;
 	}
 
-	/** The name as typed for each step (keeps {n}), in step order. */
-	private static function typed_names( $order_id ) {
-		$steps = self::parse_steps(
-			(string) get_post_meta( $order_id, self::META_ITEMS, true ),
-			(string) get_post_meta( $order_id, self::META_STASIS, true ),
-			null
-		);
-		return array_map(
-			function ( $step ) {
-				return 'text' === $step['type'] ? $step['slug'] : null;
-			},
-			$steps
-		);
-	}
-
-	/** array(1,2,3,5) => "1-3, 5" */
-	private static function ranges( $numbers ) {
-		sort( $numbers );
-		$parts = array();
-		$start = null;
-		$prev  = null;
-		foreach ( $numbers as $n ) {
-			if ( null !== $prev && $n === $prev + 1 ) {
-				$prev = $n;
-				continue;
-			}
-			if ( null !== $start ) {
-				$parts[] = $start === $prev ? (string) $start : "$start-$prev";
-			}
-			$start = $n;
-			$prev  = $n;
-		}
-		if ( null !== $start ) {
-			$parts[] = $start === $prev ? (string) $start : "$start-$prev";
-		}
-		return implode( ', ', $parts );
-	}
-
-	/** Published orders as id => title. */
+	/** Orders as id => title. */
 	public static function index( $statuses = array( 'publish' ) ) {
 		$posts = get_posts(
 			array(

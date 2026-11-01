@@ -19,6 +19,9 @@ foreach ( array(
 	'prayer_rule_translations',
 	'prayer_rule_default_translation',
 	'prayer_rule_show_colons',
+	'prayer_rule_show_verse_numbers',
+	'prayer_rule_services',
+	'prayer_rule_rule_texts',
 ) as $option ) {
 	delete_option( $option );
 }

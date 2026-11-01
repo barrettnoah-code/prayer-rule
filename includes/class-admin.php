@@ -1,6 +1,6 @@
 <?php
 /**
- * Admin screens: Overview, Kathismas, Preview, Settings.
+ * Admin screens: Overview, Services, Kathismas, Preview, Settings.
  * (Prayers and Orders are post types listed in the same menu.)
  */
 
@@ -19,6 +19,7 @@ class Admin {
 		add_action( 'admin_menu', array( __CLASS__, 'menu_order' ), 99 );
 		add_action( 'admin_post_prayer_rule_settings', array( __CLASS__, 'save_settings' ) );
 		add_action( 'admin_post_prayer_rule_kathismas', array( __CLASS__, 'save_kathismas' ) );
+		add_action( 'admin_post_prayer_rule_services', array( __CLASS__, 'save_services' ) );
 		add_filter( 'manage_' . Texts::TYPE . '_posts_columns', array( __CLASS__, 'text_columns' ) );
 		add_action( 'manage_' . Texts::TYPE . '_posts_custom_column', array( __CLASS__, 'text_column' ), 10, 2 );
 	}
@@ -26,18 +27,19 @@ class Admin {
 	public static function menu() {
 		add_menu_page( __( 'Prayer Rule', 'prayer-rule' ), __( 'Prayer Rule', 'prayer-rule' ), 'edit_pages', self::SLUG, array( __CLASS__, 'page_overview' ), 'dashicons-book-alt', 58 );
 		add_submenu_page( self::SLUG, __( 'Overview', 'prayer-rule' ), __( 'Overview', 'prayer-rule' ), 'edit_pages', self::SLUG, array( __CLASS__, 'page_overview' ) );
+		add_submenu_page( self::SLUG, __( 'Services', 'prayer-rule' ), __( 'Services', 'prayer-rule' ), 'manage_options', 'prayer-rule-services', array( __CLASS__, 'page_services' ) );
 		add_submenu_page( self::SLUG, __( 'Kathismas', 'prayer-rule' ), __( 'Kathismas', 'prayer-rule' ), 'manage_options', 'prayer-rule-kathismas', array( __CLASS__, 'page_kathismas' ) );
 		add_submenu_page( self::SLUG, __( 'Preview', 'prayer-rule' ), __( 'Preview', 'prayer-rule' ), 'edit_pages', 'prayer-rule-preview', array( __CLASS__, 'page_preview' ) );
 		add_submenu_page( self::SLUG, __( 'Settings', 'prayer-rule' ), __( 'Settings', 'prayer-rule' ), 'manage_options', 'prayer-rule-settings', array( __CLASS__, 'page_settings' ) );
 	}
 
-	/** Overview, Prayers, Orders, Kathismas, Preview, Settings. */
+	/** Overview, Prayers, Orders, Services, Kathismas, Preview, Settings. */
 	public static function menu_order() {
 		global $submenu;
 		if ( empty( $submenu[ self::SLUG ] ) ) {
 			return;
 		}
-		$want = array( self::SLUG, 'edit.php?post_type=' . Texts::TYPE, 'edit.php?post_type=' . Orders::TYPE, 'prayer-rule-kathismas', 'prayer-rule-preview', 'prayer-rule-settings' );
+		$want = array( self::SLUG, 'edit.php?post_type=' . Texts::TYPE, 'edit.php?post_type=' . Orders::TYPE, 'prayer-rule-services', 'prayer-rule-kathismas', 'prayer-rule-preview', 'prayer-rule-settings' );
 		usort(
 			$submenu[ self::SLUG ],
 			function ( $a, $b ) use ( $want ) {
@@ -117,8 +119,9 @@ class Admin {
 			<h2><?php esc_html_e( 'Getting started', 'prayer-rule' ); ?></h2>
 			<ol>
 				<li><?php esc_html_e( 'Write each prayer under Prayers. Its short name (in the side box) is made from the title unless you type one.', 'prayer-rule' ); ?></li>
-				<li><?php esc_html_e( 'Under Orders, list the prayers and stases in reading order.', 'prayer-rule' ); ?></li>
-				<li><?php esc_html_e( 'Check the result under Preview, with any kathisma and translation.', 'prayer-rule' ); ?></li>
+				<li><?php esc_html_e( 'Under Orders, write each service\'s opening and ending, with "rule" where the member\'s portion goes.', 'prayer-rule' ); ?></li>
+				<li><?php esc_html_e( 'Under Services, choose the order for each service and the suggested amounts.', 'prayer-rule' ); ?></li>
+				<li><?php esc_html_e( 'Check the result under Preview, with any portion and translation.', 'prayer-rule' ); ?></li>
 			</ol>
 		</div>
 		<?php
@@ -170,39 +173,115 @@ class Admin {
 		self::back( 'prayer-rule-kathismas', __( 'Kathismas saved.', 'prayer-rule' ) );
 	}
 
+	// ------------------------------------------------------------ Services
+
+	public static function page_services() {
+		$services = Services::all();
+		$orders   = Orders::index( array( 'publish', 'draft', 'pending', 'private' ) );
+		$texts    = Services::rule_texts();
+		?>
+		<div class="wrap">
+			<h1><?php esc_html_e( 'Services', 'prayer-rule' ); ?></h1>
+			<?php self::notice(); ?>
+			<p><?php esc_html_e( 'Each service uses one order (its opening and ending, with "rule" where the member\'s portion goes). The amounts are the suggestions members choose from: kathismas, and ladders of 100 Jesus Prayers (halves allowed, e.g. 2.5).', 'prayer-rule' ); ?></p>
+			<form method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>">
+				<input type="hidden" name="action" value="prayer_rule_services">
+				<?php wp_nonce_field( 'prayer_rule_services' ); ?>
+				<table class="widefat striped" style="max-width:960px">
+					<thead><tr>
+						<th><?php esc_html_e( 'Service', 'prayer-rule' ); ?></th>
+						<th><?php esc_html_e( 'Order', 'prayer-rule' ); ?></th>
+						<th><?php esc_html_e( 'Portion', 'prayer-rule' ); ?></th>
+						<th><?php esc_html_e( 'Kathismas', 'prayer-rule' ); ?></th>
+						<th><?php esc_html_e( 'Ladders', 'prayer-rule' ); ?></th>
+					</tr></thead>
+					<tbody>
+					<?php foreach ( $services as $key => $service ) : ?>
+						<?php $first = true; ?>
+						<?php foreach ( $service['portions'] as $portion => $p ) : ?>
+							<tr>
+								<?php if ( $first ) : ?>
+									<td rowspan="<?php echo count( $service['portions'] ); ?>"><strong><?php echo esc_html( $service['name'] ); ?></strong></td>
+									<td rowspan="<?php echo count( $service['portions'] ); ?>">
+										<select name="services[<?php echo esc_attr( $key ); ?>][order]">
+											<option value="0"><?php esc_html_e( '— choose —', 'prayer-rule' ); ?></option>
+											<?php foreach ( $orders as $id => $title ) : ?>
+												<option value="<?php echo (int) $id; ?>" <?php selected( $service['order'], $id ); ?>><?php echo esc_html( $title ); ?></option>
+											<?php endforeach; ?>
+										</select>
+									</td>
+								<?php endif; ?>
+								<td><?php echo esc_html( $p['name'] ); ?><?php echo 'main' !== $portion ? ' <code>rule ' . esc_html( $portion ) . '</code>' : ''; ?></td>
+								<td><input type="text" class="small-text" style="width:8em" name="services[<?php echo esc_attr( $key ); ?>][portions][<?php echo esc_attr( $portion ); ?>][kathismas]" value="<?php echo esc_attr( implode( ', ', $p['kathismas'] ) ); ?>"></td>
+								<td><input type="text" class="small-text" style="width:10em" name="services[<?php echo esc_attr( $key ); ?>][portions][<?php echo esc_attr( $portion ); ?>][ladders]" value="<?php echo esc_attr( implode( ', ', $p['ladders'] ) ); ?>"></td>
+							</tr>
+							<?php $first = false; ?>
+						<?php endforeach; ?>
+					<?php endforeach; ?>
+					</tbody>
+				</table>
+				<h2><?php esc_html_e( 'Prayers inside the rule', 'prayer-rule' ); ?></h2>
+				<table class="form-table" role="presentation">
+					<tr>
+						<th scope="row"><label for="pr-as"><?php esc_html_e( 'After each stasis', 'prayer-rule' ); ?></label></th>
+						<td><input id="pr-as" type="text" class="regular-text code" name="rule_texts[after_stasis]" value="<?php echo esc_attr( $texts['after_stasis'] ); ?>"><p class="description"><?php esc_html_e( 'The prayer said at each "Glory" (the Alleluia). Leave empty for none.', 'prayer-rule' ); ?></p></td>
+					</tr>
+					<tr>
+						<th scope="row"><label for="pr-ak"><?php esc_html_e( 'After each kathisma, in Great Lent', 'prayer-rule' ); ?></label></th>
+						<td><input id="pr-ak" type="text" class="regular-text code" name="rule_texts[after_kathisma]" value="<?php echo esc_attr( $texts['after_kathisma'] ); ?>"><p class="description"><?php esc_html_e( 'The troparia and prayer of each kathisma; {n} becomes the kathisma number.', 'prayer-rule' ); ?></p></td>
+					</tr>
+					<tr>
+						<th scope="row"><label for="pr-jp"><?php esc_html_e( 'With the ladders', 'prayer-rule' ); ?></label></th>
+						<td><input id="pr-jp" type="text" class="regular-text code" name="rule_texts[jesus_prayer]" value="<?php echo esc_attr( $texts['jesus_prayer'] ); ?>"><p class="description"><?php esc_html_e( 'The Jesus Prayer as it is said, shown under the number of ladders.', 'prayer-rule' ); ?></p></td>
+					</tr>
+				</table>
+				<?php submit_button( __( 'Save services', 'prayer-rule' ) ); ?>
+			</form>
+		</div>
+		<?php
+	}
+
+	public static function save_services() {
+		if ( ! current_user_can( 'manage_options' ) ) {
+			wp_die( esc_html__( 'Not allowed.', 'prayer-rule' ) );
+		}
+		check_admin_referer( 'prayer_rule_services' );
+		$posted = isset( $_POST['services'] ) ? map_deep( wp_unslash( (array) $_POST['services'] ), 'sanitize_text_field' ) : array(); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput
+		Services::save( $posted );
+		$texts = isset( $_POST['rule_texts'] ) ? map_deep( wp_unslash( (array) $_POST['rule_texts'] ), 'sanitize_text_field' ) : array(); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput
+		Services::save_rule_texts( $texts );
+		self::back( 'prayer-rule-services', __( 'Services saved.', 'prayer-rule' ) );
+	}
+
 	// ------------------------------------------------------------ Preview
 
 	public static function page_preview() {
 		// phpcs:disable WordPress.Security.NonceVerification -- read-only view
-		$orders      = Orders::index( array( 'publish', 'draft', 'pending', 'private' ) );
-		$order       = isset( $_GET['order'] ) ? absint( $_GET['order'] ) : (int) key( $orders );
-		$kathisma    = isset( $_GET['kathisma'] ) ? min( 20, max( 1, absint( $_GET['kathisma'] ) ) ) : 1;
+		$services    = Services::all();
+		$key         = isset( $_GET['service'], $services[ sanitize_key( $_GET['service'] ) ] ) ? sanitize_key( $_GET['service'] ) : 'vespers';
+		$service     = $services[ $key ];
 		$translation = Psalter::translation( isset( $_GET['translation'] ) ? sanitize_key( $_GET['translation'] ) : '' );
+		$lent        = ! empty( $_GET['lent'] );
+		$given       = isset( $_GET['p'] ) && is_array( $_GET['p'] ) ? wp_unslash( $_GET['p'] ) : array();
+		$portions    = array();
+		foreach ( $service['portions'] as $portion => $p ) {
+			$portions[ $portion ] = array(
+				'kathismas' => isset( $given[ $portion ]['kathismas'] ) ? absint( $given[ $portion ]['kathismas'] ) : (int) ( $p['kathismas'][0] ?? 0 ),
+				'start'     => isset( $given[ $portion ]['start'] ) ? min( 20, max( 1, absint( $given[ $portion ]['start'] ) ) ) : 1,
+				'ladders'   => isset( $given[ $portion ]['ladders'] ) ? (float) $given[ $portion ]['ladders'] : 0,
+			);
+		}
 		// phpcs:enable
 		?>
 		<div class="wrap">
 			<h1><?php esc_html_e( 'Preview', 'prayer-rule' ); ?></h1>
-			<?php if ( ! $orders ) : ?>
-				<p><?php esc_html_e( 'Add an order first (Prayer Rule → Orders).', 'prayer-rule' ); ?></p>
-			</div>
-				<?php
-				return;
-			endif;
-			?>
-			<form method="get" style="margin:1em 0">
+			<form method="get" style="margin:1em 0;line-height:2.4">
 				<input type="hidden" name="page" value="prayer-rule-preview">
-				<label><?php esc_html_e( 'Order', 'prayer-rule' ); ?>
-					<select name="order">
-						<?php foreach ( $orders as $id => $title ) : ?>
-							<option value="<?php echo (int) $id; ?>" <?php selected( $order, $id ); ?>><?php echo esc_html( $title ); ?></option>
+				<label><?php esc_html_e( 'Service', 'prayer-rule' ); ?>
+					<select name="service" onchange="this.form.submit()">
+						<?php foreach ( $services as $k => $s ) : ?>
+							<option value="<?php echo esc_attr( $k ); ?>" <?php selected( $key, $k ); ?>><?php echo esc_html( $s['name'] ); ?></option>
 						<?php endforeach; ?>
-					</select>
-				</label>
-				<label><?php esc_html_e( 'Kathisma', 'prayer-rule' ); ?>
-					<select name="kathisma">
-						<?php for ( $n = 1; $n <= 20; $n++ ) : ?>
-							<option value="<?php echo (int) $n; ?>" <?php selected( $kathisma, $n ); ?>><?php echo (int) $n; ?></option>
-						<?php endfor; ?>
 					</select>
 				</label>
 				<label><?php esc_html_e( 'Translation', 'prayer-rule' ); ?>
@@ -212,19 +291,57 @@ class Admin {
 						<?php endforeach; ?>
 					</select>
 				</label>
-				<?php submit_button( __( 'Show', 'prayer-rule' ), 'secondary', '', false ); ?>
-				<a href="<?php echo esc_url( get_edit_post_link( $order ) ); ?>"><?php esc_html_e( 'Edit this order', 'prayer-rule' ); ?></a>
+				<label><input type="checkbox" name="lent" value="1" <?php checked( $lent ); ?>> <?php esc_html_e( 'Great Lent', 'prayer-rule' ); ?></label>
+				<?php foreach ( $service['portions'] as $portion => $p ) : ?>
+					<br><strong><?php echo esc_html( $p['name'] ); ?>:</strong>
+					<label><?php esc_html_e( 'kathismas', 'prayer-rule' ); ?>
+						<select name="p[<?php echo esc_attr( $portion ); ?>][kathismas]">
+							<?php for ( $n = 0; $n <= 5; $n++ ) : ?>
+								<option value="<?php echo (int) $n; ?>" <?php selected( $portions[ $portion ]['kathismas'], $n ); ?>><?php echo (int) $n; ?></option>
+							<?php endfor; ?>
+						</select>
+					</label>
+					<label><?php esc_html_e( 'from kathisma', 'prayer-rule' ); ?>
+						<select name="p[<?php echo esc_attr( $portion ); ?>][start]">
+							<?php for ( $n = 1; $n <= 20; $n++ ) : ?>
+								<option value="<?php echo (int) $n; ?>" <?php selected( $portions[ $portion ]['start'], $n ); ?>><?php echo (int) $n; ?></option>
+							<?php endfor; ?>
+						</select>
+					</label>
+					<label><?php esc_html_e( 'ladders', 'prayer-rule' ); ?>
+						<select name="p[<?php echo esc_attr( $portion ); ?>][ladders]">
+							<?php for ( $n = 0; $n <= 14; $n++ ) : ?>
+								<option value="<?php echo esc_attr( $n / 2 ); ?>" <?php selected( (string) $portions[ $portion ]['ladders'], (string) ( $n / 2 ) ); ?>><?php echo esc_html( $n / 2 ); ?></option>
+							<?php endfor; ?>
+						</select>
+					</label>
+				<?php endforeach; ?>
+				<br><?php submit_button( __( 'Show', 'prayer-rule' ), 'secondary', '', false ); ?>
+				<?php if ( $service['order'] ) : ?>
+					<a href="<?php echo esc_url( get_edit_post_link( $service['order'] ) ); ?>"><?php esc_html_e( 'Edit this service\'s order', 'prayer-rule' ); ?></a>
+				<?php endif; ?>
 			</form>
+			<?php if ( ! $service['order'] ) : ?>
+				<p><?php esc_html_e( 'This service has no order yet. Choose one under Prayer Rule → Services.', 'prayer-rule' ); ?></p>
+			</div>
+				<?php
+				return;
+			endif;
+			?>
 			<style>
-				.prayer-rule-reading{max-width:42em;background:#fff;padding:1.5em 2em;border:1px solid #dcdcde;font-size:16px;line-height:1.6}
-				.prayer-rule-reading .pr-stasis-label{font-size:13px;text-transform:uppercase;letter-spacing:.05em;color:#8a1c1c;margin:2em 0 0}
-				.prayer-rule-reading .pr-psalm{font-size:1.1em;color:#8a1c1c;margin:1.2em 0 .4em}
-				.prayer-rule-reading .pr-verse{margin:0 0 .35em}
-				.prayer-rule-reading .pr-vn{font-size:.7em;color:#8c8f94;vertical-align:super;margin-right:.2em}
-				.prayer-rule-reading .pr-problem{background:#fcf0f1;border-left:4px solid #d63638;padding:.4em .8em}
+				<?php echo Render::css(); // phpcs:ignore WordPress.Security.EscapeOutput -- fixed CSS ?>
+				.wrap .prayer-rule-reading{background:#fff;padding:1.5em 2em;border:1px solid #dcdcde;font-size:16px}
 			</style>
 			<?php
-			echo Render::html( Render::assemble( $order, $kathisma, $translation ), $kathisma, true ); // phpcs:ignore WordPress.Security.EscapeOutput -- escaped in Render::html
+			$steps = Render::assemble_service(
+				$key,
+				array(
+					'translation' => $translation,
+					'lent'        => $lent,
+					'portions'    => $portions,
+				)
+			);
+			echo Render::html( $steps, true ); // phpcs:ignore WordPress.Security.EscapeOutput -- escaped in Render::html
 			?>
 		</div>
 		<?php
@@ -274,6 +391,10 @@ class Admin {
 						<th scope="row"><?php esc_html_e( 'Coverdale', 'prayer-rule' ); ?></th>
 						<td><label><input type="checkbox" name="show_colons" value="1" <?php checked( Render::show_colons() ); ?>> <?php esc_html_e( 'Show the colon that marks each half-verse ( : )', 'prayer-rule' ); ?></label></td>
 					</tr>
+					<tr>
+						<th scope="row"><?php esc_html_e( 'Psalms', 'prayer-rule' ); ?></th>
+						<td><label><input type="checkbox" name="show_verse_numbers" value="1" <?php checked( Render::show_verse_numbers() ); ?>> <?php esc_html_e( 'Show verse numbers', 'prayer-rule' ); ?></label></td>
+					</tr>
 				</table>
 				<p>
 					<?php submit_button( __( 'Save settings', 'prayer-rule' ), 'primary', 'save', false ); ?>
@@ -308,6 +429,7 @@ class Admin {
 			update_option( Psalter::OPT_DEFAULT, $default );
 		}
 		update_option( Render::OPT_COLONS, isset( $_POST['show_colons'] ) ? '1' : '0' );
+		update_option( Render::OPT_VERSES, isset( $_POST['show_verse_numbers'] ) ? '1' : '0' );
 		self::back( 'prayer-rule-settings', __( 'Settings saved.', 'prayer-rule' ) );
 	}
 }
