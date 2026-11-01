@@ -123,6 +123,22 @@ class Kathismas {
 		return $result;
 	}
 
+	/**
+	 * Pieces from typed psalms: "50", "90-91", "118:1-72", or several
+	 * separated by commas. Null if anything is not understood.
+	 */
+	public static function pieces( $typed ) {
+		$pieces = array();
+		foreach ( array_filter( array_map( 'trim', explode( ',', (string) $typed ) ) ) as $part ) {
+			$piece = self::parse_piece( $part );
+			if ( ! $piece ) {
+				return null;
+			}
+			$pieces = array_merge( $pieces, $piece );
+		}
+		return $pieces ? $pieces : null;
+	}
+
 	/** "9-10" => two whole psalms; "118:1-72" => one psalm, verses 1-72. */
 	private static function parse_piece( $part ) {
 		if ( preg_match( '/^(\d+):(\d+)\s*-\s*(\d+)$/', $part, $m ) ) {

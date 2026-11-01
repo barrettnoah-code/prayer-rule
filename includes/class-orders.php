@@ -68,9 +68,11 @@ class Orders {
 			<li><code>usual-beginning</code> — <?php esc_html_e( 'a prayer, by its short name', 'prayer-rule' ); ?></li>
 			<li><code>stasis 1</code>, <code>stasis 2</code>, <code>stasis 3</code> — <?php esc_html_e( 'the psalms of that stasis', 'prayer-rule' ); ?></li>
 			<li><code>kathisma</code> — <?php esc_html_e( 'all three stases, each followed by the prayer below', 'prayer-rule' ); ?></li>
+			<li><code>psalm 50</code>, <code>psalm 90-91</code>, <code>psalm 118:1-72</code> — <?php esc_html_e( 'psalms in the reader\'s own translation', 'prayer-rule' ); ?></li>
 			<li><code>troparia-{n}</code> — <?php esc_html_e( '{n} becomes the kathisma number (troparia-7)', 'prayer-rule' ); ?></li>
 			<li><code># …</code> — <?php esc_html_e( 'a note, ignored', 'prayer-rule' ); ?></li>
 		</ul>
+		<p class="description"><?php esc_html_e( 'Inside a prayer\'s own text, write [psalm 50] where a psalm belongs; it too appears in the reader\'s translation.', 'prayer-rule' ); ?></p>
 		<textarea name="prayer_rule_items" rows="14" style="width:100%;font-family:monospace"><?php echo esc_textarea( $items ); ?></textarea>
 		<p>
 			<label for="prayer_rule_after_stasis"><strong><?php esc_html_e( 'After each stasis (used by "kathisma")', 'prayer-rule' ); ?></strong></label><br>
@@ -153,6 +155,11 @@ class Orders {
 				$steps[] = array(
 					'type'   => 'stasis',
 					'stasis' => (int) $m[1],
+				);
+			} elseif ( preg_match( '/^psalms?\s+(.+)$/', $lower, $m ) && Kathismas::pieces( $m[1] ) ) {
+				$steps[] = array(
+					'type'   => 'psalm',
+					'pieces' => Kathismas::pieces( $m[1] ),
 				);
 			} elseif ( 'kathisma' === $lower ) {
 				for ( $s = 1; $s <= 3; $s++ ) {

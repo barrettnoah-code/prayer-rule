@@ -110,7 +110,7 @@ class Rest {
 			array_filter(
 				$steps,
 				function ( $step ) {
-					return in_array( $step['type'], array( 'text', 'stasis' ), true );
+					return in_array( $step['type'], array( 'text', 'stasis', 'psalm' ), true );
 				}
 			)
 		);

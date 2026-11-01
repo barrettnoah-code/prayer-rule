@@ -14,6 +14,9 @@ class Render {
 
 	const OPT_COLONS = 'prayer_rule_show_colons';
 
+	/** Translation of the reading being assembled (for [psalm] in prayers). */
+	private static $translation = null;
+
 	/** Show Coverdale's half-verse colons ( : )? Default yes. */
 	public static function show_colons() {
 		return '0' !== (string) get_option( self::OPT_COLONS, '1' );
@@ -34,6 +37,8 @@ class Render {
 		if ( ! $division ) {
 			return $out;
 		}
+		$previous          = self::$translation;
+		self::$translation = $translation;
 		foreach ( Orders::steps( $order_id, $kathisma ) as $step ) {
 			if ( 'stasis' === $step['type'] ) {
 				$pieces = $division[ $step['stasis'] - 1 ];
@@ -42,6 +47,12 @@ class Render {
 					'stasis' => $step['stasis'],
 					'label'  => Kathismas::label( $pieces ),
 					'psalms' => self::stasis_psalms( $pieces, $translation ),
+				);
+			} elseif ( 'psalm' === $step['type'] ) {
+				$out[] = array(
+					'type'   => 'psalm',
+					'label'  => Kathismas::label( $step['pieces'] ),
+					'psalms' => self::stasis_psalms( $step['pieces'], $translation ),
 				);
 			} elseif ( 'text' === $step['type'] ) {
 				$post = Texts::find( $step['slug'] );
@@ -58,7 +69,35 @@ class Render {
 				$out[] = $step;
 			}
 		}
+		self::$translation = $previous;
 		return $out;
+	}
+
+	/**
+	 * [psalm 50], [psalm 90-91] or [psalm 118:1-72] inside a prayer: the
+	 * psalm in the translation of the reading being shown (or the default).
+	 */
+	public static function shortcode( $atts ) {
+		$typed  = trim( implode( ' ', array_map( 'strval', (array) $atts ) ) );
+		$pieces = Kathismas::pieces( $typed );
+		if ( ! $pieces ) {
+			return current_user_can( 'edit_pages' ) ? '<p class="pr-problem">' . esc_html( sprintf( 'Not understood: [psalm %s]', $typed ) ) . '</p>' : '';
+		}
+		$translation = self::$translation ? self::$translation : Psalter::default_translation();
+		return self::psalms_html( self::stasis_psalms( $pieces, $translation ) );
+	}
+
+	/** Psalm headings and numbered verses. */
+	private static function psalms_html( $psalms ) {
+		$html = '';
+		foreach ( $psalms as $psalm ) {
+			/* translators: %d: psalm number */
+			$html .= '<h3 class="pr-psalm">' . esc_html( sprintf( __( 'Psalm %d', 'prayer-rule' ), $psalm['psalm'] ) ) . '</h3>';
+			foreach ( $psalm['verses'] as $number => $text ) {
+				$html .= '<p class="pr-verse"><span class="pr-vn">' . (int) $number . '</span> ' . esc_html( $text ) . '</p>';
+			}
+		}
+		return $html;
 	}
 
 	private static function stasis_psalms( $pieces, $translation ) {
@@ -95,14 +134,10 @@ class Render {
 				case 'stasis':
 					/* translators: 1: kathisma number, 2: stasis number */
 					$html .= '<section class="pr-stasis"><p class="pr-stasis-label">' . esc_html( sprintf( __( 'Kathisma %1$d, stasis %2$d', 'prayer-rule' ), $kathisma, $step['stasis'] ) ) . '</p>';
-					foreach ( $step['psalms'] as $psalm ) {
-						/* translators: %d: psalm number */
-						$html .= '<h3 class="pr-psalm">' . esc_html( sprintf( __( 'Psalm %d', 'prayer-rule' ), $psalm['psalm'] ) ) . '</h3>';
-						foreach ( $psalm['verses'] as $number => $text ) {
-							$html .= '<p class="pr-verse"><span class="pr-vn">' . (int) $number . '</span> ' . esc_html( $text ) . '</p>';
-						}
-					}
-					$html .= '</section>';
+					$html .= self::psalms_html( $step['psalms'] ) . '</section>';
+					break;
+				case 'psalm':
+					$html .= '<section class="pr-psalms">' . self::psalms_html( $step['psalms'] ) . '</section>';
 					break;
 				case 'missing':
 					if ( $admin ) {

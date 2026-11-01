@@ -131,7 +131,8 @@ class Texts {
 	public static function html( $post ) {
 		$content = $post->post_content;
 		$html    = has_blocks( $content ) ? do_blocks( $content ) : wpautop( $content );
-		return wptexturize( $html );
+		$html    = shortcode_unautop( wptexturize( $html ) );
+		return do_shortcode( $html );
 	}
 
 	/** All published short names => titles (for the order screen's list). */

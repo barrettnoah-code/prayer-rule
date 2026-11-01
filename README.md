@@ -41,6 +41,8 @@ file changes).
   `stasis 1`/`2`/`3`, or `kathisma` (all three stases, each followed by the
   "after each stasis" prayer). `{n}` in a name becomes the kathisma number,
   so `troparia-{n}` reads `troparia-7` with the seventh kathisma.
+  `psalm 50` (or `psalm 90-91`, `psalm 118:1-72`) adds psalms in the
+  reader's own translation; inside a prayer's text, write `[psalm 50]`.
 - **Kathismas** – the twenty kathismas and their stases, editable.
 - **Preview** – any order with any kathisma and translation.
 - **Settings** – who may use it (anyone logged in, or chosen Paid
