@@ -1,0 +1,197 @@
+# Home Ustav (1910), On Fasts and Dispensations Throughout the Year, ch. 1
+# (fol. 9-30): English translation. Built into data/ustav.json by
+# tools/build_ustav.py.
+#
+#   === key | Title                a fasting period
+#   @ when <period>               lent, holy-week, bright-week, pentecost-season, trinity-week,
+#                                 apostles, dormition, nativity-1, nativity-2, twelve-days,
+#                                 after-theophany, publican-week, prodigal-week, cheesefare, ordinary
+#   @ text <key>                  use another period's texts
+#   @ day mon,wed,fri | text      today's line for those weekdays (all = every day)
+#   @ on week1 mon | text         first week of Great Lent
+#   @ on date M-D | text          a church (Julian) date
+#   @ on pascha N | text          days from Pascha
+#   @ feast wed,fri | text        on those weekdays when the day has a feast dismissal
+#   == general | Source           the general rule, shown with the day
+#   == other | Source             the other typika, behind "Other typika"
+# Today's lines are short summaries of the general rule; the rule itself
+# is shown in full beneath them.
+
+=== great-lent | Great Lent
+@ when lent
+@ day mon,wed,fri | No cooked food: dry eating.
+@ day tue,thu | Cooked food.
+@ day sat,sun | Cooked food with oil.
+@ on week1 mon,tue | Neither bread nor water: prayer and prostrations. The weak eat bread with water on Tuesday.
+@ on week1 wed | After vespers: dry food and raw vegetables, and hot water with honey.
+@ on week1 thu | Fast until Friday. The weak eat bread with water.
+@ on week1 fri | Bread, raw vegetables, and cooked food without relish.
+@ on date 3-25 | The Annunciation: fish is allowed.
+@ on pascha -8 | Lazarus Saturday: cooked food with oil, caviar if there is any, and wine.
+@ on pascha -7 | Palm Sunday: fish and wine.
+== general | Great Typikon, ch. 32, fol. 74
+In the first week, called Theodore's week, fast for two days, Monday and Tuesday, neither eating bread nor drinking water, and devote yourself to prayer and prostrations. On Wednesday, after the dismissal of vespers, at the ninth hour of the day, we eat dry food and raw vegetables and drink hot water with honey. Then fast again until Friday. On Friday eat bread, raw vegetables, and cooked food without relish.
+*On the weak.* Anyone who is weak, or cannot fast for two days, should eat bread with water on Tuesday, and likewise on Thursday.
+*On the old.* Anyone who is very old, worn out by illness, or very young should eat bread with water on Monday, Tuesday, Wednesday, Thursday and Friday.
+*On Saturday and Sunday.* On Saturday and Sunday we eat cooked food with oil.
+== general | Lenten Triodion, fol. 140, and the Psalter with Appendices
+On the other days of the holy fast, cooked food is not eaten on Monday, Wednesday and Friday. On Tuesday and Thursday cooked food is eaten.
+== other | The typikon of the Holy Mountain
+According to the typikon of the Holy Mountain, one should not eat at all on the first day. On Tuesday, Wednesday and Thursday one should eat a pound of bread a day, with water, and nothing else except salt. In his catechesis for Friday of the first week, St Theodore the Studite praises eating every day at the appointed hour.
+== other | Nomocanon, rule 220
+In holy and great Lent we eat once a day, dry food only: legumes without oil. We take wine and oil on Saturday and Sunday, and shellfish likewise. Fish we eat only on the Annunciation and on Palm Sunday.
+== other | Solovetsky Typikon, ch. 24
+*First week:* On Monday, Wednesday and Friday no table is set. On Tuesday and Thursday the brethren are given white bread, a stewed-fruit drink with honey, cloudberries or sauerkraut, and oat meal stirred into water. On Saturday: white cabbage soup, pea noodles and porridge with seed milk, all with oil. On Sunday: salted fish fillets with the cabbage soup, and porridge.
+*The other weeks:* On Monday, Wednesday and Friday, two cold dishes with the cabbage soup. On Tuesday and Thursday, beet soup with seed milk, rusks, one cold dish and one hot. On Saturday and Sunday, salted fish fillets or air-cured fish with the cabbage soup, and porridge.
+*Wednesday of the fourth week.* At the brethren's table, three hot dishes without oil.
+*Thursday of the fifth week.* At table we eat with oil and drink wine because of the labor of the vigil.
+*Saturday of righteous Lazarus.* At table we eat cooked food with oil, and caviar if there is any, and drink wine.
+*Palm Sunday.* A consolation at the brethren's table: we eat fish and drink wine, giving thanks to God.
+
+=== holy-week | Holy Week
+@ when holy-week
+@ day mon,tue,wed | Bread with water and uncooked vegetables, with restraint.
+@ day thu | Cooked food without oil, and wine.
+@ day fri | Nothing, if you are able; if not, bread, raw vegetables and water.
+@ day sat | Fast until after the liturgy; then a little bread with water and one cup of wine.
+== general | On the Christian Life, fol. 85, and the Psalter with Appendices, fol. 373-374
+During Holy Week, for six days from Monday until Saturday evening, eat only bread with water and uncooked vegetables, and that with restraint. If possible, do not take food every day, as was said of the first week. On holy and great Friday eat nothing. On Great Saturday likewise we are commanded to fast until the third hour of the night. Then, after the divine liturgy is completed, taste a little bread with water and drink one cup of wine.
+On holy and great Thursday we eat cooked food without oil and drink wine; otherwise the food is dry. For the Council of Laodicea, speaking of Great Thursday in canon 44, says that it is not right to break the fast on the Thursday of the last week of Lent and so dishonor the whole of Lent.
+On Great Friday, if it is possible, one should not eat, as the fathers command. Yet we do not hold this as a strict rule that nothing at all is eaten then, since the fathers set it according to each person's strength. So if you can, keep the fast on these two days, Friday and Saturday; this is good and well-pleasing. If not, keep it at least on Saturday. On Friday eat bread and raw vegetables and drink water, but each as he wishes and is able.
+== other | Solovetsky Typikon, ch. 24
+In Holy Week a table is set on Monday and Wednesday for those who wish to eat; they eat three cold dishes. On Tuesday: cabbage, berries and oat meal. On Thursday: cabbage soup, pea noodles and porridge with seed milk, all without oil. On Great Friday neither the brethren nor the laypeople eat. On Great Saturday, after the dismissal of the liturgy, the brethren are given pieces of bread.
+
+=== bright-week | Bright Week
+@ when bright-week
+@ day all | No fast: cheese, eggs, milk and meat.
+== general | Great Typikon, ch. 32
+We command every Christian to eat cheese, eggs, milk and meat after holy Pascha, through that whole week from Bright Sunday to Thomas Sunday, and we drink with moderation.
+
+=== pentecost-season | From Thomas Sunday to Pentecost
+@ when pentecost-season
+@ day mon,tue,thu,sat,sun | No fast.
+@ day wed,fri | No fast. Abstaining from drink and fish is left to your own will.
+== general | The Home Ustav
+From Thomas Sunday until the Descent of the Holy Spirit there is no fasting and no prostrations. If you wish to abstain from drink and fish on Wednesday and Friday, that is left to your own will.
+== other | On the Christian Life
+From Thomas Sunday until the Descent of the Holy Spirit there is no fasting and no kneeling. If anyone wishes to abstain from fish and wine on Wednesday and Friday, that is left to each person's will.
+== other | Nomocanon, rule 224
+Throughout all of Pentecost, Wednesdays and Fridays are released for fish, oil and wine. If dry eating is released on such days, it is at the ninth hour, and that is left to each person's choice.
+== other | Great Typikon, ch. 32
+From Monday of New Week, throughout Pentecost, on Monday, Wednesday and Friday, after the third and sixth hours have been sung, together with the typika, the brethren are given a blessing of two ounces of plain rusks. This alone is to be eaten, in the narthex, for the sake of Pentecost, so that it is not called a fast. After the ninth hour has been sung at its proper time, they then eat a full meal, according to the tradition of the holy fathers.
+== other | Solovetsky Typikon, ch. 29
+From Thomas Sunday, throughout Pentecost, on Saturday, Sunday, Tuesday and Thursday, a table is set twice, with fish. On Monday, a table once, with fish. On Wednesday and Friday, a table once, and we eat dried fish. On Mid-Pentecost Wednesday and at the leave-taking of Pascha, a table once, with fish.
+
+=== trinity-week | The week after Pentecost
+@ when trinity-week
+@ day all | Fast-free week: cheese, eggs, milk and meat, Wednesday and Friday too.
+== general | Great Typikon, ch. 32, and On the Christian Life
+On the Sunday of the Descent of the Holy Spirit there is kneeling at vespers. That week is a fast-free week. On Wednesday and Friday you may eat cheese, eggs, milk and meat, and drink with moderation, until All Saints' Sunday.
+== other | Solovetsky
+Throughout this week they eat cheese, eggs and fish, and the laypeople eat meat. There is supper every day.
+
+=== apostles | The Fast of the Holy Apostles
+@ when apostles
+@ day mon,wed,fri | Dry eating, once a day, after the ninth hour.
+@ day tue,thu | Oil and wine; no fish.
+@ day sat,sun | Fish (Great Typikon, ch. 34).
+== general | Great Typikon, ch. 32
+You should know that in the fast of the holy apostles, in the fast of Christ's Nativity, and in the fast of the Dormition of the Most Holy Theotokos, we do not eat fish on Tuesday and Thursday, only oil and wine. On Monday, Wednesday and Friday we take neither oil nor wine. We fast until the ninth hour and eat once on those days, with dry eating.
+== other | Great Typikon, ch. 34
+In the fast before Christ's Nativity and in the fast of the holy apostles, monks are commanded not to eat fish except on Saturday and Sunday. Laypeople may eat fish twice a day on Tuesday, Thursday, Saturday and Sunday.
+== other | Nomocanon, rule 223
+In the fast of the holy apostles, of Christ's Nativity and of the Theotokos, we keep dry eating three days a week, that is, Monday, Wednesday and Friday. We abstain from fish, oil and wine, except in sickness, and eat legumes without oil, as in Great Lent. Those who wish to please God take fish and oil only on Saturday and Sunday.
+== other | Solovetsky Typikon, ch. 29
+In the fast of the holy apostles, and in the fast of Christ's Nativity until St Nicholas's Day, they eat fish on Saturday, Sunday, Tuesday and Thursday. On Saturday and Sunday they eat twice a day, on Tuesday and Thursday once a day. On Monday: two hot dishes and a third cold one. On Wednesday and Friday: two cold dishes and a third hot one.
+== other | Matthew's Syntagma of Canons, from the canons of Patriarch Nikephoros, rule 19
+In the fast of the holy apostles and of St Philip, monks living in the monastery should eat once, toward evening, on Wednesday and Friday. Those who work should eat after the sixth hour and take supper in the evening.
+
+=== dormition | The Fast of the Most Holy God-bearer
+@ when dormition
+@ day mon,wed,fri | Dry eating, after the ninth hour.
+@ day tue,thu | Cooked food without oil.
+@ day sat,sun | Cooked food with oil, and wine.
+@ on date 8-6 | The Transfiguration: fish (On the Christian Life).
+== general | Great Typikon, ch. 32
+In the fifteen-day fast of our Most Holy Lady the Theotokos before the Dormition, except on the Transfiguration of Christ, we fast until the ninth hour of the day. On Monday, Wednesday and Friday we eat dry food and make prostrations until communion. On Tuesday and Thursday we eat cooked food without oil. On Saturday and Sunday we eat cooked food with oil and drink wine.
+== other | On the Christian Life, and the Nomocanon, fol. 83
+The fast of our Most Pure Lady the Theotokos is kept with dry eating, as described before. On Tuesday, Thursday, Saturday and Sunday oil and drink are allowed, but no fish at all except on the Lord's Transfiguration. The other days are kept with dry eating and prostrations until communion, as was said for the fast of the holy apostles.
+== other | Solovetsky Typikon, ch. 29
+In the fast of the Most Holy Theotokos, on the first day, the Procession of the Cross, they eat cabbage soup, pea noodles with oil and porridge with seed milk, once a day. If it falls on a Saturday or Sunday, they eat twice a day. On the Transfiguration of the Lord and on the memory of the Solovetsky wonderworkers they eat fish twice a day. On the other days of the weeks it is as in the fast of Christ's Nativity after St Nicholas's Day, with salted fish fillets on Saturday and Sunday.
+
+=== nativity-1 | The Nativity Fast, to St Nicholas
+@ when nativity-1
+@ day mon,wed,fri | Dry eating.
+@ day tue,thu,sat,sun | Fish.
+== general | Great Typikon, ch. 32
+From the day of the holy apostle Philip until the day of our holy father Nicholas, eat dry food on Monday, Wednesday and Friday. On Tuesday, Thursday, Saturday and Sunday we eat fish. From the day of our holy father Nicholas until Christ's Nativity we eat fish on Saturday and Sunday, and on Tuesday and Thursday cooked food with oil, and we drink wine.
+== other | Nomocanon, fol. 83, and On the Christian Life
+In the holy fast before Christ's Nativity we allow fish only on Saturday and Sunday, and oil and wine on Tuesday and Thursday. On Monday, Wednesday and Friday we fast until the ninth hour. If anyone cannot drink only water on Monday, he may allow himself oil and wine. Wednesday and Friday should be kept as far as one's strength allows, except in serious and grave illness.
+== other | Solovetsky Typikon, ch. 29
+In the fast of Christ's Nativity, until the day of St Nicholas the Wonderworker, they eat fish on Saturday, Sunday, Tuesday and Thursday: twice on Saturday and Sunday, once a day on Tuesday and Thursday. On Monday, with the cabbage soup, one cold dish and one hot. On Wednesday and Friday, with the cabbage soup, two cold dishes. From St Nicholas's Day until the forefeast of Christ's Nativity: on Saturday and Sunday, salted fish fillets. On Monday, Wednesday and Friday, with the cabbage soup, two cold dishes. On Tuesday and Thursday, with the cabbage soup, one cold dish and one hot.
+On the forefeast of Christ's Nativity, on Saturday and Sunday they eat with oil, twice a day. On the other days it is as in Great Lent.
+
+=== nativity-2 | The Nativity Fast, from St Nicholas
+@ when nativity-2
+@ text nativity-1
+@ day mon,wed,fri | Fast until the ninth hour (Nomocanon, fol. 83).
+@ day tue,thu | Cooked food with oil, and wine.
+@ day sat,sun | Fish.
+
+=== twelve-days | The Twelve Days
+@ when twelve-days
+@ day all | No fast: cheese, eggs, milk and meat, Wednesday and Friday too.
+== general | Great Typikon, ch. 32
+From Christ's Nativity until the day of holy Theophany, eat cheese, eggs, milk and meat on Wednesday and Friday, as on any other day. From the Baptism of the Lord until the Publican and Pharisee, eat fish on Wednesday and Friday.
+
+=== after-theophany | From Theophany to the Publican and Pharisee
+@ when after-theophany
+@ day wed,fri | Fast (On the Christian Life). The Great Typikon allows fish.
+== general | On the Christian Life
+From the Baptism of the Lord until the week of the Publican and Pharisee, fast on Wednesday and Friday.
+== other | Great Typikon, ch. 32
+From Christ's Nativity until the day of holy Theophany, eat cheese, eggs, milk and meat on Wednesday and Friday, as on any other day. From the Baptism of the Lord until the Publican and Pharisee, eat fish on Wednesday and Friday.
+
+=== publican-week | The Week of the Publican and Pharisee
+@ when publican-week
+@ day all | Fast-free week: cheese, eggs, milk, oil and meat, Wednesday and Friday too.
+== general | Great Typikon
+The week of the Publican and Pharisee is called Artsiburius week, in which the accursed Armenians fast. But for us Christians it is released by the canons of the holy fathers. On Wednesday and Friday we eat cheese, eggs, milk, oil and meat, to curse the Armenian heresy.
+== other | Ancient Kirillov Typikon
+Throughout the week of the Pharisee there is supper every day.
+
+=== prodigal-week | From the Prodigal Son to Meatfare Sunday
+@ when prodigal-week
+@ day wed,fri | Dry eating.
+== general | The Sergiev and Kirillov Typikon, manuscript (Patriarchal Library in Moscow, no. 504), fol. 175
+On the other days, from the Sunday of the Prodigal until Meatfare Sunday, keep everything without change as described for the other days of the Pharisee's week. Only throughout the Prodigal's week, dry eating is kept on the fast days.
+
+=== cheesefare | Cheesefare Week
+@ when cheesefare
+@ day mon,tue,thu,sat,sun | Cheese, eggs and fish; no meat.
+@ day wed,fri | Cheese, eggs and fish, once a day, at the ninth hour.
+== general | Typikon
+Likewise, for Cheesefare week the holy council commanded eating cheese, eggs and fish. On Wednesday and Friday, eat once a day at the ninth hour, after the hours have been sung with vespers, because of the Andonian, Sabellian and many other heretics, whom we curse.
+== other | Solovetsky, Sergiev and Kirillov
+On Monday of Cheesefare week we eat twice a day. On Wednesday and Friday there is no supper.
+
+=== ordinary | Wednesdays and Fridays through the year
+@ when ordinary
+@ day wed,fri | Fast as in Great Lent: no fish, oil or wine.
+@ day mon | Abstaining from meat on Monday is good, but not required.
+@ on date 6-24 | The Nativity of the Forerunner: fish is allowed.
+@ on date 6-29 | Peter and Paul: fish is allowed.
+@ feast wed,fri | A feast: on the feasts of the Lord and of the God-bearer the fast is released for fish; on feasts of apostles, martyrs and hierarchs, for oil and wine only. See below.
+== general | Nikon of the Black Mountain, ch. 57, and On the Christian Life
+From the fast of the holy apostles until the memory of the holy apostle Philip, and throughout the whole year, apart from the appointed fasts and the fast-free days, lay people are to keep two days of every week as fasts, Wednesday and Friday. These two days are kept as in holy Great Lent: no fish, oil or wine. Whoever chooses also to abstain from meat on Monday does well. But at the very least, every Christian is bound to fast on Wednesday and Friday without fail, as the divine apostles laid down in canon 69, saying:
+If any bishop, presbyter, deacon, subdeacon, reader or singer does not fast during the forty days, that is, Great Lent, or on every Wednesday and Friday throughout the year, let him be deposed, unless bodily illness prevents him. For the sick are permitted to take oil and wine according to their strength. If a layman does not fast, let him be excommunicated.
+See the Kormchaya, fol. 19.
+So the divine apostles established and decreed. After them the holy fathers, assembled at Gangra by the Divine Spirit, spoke together concerning all the fasts established by the holy apostles and those decreed afterward. With full authority, in canon 18, they gave this fearful ruling:
+If any of those who practice abstinence, without bodily need, becomes proud and breaks the fasts handed down for common observance and kept by the Church, as though his own reasoning were firm and complete, let him be anathema.
+See the Kormchaya, fol. 59.
+And Apollos, great among the fathers, calls it the most fearful of all sins to break the fasts of the Church without any need. For on Wednesday Christ was betrayed, and on Friday He was crucified. Whoever breaks these days betrays the Saviour and joins in crucifying Him. Likewise St Athanasius the Great says: "Whoever breaks Wednesday and Friday crucifies the Lord, as the Jews did. For on Wednesday they took counsel against Him, and on Friday they crucified Him." The only exceptions are the Theophany days, Pentecost, and the weeks released by the Church. Likewise, whoever eats freely on feasts is not guilty.
+Nikephoros, Patriarch of Constantinople, says in his fifth canon that one should not receive communion from a priest who does not fast on Wednesday and Friday. See the Nomocanon, rule 214.
+== general | When and where the Wednesday and Friday fast is released: Nomocanon, rule 224, and the Book of Faith, fol. 126
+Know this as well. Throughout the whole year, the Wednesday and Friday fast is released for fish on the Lord's feasts and the feasts of the Theotokos. But if the eve of such a feast falls on a Wednesday or Friday, the fast is not released that evening, even though tomorrow is the feast. Throughout Pentecost, Wednesdays and Fridays are released for fish, oil and wine. If dry eating is released on such days, it is at the ninth hour, and that is left to each person's choice.
+On feasts of the holy apostles, holy martyrs and holy hierarchs falling on a Wednesday or Friday, we do not release the fast for fish, only for oil and wine and nothing more, though at the superior's discretion it is not forbidden. We eat fish on the Nativity of the Forerunner, but on his other feasts not at all, only oil and wine. Likewise on the day of the chief apostles Peter and Paul we allow fish.
+But above all, whoever wishes to be saved should keep every Wednesday and Friday of the whole year with dry eating and drinking water, according to the 69th canon of the holy apostles. If anyone cannot do so because of bodily weakness, let him allow himself wine only. Even that should be done with contrition of heart, keeping away from fish and oil altogether. Whoever also abstains from wine will find a reward as a keeper of the commandment.

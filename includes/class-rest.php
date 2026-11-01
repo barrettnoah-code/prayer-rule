@@ -150,6 +150,7 @@ class Rest {
 				'lines'  => $info['lines'],
 				'saint'  => $info['saint'],
 				'lent'   => $info['lent'],
+				'fast'   => Fasting::for_day( $info, Feasts::find( $info, 'matins' ) ),
 			);
 		}
 		return array(

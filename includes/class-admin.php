@@ -23,6 +23,7 @@ class Admin {
 		add_action( 'admin_post_prayer_rule_dismissals', array( __CLASS__, 'save_dismissals' ) );
 		add_action( 'admin_post_prayer_rule_ustav', array( __CLASS__, 'import_ustav' ) );
 		add_action( 'admin_post_prayer_rule_saints', array( __CLASS__, 'save_saints' ) );
+		add_action( 'admin_post_prayer_rule_fasting', array( __CLASS__, 'save_fasting' ) );
 		add_filter( 'manage_' . Texts::TYPE . '_posts_columns', array( __CLASS__, 'text_columns' ) );
 		add_action( 'manage_' . Texts::TYPE . '_posts_custom_column', array( __CLASS__, 'text_column' ), 10, 2 );
 	}
@@ -32,19 +33,20 @@ class Admin {
 		add_submenu_page( self::SLUG, __( 'Overview', 'prayer-rule' ), __( 'Overview', 'prayer-rule' ), 'edit_pages', self::SLUG, array( __CLASS__, 'page_overview' ) );
 		add_submenu_page( self::SLUG, __( 'Services', 'prayer-rule' ), __( 'Services', 'prayer-rule' ), 'manage_options', 'prayer-rule-services', array( __CLASS__, 'page_services' ) );
 		add_submenu_page( self::SLUG, __( 'Dismissals and daily additions', 'prayer-rule' ), __( 'Dismissals', 'prayer-rule' ), 'manage_options', 'prayer-rule-dismissals', array( __CLASS__, 'page_dismissals' ) );
+		add_submenu_page( self::SLUG, __( 'Fasting', 'prayer-rule' ), __( 'Fasting', 'prayer-rule' ), 'manage_options', 'prayer-rule-fasting', array( __CLASS__, 'page_fasting' ) );
 		add_submenu_page( self::SLUG, __( 'Saints', 'prayer-rule' ), __( 'Saints', 'prayer-rule' ), 'manage_options', 'prayer-rule-saints', array( __CLASS__, 'page_saints' ) );
 		add_submenu_page( self::SLUG, __( 'Kathismas', 'prayer-rule' ), __( 'Kathismas', 'prayer-rule' ), 'manage_options', 'prayer-rule-kathismas', array( __CLASS__, 'page_kathismas' ) );
 		add_submenu_page( self::SLUG, __( 'Preview', 'prayer-rule' ), __( 'Preview', 'prayer-rule' ), 'edit_pages', 'prayer-rule-preview', array( __CLASS__, 'page_preview' ) );
 		add_submenu_page( self::SLUG, __( 'Settings', 'prayer-rule' ), __( 'Settings', 'prayer-rule' ), 'manage_options', 'prayer-rule-settings', array( __CLASS__, 'page_settings' ) );
 	}
 
-	/** Overview, Prayers, Orders, Services, Dismissals, Saints, Kathismas, Preview, Settings. */
+	/** Overview, Prayers, Orders, Services, Dismissals, Fasting, Saints, Kathismas, Preview, Settings. */
 	public static function menu_order() {
 		global $submenu;
 		if ( empty( $submenu[ self::SLUG ] ) ) {
 			return;
 		}
-		$want = array( self::SLUG, 'edit.php?post_type=' . Texts::TYPE, 'edit.php?post_type=' . Orders::TYPE, 'prayer-rule-services', 'prayer-rule-dismissals', 'prayer-rule-saints', 'prayer-rule-kathismas', 'prayer-rule-preview', 'prayer-rule-settings' );
+		$want = array( self::SLUG, 'edit.php?post_type=' . Texts::TYPE, 'edit.php?post_type=' . Orders::TYPE, 'prayer-rule-services', 'prayer-rule-dismissals', 'prayer-rule-fasting', 'prayer-rule-saints', 'prayer-rule-kathismas', 'prayer-rule-preview', 'prayer-rule-settings' );
 		usort(
 			$submenu[ self::SLUG ],
 			function ( $a, $b ) use ( $want ) {
@@ -425,6 +427,77 @@ class Admin {
 		self::back( self::SLUG, sprintf( __( 'Added %1$d prayers and %2$d orders; brought %3$d unedited orders up to date.', 'prayer-rule' ), $count['prayers'], $count['orders'], $count['updated'] ) );
 	}
 
+	// ------------------------------------------------------------ Fasting
+
+	public static function page_fasting() {
+		$saved = Fasting::saved();
+		$names = array(
+			'sun' => __( 'Sunday', 'prayer-rule' ),
+			'mon' => __( 'Monday', 'prayer-rule' ),
+			'tue' => __( 'Tuesday', 'prayer-rule' ),
+			'wed' => __( 'Wednesday', 'prayer-rule' ),
+			'thu' => __( 'Thursday', 'prayer-rule' ),
+			'fri' => __( 'Friday', 'prayer-rule' ),
+			'sat' => __( 'Saturday', 'prayer-rule' ),
+		);
+		?>
+		<div class="wrap">
+			<h1><?php esc_html_e( 'Fasting', 'prayer-rule' ); ?></h1>
+			<?php self::notice(); ?>
+			<p><?php esc_html_e( 'From the Home Ustav, chapter 1. Each day shows its period, a short line for the day, the general rule in full and, folded beneath it, the other typika.', 'prayer-rule' ); ?></p>
+			<p><?php esc_html_e( 'The rule texts are Prayers: edit them there (the links below). The day lines are short summaries of the general rule; change any of them here. An empty box goes back to the Home Ustav line shown in grey. Special days, listed under each period, come first.', 'prayer-rule' ); ?></p>
+			<form method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>">
+				<input type="hidden" name="action" value="prayer_rule_fasting">
+				<?php wp_nonce_field( 'prayer_rule_fasting' ); ?>
+				<?php foreach ( Fasting::periods() as $key => $period ) : ?>
+					<h2 style="margin-top:2em"><?php echo esc_html( $period['title'] ); ?></h2>
+					<p>
+						<?php
+						foreach ( array( '' => __( 'the rule', 'prayer-rule' ), '-other' => __( 'other typika', 'prayer-rule' ) ) as $suffix => $label ) {
+							$post = Texts::find( 'fasting-' . $period['text'] . $suffix );
+							if ( $post ) {
+								echo '<a href="' . esc_url( get_edit_post_link( $post->ID ) ) . '">' . esc_html( $label ) . '</a> &nbsp; ';
+							}
+						}
+						?>
+					</p>
+					<table class="widefat striped" style="max-width:1000px">
+						<tbody>
+						<?php foreach ( $names as $wd => $day_name ) : ?>
+							<tr>
+								<th scope="row" style="width:8em"><?php echo esc_html( $day_name ); ?></th>
+								<td><input type="text" style="width:100%" name="fasting[<?php echo esc_attr( $key ); ?>][<?php echo esc_attr( $wd ); ?>]" value="<?php echo esc_attr( $saved[ $key ][ $wd ] ?? '' ); ?>" placeholder="<?php echo esc_attr( $period['day'][ $wd ] ?? __( 'Not a fast day.', 'prayer-rule' ) ); ?>"></td>
+							</tr>
+						<?php endforeach; ?>
+						</tbody>
+					</table>
+					<?php if ( $period['on'] || $period['feast'] ) : ?>
+						<ul style="list-style:disc;margin-left:20px">
+							<?php foreach ( $period['on'] as $on ) : ?>
+								<li><?php echo esc_html( $on['text'] ); ?></li>
+							<?php endforeach; ?>
+							<?php if ( $period['feast'] ) : ?>
+								<li><?php echo esc_html( $period['feast']['text'] ); ?></li>
+							<?php endif; ?>
+						</ul>
+					<?php endif; ?>
+				<?php endforeach; ?>
+				<?php submit_button( __( 'Save day lines', 'prayer-rule' ) ); ?>
+			</form>
+		</div>
+		<?php
+	}
+
+	public static function save_fasting() {
+		if ( ! current_user_can( 'manage_options' ) ) {
+			wp_die( esc_html__( 'Not allowed.', 'prayer-rule' ) );
+		}
+		check_admin_referer( 'prayer_rule_fasting' );
+		$posted = isset( $_POST['fasting'] ) ? map_deep( wp_unslash( (array) $_POST['fasting'] ), 'sanitize_text_field' ) : array(); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput
+		Fasting::save( $posted );
+		self::back( 'prayer-rule-fasting', __( 'Saved.', 'prayer-rule' ) );
+	}
+
 	// ------------------------------------------------------------ Saints
 
 	public static function page_saints() {
@@ -515,6 +588,15 @@ class Admin {
 			echo '<p>' . esc_html( sprintf( __( 'Feast dismissal: %s.', 'prayer-rule' ), $feast['title'] ) ) . '</p>';
 		} elseif ( '' !== Feasts::paschal_prefix( $info, $service ) ) {
 			echo '<p>' . esc_html__( 'Paschal season: the dismissal begins "O Thou who didst rise from the dead".', 'prayer-rule' ) . '</p>';
+		}
+		$fast = Fasting::for_day( $info, Feasts::find( $info, 'matins' ) );
+		if ( $fast ) {
+			echo '<style>' . Render::css() . '</style>'; // phpcs:ignore WordPress.Security.EscapeOutput -- fixed CSS
+			echo Fasting::html( $fast ); // phpcs:ignore WordPress.Security.EscapeOutput -- escaped in Fasting::html
+			if ( '' !== $info['fast_label'] ) {
+				/* translators: %s: the calendar's name for the fast */
+				echo '<p class="description">' . esc_html( sprintf( __( 'In the calendar: %s.', 'prayer-rule' ), $info['fast_label'] ) ) . '</p>';
+			}
 		}
 		if ( '' !== $info['saint'] ) {
 			$link = add_query_arg(

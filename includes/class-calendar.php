@@ -72,11 +72,13 @@ class Calendar {
 			'great'         => false,
 			'saint'         => '',
 			'saint_source'  => '',
+			'fast_label'    => '',   // the calendar's own name for the fast, when it has one
 		);
 		$top = null;
 		if ( self::available() ) {
 			$day          = \OLCal\Engine::day( $jdn );
-			$out['label'] = (string) ( $day['week']['label'] ?? '' );
+			$out['label']      = (string) ( $day['week']['label'] ?? '' );
+			$out['fast_label'] = (string) ( $day['fast_label'] ?? '' );
 			foreach ( \OLCal\Store::for_day( $day ) as $item ) {
 				$out['lines'][] = trim( ( $item['sign'] ? $item['sign'] . ' ' : '' ) . self::plain( $item['body'] ) );
 				$out['great']   = $out['great'] || '🕀' === $item['sign'];

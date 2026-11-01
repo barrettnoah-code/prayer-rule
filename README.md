@@ -39,7 +39,9 @@ Ustav (1910) chapter on prayer at home: the openings and endings of the six
 services, the cell rule, the dismissals for the week and the daily
 additions. `tools/ustav/feasts.txt` holds the dismissals for the feasts of
 the year and of the Triodion and Pentecostarion, each with the dates it
-applies to.
+applies to. `tools/ustav/fasting.txt` holds chapter 1, on the fasts: for
+each period the general rule, the other typika, and a short line for each
+day of the week.
 `tools/build_ustav.py` turns it into `data/ustav.json`. The plugin adds
 these as ordinary Prayers and Orders the first time an administrator opens
 the admin, and again (missing ones only) whenever the file changes. Nothing
@@ -66,14 +68,17 @@ already on the site is overwritten.
   sundown: Sunday Vespers is read on Saturday evening); and the list of
   feast dismissals, which take the weekday one's place on their days. In a
   dismissal, `[saint]` stands for the saint of the day.
+- **Fasting** – the fasting periods of the year, with the line shown for
+  each day of the week (editable) and links to the rule texts.
 - **Saints** – the saint each day's dismissal names, taken from the
   Orthodox Liturgical Calendar plugin (its highest-ranked commemoration,
   worded for the dismissal), with the wording editable per church date.
   The calendar itself is never changed; without it, dismissals say
   "Saint N.".
 - **Kathismas** – the twenty kathismas and their stases, editable.
-- **Preview** – any service on any date (the day of the week, Great Lent
-  and the saint follow from the date), with any portion and translation.
+- **Preview** – any service on any date (the day of the week, Great Lent,
+  the saint, the feast and the fast follow from the date), with any portion
+  and translation.
 - **Settings** – who may use it, the default translation, Coverdale's
   colons, verse numbers.
 

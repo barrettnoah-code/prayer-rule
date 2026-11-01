@@ -26,6 +26,7 @@ foreach ( array(
 	'prayer_rule_ustav_hash',
 	'prayer_rule_saints',
 	'prayer_rule_additions',
+	'prayer_rule_fasting',
 ) as $option ) {
 	delete_option( $option );
 }

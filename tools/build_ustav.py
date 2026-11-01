@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build data/ustav.json from tools/ustav/home-ustav.txt and feasts.txt.
+"""Build data/ustav.json from tools/ustav/home-ustav.txt, feasts.txt and fasting.txt.
 
 Run from the plugin folder:  python3 tools/build_ustav.py
 The plugin adds any prayers and orders it does not have yet; it never
@@ -16,6 +16,11 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 SOURCE = ROOT / 'tools' / 'ustav' / 'home-ustav.txt'
 FEASTS = ROOT / 'tools' / 'ustav' / 'feasts.txt'
+FASTING = ROOT / 'tools' / 'ustav' / 'fasting.txt'
+WEEKDAYS = ['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat']
+PERIODS = ['lent', 'holy-week', 'bright-week', 'pentecost-season', 'trinity-week', 'apostles', 'dormition',
+           'nativity-1', 'nativity-2', 'twelve-days', 'after-theophany', 'publican-week', 'prodigal-week',
+           'cheesefare', 'ordinary']
 SERVICES = ['vespers', 'compline', 'midnight', 'matins', 'hours', 'cell-rule']
 DEFAULT_FEAST_SERVICES = ['vespers', 'matins', 'hours']
 TARGET = ROOT / 'data' / 'ustav.json'
@@ -104,6 +109,88 @@ def parse_feasts(slugs_out):
     return prayers, rules
 
 
+def weekdays(spec, number):
+    days = WEEKDAYS if spec == 'all' else spec.split(',')
+    for d in days:
+        if d not in WEEKDAYS:
+            sys.exit(f'fasting.txt line {number}: unknown weekday "{d}"')
+    return days
+
+
+def plain(line):
+    return '<!-- wp:paragraph -->\n<p>%s</p>\n<!-- /wp:paragraph -->' % inline(line)
+
+
+def rubric(line):
+    return paragraph('! ' + line)
+
+
+def parse_fasting():
+    """fasting.txt => (prayers, periods)."""
+    periods, current, block = [], None, None
+    for number, raw in enumerate(FASTING.read_text(encoding='utf-8').splitlines(), 1):
+        line = raw.strip()
+        if not line or line.startswith('#'):
+            continue
+        if line.startswith('==='):
+            key, title = [x.strip() for x in line[3:].split('|', 1)]
+            current = {'key': key, 'title': title, 'when': '', 'text': key, 'day': {}, 'on': [], 'feast': None,
+                       'general': [], 'other': []}
+            periods.append(current)
+            block = None
+        elif current is None:
+            sys.exit(f'fasting.txt line {number}: text before the first ===')
+        elif line.startswith('== '):
+            kind, source = [x.strip() for x in line[3:].split('|', 1)]
+            if kind not in ('general', 'other'):
+                sys.exit(f'fasting.txt line {number}: "general" or "other"')
+            block = {'source': source, 'lines': []}
+            current[kind].append(block)
+        elif line.startswith('@ '):
+            head, _, text = line[2:].partition('|')
+            words, text = head.split(), text.strip()
+            if words[0] == 'when':
+                if words[1] not in PERIODS:
+                    sys.exit(f'fasting.txt line {number}: unknown period "{words[1]}"')
+                current['when'] = words[1]
+            elif words[0] == 'text':
+                current['text'] = words[1]
+            elif words[0] == 'day':
+                for d in weekdays(words[1], number):
+                    current['day'][d] = text
+            elif words[0] == 'feast':
+                current['feast'] = {'days': weekdays(words[1], number), 'text': text}
+            elif words[0] == 'on' and words[1] == 'week1':
+                current['on'].append({'week1': weekdays(words[2], number), 'text': text})
+            elif words[0] == 'on' and words[1] == 'date':
+                m, d = words[2].split('-')
+                current['on'].append({'date': [int(m), int(d)], 'text': text})
+            elif words[0] == 'on' and words[1] == 'pascha':
+                current['on'].append({'pascha': int(words[2]), 'text': text})
+            else:
+                sys.exit(f'fasting.txt line {number}: unknown "@ {words[0]}"')
+        elif block is None:
+            sys.exit(f'fasting.txt line {number}: text before "== general" or "== other"')
+        else:
+            block['lines'].append(line)
+    prayers = []
+    for p in periods:
+        for kind, suffix, label in (('general', '', 'Fasting'), ('other', '-other', 'Fasting, other typika')):
+            if not p[kind]:
+                continue
+            content = []
+            for b in p[kind]:
+                content.append(rubric(b['source']))
+                content += [plain(l) for l in b['lines']]
+            prayers.append({'slug': f'fasting-{p["key"]}{suffix}', 'title': f'{label}: {p["title"]}', 'content': '\n\n'.join(content)})
+        del p['general'], p['other']
+    keys = {p['key'] for p in periods}
+    for p in periods:
+        if not p['when'] or p['text'] not in keys:
+            sys.exit(f'fasting.txt: {p["key"]} needs "@ when" and a known "@ text"')
+    return prayers, periods
+
+
 def inline(text):
     """Escape, then {red}, *italic*."""
     out = html.escape(text, quote=False)
@@ -148,6 +235,10 @@ def main():
         sys.exit('a short name is used twice')
     out_prayers = [{'slug': p['slug'], 'title': p['title'],
                     'content': '\n\n'.join(paragraph(l) for l in p['lines'])} for p in prayers]
+    fasting_prayers, fasting = parse_fasting()
+    out_prayers += fasting_prayers
+    if len({p['slug'] for p in out_prayers}) != len(out_prayers):
+        sys.exit('a short name is used twice')
     out_orders = []
     for o in orders:
         for line in o['lines']:
@@ -176,18 +267,19 @@ def main():
 
     data = {
         'format': 'prayer-rule-ustav/1',
-        'source': 'Home Ustav (1910), On Prayer at Home, ch. 4, and the dismissals for the whole year (fol. 226-253); English translation',
+        'source': 'Home Ustav (1910): fasts (fol. 9-30), prayer at home (ch. 4) and the dismissals for the whole year (fol. 226-253); English translation',
         'prayers': out_prayers,
         'orders': out_orders,
         'dismissals': {k: dict(zip(DAYS, v)) for k, v in DISMISSALS.items()},
         'additions': {k: dict(zip(DAYS, v)) for k, v in ADDITIONS.items()},
         'additions_feast': ADDITIONS_FEAST,
         'feasts': feast_rules,
+        'fasting': fasting,
         'paschal_prefix': {'from': 8, 'to': 38, 'services': ['vespers', 'matins', 'hours'],
                            'text': 'O Thou who didst rise from the dead: '},
     }
     TARGET.write_text(json.dumps(data, ensure_ascii=False, indent=1) + '\n', encoding='utf-8')
-    print(f'{TARGET.name}: {len(out_prayers)} prayers, {len(out_orders)} orders, {len(feast_rules)} feast rules')
+    print(f'{TARGET.name}: {len(out_prayers)} prayers, {len(out_orders)} orders, {len(feast_rules)} feast rules, {len(fasting)} fasting periods')
 
 
 if __name__ == '__main__':

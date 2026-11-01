@@ -329,6 +329,9 @@ class Render {
 .prayer-rule-reading .pr-vn{font-size:.7em;color:#8c8f94;vertical-align:super;margin-right:.2em}
 .pr-initial,.prayer-rule-reading .is-style-prayer::first-letter,.editor-styles-wrapper .is-style-prayer::first-letter{color:{$red}}
 .pr-red,.pr-rubric,.is-style-rubric{color:{$red}}
+.pr-fasting{border-left:3px solid var(--pr-red,#921a0a);padding:.2em 0 .2em .9em;margin:0 0 1.2em}
+.pr-fasting summary{cursor:pointer;color:var(--pr-red,#921a0a)}
+.pr-fasting details details{margin-top:.6em}
 .prayer-rule-reading .pr-problem{background:#fcf0f1;border-left:4px solid #d63638;padding:.4em .8em;color:#1d2327}";
 	}
 }
