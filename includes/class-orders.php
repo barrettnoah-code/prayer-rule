@@ -8,6 +8,11 @@
  *                          (also: psalm 90-91, psalms 142, 50, psalm 118:1-72)
  *   rule                   the member's kathismas and/or ladders
  *   rule first-hour        a second portion (the 1st Hour at the end of Matins)
+ *   dismissal              the dismissal for the day (Prayer Rule → Dismissals)
+ *   > Lord, have mercy. (12 times)
+ *                          a short line said as written; (parentheses) in red
+ *   ! Then, for the first hour:
+ *                          a rubric, all in red
  *   # a note               ignored
  *
  * Which order each service uses is chosen on the Services screen.
@@ -70,6 +75,9 @@ class Orders {
 			<li><code>psalm 50</code>, <code>psalm 90-91</code>, <code>psalm 118:1-72</code> — <?php esc_html_e( 'psalms in the reader\'s own translation', 'prayer-rule' ); ?></li>
 			<li><code>rule</code> — <?php esc_html_e( 'where the member\'s kathismas or ladders are read', 'prayer-rule' ); ?></li>
 			<li><code>rule first-hour</code> — <?php esc_html_e( 'the 1st Hour\'s portion, in the Matins order', 'prayer-rule' ); ?></li>
+			<li><code>dismissal</code> — <?php esc_html_e( 'the dismissal for the day of the week (see Prayer Rule → Dismissals)', 'prayer-rule' ); ?></li>
+			<li><code>&gt; Lord, have mercy. (12 times)</code> — <?php esc_html_e( 'a short line said as written, with the words in parentheses in red', 'prayer-rule' ); ?></li>
+			<li><code>! Then, for the first hour:</code> — <?php esc_html_e( 'a rubric, all in red', 'prayer-rule' ); ?></li>
 			<li><code># …</code> — <?php esc_html_e( 'a note, ignored', 'prayer-rule' ); ?></li>
 		</ul>
 		<p class="description"><?php esc_html_e( 'Inside a prayer\'s own text, write [psalm 50] where a psalm belongs; it too appears in the reader\'s translation.', 'prayer-rule' ); ?></p>
@@ -127,6 +135,17 @@ class Orders {
 		return $names;
 	}
 
+	/** Keys of the services that use this order. */
+	public static function services_of( $order_id ) {
+		$keys = array();
+		foreach ( Services::all() as $key => $service ) {
+			if ( (int) $order_id === $service['order'] ) {
+				$keys[] = $key;
+			}
+		}
+		return $keys;
+	}
+
 	public static function steps( $order_id ) {
 		return self::parse_steps( (string) get_post_meta( $order_id, self::META_ITEMS, true ) );
 	}
@@ -136,6 +155,8 @@ class Orders {
 	 *   array( 'type' => 'text', 'slug' => … )
 	 *   array( 'type' => 'psalm', 'pieces' => … )
 	 *   array( 'type' => 'rule', 'portion' => 'main' | 'first-hour' )
+	 *   array( 'type' => 'dismissal' )
+	 *   array( 'type' => 'say' | 'rubric', 'line' => … )
 	 *   array( 'type' => 'unknown', 'line' => … )
 	 */
 	public static function parse_steps( $items ) {
@@ -145,8 +166,17 @@ class Orders {
 			if ( '' === $line || '#' === $line[0] ) {
 				continue;
 			}
+			if ( '>' === $line[0] || '!' === $line[0] ) {
+				$steps[] = array(
+					'type' => '>' === $line[0] ? 'say' : 'rubric',
+					'line' => trim( substr( $line, 1 ) ),
+				);
+				continue;
+			}
 			$lower = strtolower( preg_replace( '/\s+/', ' ', $line ) );
-			if ( preg_match( '/^rule(?: ([a-z-]+))?$/', $lower, $m ) && in_array( $m[1] ?? 'main', array( 'main', 'first-hour' ), true ) ) {
+			if ( 'dismissal' === $lower ) {
+				$steps[] = array( 'type' => 'dismissal' );
+			} elseif ( preg_match( '/^rule(?: ([a-z-]+))?$/', $lower, $m ) && in_array( $m[1] ?? 'main', array( 'main', 'first-hour' ), true ) ) {
 				$steps[] = array(
 					'type'    => 'rule',
 					'portion' => $m[1] ?? 'main',

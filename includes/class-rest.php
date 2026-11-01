@@ -104,7 +104,7 @@ class Rest {
 
 	/**
 	 * A service with a portion given in the request, e.g.
-	 * ?translation=kjv&lent=1&p[main][kathismas]=2&p[main][start]=7&p[main][ladders]=0
+	 * ?translation=kjv&lent=1&day=sunday&p[main][kathismas]=2&p[main][start]=7&p[main][ladders]=0
 	 * (Phase 9 replaces the given portion with the member's own rule.)
 	 */
 	public static function reading( \WP_REST_Request $request ) {
@@ -127,6 +127,7 @@ class Rest {
 				'translation' => $request['translation'],
 				'lent'        => (bool) $request['lent'],
 				'portions'    => $portions,
+				'day'         => $request['day'],
 			)
 		);
 		// Members see only what exists; problems are for the admin preview.
@@ -134,7 +135,7 @@ class Rest {
 			array_filter(
 				$steps,
 				function ( $step ) {
-					return in_array( $step['type'], array( 'text', 'psalm', 'kathisma', 'stasis', 'ladders' ), true );
+					return in_array( $step['type'], array( 'text', 'psalm', 'say', 'rubric', 'kathisma', 'stasis', 'ladders' ), true );
 				}
 			)
 		);

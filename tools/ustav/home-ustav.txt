@@ -1,0 +1,340 @@
+# Home Ustav (1910), On Prayer at Home, ch. 4 — English translation.
+# Built into data/ustav.json by tools/build_ustav.py.
+#
+#   === short-name | Title        a prayer (pr_text)
+#   @@@ service | Title           an order (pr_order) for that service
+#   ! text                        rubric paragraph (all red)
+#   any other line                a paragraph with a red first letter
+#   {text}                        red words inside a line (bows, Glory:)
+#   *text*                        italic
+#   [saint]                       the saint of the day (N. until the calendar is linked)
+# Lines starting with # are comments in the prayers part only.
+
+# ---------------------------------------------------------------- openings
+
+=== entrance-opening | The Entrance Opening
+O God, be merciful to me a sinner. {(prostration)}
+Thou who hast created me, O Lord, have mercy on me. {(prostration)}
+Without number have I sinned; O Lord, have mercy, and forgive me a sinner. {(prostration)}
+It is truly meet to bless thee, O God-bearer, ever blessed and most immaculate, and the Mother of our God. More honorable than the cherubim, and beyond compare more glorious than the seraphim, who without corruption gavest birth to God the Word, true God-bearer, thee do we magnify.
+! A great prostration. This one is never left out.
+Glory to the Father, and to the Son, and to the Holy Ghost. {(prostration)}
+Both now and ever, and unto the ages of ages. Amen. {(prostration)}
+Lord, have mercy. Lord, have mercy. Lord, bless. {(prostration)}
+! Then the dismissal:
+O Lord Jesus Christ, Son of God, for the prayers of thy most pure Mother, and of Saint *N.*, whose church this is, and of the holy angel my guardian, and of all thy saints: O Lord Jesus Christ, Son of God, have mercy on me and save me, for thou art good and the lover of mankind.
+! All these prostrations are made to the ground, except on Saturdays, Sundays and feast days. Likewise, throughout Pentecost and during the twelve days after Christ's Nativity, they are made as waist bows.
+
+=== departing-opening | The Departing Opening
+! The departing opening, made in the same way as the entrance opening:
+O God, be merciful to me a sinner. {(prostration)}
+Thou who hast created me, O Lord, have mercy on me. {(prostration)}
+Without number have I sinned; O Lord, have mercy, and forgive me a sinner. {(prostration)}
+It is truly meet to bless thee, O God-bearer, ever blessed and most immaculate, and the Mother of our God. More honorable than the cherubim, and beyond compare more glorious than the seraphim, who without corruption gavest birth to God the Word, true God-bearer, thee do we magnify.
+! A great prostration. This one is never left out.
+Glory to the Father, and to the Son, and to the Holy Ghost. {(prostration)}
+Both now and ever, and unto the ages of ages. Amen. {(prostration)}
+Lord, have mercy. Lord, have mercy. Lord, bless. {(prostration)}
+! Then the dismissal:
+O Lord Jesus Christ, Son of God, for the prayers of thy most pure Mother, and of Saint *N.*, whose church this is, and of the holy angel my guardian, and of all thy saints: O Lord Jesus Christ, Son of God, have mercy on me and save me, for thou art good and the lover of mankind.
+
+=== through-the-prayers | Through the prayers of our holy fathers
+Through the prayers of our holy fathers, O Lord Jesus Christ, Son of God, have mercy on us. Amen.
+
+=== heavenly-king | O Heavenly King
+O Heavenly King, Comforter, the Spirit of truth, who art everywhere present and fillest all things, Treasury of good things and Giver of life: come and dwell in us, and cleanse us from every stain, and save our souls, O Good One.
+
+=== trisagion-our-father | Trisagion through the Our Father
+Holy God, Holy Mighty, Holy Immortal, have mercy on us. {(three times, with three prostrations)}
+Glory to the Father, and to the Son, and to the Holy Ghost, both now and ever, and unto the ages of ages. Amen.
+O most holy Trinity, have mercy on us. O Lord, cleanse our sins. O Master, pardon our iniquities. O Holy One, visit and heal our infirmities, for thy name's sake.
+Lord, have mercy. {(three times)}
+Glory to the Father, and to the Son, and to the Holy Ghost, both now and ever, and unto the ages of ages. Amen.
+Our Father, which art in heaven, hallowed be thy name. Thy kingdom come. Thy will be done, as in heaven, so on earth. Give us this day our daily bread. And forgive us our debts, as we forgive our debtors. And lead us not into temptation, but deliver us from the evil one.
+O Lord Jesus Christ, Son of God, have mercy on us. Amen.
+
+=== glory-both-now | Glory, both now
+Glory to the Father, and to the Son, and to the Holy Ghost, both now and ever, and unto the ages of ages. Amen.
+
+=== o-come | O come, let us worship
+O come, let us worship God our King.
+O come, let us worship Christ, our King and God.
+O come, let us worship and fall down before the Lord Jesus Christ himself, our King and God.
+! Three prostrations.
+
+=== glory-to-thee-for-all | Glory to thee, our God, for all things
+Glory to thee, our God, glory to thee for all things. {(three times)}
+
+=== macarius-three-prostrations | Prayer of St Macarius, with three prostrations
+! Make three prostrations, saying the prayer of Saint Macarius:
+O God, cleanse me a sinner, for I have never done any good thing before thee. {(prostration)}
+But deliver me from the evil one, and let thy will be done in me. {(prostration)}
+That without condemnation I may open my unworthy mouth, and praise thy holy name, of the Father, and of the Son, and of the Holy Ghost, now and ever, and unto the ages of ages. Amen. {(prostration)}
+
+=== prayer-having-risen | Prayer: Having risen from sleep
+! Prayer.
+Having risen from sleep, I give thanks unto thee, O all-holy Trinity, that for thy great goodness and longsuffering thou hast not been angry with me, a sinner and slothful servant, neither hast thou destroyed me with mine iniquities, but hast shown thy love toward mankind; and when I lay in hopelessness, thou hast raised me up to keep the morning watch and to glorify thine invincible dominion. And now, O Master, God most holy, enlighten the eyes of my heart, and open my lips to learn of thy words, and to understand thy commandments, and to do thy will, and to sing unto thee in the confession of my heart, and to hymn and glorify thine all-honorable and majestic name, of the Father, and of the Son, and of the Holy Ghost, now and ever, and unto the ages of ages. Amen.
+
+=== creed | The Creed
+I believe in one God the Father Almighty, Maker of heaven and earth, and of all things visible and invisible. And in one Lord Jesus Christ, the Son of God, the Only-begotten, begotten of the Father before all ages; Light of Light, true God of true God, begotten, but not made; of one essence with the Father, by whom all things were made. Who for us men and for our salvation came down from heaven, and was incarnate of the Holy Ghost and the Virgin Mary, and was made man. And was crucified for us under Pontius Pilate, and suffered, and was buried. And rose again on the third day according to the Scriptures. And ascended into heaven, and sitteth at the right hand of the Father. And shall come again with glory to judge the living and the dead; of whose kingdom there is no end.
+! Of the Second Council.
+And in the Holy Ghost, the Lord, the true and life-giving, who proceedeth from the Father; who with the Father and the Son together is worshipped and glorified; who spake by the prophets. In one holy catholic and apostolic Church. I confess one baptism for the remission of sins. I look for the resurrection of the dead, and the life of the age to come. Amen.
+
+# ---------------------------------------------------------------- inside the rule
+
+=== glory-alleluia | Alleluia, glory to thee, O God
+Alleluia, alleluia, glory to thee, O God. {(three times, with three prostrations)}
+
+=== jesus-prayer | The Jesus Prayer
+O Lord Jesus Christ, Son of God, have mercy on me a sinner.
+
+# ---------------------------------------------------------------- endings
+
+=== ending-more-honorable | Ending: More honorable, with prostrations
+More honorable than the cherubim, and beyond compare more glorious than the seraphim, who without corruption gavest birth to God the Word, true God-bearer, thee do we magnify. {(prostration)}
+Glory to the Father, and to the Son, and to the Holy Ghost. {(prostration)}
+Both now and ever, and unto the ages of ages. Amen. {(prostration)}
+Lord, have mercy. Lord, have mercy. Lord, bless. {(prostration)}
+
+=== ending-truly-meet | Ending: It is truly meet, with prostrations
+It is truly meet to bless thee, O God-bearer, ever blessed and most immaculate, and the Mother of our God. More honorable than the cherubim, and beyond compare more glorious than the seraphim, who without corruption gavest birth to God the Word, true God-bearer, thee do we magnify. {(a great prostration)}
+Glory to the Father, and to the Son, and to the Holy Ghost. {(prostration)}
+Both now and ever, and unto the ages of ages. Amen. {(prostration)}
+Lord, have mercy. Lord, have mercy. Lord, bless. {(prostration)}
+
+=== ending-glory-prostrations | Ending: Glory, both now, with prostrations
+Glory to the Father, and to the Son, and to the Holy Ghost. {(prostration)}
+Both now and ever, and unto the ages of ages. Amen. {(prostration)}
+Lord, have mercy. Lord, have mercy. Lord, bless. {(prostration)}
+
+=== ending-glory-no-prostrations | Ending: Glory, both now, without prostrations
+Glory to the Father, and to the Son, and to the Holy Ghost, both now and ever, and unto the ages of ages. Amen.
+Lord, have mercy. Lord, have mercy. Lord, bless.
+! Without prostrations.
+
+=== prayer-of-forgiveness | Prayer of forgiveness: Remit, pardon
+! Bow down to the ground and say this prayer of forgiveness:
+Remit, pardon and forgive, O God, our transgressions, both voluntary and involuntary, in word and in deed, in knowledge and in ignorance, in mind and in thought, by day and by night: forgive me them all, for thou art good and the lover of mankind.
+
+=== forgive-them-that-hate | Prayer: Forgive them that hate and wrong us
+! Rise and say this prayer:
+Forgive them that hate and wrong us, O Lord, thou lover of mankind. Do good unto them that do good. Grant unto our brethren and all our kin, and unto them that dwell in solitude, all their petitions that are unto salvation, and life eternal. Visit and heal them that are sick. Set free them that are in prison. Be thou the pilot of them that sail upon the waters. Direct and prosper them that journey by the way. Remember, O Lord, our captive brethren of one faith with us, of the Orthodox faith, and deliver them from every evil circumstance. Have mercy, O Lord, on them that have given us alms, and have charged us, the unworthy, to pray for them: forgive them and have mercy on them. Have mercy, O Lord, on them that labor and serve us, that show us mercy and feed us, and grant them all their petitions that are unto salvation, and life eternal. Remember, O Lord, our fathers and brethren that have departed before us, and make them to dwell where the light of thy countenance shineth. Remember also, O Lord, our lowliness and poverty, and enlighten our mind with the light of the knowledge of thy holy Gospel, and guide us in the path of thy commandments; through the prayers of thy most pure Mother and of all thy saints. Amen.
+
+# ---------------------------------------------------------------- cell rule
+
+=== cell-twelve-prostrations | Cell rule: the twelve opening prostrations
+! Stand in your usual place. With humility of heart and a contrite mind, make prostrations to the ground, saying:
+O God, cleanse me a sinner, and have mercy on me. {(prostration)}
+Thou who hast created me, O Lord, have mercy on me. {(prostration)}
+Without number have I sinned; O Lord, forgive me. {(prostration)}
+O God, be merciful to me a sinner. {(prostration)}
+O God, forgive my iniquities and transgressions. {(prostration)}
+O my most holy Lady, God-bearer, have mercy on me and save me, and help me now in this life, and at the departure of my soul, and in the age to come. {(prostration)}
+O invincible and divine power of the honorable and life-giving Cross of the Lord, forsake me not, a sinner who hopeth in thee. {(prostration)}
+All ye heavenly powers, holy angels and archangels, cherubim and seraphim, have mercy on me, and pray for me unto the Lord God, and help me now in this life, and at the departure of my soul, and in the age to come. {(prostration)}
+O angel of Christ, my holy guardian, have mercy on me, and pray for me a sinner unto the Lord God, and help me now in this life, and at the departure of my soul, and in the age to come. {(prostration)}
+O holy and great John, prophet and forerunner of the Lord, have mercy on me, and pray for me unto the Lord God, and help me now in this life, and at the departure of my soul, and in the age to come. {(prostration)}
+O holy and glorious apostles, prophets and martyrs, hierarchs, venerable and righteous ones, and all ye saints, have mercy on me, and pray for me a sinner unto the Lord God, and help me now in this life, and at the departure of my soul, and in the age to come. {(prostration)}
+O Lord, whether in word, or in deed, or in thought I have sinned in all my life, have mercy on me and forgive me, for thy mercy's sake. {(prostration)}
+
+=== prayer-macarius | Prayer of St Macarius
+! The prayer of Saint Macarius.
+O God, cleanse me a sinner, for I have never done any good thing before thee; but deliver me from the evil one, and let thy will be done in me; that without condemnation I may open my unworthy mouth, and praise thy holy name, of the Father, and of the Son, and of the Holy Ghost, now and ever, and unto the ages of ages. Amen.
+
+=== prayer-isaac-the-syrian | Prayer of St Isaac the Syrian
+! The second prayer, of Saint Isaac the Syrian.
+O Lord Jesus Christ my God, who visitest thy creation: my passions are manifest unto thee, and the weakness of my nature, and the strength of mine adversary. Do thou thyself, O Master, shield me from his malice; for his strength is mighty, and my nature is subject to passion, and my strength is feeble. Thou therefore who art good, who knowest my weakness and bearest the burden of my feebleness, keep me from troubled thoughts and from the flood of the passions, and make me worthy of this holy service; lest by my passions I corrupt the sweetness thereof, and be found shameless and presumptuous before thee. But in thy mercy have mercy upon me; for blessed art thou unto the ages. Amen.
+
+=== prayer-stephen-of-thebes | Prayer of St Stephen of Thebes
+! The third prayer, of Saint Stephen of Thebes.
+O Master, Lord Jesus Christ my God, be thou my helper, for I am in thy hands. Suffer me not to sin, for I am led astray. Suffer me not to follow mine evil will. Suffer me not to perish in my sins. Have compassion on thy creature. Cast me not away from thy face because of my sins, for unto thee have I fled. Heal my soul, for I have sinned against thee. Before thee are all they that afflict me, and that seek after my soul to take it; and I have no other refuge but thee alone, O Lord. O Lord, save me for thy mercy's sake, for thou, O Lord, art mighty in all things. For thine is the kingdom, and the power, and the glory, with the Father and the Holy Ghost, now and ever, and unto the ages of ages. Amen.
+
+=== prayer-chrysostom | Prayer of St John Chrysostom
+! The fourth prayer, of Saint John Chrysostom.
+O Lord, whether I will or no, save me. For I, as mire that loveth filth, desire the defilement of sin; but thou, being good and almighty, canst restrain me. For if thou have mercy upon the righteous, it is no great thing; and if thou save the pure, it is no marvel, for they are worthy of thy mercy. But upon me, O Master, the wretched and sinful and defiled, show forth the wonder of thy mercy, and make manifest thy loving-kindness; for unto thee am I left, a beggar, made poor of all good works. O Lord, save me for thy mercy's sake, for blessed art thou unto the ages. Amen.
+
+=== prayer-fifth-cell | The fifth prayer of the cell rule
+! The fifth prayer.
+O Master, have mercy on me for thy goodness' sake, and suffer me not to stray from thy will. And turn not away my poor prayer from thy face, but hear, O Lord, the voice of my prayer when I pray unto thee by day and by night, and receive it as choice incense. And because of my sins withhold not thy grace, but save me for the sake of thy holy name. For thine alone it is to have mercy on us and to save us, and unto thee we send up glory, to the Father, and to the Son, and to the Holy Ghost, both now and ever, and unto the ages of ages. Amen.
+
+=== cross-blessing | Blessing with the cross
+! Having prayed and first cleansed yourself, kiss the cross that you wear on your breast, sign yourself with it, and say:
+O Lord Jesus Christ, Son of God, bless and sanctify and preserve me by the power of thy life-giving Cross.
+
+=== god-bearer-prayers | Prayers to the God-bearer
+! Then make 100 waist bows with the prayer:
+My most holy Lady, God-bearer, save me a sinner.
+! With the shorter forms of the rule: 100 prayers to the God-bearer with 200 prostrations, or 50 with 100.
+
+=== it-is-truly-meet | It is truly meet
+It is truly meet to bless thee, O God-bearer, ever blessed and most immaculate, and the Mother of our God. More honorable than the cherubim, and beyond compare more glorious than the seraphim, who without corruption gavest birth to God the Word, true God-bearer, thee do we magnify.
+
+=== cell-troparia | Troparia: Have mercy on us, O Lord
+! Troparia, Tone 6.
+Have mercy on us, O Lord, have mercy on us; for, being at a loss for any defense, this prayer do we sinners offer unto thee as Master: have mercy on us.
+{Glory:} O Lord, have mercy on us, for in thee have we put our trust. Be not exceeding wroth with us, neither remember our iniquities; but look upon us as one compassionate, and deliver us from our enemies. For thou art our God, and we are thy people; we are all the work of thy hands, and we call upon thy name.
+{Both now:} Open unto us the doors of compassion, O blessed God-bearer and Virgin, that hoping in thee we perish not, but through thee may be delivered from adversities; for thou art the salvation of the Christian race.
+
+=== ending-cell-rule | Ending of the cell rule
+Lord, have mercy. {(forty times)}
+More honorable than the cherubim, and beyond compare more glorious than the seraphim, who without corruption gavest birth to God the Word, true God-bearer, thee do we magnify.
+Glory to the Father, and to the Son, and to the Holy Ghost, both now and ever, and unto the ages of ages. Amen.
+Lord, have mercy. Lord, have mercy. Lord, bless.
+! Three prostrations.
+
+# ---------------------------------------------------------------- dismissals
+
+=== dismissal-fathers | Dismissal: venerable fathers
+O Lord Jesus Christ, Son of God, for the prayers of thy most pure Mother, and of our venerable and God-bearing fathers, and of all the saints, have mercy on us and save us, for thou art good and the lover of mankind.
+
+=== dismissal-fathers-sunday | Dismissal: venerable fathers (Sunday)
+O Thou who didst rise from the dead: O Lord Jesus Christ, Son of God, for the prayers of thy most pure Mother, and of our venerable and God-bearing fathers, and of all the saints, have mercy on us and save us, for thou art good and the lover of mankind.
+
+=== dismissal-sunday | Dismissal: Sunday at Matins and the Hours
+O Thou who didst rise from the dead: O Lord Jesus Christ, Son of God, for the prayers of thy most pure Mother, by the power of the honorable and life-giving Cross, and of the holy, glorious and all-praised apostles, and of [saint], whose day it is, and of all the saints, have mercy on us and save us, for thou art good and the lover of mankind.
+
+=== dismissal-bodiless-powers | Dismissal: bodiless powers (Monday)
+O Lord Jesus Christ, Son of God, for the prayers of thy most pure Mother, and through the intercession of the honorable heavenly bodiless powers, and of [saint], whose day it is, and of all the saints, have mercy on us and save us, for thou art good and the lover of mankind.
+
+=== dismissal-forerunner | Dismissal: the Forerunner (Tuesday)
+O Lord Jesus Christ, Son of God, for the prayers of thy most pure Mother, and of the honorable and glorious prophet, forerunner and baptist John, and of [saint], whose day it is, and of all the saints, have mercy on us and save us, for thou art good and the lover of mankind.
+
+=== dismissal-cross | Dismissal: the Cross (Wednesday and Friday)
+O Lord Jesus Christ, Son of God, for the prayers of thy most pure Mother, by the power of the honorable and life-giving Cross, and of [saint], whose day it is, and of all the saints, have mercy on us and save us, for thou art good and the lover of mankind.
+
+=== dismissal-apostles | Dismissal: the apostles (Thursday; Sunday Vespers)
+O Lord Jesus Christ, Son of God, for the prayers of thy most pure Mother, and of the holy, glorious and all-praised apostles, and of [saint], whose day it is, and of all the saints, have mercy on us and save us, for thou art good and the lover of mankind.
+
+=== dismissal-saturday | Dismissal: all the saints (Saturday)
+O Lord Jesus Christ, Son of God, for the prayers of thy most pure Mother, by the power of the honorable and life-giving Cross, through the intercession of the honorable heavenly bodiless powers, and of the honorable and glorious prophet, forerunner and baptist John, and of the holy, glorious and all-praised apostles, and of the holy and right-victorious martyrs, and of our venerable and God-bearing fathers, and of the holy and righteous ancestors of God, Joachim and Anna, and of Saint *N.*, to whom the church is dedicated, and of [saint], whose day it is, and of all the saints, have mercy on us and save us, for thou art good and the lover of mankind.
+
+=== dismissal-great-saint | Dismissal: a great saint or the church's saint
+! When the feast of the church's saint, or the memory of a great saint, takes the place of the weekday dismissal:
+O Lord Jesus Christ, Son of God, for the prayers of thy most pure Mother, and of [saint], whose memory we keep, and of all the saints, have mercy on us and save us, for thou art good and the lover of mankind.
+
+=== dismissal-departed-one | Dismissal for one who has died
+O Thou who hast dominion over the living and the dead: O Lord Jesus Christ, Son of God, for the prayers of thy most pure Mother and of all the saints, give rest to the soul of thy departed servant *N.* {(or: of thy departed handmaid N.)} in the bosom of Abraham, Isaac and Jacob, in the abodes of the righteous; and have mercy on us and save us, for thou art good and the lover of mankind.
+
+=== dismissal-departed-many | Dismissal for those who have died
+O Thou who hast dominion over the living and the dead: O Lord Jesus Christ, Son of God, for the prayers of thy most pure Mother and of all the saints, give rest to the souls of thy departed servants, our fathers and brethren *N.*, in the bosom of Abraham, Isaac and Jacob, in the abodes of the righteous; and have mercy on us and save us, for thou art good and the lover of mankind.
+
+=== dismissal-universal-saturday | Dismissal for the Universal Saturday
+O Thou who hast dominion over the living and the dead: O Lord Jesus Christ, Son of God, for the prayers of thy most pure Mother and of all the saints, give rest to the souls of those who have fallen asleep before us and are ever remembered, our blessed founders, fathers and brethren, who lie here, and of Orthodox Christians everywhere, in the bosom of Abraham, Isaac and Jacob, in the abodes of the righteous; and have mercy on us and save us, for thou art good and the lover of mankind.
+
+=== dismissal-canon-departed-one | Saturday after the canon: for one who has died
+O Lord Jesus Christ, Son of God, for the prayers of thy most pure Mother, and of our venerable and God-bearing fathers, and of all the saints, have mercy on and give rest to the soul of thy servant *N.* {(or: of thy departed handmaid N.)} unto the endless ages, for thou art good and the lover of mankind.
+
+=== dismissal-canon-departed-many | Saturday after the canon: for those who have died
+O Lord Jesus Christ, Son of God, for the prayers of thy most pure Mother, and of our venerable and God-bearing fathers, and of all the saints, have mercy on and give rest to the souls of thy servants, our fathers and brethren, unto the endless ages, for thou art good and the lover of mankind.
+
+=== dismissal-canon-universal | Saturday after the canon: the general universal dismissal
+O Lord Jesus Christ, Son of God, for the prayers of thy most pure Mother, and of our venerable and God-bearing fathers, and of all the saints, have mercy on and give rest to the souls of those who have fallen asleep before us and are ever remembered, our blessed founders, fathers and brethren, who lie here, and of Orthodox Christians everywhere, unto the endless ages, for thou art good and the lover of mankind.
+
+# ================================================================ orders
+# Order lines as on the Orders screen; "> text" is a short line said as
+# written, with (parentheses) in red; "! text" is a rubric.
+
+@@@ vespers | Vespers (Home Ustav)
+! When the time for vespers comes, put aside all worldly cares, stand before the image of God and say:
+entrance-opening
+through-the-prayers
+heavenly-king
+trisagion-our-father
+> Lord, have mercy. (12 times)
+glory-both-now
+o-come
+rule
+> Lord, have mercy. (3 times)
+glory-both-now
+ending-more-honorable
+dismissal
+departing-opening
+
+@@@ compline | Compline (Home Ustav)
+entrance-opening
+through-the-prayers
+heavenly-king
+trisagion-our-father
+> Lord, have mercy. (12 times)
+o-come
+psalm 50
+creed
+rule
+> Lord, have mercy. (3 times)
+ending-glory-no-prostrations
+dismissal
+prayer-of-forgiveness
+forgive-them-that-hate
+
+@@@ midnight | Midnight Office (Home Ustav)
+entrance-opening
+through-the-prayers
+glory-to-thee-for-all
+macarius-three-prostrations
+heavenly-king
+trisagion-our-father
+> Lord, have mercy. (12 times)
+prayer-having-risen
+o-come
+psalm 50
+creed
+rule
+> Lord, have mercy. (3 times)
+ending-glory-no-prostrations
+dismissal
+prayer-of-forgiveness
+forgive-them-that-hate
+
+@@@ matins | Matins and the 1st Hour (Home Ustav)
+through-the-prayers
+trisagion-our-father
+> Lord, have mercy. (12 times)
+glory-both-now
+o-come
+rule
+> Lord, have mercy. (3 times)
+glory-both-now
+o-come
+! Then, for the first hour:
+rule first-hour
+ending-glory-prostrations
+dismissal
+
+@@@ hours | Hours (Home Ustav)
+entrance-opening
+through-the-prayers
+heavenly-king
+trisagion-our-father
+> Lord, have mercy. (12 times)
+glory-both-now
+o-come
+rule
+> Lord, have mercy. (3 times)
+glory-both-now
+ending-truly-meet
+dismissal
+
+@@@ cell-rule | Cell Rule (Home Ustav)
+cell-twelve-prostrations
+prayer-macarius
+prayer-isaac-the-syrian
+prayer-stephen-of-thebes
+prayer-chrysostom
+prayer-fifth-cell
+cross-blessing
+glory-to-thee-for-all
+through-the-prayers
+heavenly-king
+trisagion-our-father
+> Lord, have mercy. (12 times)
+glory-both-now
+o-come
+psalm 50
+creed
+rule
+god-bearer-prayers
+it-is-truly-meet
+trisagion-our-father
+cell-troparia
+ending-cell-rule
+dismissal

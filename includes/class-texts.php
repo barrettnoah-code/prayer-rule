@@ -108,6 +108,12 @@ class Texts {
 		return (bool) $posts;
 	}
 
+	/** Is this short name used by any prayer not in the trash (drafts too)? */
+	public static function exists( $name ) {
+		$name = sanitize_title( $name );
+		return '' !== $name && self::name_taken( $name, 0 );
+	}
+
 	/** Published prayer with this short name, or null. */
 	public static function find( $name ) {
 		$name = sanitize_title( $name );

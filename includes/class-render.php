@@ -20,6 +20,9 @@ class Render {
 	/** Translation of the reading being assembled (for [psalm] in prayers). */
 	private static $translation = null;
 
+	/** The saint of the day as named in a dismissal, when known (calendar). */
+	private static $saint = null;
+
 	/** Show Coverdale's half-verse colons ( : )? Default yes. */
 	public static function show_colons() {
 		return '0' !== (string) get_option( self::OPT_COLONS, '1' );
@@ -35,9 +38,11 @@ class Render {
 	 *   'translation' => id
 	 *   'lent'        => bool (Great Lent: troparia after kathismas, bows to the ground)
 	 *   'portions'    => array( 'main' => array( 'kathismas' => 2, 'start' => 7, 'ladders' => 0 ), … )
+	 *   'day'         => liturgical day, 0 (Sunday) … 6 or a day name; default today
+	 *   'saint'       => the saint as named in the dismissal, e.g. "our venerable father Sergius"
 	 *
-	 * Steps: text, psalm, kathisma (heading), stasis, ladders, missing,
-	 * unknown, empty-rule.
+	 * Steps: text, psalm, say, rubric, kathisma (heading), stasis, ladders,
+	 * missing, unknown, empty-rule.
 	 */
 	public static function assemble_service( $service_key, $context ) {
 		$service = Services::get( $service_key );
@@ -45,8 +50,10 @@ class Render {
 			return array();
 		}
 		$translation       = Psalter::translation( $context['translation'] ?? '' );
-		$previous          = self::$translation;
+		$previous          = array( self::$translation, self::$saint );
 		self::$translation = $translation;
+		self::$saint       = isset( $context['saint'] ) && '' !== $context['saint'] ? (string) $context['saint'] : null;
+		$day               = Dismissals::day_key( $context['day'] ?? '' );
 		$out               = array();
 		foreach ( Orders::steps( $service['order'] ) as $step ) {
 			if ( 'rule' === $step['type'] ) {
@@ -60,11 +67,17 @@ class Render {
 				);
 			} elseif ( 'text' === $step['type'] ) {
 				$out[] = self::text_step( $step['slug'] );
+			} elseif ( 'dismissal' === $step['type'] ) {
+				$slug  = Dismissals::slug( $service_key, $day );
+				$out[] = '' !== $slug ? self::text_step( $slug ) : array(
+					'type' => 'missing',
+					'slug' => 'dismissal',
+				);
 			} else {
 				$out[] = $step;
 			}
 		}
-		self::$translation = $previous;
+		list( self::$translation, self::$saint ) = $previous;
 		return $out;
 	}
 
@@ -100,11 +113,13 @@ class Render {
 		}
 		if ( $ladders > 0 ) {
 			$prayer  = '' !== $texts['jesus_prayer'] ? Texts::find( $texts['jesus_prayer'] ) : null;
+			$after   = '' !== $texts['after_stasis'] ? Texts::find( $texts['after_stasis'] ) : null;
 			$steps[] = array(
 				'type'    => 'ladders',
 				'ladders' => $ladders,
 				'label'   => Services::ladders_label( $ladders ),
 				'html'    => $prayer ? Texts::html( $prayer ) : '',
+				'after'   => $after ? Texts::html( $after ) : '',
 				'lent'    => $lent,
 			);
 		}
@@ -142,6 +157,19 @@ class Render {
 		}
 		$translation = self::$translation ? self::$translation : Psalter::default_translation();
 		return self::psalms_html( self::psalms( $pieces, $translation ) );
+	}
+
+	/**
+	 * [saint] inside a dismissal: the saint of the day as the calendar names
+	 * him, or "Saint N." until it is known.
+	 */
+	public static function saint_shortcode() {
+		return null !== self::$saint ? esc_html( self::$saint ) : esc_html__( 'Saint', 'prayer-rule' ) . ' <em>N.</em>';
+	}
+
+	/** A short line said as written; (parentheses) in red. */
+	public static function say_html( $line ) {
+		return preg_replace( '/\([^()]*\)/', '<span class="pr-red">$0</span>', esc_html( $line ) );
 	}
 
 	/** Verses of the pieces: array( array( 'psalm' => 50, 'verses' => array( n => text ) ) ). */
@@ -205,6 +233,12 @@ class Render {
 				case 'text':
 					$html .= '<section class="pr-text">' . $step['html'] . '</section>';
 					break;
+				case 'say':
+					$html .= '<p class="pr-say">' . self::say_html( $step['line'] ) . '</p>';
+					break;
+				case 'rubric':
+					$html .= '<p class="pr-rubric">' . esc_html( $step['line'] ) . '</p>';
+					break;
 				case 'psalm':
 					$html .= '<section class="pr-psalms">' . self::psalms_html( $step['psalms'] ) . '</section>';
 					break;
@@ -218,6 +252,9 @@ class Render {
 					break;
 				case 'ladders':
 					$html .= '<section class="pr-ladders"><p class="pr-rubric">' . esc_html( $step['label'] ) . '</p>' . $step['html'];
+					if ( '' !== $step['after'] ) {
+						$html .= '<p class="pr-rubric">' . esc_html__( 'After each ladder:', 'prayer-rule' ) . '</p>' . $step['after'];
+					}
 					if ( $step['lent'] ) {
 						$html .= '<p class="pr-rubric">' . esc_html__( 'In Great Lent, make 17 prostrations to the ground for each ladder.', 'prayer-rule' ) . '</p>';
 					}
@@ -254,10 +291,10 @@ class Render {
 .prayer-rule-reading .pr-stasis-label{color:var(--pr-red);font-size:.8em;text-transform:uppercase;letter-spacing:.06em;margin:1.6em 0 0}
 .prayer-rule-reading .pr-psalm{color:var(--pr-red);font-size:1.05em;margin:1.2em 0 .4em}
 .prayer-rule-reading .pr-verse{margin:0 0 .35em}
+.prayer-rule-reading .pr-say::first-letter{color:var(--pr-red);font-size:1.35em;font-weight:600}
 .prayer-rule-reading .pr-vn{font-size:.7em;color:#8c8f94;vertical-align:super;margin-right:.2em}
 .pr-initial,.prayer-rule-reading .is-style-prayer::first-letter,.editor-styles-wrapper .is-style-prayer::first-letter{color:{$red};font-size:1.35em;font-weight:600}
 .pr-red,.pr-rubric,.is-style-rubric{color:{$red}}
-.prayer-rule-reading .pr-rubric{font-style:italic}
 .prayer-rule-reading .pr-problem{background:#fcf0f1;border-left:4px solid #d63638;padding:.4em .8em;color:#1d2327}";
 	}
 }

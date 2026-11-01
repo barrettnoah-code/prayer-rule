@@ -20,6 +20,8 @@ class Admin {
 		add_action( 'admin_post_prayer_rule_settings', array( __CLASS__, 'save_settings' ) );
 		add_action( 'admin_post_prayer_rule_kathismas', array( __CLASS__, 'save_kathismas' ) );
 		add_action( 'admin_post_prayer_rule_services', array( __CLASS__, 'save_services' ) );
+		add_action( 'admin_post_prayer_rule_dismissals', array( __CLASS__, 'save_dismissals' ) );
+		add_action( 'admin_post_prayer_rule_ustav', array( __CLASS__, 'import_ustav' ) );
 		add_filter( 'manage_' . Texts::TYPE . '_posts_columns', array( __CLASS__, 'text_columns' ) );
 		add_action( 'manage_' . Texts::TYPE . '_posts_custom_column', array( __CLASS__, 'text_column' ), 10, 2 );
 	}
@@ -28,18 +30,19 @@ class Admin {
 		add_menu_page( __( 'Prayer Rule', 'prayer-rule' ), __( 'Prayer Rule', 'prayer-rule' ), 'edit_pages', self::SLUG, array( __CLASS__, 'page_overview' ), 'dashicons-book-alt', 58 );
 		add_submenu_page( self::SLUG, __( 'Overview', 'prayer-rule' ), __( 'Overview', 'prayer-rule' ), 'edit_pages', self::SLUG, array( __CLASS__, 'page_overview' ) );
 		add_submenu_page( self::SLUG, __( 'Services', 'prayer-rule' ), __( 'Services', 'prayer-rule' ), 'manage_options', 'prayer-rule-services', array( __CLASS__, 'page_services' ) );
+		add_submenu_page( self::SLUG, __( 'Dismissals', 'prayer-rule' ), __( 'Dismissals', 'prayer-rule' ), 'manage_options', 'prayer-rule-dismissals', array( __CLASS__, 'page_dismissals' ) );
 		add_submenu_page( self::SLUG, __( 'Kathismas', 'prayer-rule' ), __( 'Kathismas', 'prayer-rule' ), 'manage_options', 'prayer-rule-kathismas', array( __CLASS__, 'page_kathismas' ) );
 		add_submenu_page( self::SLUG, __( 'Preview', 'prayer-rule' ), __( 'Preview', 'prayer-rule' ), 'edit_pages', 'prayer-rule-preview', array( __CLASS__, 'page_preview' ) );
 		add_submenu_page( self::SLUG, __( 'Settings', 'prayer-rule' ), __( 'Settings', 'prayer-rule' ), 'manage_options', 'prayer-rule-settings', array( __CLASS__, 'page_settings' ) );
 	}
 
-	/** Overview, Prayers, Orders, Services, Kathismas, Preview, Settings. */
+	/** Overview, Prayers, Orders, Services, Dismissals, Kathismas, Preview, Settings. */
 	public static function menu_order() {
 		global $submenu;
 		if ( empty( $submenu[ self::SLUG ] ) ) {
 			return;
 		}
-		$want = array( self::SLUG, 'edit.php?post_type=' . Texts::TYPE, 'edit.php?post_type=' . Orders::TYPE, 'prayer-rule-services', 'prayer-rule-kathismas', 'prayer-rule-preview', 'prayer-rule-settings' );
+		$want = array( self::SLUG, 'edit.php?post_type=' . Texts::TYPE, 'edit.php?post_type=' . Orders::TYPE, 'prayer-rule-services', 'prayer-rule-dismissals', 'prayer-rule-kathismas', 'prayer-rule-preview', 'prayer-rule-settings' );
 		usort(
 			$submenu[ self::SLUG ],
 			function ( $a, $b ) use ( $want ) {
@@ -96,9 +99,25 @@ class Admin {
 	public static function page_overview() {
 		$counts = Psalter::counts();
 		$names  = Psalter::translations();
+		$ustav  = Ustav::status();
 		?>
 		<div class="wrap">
 			<h1><?php esc_html_e( 'Prayer Rule', 'prayer-rule' ); ?></h1>
+			<?php self::notice(); ?>
+			<h2><?php esc_html_e( 'Home Ustav texts', 'prayer-rule' ); ?></h2>
+			<p>
+				<?php
+				/* translators: 1, 2: prayers on the site / bundled, 3, 4: orders on the site / bundled */
+				echo esc_html( sprintf( __( 'On the site: %1$d of %2$d prayers and %3$d of %4$d service orders from the Home Ustav. They are ordinary Prayers and Orders: edit them freely; nothing you change is overwritten.', 'prayer-rule' ), $ustav['prayers'], $ustav['prayers_total'], $ustav['orders'], $ustav['orders_total'] ) );
+				?>
+			</p>
+			<?php if ( current_user_can( 'manage_options' ) && ( $ustav['prayers'] < $ustav['prayers_total'] || $ustav['orders'] < $ustav['orders_total'] ) ) : ?>
+				<form method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>">
+					<input type="hidden" name="action" value="prayer_rule_ustav">
+					<?php wp_nonce_field( 'prayer_rule_ustav' ); ?>
+					<?php submit_button( __( 'Add the missing ones again', 'prayer-rule' ), 'secondary', '', false ); ?>
+				</form>
+			<?php endif; ?>
 			<h2><?php esc_html_e( 'Psalter', 'prayer-rule' ); ?></h2>
 			<?php if ( ! $counts ) : ?>
 				<p><?php esc_html_e( 'The Psalter is not loaded. Deactivate and activate the plugin, or use Settings → Reload the Psalter.', 'prayer-rule' ); ?></p>
@@ -118,9 +137,9 @@ class Admin {
 			<?php endif; ?>
 			<h2><?php esc_html_e( 'Getting started', 'prayer-rule' ); ?></h2>
 			<ol>
-				<li><?php esc_html_e( 'Write each prayer under Prayers. Its short name (in the side box) is made from the title unless you type one.', 'prayer-rule' ); ?></li>
-				<li><?php esc_html_e( 'Under Orders, write each service\'s opening and ending, with "rule" where the member\'s portion goes.', 'prayer-rule' ); ?></li>
-				<li><?php esc_html_e( 'Under Services, choose the order for each service and the suggested amounts.', 'prayer-rule' ); ?></li>
+				<li><?php esc_html_e( 'The Home Ustav prayers and the six service orders are already added. Edit them under Prayers and Orders, or add your own; a prayer\'s short name (in the side box) is how orders refer to it.', 'prayer-rule' ); ?></li>
+				<li><?php esc_html_e( 'Under Services, check the order for each service and the suggested amounts.', 'prayer-rule' ); ?></li>
+				<li><?php esc_html_e( 'Under Dismissals, check which dismissal ends each service on each day.', 'prayer-rule' ); ?></li>
 				<li><?php esc_html_e( 'Check the result under Preview, with any portion and translation.', 'prayer-rule' ); ?></li>
 			</ol>
 		</div>
@@ -253,6 +272,89 @@ class Admin {
 		self::back( 'prayer-rule-services', __( 'Services saved.', 'prayer-rule' ) );
 	}
 
+	// ------------------------------------------------------------ Dismissals
+
+	public static function page_dismissals() {
+		$table    = Dismissals::table();
+		$services = Services::all();
+		$index    = Texts::index();
+		$choices  = array_filter(
+			$index,
+			function ( $slug ) {
+				return 0 === strpos( $slug, 'dismissal' );
+			},
+			ARRAY_FILTER_USE_KEY
+		);
+		?>
+		<div class="wrap">
+			<h1><?php esc_html_e( 'Dismissals', 'prayer-rule' ); ?></h1>
+			<?php self::notice(); ?>
+			<p><?php esc_html_e( 'The dismissal that a "dismissal" line in an order shows, by service and day of the week. The lists offer the prayers whose short name begins with "dismissal"; "Home Ustav\'s choice" goes back to the original.', 'prayer-rule' ); ?></p>
+			<p><?php esc_html_e( 'The day begins at sundown, so Vespers belongs to the next day: Sunday Vespers is read on Saturday evening.', 'prayer-rule' ); ?></p>
+			<p class="description"><?php esc_html_e( 'In a dismissal\'s text, [saint] stands for the saint of the day ("Saint N." until the calendar is linked).', 'prayer-rule' ); ?></p>
+			<form method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>">
+				<input type="hidden" name="action" value="prayer_rule_dismissals">
+				<?php wp_nonce_field( 'prayer_rule_dismissals' ); ?>
+				<table class="widefat striped" style="max-width:1200px">
+					<thead><tr>
+						<th><?php esc_html_e( 'Day', 'prayer-rule' ); ?></th>
+						<?php foreach ( $services as $service ) : ?>
+							<th><?php echo esc_html( $service['name'] ); ?></th>
+						<?php endforeach; ?>
+					</tr></thead>
+					<tbody>
+					<?php foreach ( Dismissals::days() as $day => $day_name ) : ?>
+						<tr>
+							<th scope="row"><?php echo esc_html( $day_name ); ?></th>
+							<?php foreach ( array_keys( $services ) as $key ) : ?>
+								<?php $slug = $table[ $key ][ $day ]; ?>
+								<td>
+									<select style="width:100%;max-width:14em" name="dismissals[<?php echo esc_attr( $key ); ?>][<?php echo esc_attr( $day ); ?>]">
+										<option value=""><?php esc_html_e( 'Home Ustav\'s choice', 'prayer-rule' ); ?></option>
+										<?php foreach ( $choices + ( isset( $index[ $slug ] ) ? array( $slug => $index[ $slug ] ) : array() ) as $value => $title ) : ?>
+											<option value="<?php echo esc_attr( $value ); ?>" <?php selected( $slug, $value ); ?>><?php echo esc_html( preg_replace( '/^Dismissal:\s*/', '', $title ) ); ?></option>
+										<?php endforeach; ?>
+									</select>
+									<?php if ( '' !== $slug && ! isset( $index[ $slug ] ) ) : ?>
+										<br><span style="color:#b32d2e">
+										<?php
+										/* translators: %s: a prayer's short name */
+										echo esc_html( sprintf( __( 'No published prayer "%s"', 'prayer-rule' ), $slug ) );
+										?>
+										</span>
+									<?php endif; ?>
+								</td>
+							<?php endforeach; ?>
+						</tr>
+					<?php endforeach; ?>
+					</tbody>
+				</table>
+				<?php submit_button( __( 'Save dismissals', 'prayer-rule' ) ); ?>
+			</form>
+		</div>
+		<?php
+	}
+
+	public static function save_dismissals() {
+		if ( ! current_user_can( 'manage_options' ) ) {
+			wp_die( esc_html__( 'Not allowed.', 'prayer-rule' ) );
+		}
+		check_admin_referer( 'prayer_rule_dismissals' );
+		$posted = isset( $_POST['dismissals'] ) ? map_deep( wp_unslash( (array) $_POST['dismissals'] ), 'sanitize_text_field' ) : array(); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput
+		Dismissals::save( $posted );
+		self::back( 'prayer-rule-dismissals', __( 'Dismissals saved.', 'prayer-rule' ) );
+	}
+
+	public static function import_ustav() {
+		if ( ! current_user_can( 'manage_options' ) ) {
+			wp_die( esc_html__( 'Not allowed.', 'prayer-rule' ) );
+		}
+		check_admin_referer( 'prayer_rule_ustav' );
+		$count = Ustav::import( false );
+		/* translators: 1: prayers added, 2: orders added */
+		self::back( self::SLUG, sprintf( __( 'Added %1$d prayers and %2$d orders.', 'prayer-rule' ), $count['prayers'], $count['orders'] ) );
+	}
+
 	// ------------------------------------------------------------ Preview
 
 	public static function page_preview() {
@@ -262,6 +364,7 @@ class Admin {
 		$service     = $services[ $key ];
 		$translation = Psalter::translation( isset( $_GET['translation'] ) ? sanitize_key( $_GET['translation'] ) : '' );
 		$lent        = ! empty( $_GET['lent'] );
+		$day         = Dismissals::day_key( isset( $_GET['day'] ) ? sanitize_key( $_GET['day'] ) : '' );
 		$given       = isset( $_GET['p'] ) && is_array( $_GET['p'] ) ? wp_unslash( $_GET['p'] ) : array();
 		$portions    = array();
 		foreach ( $service['portions'] as $portion => $p ) {
@@ -288,6 +391,13 @@ class Admin {
 					<select name="translation">
 						<?php foreach ( Psalter::translations() as $id => $name ) : ?>
 							<option value="<?php echo esc_attr( $id ); ?>" <?php selected( $translation, $id ); ?>><?php echo esc_html( $name ); ?></option>
+						<?php endforeach; ?>
+					</select>
+				</label>
+				<label><?php esc_html_e( 'Day', 'prayer-rule' ); ?>
+					<select name="day">
+						<?php foreach ( Dismissals::days() as $d => $d_name ) : ?>
+							<option value="<?php echo esc_attr( $d ); ?>" <?php selected( $day, $d ); ?>><?php echo esc_html( $d_name ); ?></option>
 						<?php endforeach; ?>
 					</select>
 				</label>
@@ -339,8 +449,15 @@ class Admin {
 					'translation' => $translation,
 					'lent'        => $lent,
 					'portions'    => $portions,
+					'day'         => $day,
 				)
 			);
+			if ( 'vespers' === $key ) {
+				$days = array_keys( Dismissals::days() );
+				$eve  = Dismissals::days()[ $days[ ( array_search( $day, $days, true ) + 6 ) % 7 ] ];
+				/* translators: 1: day, 2: the evening before */
+				echo '<p class="description">' . esc_html( sprintf( __( '%1$s Vespers is read on %2$s evening.', 'prayer-rule' ), Dismissals::days()[ $day ], $eve ) ) . '</p>';
+			}
 			echo Render::html( $steps, true ); // phpcs:ignore WordPress.Security.EscapeOutput -- escaped in Render::html
 			?>
 		</div>

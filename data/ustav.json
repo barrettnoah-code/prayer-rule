@@ -1,0 +1,319 @@
+{
+ "format": "prayer-rule-ustav/1",
+ "source": "Home Ustav (1910), On Prayer at Home, ch. 4, and the dismissals for the week; English translation",
+ "prayers": [
+  {
+   "slug": "entrance-opening",
+   "title": "The Entrance Opening",
+   "content": "<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">O God, be merciful to me a sinner. <span class=\"pr-red\">(prostration)</span></p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">Thou who hast created me, O Lord, have mercy on me. <span class=\"pr-red\">(prostration)</span></p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">Without number have I sinned; O Lord, have mercy, and forgive me a sinner. <span class=\"pr-red\">(prostration)</span></p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">It is truly meet to bless thee, O God-bearer, ever blessed and most immaculate, and the Mother of our God. More honorable than the cherubim, and beyond compare more glorious than the seraphim, who without corruption gavest birth to God the Word, true God-bearer, thee do we magnify.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-rubric\"} -->\n<p class=\"is-style-rubric\">A great prostration. This one is never left out.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">Glory to the Father, and to the Son, and to the Holy Ghost. <span class=\"pr-red\">(prostration)</span></p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">Both now and ever, and unto the ages of ages. Amen. <span class=\"pr-red\">(prostration)</span></p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">Lord, have mercy. Lord, have mercy. Lord, bless. <span class=\"pr-red\">(prostration)</span></p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-rubric\"} -->\n<p class=\"is-style-rubric\">Then the dismissal:</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">O Lord Jesus Christ, Son of God, for the prayers of thy most pure Mother, and of Saint <em>N.</em>, whose church this is, and of the holy angel my guardian, and of all thy saints: O Lord Jesus Christ, Son of God, have mercy on me and save me, for thou art good and the lover of mankind.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-rubric\"} -->\n<p class=\"is-style-rubric\">All these prostrations are made to the ground, except on Saturdays, Sundays and feast days. Likewise, throughout Pentecost and during the twelve days after Christ's Nativity, they are made as waist bows.</p>\n<!-- /wp:paragraph -->"
+  },
+  {
+   "slug": "departing-opening",
+   "title": "The Departing Opening",
+   "content": "<!-- wp:paragraph {\"className\":\"is-style-rubric\"} -->\n<p class=\"is-style-rubric\">The departing opening, made in the same way as the entrance opening:</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">O God, be merciful to me a sinner. <span class=\"pr-red\">(prostration)</span></p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">Thou who hast created me, O Lord, have mercy on me. <span class=\"pr-red\">(prostration)</span></p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">Without number have I sinned; O Lord, have mercy, and forgive me a sinner. <span class=\"pr-red\">(prostration)</span></p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">It is truly meet to bless thee, O God-bearer, ever blessed and most immaculate, and the Mother of our God. More honorable than the cherubim, and beyond compare more glorious than the seraphim, who without corruption gavest birth to God the Word, true God-bearer, thee do we magnify.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-rubric\"} -->\n<p class=\"is-style-rubric\">A great prostration. This one is never left out.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">Glory to the Father, and to the Son, and to the Holy Ghost. <span class=\"pr-red\">(prostration)</span></p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">Both now and ever, and unto the ages of ages. Amen. <span class=\"pr-red\">(prostration)</span></p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">Lord, have mercy. Lord, have mercy. Lord, bless. <span class=\"pr-red\">(prostration)</span></p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-rubric\"} -->\n<p class=\"is-style-rubric\">Then the dismissal:</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">O Lord Jesus Christ, Son of God, for the prayers of thy most pure Mother, and of Saint <em>N.</em>, whose church this is, and of the holy angel my guardian, and of all thy saints: O Lord Jesus Christ, Son of God, have mercy on me and save me, for thou art good and the lover of mankind.</p>\n<!-- /wp:paragraph -->"
+  },
+  {
+   "slug": "through-the-prayers",
+   "title": "Through the prayers of our holy fathers",
+   "content": "<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">Through the prayers of our holy fathers, O Lord Jesus Christ, Son of God, have mercy on us. Amen.</p>\n<!-- /wp:paragraph -->"
+  },
+  {
+   "slug": "heavenly-king",
+   "title": "O Heavenly King",
+   "content": "<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">O Heavenly King, Comforter, the Spirit of truth, who art everywhere present and fillest all things, Treasury of good things and Giver of life: come and dwell in us, and cleanse us from every stain, and save our souls, O Good One.</p>\n<!-- /wp:paragraph -->"
+  },
+  {
+   "slug": "trisagion-our-father",
+   "title": "Trisagion through the Our Father",
+   "content": "<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">Holy God, Holy Mighty, Holy Immortal, have mercy on us. <span class=\"pr-red\">(three times, with three prostrations)</span></p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">Glory to the Father, and to the Son, and to the Holy Ghost, both now and ever, and unto the ages of ages. Amen.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">O most holy Trinity, have mercy on us. O Lord, cleanse our sins. O Master, pardon our iniquities. O Holy One, visit and heal our infirmities, for thy name's sake.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">Lord, have mercy. <span class=\"pr-red\">(three times)</span></p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">Glory to the Father, and to the Son, and to the Holy Ghost, both now and ever, and unto the ages of ages. Amen.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">Our Father, which art in heaven, hallowed be thy name. Thy kingdom come. Thy will be done, as in heaven, so on earth. Give us this day our daily bread. And forgive us our debts, as we forgive our debtors. And lead us not into temptation, but deliver us from the evil one.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">O Lord Jesus Christ, Son of God, have mercy on us. Amen.</p>\n<!-- /wp:paragraph -->"
+  },
+  {
+   "slug": "glory-both-now",
+   "title": "Glory, both now",
+   "content": "<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">Glory to the Father, and to the Son, and to the Holy Ghost, both now and ever, and unto the ages of ages. Amen.</p>\n<!-- /wp:paragraph -->"
+  },
+  {
+   "slug": "o-come",
+   "title": "O come, let us worship",
+   "content": "<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">O come, let us worship God our King.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">O come, let us worship Christ, our King and God.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">O come, let us worship and fall down before the Lord Jesus Christ himself, our King and God.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-rubric\"} -->\n<p class=\"is-style-rubric\">Three prostrations.</p>\n<!-- /wp:paragraph -->"
+  },
+  {
+   "slug": "glory-to-thee-for-all",
+   "title": "Glory to thee, our God, for all things",
+   "content": "<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">Glory to thee, our God, glory to thee for all things. <span class=\"pr-red\">(three times)</span></p>\n<!-- /wp:paragraph -->"
+  },
+  {
+   "slug": "macarius-three-prostrations",
+   "title": "Prayer of St Macarius, with three prostrations",
+   "content": "<!-- wp:paragraph {\"className\":\"is-style-rubric\"} -->\n<p class=\"is-style-rubric\">Make three prostrations, saying the prayer of Saint Macarius:</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">O God, cleanse me a sinner, for I have never done any good thing before thee. <span class=\"pr-red\">(prostration)</span></p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">But deliver me from the evil one, and let thy will be done in me. <span class=\"pr-red\">(prostration)</span></p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">That without condemnation I may open my unworthy mouth, and praise thy holy name, of the Father, and of the Son, and of the Holy Ghost, now and ever, and unto the ages of ages. Amen. <span class=\"pr-red\">(prostration)</span></p>\n<!-- /wp:paragraph -->"
+  },
+  {
+   "slug": "prayer-having-risen",
+   "title": "Prayer: Having risen from sleep",
+   "content": "<!-- wp:paragraph {\"className\":\"is-style-rubric\"} -->\n<p class=\"is-style-rubric\">Prayer.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">Having risen from sleep, I give thanks unto thee, O all-holy Trinity, that for thy great goodness and longsuffering thou hast not been angry with me, a sinner and slothful servant, neither hast thou destroyed me with mine iniquities, but hast shown thy love toward mankind; and when I lay in hopelessness, thou hast raised me up to keep the morning watch and to glorify thine invincible dominion. And now, O Master, God most holy, enlighten the eyes of my heart, and open my lips to learn of thy words, and to understand thy commandments, and to do thy will, and to sing unto thee in the confession of my heart, and to hymn and glorify thine all-honorable and majestic name, of the Father, and of the Son, and of the Holy Ghost, now and ever, and unto the ages of ages. Amen.</p>\n<!-- /wp:paragraph -->"
+  },
+  {
+   "slug": "creed",
+   "title": "The Creed",
+   "content": "<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">I believe in one God the Father Almighty, Maker of heaven and earth, and of all things visible and invisible. And in one Lord Jesus Christ, the Son of God, the Only-begotten, begotten of the Father before all ages; Light of Light, true God of true God, begotten, but not made; of one essence with the Father, by whom all things were made. Who for us men and for our salvation came down from heaven, and was incarnate of the Holy Ghost and the Virgin Mary, and was made man. And was crucified for us under Pontius Pilate, and suffered, and was buried. And rose again on the third day according to the Scriptures. And ascended into heaven, and sitteth at the right hand of the Father. And shall come again with glory to judge the living and the dead; of whose kingdom there is no end.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-rubric\"} -->\n<p class=\"is-style-rubric\">Of the Second Council.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">And in the Holy Ghost, the Lord, the true and life-giving, who proceedeth from the Father; who with the Father and the Son together is worshipped and glorified; who spake by the prophets. In one holy catholic and apostolic Church. I confess one baptism for the remission of sins. I look for the resurrection of the dead, and the life of the age to come. Amen.</p>\n<!-- /wp:paragraph -->"
+  },
+  {
+   "slug": "glory-alleluia",
+   "title": "Alleluia, glory to thee, O God",
+   "content": "<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">Alleluia, alleluia, glory to thee, O God. <span class=\"pr-red\">(three times, with three prostrations)</span></p>\n<!-- /wp:paragraph -->"
+  },
+  {
+   "slug": "jesus-prayer",
+   "title": "The Jesus Prayer",
+   "content": "<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">O Lord Jesus Christ, Son of God, have mercy on me a sinner.</p>\n<!-- /wp:paragraph -->"
+  },
+  {
+   "slug": "ending-more-honorable",
+   "title": "Ending: More honorable, with prostrations",
+   "content": "<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">More honorable than the cherubim, and beyond compare more glorious than the seraphim, who without corruption gavest birth to God the Word, true God-bearer, thee do we magnify. <span class=\"pr-red\">(prostration)</span></p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">Glory to the Father, and to the Son, and to the Holy Ghost. <span class=\"pr-red\">(prostration)</span></p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">Both now and ever, and unto the ages of ages. Amen. <span class=\"pr-red\">(prostration)</span></p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">Lord, have mercy. Lord, have mercy. Lord, bless. <span class=\"pr-red\">(prostration)</span></p>\n<!-- /wp:paragraph -->"
+  },
+  {
+   "slug": "ending-truly-meet",
+   "title": "Ending: It is truly meet, with prostrations",
+   "content": "<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">It is truly meet to bless thee, O God-bearer, ever blessed and most immaculate, and the Mother of our God. More honorable than the cherubim, and beyond compare more glorious than the seraphim, who without corruption gavest birth to God the Word, true God-bearer, thee do we magnify. <span class=\"pr-red\">(a great prostration)</span></p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">Glory to the Father, and to the Son, and to the Holy Ghost. <span class=\"pr-red\">(prostration)</span></p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">Both now and ever, and unto the ages of ages. Amen. <span class=\"pr-red\">(prostration)</span></p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">Lord, have mercy. Lord, have mercy. Lord, bless. <span class=\"pr-red\">(prostration)</span></p>\n<!-- /wp:paragraph -->"
+  },
+  {
+   "slug": "ending-glory-prostrations",
+   "title": "Ending: Glory, both now, with prostrations",
+   "content": "<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">Glory to the Father, and to the Son, and to the Holy Ghost. <span class=\"pr-red\">(prostration)</span></p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">Both now and ever, and unto the ages of ages. Amen. <span class=\"pr-red\">(prostration)</span></p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">Lord, have mercy. Lord, have mercy. Lord, bless. <span class=\"pr-red\">(prostration)</span></p>\n<!-- /wp:paragraph -->"
+  },
+  {
+   "slug": "ending-glory-no-prostrations",
+   "title": "Ending: Glory, both now, without prostrations",
+   "content": "<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">Glory to the Father, and to the Son, and to the Holy Ghost, both now and ever, and unto the ages of ages. Amen.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">Lord, have mercy. Lord, have mercy. Lord, bless.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-rubric\"} -->\n<p class=\"is-style-rubric\">Without prostrations.</p>\n<!-- /wp:paragraph -->"
+  },
+  {
+   "slug": "prayer-of-forgiveness",
+   "title": "Prayer of forgiveness: Remit, pardon",
+   "content": "<!-- wp:paragraph {\"className\":\"is-style-rubric\"} -->\n<p class=\"is-style-rubric\">Bow down to the ground and say this prayer of forgiveness:</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">Remit, pardon and forgive, O God, our transgressions, both voluntary and involuntary, in word and in deed, in knowledge and in ignorance, in mind and in thought, by day and by night: forgive me them all, for thou art good and the lover of mankind.</p>\n<!-- /wp:paragraph -->"
+  },
+  {
+   "slug": "forgive-them-that-hate",
+   "title": "Prayer: Forgive them that hate and wrong us",
+   "content": "<!-- wp:paragraph {\"className\":\"is-style-rubric\"} -->\n<p class=\"is-style-rubric\">Rise and say this prayer:</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">Forgive them that hate and wrong us, O Lord, thou lover of mankind. Do good unto them that do good. Grant unto our brethren and all our kin, and unto them that dwell in solitude, all their petitions that are unto salvation, and life eternal. Visit and heal them that are sick. Set free them that are in prison. Be thou the pilot of them that sail upon the waters. Direct and prosper them that journey by the way. Remember, O Lord, our captive brethren of one faith with us, of the Orthodox faith, and deliver them from every evil circumstance. Have mercy, O Lord, on them that have given us alms, and have charged us, the unworthy, to pray for them: forgive them and have mercy on them. Have mercy, O Lord, on them that labor and serve us, that show us mercy and feed us, and grant them all their petitions that are unto salvation, and life eternal. Remember, O Lord, our fathers and brethren that have departed before us, and make them to dwell where the light of thy countenance shineth. Remember also, O Lord, our lowliness and poverty, and enlighten our mind with the light of the knowledge of thy holy Gospel, and guide us in the path of thy commandments; through the prayers of thy most pure Mother and of all thy saints. Amen.</p>\n<!-- /wp:paragraph -->"
+  },
+  {
+   "slug": "cell-twelve-prostrations",
+   "title": "Cell rule: the twelve opening prostrations",
+   "content": "<!-- wp:paragraph {\"className\":\"is-style-rubric\"} -->\n<p class=\"is-style-rubric\">Stand in your usual place. With humility of heart and a contrite mind, make prostrations to the ground, saying:</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">O God, cleanse me a sinner, and have mercy on me. <span class=\"pr-red\">(prostration)</span></p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">Thou who hast created me, O Lord, have mercy on me. <span class=\"pr-red\">(prostration)</span></p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">Without number have I sinned; O Lord, forgive me. <span class=\"pr-red\">(prostration)</span></p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">O God, be merciful to me a sinner. <span class=\"pr-red\">(prostration)</span></p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">O God, forgive my iniquities and transgressions. <span class=\"pr-red\">(prostration)</span></p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">O my most holy Lady, God-bearer, have mercy on me and save me, and help me now in this life, and at the departure of my soul, and in the age to come. <span class=\"pr-red\">(prostration)</span></p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">O invincible and divine power of the honorable and life-giving Cross of the Lord, forsake me not, a sinner who hopeth in thee. <span class=\"pr-red\">(prostration)</span></p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">All ye heavenly powers, holy angels and archangels, cherubim and seraphim, have mercy on me, and pray for me unto the Lord God, and help me now in this life, and at the departure of my soul, and in the age to come. <span class=\"pr-red\">(prostration)</span></p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">O angel of Christ, my holy guardian, have mercy on me, and pray for me a sinner unto the Lord God, and help me now in this life, and at the departure of my soul, and in the age to come. <span class=\"pr-red\">(prostration)</span></p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">O holy and great John, prophet and forerunner of the Lord, have mercy on me, and pray for me unto the Lord God, and help me now in this life, and at the departure of my soul, and in the age to come. <span class=\"pr-red\">(prostration)</span></p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">O holy and glorious apostles, prophets and martyrs, hierarchs, venerable and righteous ones, and all ye saints, have mercy on me, and pray for me a sinner unto the Lord God, and help me now in this life, and at the departure of my soul, and in the age to come. <span class=\"pr-red\">(prostration)</span></p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">O Lord, whether in word, or in deed, or in thought I have sinned in all my life, have mercy on me and forgive me, for thy mercy's sake. <span class=\"pr-red\">(prostration)</span></p>\n<!-- /wp:paragraph -->"
+  },
+  {
+   "slug": "prayer-macarius",
+   "title": "Prayer of St Macarius",
+   "content": "<!-- wp:paragraph {\"className\":\"is-style-rubric\"} -->\n<p class=\"is-style-rubric\">The prayer of Saint Macarius.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">O God, cleanse me a sinner, for I have never done any good thing before thee; but deliver me from the evil one, and let thy will be done in me; that without condemnation I may open my unworthy mouth, and praise thy holy name, of the Father, and of the Son, and of the Holy Ghost, now and ever, and unto the ages of ages. Amen.</p>\n<!-- /wp:paragraph -->"
+  },
+  {
+   "slug": "prayer-isaac-the-syrian",
+   "title": "Prayer of St Isaac the Syrian",
+   "content": "<!-- wp:paragraph {\"className\":\"is-style-rubric\"} -->\n<p class=\"is-style-rubric\">The second prayer, of Saint Isaac the Syrian.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">O Lord Jesus Christ my God, who visitest thy creation: my passions are manifest unto thee, and the weakness of my nature, and the strength of mine adversary. Do thou thyself, O Master, shield me from his malice; for his strength is mighty, and my nature is subject to passion, and my strength is feeble. Thou therefore who art good, who knowest my weakness and bearest the burden of my feebleness, keep me from troubled thoughts and from the flood of the passions, and make me worthy of this holy service; lest by my passions I corrupt the sweetness thereof, and be found shameless and presumptuous before thee. But in thy mercy have mercy upon me; for blessed art thou unto the ages. Amen.</p>\n<!-- /wp:paragraph -->"
+  },
+  {
+   "slug": "prayer-stephen-of-thebes",
+   "title": "Prayer of St Stephen of Thebes",
+   "content": "<!-- wp:paragraph {\"className\":\"is-style-rubric\"} -->\n<p class=\"is-style-rubric\">The third prayer, of Saint Stephen of Thebes.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">O Master, Lord Jesus Christ my God, be thou my helper, for I am in thy hands. Suffer me not to sin, for I am led astray. Suffer me not to follow mine evil will. Suffer me not to perish in my sins. Have compassion on thy creature. Cast me not away from thy face because of my sins, for unto thee have I fled. Heal my soul, for I have sinned against thee. Before thee are all they that afflict me, and that seek after my soul to take it; and I have no other refuge but thee alone, O Lord. O Lord, save me for thy mercy's sake, for thou, O Lord, art mighty in all things. For thine is the kingdom, and the power, and the glory, with the Father and the Holy Ghost, now and ever, and unto the ages of ages. Amen.</p>\n<!-- /wp:paragraph -->"
+  },
+  {
+   "slug": "prayer-chrysostom",
+   "title": "Prayer of St John Chrysostom",
+   "content": "<!-- wp:paragraph {\"className\":\"is-style-rubric\"} -->\n<p class=\"is-style-rubric\">The fourth prayer, of Saint John Chrysostom.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">O Lord, whether I will or no, save me. For I, as mire that loveth filth, desire the defilement of sin; but thou, being good and almighty, canst restrain me. For if thou have mercy upon the righteous, it is no great thing; and if thou save the pure, it is no marvel, for they are worthy of thy mercy. But upon me, O Master, the wretched and sinful and defiled, show forth the wonder of thy mercy, and make manifest thy loving-kindness; for unto thee am I left, a beggar, made poor of all good works. O Lord, save me for thy mercy's sake, for blessed art thou unto the ages. Amen.</p>\n<!-- /wp:paragraph -->"
+  },
+  {
+   "slug": "prayer-fifth-cell",
+   "title": "The fifth prayer of the cell rule",
+   "content": "<!-- wp:paragraph {\"className\":\"is-style-rubric\"} -->\n<p class=\"is-style-rubric\">The fifth prayer.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">O Master, have mercy on me for thy goodness' sake, and suffer me not to stray from thy will. And turn not away my poor prayer from thy face, but hear, O Lord, the voice of my prayer when I pray unto thee by day and by night, and receive it as choice incense. And because of my sins withhold not thy grace, but save me for the sake of thy holy name. For thine alone it is to have mercy on us and to save us, and unto thee we send up glory, to the Father, and to the Son, and to the Holy Ghost, both now and ever, and unto the ages of ages. Amen.</p>\n<!-- /wp:paragraph -->"
+  },
+  {
+   "slug": "cross-blessing",
+   "title": "Blessing with the cross",
+   "content": "<!-- wp:paragraph {\"className\":\"is-style-rubric\"} -->\n<p class=\"is-style-rubric\">Having prayed and first cleansed yourself, kiss the cross that you wear on your breast, sign yourself with it, and say:</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">O Lord Jesus Christ, Son of God, bless and sanctify and preserve me by the power of thy life-giving Cross.</p>\n<!-- /wp:paragraph -->"
+  },
+  {
+   "slug": "god-bearer-prayers",
+   "title": "Prayers to the God-bearer",
+   "content": "<!-- wp:paragraph {\"className\":\"is-style-rubric\"} -->\n<p class=\"is-style-rubric\">Then make 100 waist bows with the prayer:</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">My most holy Lady, God-bearer, save me a sinner.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-rubric\"} -->\n<p class=\"is-style-rubric\">With the shorter forms of the rule: 100 prayers to the God-bearer with 200 prostrations, or 50 with 100.</p>\n<!-- /wp:paragraph -->"
+  },
+  {
+   "slug": "it-is-truly-meet",
+   "title": "It is truly meet",
+   "content": "<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">It is truly meet to bless thee, O God-bearer, ever blessed and most immaculate, and the Mother of our God. More honorable than the cherubim, and beyond compare more glorious than the seraphim, who without corruption gavest birth to God the Word, true God-bearer, thee do we magnify.</p>\n<!-- /wp:paragraph -->"
+  },
+  {
+   "slug": "cell-troparia",
+   "title": "Troparia: Have mercy on us, O Lord",
+   "content": "<!-- wp:paragraph {\"className\":\"is-style-rubric\"} -->\n<p class=\"is-style-rubric\">Troparia, Tone 6.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">Have mercy on us, O Lord, have mercy on us; for, being at a loss for any defense, this prayer do we sinners offer unto thee as Master: have mercy on us.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\"><span class=\"pr-red\">Glory:</span> O Lord, have mercy on us, for in thee have we put our trust. Be not exceeding wroth with us, neither remember our iniquities; but look upon us as one compassionate, and deliver us from our enemies. For thou art our God, and we are thy people; we are all the work of thy hands, and we call upon thy name.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\"><span class=\"pr-red\">Both now:</span> Open unto us the doors of compassion, O blessed God-bearer and Virgin, that hoping in thee we perish not, but through thee may be delivered from adversities; for thou art the salvation of the Christian race.</p>\n<!-- /wp:paragraph -->"
+  },
+  {
+   "slug": "ending-cell-rule",
+   "title": "Ending of the cell rule",
+   "content": "<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">Lord, have mercy. <span class=\"pr-red\">(forty times)</span></p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">More honorable than the cherubim, and beyond compare more glorious than the seraphim, who without corruption gavest birth to God the Word, true God-bearer, thee do we magnify.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">Glory to the Father, and to the Son, and to the Holy Ghost, both now and ever, and unto the ages of ages. Amen.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">Lord, have mercy. Lord, have mercy. Lord, bless.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-rubric\"} -->\n<p class=\"is-style-rubric\">Three prostrations.</p>\n<!-- /wp:paragraph -->"
+  },
+  {
+   "slug": "dismissal-fathers",
+   "title": "Dismissal: venerable fathers",
+   "content": "<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">O Lord Jesus Christ, Son of God, for the prayers of thy most pure Mother, and of our venerable and God-bearing fathers, and of all the saints, have mercy on us and save us, for thou art good and the lover of mankind.</p>\n<!-- /wp:paragraph -->"
+  },
+  {
+   "slug": "dismissal-fathers-sunday",
+   "title": "Dismissal: venerable fathers (Sunday)",
+   "content": "<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">O Thou who didst rise from the dead: O Lord Jesus Christ, Son of God, for the prayers of thy most pure Mother, and of our venerable and God-bearing fathers, and of all the saints, have mercy on us and save us, for thou art good and the lover of mankind.</p>\n<!-- /wp:paragraph -->"
+  },
+  {
+   "slug": "dismissal-sunday",
+   "title": "Dismissal: Sunday at Matins and the Hours",
+   "content": "<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">O Thou who didst rise from the dead: O Lord Jesus Christ, Son of God, for the prayers of thy most pure Mother, by the power of the honorable and life-giving Cross, and of the holy, glorious and all-praised apostles, and of [saint], whose day it is, and of all the saints, have mercy on us and save us, for thou art good and the lover of mankind.</p>\n<!-- /wp:paragraph -->"
+  },
+  {
+   "slug": "dismissal-bodiless-powers",
+   "title": "Dismissal: bodiless powers (Monday)",
+   "content": "<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">O Lord Jesus Christ, Son of God, for the prayers of thy most pure Mother, and through the intercession of the honorable heavenly bodiless powers, and of [saint], whose day it is, and of all the saints, have mercy on us and save us, for thou art good and the lover of mankind.</p>\n<!-- /wp:paragraph -->"
+  },
+  {
+   "slug": "dismissal-forerunner",
+   "title": "Dismissal: the Forerunner (Tuesday)",
+   "content": "<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">O Lord Jesus Christ, Son of God, for the prayers of thy most pure Mother, and of the honorable and glorious prophet, forerunner and baptist John, and of [saint], whose day it is, and of all the saints, have mercy on us and save us, for thou art good and the lover of mankind.</p>\n<!-- /wp:paragraph -->"
+  },
+  {
+   "slug": "dismissal-cross",
+   "title": "Dismissal: the Cross (Wednesday and Friday)",
+   "content": "<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">O Lord Jesus Christ, Son of God, for the prayers of thy most pure Mother, by the power of the honorable and life-giving Cross, and of [saint], whose day it is, and of all the saints, have mercy on us and save us, for thou art good and the lover of mankind.</p>\n<!-- /wp:paragraph -->"
+  },
+  {
+   "slug": "dismissal-apostles",
+   "title": "Dismissal: the apostles (Thursday; Sunday Vespers)",
+   "content": "<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">O Lord Jesus Christ, Son of God, for the prayers of thy most pure Mother, and of the holy, glorious and all-praised apostles, and of [saint], whose day it is, and of all the saints, have mercy on us and save us, for thou art good and the lover of mankind.</p>\n<!-- /wp:paragraph -->"
+  },
+  {
+   "slug": "dismissal-saturday",
+   "title": "Dismissal: all the saints (Saturday)",
+   "content": "<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">O Lord Jesus Christ, Son of God, for the prayers of thy most pure Mother, by the power of the honorable and life-giving Cross, through the intercession of the honorable heavenly bodiless powers, and of the honorable and glorious prophet, forerunner and baptist John, and of the holy, glorious and all-praised apostles, and of the holy and right-victorious martyrs, and of our venerable and God-bearing fathers, and of the holy and righteous ancestors of God, Joachim and Anna, and of Saint <em>N.</em>, to whom the church is dedicated, and of [saint], whose day it is, and of all the saints, have mercy on us and save us, for thou art good and the lover of mankind.</p>\n<!-- /wp:paragraph -->"
+  },
+  {
+   "slug": "dismissal-great-saint",
+   "title": "Dismissal: a great saint or the church's saint",
+   "content": "<!-- wp:paragraph {\"className\":\"is-style-rubric\"} -->\n<p class=\"is-style-rubric\">When the feast of the church's saint, or the memory of a great saint, takes the place of the weekday dismissal:</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">O Lord Jesus Christ, Son of God, for the prayers of thy most pure Mother, and of [saint], whose memory we keep, and of all the saints, have mercy on us and save us, for thou art good and the lover of mankind.</p>\n<!-- /wp:paragraph -->"
+  },
+  {
+   "slug": "dismissal-departed-one",
+   "title": "Dismissal for one who has died",
+   "content": "<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">O Thou who hast dominion over the living and the dead: O Lord Jesus Christ, Son of God, for the prayers of thy most pure Mother and of all the saints, give rest to the soul of thy departed servant <em>N.</em> <span class=\"pr-red\">(or: of thy departed handmaid N.)</span> in the bosom of Abraham, Isaac and Jacob, in the abodes of the righteous; and have mercy on us and save us, for thou art good and the lover of mankind.</p>\n<!-- /wp:paragraph -->"
+  },
+  {
+   "slug": "dismissal-departed-many",
+   "title": "Dismissal for those who have died",
+   "content": "<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">O Thou who hast dominion over the living and the dead: O Lord Jesus Christ, Son of God, for the prayers of thy most pure Mother and of all the saints, give rest to the souls of thy departed servants, our fathers and brethren <em>N.</em>, in the bosom of Abraham, Isaac and Jacob, in the abodes of the righteous; and have mercy on us and save us, for thou art good and the lover of mankind.</p>\n<!-- /wp:paragraph -->"
+  },
+  {
+   "slug": "dismissal-universal-saturday",
+   "title": "Dismissal for the Universal Saturday",
+   "content": "<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">O Thou who hast dominion over the living and the dead: O Lord Jesus Christ, Son of God, for the prayers of thy most pure Mother and of all the saints, give rest to the souls of those who have fallen asleep before us and are ever remembered, our blessed founders, fathers and brethren, who lie here, and of Orthodox Christians everywhere, in the bosom of Abraham, Isaac and Jacob, in the abodes of the righteous; and have mercy on us and save us, for thou art good and the lover of mankind.</p>\n<!-- /wp:paragraph -->"
+  },
+  {
+   "slug": "dismissal-canon-departed-one",
+   "title": "Saturday after the canon: for one who has died",
+   "content": "<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">O Lord Jesus Christ, Son of God, for the prayers of thy most pure Mother, and of our venerable and God-bearing fathers, and of all the saints, have mercy on and give rest to the soul of thy servant <em>N.</em> <span class=\"pr-red\">(or: of thy departed handmaid N.)</span> unto the endless ages, for thou art good and the lover of mankind.</p>\n<!-- /wp:paragraph -->"
+  },
+  {
+   "slug": "dismissal-canon-departed-many",
+   "title": "Saturday after the canon: for those who have died",
+   "content": "<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">O Lord Jesus Christ, Son of God, for the prayers of thy most pure Mother, and of our venerable and God-bearing fathers, and of all the saints, have mercy on and give rest to the souls of thy servants, our fathers and brethren, unto the endless ages, for thou art good and the lover of mankind.</p>\n<!-- /wp:paragraph -->"
+  },
+  {
+   "slug": "dismissal-canon-universal",
+   "title": "Saturday after the canon: the general universal dismissal",
+   "content": "<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">O Lord Jesus Christ, Son of God, for the prayers of thy most pure Mother, and of our venerable and God-bearing fathers, and of all the saints, have mercy on and give rest to the souls of those who have fallen asleep before us and are ever remembered, our blessed founders, fathers and brethren, who lie here, and of Orthodox Christians everywhere, unto the endless ages, for thou art good and the lover of mankind.</p>\n<!-- /wp:paragraph -->"
+  }
+ ],
+ "orders": [
+  {
+   "service": "vespers",
+   "title": "Vespers (Home Ustav)",
+   "items": "! When the time for vespers comes, put aside all worldly cares, stand before the image of God and say:\nentrance-opening\nthrough-the-prayers\nheavenly-king\ntrisagion-our-father\n> Lord, have mercy. (12 times)\nglory-both-now\no-come\nrule\n> Lord, have mercy. (3 times)\nglory-both-now\nending-more-honorable\ndismissal\ndeparting-opening"
+  },
+  {
+   "service": "compline",
+   "title": "Compline (Home Ustav)",
+   "items": "entrance-opening\nthrough-the-prayers\nheavenly-king\ntrisagion-our-father\n> Lord, have mercy. (12 times)\no-come\npsalm 50\ncreed\nrule\n> Lord, have mercy. (3 times)\nending-glory-no-prostrations\ndismissal\nprayer-of-forgiveness\nforgive-them-that-hate"
+  },
+  {
+   "service": "midnight",
+   "title": "Midnight Office (Home Ustav)",
+   "items": "entrance-opening\nthrough-the-prayers\nglory-to-thee-for-all\nmacarius-three-prostrations\nheavenly-king\ntrisagion-our-father\n> Lord, have mercy. (12 times)\nprayer-having-risen\no-come\npsalm 50\ncreed\nrule\n> Lord, have mercy. (3 times)\nending-glory-no-prostrations\ndismissal\nprayer-of-forgiveness\nforgive-them-that-hate"
+  },
+  {
+   "service": "matins",
+   "title": "Matins and the 1st Hour (Home Ustav)",
+   "items": "through-the-prayers\ntrisagion-our-father\n> Lord, have mercy. (12 times)\nglory-both-now\no-come\nrule\n> Lord, have mercy. (3 times)\nglory-both-now\no-come\n! Then, for the first hour:\nrule first-hour\nending-glory-prostrations\ndismissal"
+  },
+  {
+   "service": "hours",
+   "title": "Hours (Home Ustav)",
+   "items": "entrance-opening\nthrough-the-prayers\nheavenly-king\ntrisagion-our-father\n> Lord, have mercy. (12 times)\nglory-both-now\no-come\nrule\n> Lord, have mercy. (3 times)\nglory-both-now\nending-truly-meet\ndismissal"
+  },
+  {
+   "service": "cell-rule",
+   "title": "Cell Rule (Home Ustav)",
+   "items": "cell-twelve-prostrations\nprayer-macarius\nprayer-isaac-the-syrian\nprayer-stephen-of-thebes\nprayer-chrysostom\nprayer-fifth-cell\ncross-blessing\nglory-to-thee-for-all\nthrough-the-prayers\nheavenly-king\ntrisagion-our-father\n> Lord, have mercy. (12 times)\nglory-both-now\no-come\npsalm 50\ncreed\nrule\ngod-bearer-prayers\nit-is-truly-meet\ntrisagion-our-father\ncell-troparia\nending-cell-rule\ndismissal"
+  }
+ ],
+ "dismissals": {
+  "vespers": {
+   "sunday": "dismissal-apostles",
+   "monday": "dismissal-bodiless-powers",
+   "tuesday": "dismissal-forerunner",
+   "wednesday": "dismissal-cross",
+   "thursday": "dismissal-apostles",
+   "friday": "dismissal-cross",
+   "saturday": "dismissal-saturday"
+  },
+  "compline": {
+   "sunday": "dismissal-fathers",
+   "monday": "dismissal-fathers",
+   "tuesday": "dismissal-fathers",
+   "wednesday": "dismissal-fathers",
+   "thursday": "dismissal-fathers",
+   "friday": "dismissal-fathers",
+   "saturday": "dismissal-fathers"
+  },
+  "midnight": {
+   "sunday": "dismissal-fathers-sunday",
+   "monday": "dismissal-fathers",
+   "tuesday": "dismissal-fathers",
+   "wednesday": "dismissal-fathers",
+   "thursday": "dismissal-fathers",
+   "friday": "dismissal-fathers",
+   "saturday": "dismissal-fathers"
+  },
+  "matins": {
+   "sunday": "dismissal-sunday",
+   "monday": "dismissal-bodiless-powers",
+   "tuesday": "dismissal-forerunner",
+   "wednesday": "dismissal-cross",
+   "thursday": "dismissal-apostles",
+   "friday": "dismissal-cross",
+   "saturday": "dismissal-saturday"
+  },
+  "hours": {
+   "sunday": "dismissal-sunday",
+   "monday": "dismissal-bodiless-powers",
+   "tuesday": "dismissal-forerunner",
+   "wednesday": "dismissal-cross",
+   "thursday": "dismissal-apostles",
+   "friday": "dismissal-cross",
+   "saturday": "dismissal-saturday"
+  },
+  "cell-rule": {
+   "sunday": "dismissal-fathers",
+   "monday": "dismissal-fathers",
+   "tuesday": "dismissal-fathers",
+   "wednesday": "dismissal-fathers",
+   "thursday": "dismissal-fathers",
+   "friday": "dismissal-fathers",
+   "saturday": "dismissal-fathers"
+  }
+ }
+}

@@ -120,6 +120,16 @@ class Services {
 		update_option( self::OPTION, $out );
 	}
 
+	/** Choose the order a service uses (Home Ustav import). */
+	public static function set_order( $key, $order_id ) {
+		$saved = get_option( self::OPTION, array() );
+		$saved = is_array( $saved ) ? $saved : array();
+		if ( isset( self::definitions()[ $key ] ) ) {
+			$saved[ $key ]['order'] = absint( $order_id );
+			update_option( self::OPTION, $saved );
+		}
+	}
+
 	/**
 	 * Prayers used inside the rule, by short name:
 	 *   after_stasis   said after each stasis (the Glory and Alleluia)

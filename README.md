@@ -6,7 +6,7 @@ a record of what was kept, with reports and optional sharing with a chosen
 member (a nastavnik).
 
 **Status:** early development. The admin side works (Psalter, prayers,
-orders, kathismas, preview); the members' pages come next.
+orders, dismissals, kathismas, preview); the members' pages come next.
 
 ## Privacy
 
@@ -32,6 +32,16 @@ in git); `tools/build_psalter.py` turns them into `data/psalter.json`, which
 the plugin loads into its own table on activation (and again whenever the
 file changes).
 
+## Home Ustav
+
+`tools/ustav/home-ustav.txt` holds the English translation of the Home
+Ustav (1910) chapter on prayer at home: the openings and endings of the six
+services, the cell rule, and the dismissals for the week.
+`tools/build_ustav.py` turns it into `data/ustav.json`. The plugin adds
+these as ordinary Prayers and Orders the first time an administrator opens
+the admin, and again (missing ones only) whenever the file changes. Nothing
+already on the site is overwritten.
+
 ## In the admin (Prayer Rule menu)
 
 - **Prayers** – texts written on the site, each with a *short name*
@@ -40,14 +50,20 @@ file changes).
   (all red), and the *Red* button for words such as bows or the speaker.
 - **Orders** – a service's opening and ending, one item per line: a
   prayer's short name, `psalm 50`, and `rule` where the member's kathismas
-  or ladders are read (`rule first-hour` for the 1st Hour inside Matins).
+  or ladders are read (`rule first-hour` for the 1st Hour inside Matins),
+  `dismissal` for the day's dismissal, `> Lord, have mercy. (12 times)` for
+  a short line said as written, and `! …` for a rubric.
   Inside a prayer, `[psalm 50]` gives the psalm in the reader's translation.
 - **Services** – the six services (Vespers, Compline, Midnight Office,
   Matins with the 1st Hour, Hours, Cell Rule): which order each uses, the
   suggested amounts, and the prayers inside the rule (after each stasis,
   after each kathisma in Great Lent, with the ladders).
+- **Dismissals** – which dismissal ends each service on each day of the
+  week (the day begins at sundown: Sunday Vespers is read on Saturday
+  evening). In a dismissal, `[saint]` stands for the saint of the day.
 - **Kathismas** – the twenty kathismas and their stases, editable.
-- **Preview** – any service with any portion, translation, and Great Lent.
+- **Preview** – any service with any portion, translation, day of the
+  week, and Great Lent.
 - **Settings** – who may use it, the default translation, Coverdale's
   colons, verse numbers.
 

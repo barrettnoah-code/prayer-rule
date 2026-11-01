@@ -2,7 +2,7 @@
 /**
  * Plugin Name:       Prayer Rule
  * Description:       A private prayer rule for members: the daily cycle kept by kathismas and Jesus Prayers, a built-in Psalter, and an encrypted record of what was kept.
- * Version:           0.3.0
+ * Version:           0.4.0
  * Requires at least: 6.0
  * Requires PHP:      7.4
  * Author:            The Old Believers
@@ -16,7 +16,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'PRAYER_RULE_VERSION', '0.3.0' );
+define( 'PRAYER_RULE_VERSION', '0.4.0' );
 define( 'PRAYER_RULE_FILE', __FILE__ );
 define( 'PRAYER_RULE_DIR', plugin_dir_path( __FILE__ ) );
 define( 'PRAYER_RULE_URL', plugin_dir_url( __FILE__ ) );
@@ -26,6 +26,8 @@ require_once PRAYER_RULE_DIR . 'includes/class-psalter.php';
 require_once PRAYER_RULE_DIR . 'includes/class-kathismas.php';
 require_once PRAYER_RULE_DIR . 'includes/class-texts.php';
 require_once PRAYER_RULE_DIR . 'includes/class-services.php';
+require_once PRAYER_RULE_DIR . 'includes/class-dismissals.php';
+require_once PRAYER_RULE_DIR . 'includes/class-ustav.php';
 require_once PRAYER_RULE_DIR . 'includes/class-orders.php';
 require_once PRAYER_RULE_DIR . 'includes/class-render.php';
 require_once PRAYER_RULE_DIR . 'includes/class-rest.php';
@@ -38,12 +40,15 @@ add_action( 'init', array( 'PrayerRule\\Texts', 'register' ) );
 add_action( 'init', array( 'PrayerRule\\Orders', 'register' ) );
 add_action( 'rest_api_init', array( 'PrayerRule\\Rest', 'register' ) );
 add_action( 'admin_init', array( 'PrayerRule\\Psalter', 'maybe_update' ) );
+// The Home Ustav prayers and orders: added once, and again when the file changes.
+add_action( 'admin_init', array( 'PrayerRule\\Ustav', 'maybe_import' ) );
 // Every save (editor, REST, or code) gives a prayer its short name.
 add_action( 'save_post_pr_text', array( 'PrayerRule\\Texts', 'save' ), 10, 2 );
 add_action(
 	'init',
 	function () {
 		add_shortcode( 'psalm', array( 'PrayerRule\\Render', 'shortcode' ) );
+		add_shortcode( 'saint', array( 'PrayerRule\\Render', 'saint_shortcode' ) );
 	}
 );
 
