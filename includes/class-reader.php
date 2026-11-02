@@ -131,6 +131,22 @@ class Reader {
 .prayer-rule-reader .pr-grid{border-collapse:collapse;margin:.6em 0;font-size:.92em}
 .prayer-rule-reader .pr-grid th,.prayer-rule-reader .pr-grid td{padding:.2em .5em;text-align:center;border-bottom:1px solid rgba(127,127,127,.25)}
 .prayer-rule-reader .pr-grid tr th:first-child{text-align:left;white-space:nowrap}
-.prayer-rule-reader .pr-kept{font-weight:600}';
+.prayer-rule-reader .pr-kept{font-weight:600}
+.prayer-rule-reader .pr-report-bar{display:flex;flex-wrap:wrap;gap:.5em;align-items:center;margin:.6em 0}
+.prayer-rule-reader .pr-report-bar .pr-tabs{margin:0}
+.prayer-rule-reader .pr-report-bar > button{cursor:pointer;padding:.2em .7em}
+.prayer-rule-reader .pr-summary td{text-align:left}
+.prayer-rule-reader .pr-bar{display:inline-block;height:.7em;background:#921a0a;vertical-align:middle;max-width:8em;min-width:1px}
+.prayer-rule-reader .pr-summary td:last-child{min-width:12em}
+.prayer-rule-reader .pr-report-lines{margin:.6em 0 1em 1.2em}
+.prayer-rule-reader .pr-grid tr.is-today th{text-decoration:underline}
+.prayer-rule-reader .pr-month{border-collapse:collapse;margin:.6em 0;table-layout:fixed;width:100%;max-width:32em}
+.prayer-rule-reader .pr-month th{font-size:.8em;font-weight:normal;opacity:.7}
+.prayer-rule-reader .pr-month td{border:1px solid rgba(127,127,127,.3);height:3.2em;vertical-align:top;padding:.2em .3em;cursor:pointer;font-size:.85em}
+.prayer-rule-reader .pr-month td.is-future{opacity:.4;cursor:default}
+.prayer-rule-reader .pr-month td.is-today{outline:2px solid #921a0a}
+.prayer-rule-reader .pr-month-day{display:block;font-weight:600}
+.prayer-rule-reader .pr-month-n{display:block;font-size:.85em}
+@media print{body *{visibility:hidden}.prayer-rule-reader .pr-record,.prayer-rule-reader .pr-record *{visibility:visible}.prayer-rule-reader .pr-record{position:absolute;left:0;top:0;width:100%}.prayer-rule-reader .pr-record button{display:none}.prayer-rule-reader .pr-month td{-webkit-print-color-adjust:exact;print-color-adjust:exact}}';
 	}
 }

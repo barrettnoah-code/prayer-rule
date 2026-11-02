@@ -8,7 +8,8 @@ member (a nastavnik).
 **Status:** early development. The admin side works (Psalter, prayers,
 orders, dismissals, fasting, saints, kathismas, preview). Members read any
 service on the reading page, keep a private encrypted rule, and mark each
-service as kept. Reports and sharing with a nastavnik come next.
+service as kept, with weekly and monthly reports. Sharing with a nastavnik
+comes next.
 
 ## The reading page
 
@@ -20,6 +21,11 @@ A member can set up a private rule there: which services they keep, the
 portion for each, the next kathisma, the Psalter translation. They then
 mark each service as kept; the next kathisma moves on by itself, and a
 change made more than 7 days after the day is marked "corrected later".
+Under "My record" they see reports by week or month: each service kept on
+how many days, the days with the whole rule kept, kathismas read (and how
+many times the whole Psalter), ladders of the Jesus Prayer, and a month
+calendar. They can print a report or download their whole record as a CSV
+file. All of this is worked out in their browser from the decrypted record.
 Without a private rule, the settings are kept only in that browser.
 
 ## Privacy

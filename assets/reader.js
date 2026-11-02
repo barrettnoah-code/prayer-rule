@@ -372,25 +372,140 @@
 		return box;
 	}
 
-	// ---- the record: the last two weeks
+	// ---- the record: reports by week or month, worked out here from the decrypted record
+
+	UI.report = { mode: 'week', anchor: defaultDay() };
+
+	function weekStart(day) { return addDays(day, -parseIso(day).getDay()); }              // weeks run Sunday to Saturday
+	function reportRange() {
+		var a = UI.report.anchor, start, end;
+		if (UI.report.mode === 'week') { start = weekStart(a); end = addDays(start, 6); }
+		else { var d = parseIso(a); start = iso(new Date(d.getFullYear(), d.getMonth(), 1)); end = iso(new Date(d.getFullYear(), d.getMonth() + 1, 0)); }
+		return { start: start, end: end };
+	}
+	function keptServices() { return C.services.filter(function (s) { return !V.rule.services[s.key] || V.rule.services[s.key].keep !== false; }); }
+
+	/** Counts for the days from start to end (days after today are left out). */
+	function stats(start, end) {
+		var today = defaultDay(), keep = keptServices(), out = { days: 0, full: 0, kathismas: 0, ladders: 0, corrected: 0, per: {}, byDay: {} };
+		C.services.forEach(function (s) { out.per[s.key] = 0; });
+		for (var day = start; day <= end && day <= today; day = addDays(day, 1)) {
+			var n = 0;
+			out.days++;
+			C.services.forEach(function (s) {
+				var e = entry(day, s.key);
+				if (e && e.corrected) { out.corrected++; }
+				if (!e || !e.kept) { return; }
+				out.per[s.key]++;
+				out.kathismas += (e.k || []).length;
+				out.ladders += e.ladders || 0;
+				if (keep.indexOf(s) >= 0) { n++; }
+			});
+			out.byDay[day] = n;
+			if (keep.length && n >= keep.length) { out.full++; }
+		}
+		return out;
+	}
+
+	function rangeLabel(r) {
+		var a = parseIso(r.start), b = parseIso(r.end);
+		if (UI.report.mode === 'month') { return a.toLocaleDateString(undefined, { month: 'long', year: 'numeric' }); }
+		return a.toLocaleDateString(undefined, { month: 'short', day: 'numeric' }) + ' – ' + b.toLocaleDateString(undefined, { month: 'short', day: 'numeric', year: 'numeric' });
+	}
 
 	function drawRecord() {
+		var open = record.open;
 		record.innerHTML = '';
 		if (!V.key) { record.style.display = 'none'; return; }
 		record.style.display = '';
 		record.appendChild(el('summary', { text: 'My record' }));
-		var kept = C.services.filter(function (s) { return !V.rule.services[s.key] || V.rule.services[s.key].keep !== false; });
-		var t = el('table', { class: 'pr-grid' });
-		t.appendChild(el('tr', {}, [el('th', { text: '' })].concat(kept.map(function (s) { return el('th', { text: s.name }); }))));
-		for (var i = 0; i < 14; i++) {
-			var day = addDays(defaultDay(), -i), d = parseIso(day);
-			t.appendChild(el('tr', {}, [el('th', { text: d.toLocaleDateString(undefined, { weekday: 'short', month: 'short', day: 'numeric' }) })].concat(kept.map(function (s) {
-				var e = entry(day, s.key);
-				return el('td', { text: e && e.kept ? (e.corrected ? '✓*' : '✓') : '·', title: e && e.corrected ? 'corrected later' : '' });
-			}))));
+		var r = reportRange(), st = stats(r.start, r.end), keep = keptServices();
+
+		function go(step) {
+			var d = parseIso(UI.report.anchor);
+			if (UI.report.mode === 'week') { d.setDate(d.getDate() + 7 * step); } else { d = new Date(d.getFullYear(), d.getMonth() + step, 1, 12); }
+			UI.report.anchor = iso(d); drawRecord();
 		}
+		function mode(m) { var b = el('button', { type: 'button', 'aria-pressed': UI.report.mode === m ? 'true' : 'false', text: m === 'week' ? 'Week' : 'Month' }); b.addEventListener('click', function () { UI.report.mode = m; drawRecord(); }); return b; }
+		var later = r.end >= defaultDay();
+		record.appendChild(el('div', { class: 'pr-report-bar' }, [
+			el('span', { class: 'pr-tabs' }, [mode('week'), mode('month')]),
+			el('button', { type: 'button', text: '‹', title: 'Earlier', on: { click: function () { go(-1); } } }),
+			el('strong', { text: ' ' + rangeLabel(r) + ' ' }),
+			later ? null : el('button', { type: 'button', text: '›', title: 'Later', on: { click: function () { go(1); } } })
+		]));
+
+		// Per service: kept on how many of the days.
+		var t = el('table', { class: 'pr-grid pr-summary' });
+		t.appendChild(el('tr', {}, [el('th', { text: '' }), el('th', { text: 'Kept' }), el('th', { text: '' })]));
+		keep.forEach(function (s) {
+			var n = st.per[s.key], pct = st.days ? Math.round(100 * n / st.days) : 0;
+			t.appendChild(el('tr', {}, [el('th', { text: s.name }), el('td', { text: n + ' of ' + st.days }), el('td', {}, [el('span', { class: 'pr-bar', style: 'width:' + (pct * 0.08).toFixed(2) + 'em' }), ' ' + pct + '%'])]));
+		});
 		record.appendChild(t);
-		record.appendChild(el('p', { class: 'pr-note', text: '✓* marks a service checked or unchecked more than 7 days after its day ("corrected later").' }));
+
+		var lines = [];
+		lines.push(st.full + ' of ' + st.days + ' days with every service of your rule kept.');
+		if (st.kathismas) { lines.push(st.kathismas + ' kathismas read (' + (Math.round(st.kathismas / 2) / 10).toString().replace('.', '.') + ' times the whole Psalter).'); }
+		if (st.ladders) { lines.push(half(st.ladders) + ' ladders of the Jesus Prayer (' + Math.round(st.ladders * 100).toLocaleString() + ' prayers).'); }
+		if (st.corrected) { lines.push(st.corrected + ' marked "corrected later".'); }
+		record.appendChild(el('ul', { class: 'pr-report-lines' }, lines.map(function (x) { return el('li', { text: x }); })));
+
+		record.appendChild(UI.report.mode === 'week' ? weekGrid(r, keep) : monthGrid(r, st, keep));
+		record.appendChild(el('p', { class: 'pr-note', text: '✓* marks a service checked or unchecked more than 7 days after its day. Days are church days: Vespers and Compline count for the next day.' }));
+		record.appendChild(el('p', {}, [
+			el('button', { type: 'button', text: 'Print this report', on: { click: function () { record.open = true; window.print(); } } }), ' ',
+			el('button', { type: 'button', text: 'Download my whole record (CSV)', on: { click: downloadCsv } })
+		]));
+		record.open = open;
+	}
+
+	function weekGrid(r, keep) {
+		var t = el('table', { class: 'pr-grid' }), today = defaultDay();
+		t.appendChild(el('tr', {}, [el('th', { text: '' })].concat(keep.map(function (s) { return el('th', { text: s.name }); }))));
+		for (var day = r.start; day <= r.end; day = addDays(day, 1)) {
+			var row = [el('th', { text: parseIso(day).toLocaleDateString(undefined, { weekday: 'short', month: 'short', day: 'numeric' }) })];
+			keep.forEach(function (s) {
+				var e = entry(day, s.key);
+				row.push(el('td', { text: day > today ? '' : (e && e.kept ? (e.corrected ? '✓*' : '✓') : '·') }));
+			});
+			t.appendChild(el('tr', { class: day === today ? 'is-today' : '' }, row));
+		}
+		return t;
+	}
+
+	function monthGrid(r, st, keep) {
+		var t = el('table', { class: 'pr-month' }), today = defaultDay(), m = keep.length || 1;
+		var names = []; for (var i = 0; i < 7; i++) { names.push(el('th', { text: new Date(2026, 10, 1 + i).toLocaleDateString(undefined, { weekday: 'short' }) })); }   // Nov 1, 2026 is a Sunday
+		t.appendChild(el('tr', {}, names));
+		var row = el('tr'), lead = parseIso(r.start).getDay();
+		for (var j = 0; j < lead; j++) { row.appendChild(el('td')); }
+		for (var day = r.start; day <= r.end; day = addDays(day, 1)) {
+			if (parseIso(day).getDay() === 0 && row.children.length) { t.appendChild(row); row = el('tr'); }
+			var n = st.byDay[day], future = day > today;
+			var cell = el('td', { class: (future ? 'is-future' : '') + (day === today ? ' is-today' : ''), title: future ? '' : n + ' of ' + m + ' kept' }, [
+				el('span', { class: 'pr-month-day', text: String(parseIso(day).getDate()) }),
+				future ? null : el('span', { class: 'pr-month-n', text: n + '/' + m })
+			]);
+			if (!future && n) { cell.style.background = 'rgba(146,26,10,' + (0.12 + 0.6 * Math.min(1, n / m)).toFixed(2) + ')'; if (n / m > 0.6) { cell.style.color = '#fff'; } }
+			cell.addEventListener('click', (function (d) { return function () { UI.day = d; dateInput.value = d; drawTabs(); show(); }; })(day));
+			row.appendChild(cell);
+		}
+		t.appendChild(row);
+		return t;
+	}
+
+	function downloadCsv() {
+		var rows = [['date', 'service', 'kept', 'kathismas', 'ladders', 'corrected later', 'first marked', 'last changed']];
+		Object.keys(V.log.entries).sort().forEach(function (k) {
+			var e = V.log.entries[k], a = k.split('|'), s = serviceByKey(a[1]);
+			rows.push([a[0], s ? s.name : a[1], e.kept ? 'yes' : 'no', (e.k || []).join(' '), e.ladders || 0, e.corrected ? 'yes' : '', e.first || '', e.edited || '']);
+		});
+		var csv = rows.map(function (r) { return r.map(function (x) { x = String(x); return /[",\n]/.test(x) ? '"' + x.replace(/"/g, '""') + '"' : x; }).join(','); }).join('\n');
+		var url = URL.createObjectURL(new Blob([csv], { type: 'text/csv' }));
+		var a = el('a', { href: url, download: 'prayer-rule-record-' + defaultDay() + '.csv' });
+		document.body.appendChild(a); a.click(); a.remove();
+		setTimeout(function () { URL.revokeObjectURL(url); }, 1000);
 	}
 
 	// ---- loading and showing a service
