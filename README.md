@@ -85,11 +85,14 @@ additions. `tools/ustav/feasts.txt` holds the dismissals for the feasts of
 the year and of the Triodion and Pentecostarion, each with the dates it
 applies to. `tools/ustav/fasting.txt` holds chapter 1, on the fasts: for
 each period the general rule, the other typika, and a short line for each
-day of the week.
+day of the week. `tools/ustav/zapevy.txt` holds the zapevy for the whole
+year (the refrains said with the prostrations in the daily additions): for
+the days of the week, for dated feasts and saints, and for the Triodion.
 `tools/build_ustav.py` turns it into `data/ustav.json`. The plugin adds
 these as ordinary Prayers and Orders the first time an administrator opens
-the admin, and again (missing ones only) whenever the file changes. Nothing
-already on the site is overwritten.
+the admin, and again whenever the file changes: missing ones are added,
+and ones nobody has edited since an earlier version are brought up to
+date. Anything edited on the site is left alone.
 
 ## In the admin (Prayer Rule menu)
 
@@ -102,7 +105,20 @@ already on the site is overwritten.
   or ladders are read (`rule first-hour` for the 1st Hour inside Matins),
   `dismissal` for the day's dismissal, `additions` for the daily additions, `> Lord, have mercy. (12 times)` for
   a short line said as written, and `! …` for a rubric.
-  Inside a prayer, `[psalm 50]` gives the psalm in the reader's translation.
+  Inside a prayer, `[psalm 50]` gives the psalm in the reader's translation,
+  and a line `[zapev god-bearer]` (also `trinity`, `resurrection`,
+  `cross-resurrection`, `angels`, `forerunner`, `cross`, `apostles`,
+  `nicholas`, `all-saints`, `departed`, `feast`, `saint`) gives a zapev:
+  `feast` and `saint` follow the date.
+  After a line, `[bow]` shows "(prostration)" or "(bow)" (a waist bow) as
+  the day requires: waist bows on Saturdays and Sundays (not Great
+  Saturday), on great feasts and feasts with a vigil or polyeleos, in the
+  twelve days after the Nativity and from Pascha to All Saints; in Holy Week
+  from the Hours of Great Wednesday the service has waist bows while the
+  openings and the rule stay to the ground; Vespers and Compline read on a
+  Sunday or feast evening begin with waist bows. `[bow entrance]`,
+  `[bow departing]`, `[bow rule]` and `[bow great]` (always "great
+  prostration") mark the other kinds; `[bow 3]` gives "(three prostrations)".
 - **Services** – the six services (Vespers, Compline, Midnight Office,
   Matins with the 1st Hour, Hours, Cell Rule): which order each uses, the
   suggested amounts, and the prayers inside the rule (after each stasis,
@@ -118,7 +134,9 @@ already on the site is overwritten.
   Orthodox Liturgical Calendar plugin (its highest-ranked commemoration,
   worded for the dismissal), with the wording editable per church date.
   The calendar itself is never changed; without it, dismissals say
-  "Saint N.".
+  "Saint N.". Also the saint's zapev for each date: the Home Ustav's where
+  it gives one, otherwise made from the saint's name after the General
+  Menaion ("O holy martyr N., pray to God for us"), editable per date.
 - **Kathismas** – the twenty kathismas and their stases, editable.
 - **Preview** – any service on any date (the day of the week, Great Lent,
   the saint, the feast and the fast follow from the date), with any portion

@@ -1,16 +1,22 @@
 {
  "format": "prayer-rule-ustav/1",
- "source": "Home Ustav (1910): fasts (fol. 9-30), prayer at home (ch. 4) and the dismissals for the whole year (fol. 226-253); English translation",
+ "source": "Home Ustav (1910): fasts (fol. 9-30), prayer at home (ch. 4), the zapevy (fol. 209-225) and the dismissals for the whole year (fol. 226-253); English translation",
  "prayers": [
   {
    "slug": "entrance-opening",
    "title": "The Entrance Opening",
-   "content": "<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">O God, be merciful to me a sinner. <span class=\"pr-red\">(prostration)</span></p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">Thou who hast created me, O Lord, have mercy on me. <span class=\"pr-red\">(prostration)</span></p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">Without number have I sinned; O Lord, have mercy, and forgive me a sinner. <span class=\"pr-red\">(prostration)</span></p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">It is truly meet to bless thee, O God-bearer, ever blessed and most immaculate, and the Mother of our God. More honorable than the cherubim, and beyond compare more glorious than the seraphim, who without corruption gavest birth to God the Word, true God-bearer, thee do we magnify.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-rubric\"} -->\n<p class=\"is-style-rubric\">A great prostration. This one is never left out.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">Glory to the Father, and to the Son, and to the Holy Ghost. <span class=\"pr-red\">(prostration)</span></p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">Both now and ever, and unto the ages of ages. Amen. <span class=\"pr-red\">(prostration)</span></p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">Lord, have mercy. Lord, have mercy. Lord, bless. <span class=\"pr-red\">(prostration)</span></p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-rubric\"} -->\n<p class=\"is-style-rubric\">Then the dismissal:</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">O Lord Jesus Christ, Son of God, for the prayers of thy most pure Mother, and of Saint <em>N.</em>, whose church this is, and of the holy angel my guardian, and of all thy saints: O Lord Jesus Christ, Son of God, have mercy on me and save me, for thou art good and the lover of mankind.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-rubric\"} -->\n<p class=\"is-style-rubric\">All these prostrations are made to the ground, except on Saturdays, Sundays and feast days. Likewise, throughout Pentecost and during the twelve days after Christ's Nativity, they are made as waist bows.</p>\n<!-- /wp:paragraph -->"
+   "content": "<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">O God, be merciful to me a sinner. [bow entrance]</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">Thou who hast created me, O Lord, have mercy on me. [bow entrance]</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">Without number have I sinned; O Lord, have mercy, and forgive me a sinner. [bow entrance]</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">It is truly meet to bless thee, O God-bearer, ever blessed and most immaculate, and the Mother of our God. More honorable than the cherubim, and beyond compare more glorious than the seraphim, who without corruption gavest birth to God the Word, true God-bearer, thee do we magnify. [bow great]</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-rubric\"} -->\n<p class=\"is-style-rubric\">This great prostration is never left out.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">Glory to the Father, and to the Son, and to the Holy Ghost. [bow entrance]</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">Both now and ever, and unto the ages of ages. Amen. [bow entrance]</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">Lord, have mercy. Lord, have mercy. Lord, bless. [bow entrance]</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-rubric\"} -->\n<p class=\"is-style-rubric\">Then the dismissal:</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">O Lord Jesus Christ, Son of God, for the prayers of thy most pure Mother, and of Saint <em>N.</em>, whose church this is, and of the holy angel my guardian, and of all thy saints: O Lord Jesus Christ, Son of God, have mercy on me and save me, for thou art good and the lover of mankind.</p>\n<!-- /wp:paragraph -->",
+   "previous": [
+    "1de4e106d28f5b823156a2e9b1b8bea4"
+   ]
   },
   {
    "slug": "departing-opening",
    "title": "The Departing Opening",
-   "content": "<!-- wp:paragraph {\"className\":\"is-style-rubric\"} -->\n<p class=\"is-style-rubric\">The departing opening, made in the same way as the entrance opening:</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">O God, be merciful to me a sinner. <span class=\"pr-red\">(prostration)</span></p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">Thou who hast created me, O Lord, have mercy on me. <span class=\"pr-red\">(prostration)</span></p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">Without number have I sinned; O Lord, have mercy, and forgive me a sinner. <span class=\"pr-red\">(prostration)</span></p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">It is truly meet to bless thee, O God-bearer, ever blessed and most immaculate, and the Mother of our God. More honorable than the cherubim, and beyond compare more glorious than the seraphim, who without corruption gavest birth to God the Word, true God-bearer, thee do we magnify.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-rubric\"} -->\n<p class=\"is-style-rubric\">A great prostration. This one is never left out.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">Glory to the Father, and to the Son, and to the Holy Ghost. <span class=\"pr-red\">(prostration)</span></p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">Both now and ever, and unto the ages of ages. Amen. <span class=\"pr-red\">(prostration)</span></p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">Lord, have mercy. Lord, have mercy. Lord, bless. <span class=\"pr-red\">(prostration)</span></p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-rubric\"} -->\n<p class=\"is-style-rubric\">Then the dismissal:</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">O Lord Jesus Christ, Son of God, for the prayers of thy most pure Mother, and of Saint <em>N.</em>, whose church this is, and of the holy angel my guardian, and of all thy saints: O Lord Jesus Christ, Son of God, have mercy on me and save me, for thou art good and the lover of mankind.</p>\n<!-- /wp:paragraph -->"
+   "content": "<!-- wp:paragraph {\"className\":\"is-style-rubric\"} -->\n<p class=\"is-style-rubric\">The departing opening, made in the same way as the entrance opening:</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">O God, be merciful to me a sinner. [bow departing]</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">Thou who hast created me, O Lord, have mercy on me. [bow departing]</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">Without number have I sinned; O Lord, have mercy, and forgive me a sinner. [bow departing]</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">It is truly meet to bless thee, O God-bearer, ever blessed and most immaculate, and the Mother of our God. More honorable than the cherubim, and beyond compare more glorious than the seraphim, who without corruption gavest birth to God the Word, true God-bearer, thee do we magnify. [bow great]</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-rubric\"} -->\n<p class=\"is-style-rubric\">This great prostration is never left out.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">Glory to the Father, and to the Son, and to the Holy Ghost. [bow departing]</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">Both now and ever, and unto the ages of ages. Amen. [bow departing]</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">Lord, have mercy. Lord, have mercy. Lord, bless. [bow departing]</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-rubric\"} -->\n<p class=\"is-style-rubric\">Then the dismissal:</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">O Lord Jesus Christ, Son of God, for the prayers of thy most pure Mother, and of Saint <em>N.</em>, whose church this is, and of the holy angel my guardian, and of all thy saints: O Lord Jesus Christ, Son of God, have mercy on me and save me, for thou art good and the lover of mankind.</p>\n<!-- /wp:paragraph -->",
+   "previous": [
+    "f86f6ec7c7ce12ab6464e0a25a479ec5"
+   ]
   },
   {
    "slug": "through-the-prayers",
@@ -25,7 +31,10 @@
   {
    "slug": "trisagion-our-father",
    "title": "Trisagion through the Our Father",
-   "content": "<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">Holy God, Holy Mighty, Holy Immortal, have mercy on us. <span class=\"pr-red\">(three times, with three prostrations)</span></p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">Glory to the Father, and to the Son, and to the Holy Ghost, both now and ever, and unto the ages of ages. Amen.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">O most holy Trinity, have mercy on us. O Lord, cleanse our sins. O Master, pardon our iniquities. O Holy One, visit and heal our infirmities, for thy name's sake.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">Lord, have mercy. <span class=\"pr-red\">(three times)</span></p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">Glory to the Father, and to the Son, and to the Holy Ghost, both now and ever, and unto the ages of ages. Amen.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">Our Father, which art in heaven, hallowed be thy name. Thy kingdom come. Thy will be done, as in heaven, so on earth. Give us this day our daily bread. And forgive us our debts, as we forgive our debtors. And lead us not into temptation, but deliver us from the evil one.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">O Lord Jesus Christ, Son of God, have mercy on us. Amen.</p>\n<!-- /wp:paragraph -->"
+   "content": "<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">Holy God, Holy Mighty, Holy Immortal, have mercy on us. [bow]</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">Holy God, Holy Mighty, Holy Immortal, have mercy on us. [bow]</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">Holy God, Holy Mighty, Holy Immortal, have mercy on us. [bow]</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">Glory to the Father, and to the Son, and to the Holy Ghost, both now and ever, and unto the ages of ages. Amen.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">O most holy Trinity, have mercy on us. O Lord, cleanse our sins. O Master, pardon our iniquities. O Holy One, visit and heal our infirmities, for thy name's sake.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">Lord, have mercy. <span class=\"pr-red\">(three times)</span></p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">Glory to the Father, and to the Son, and to the Holy Ghost, both now and ever, and unto the ages of ages. Amen.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">Our Father, which art in heaven, hallowed be thy name. Thy kingdom come. Thy will be done, as in heaven, so on earth. Give us this day our daily bread. And forgive us our debts, as we forgive our debtors. And lead us not into temptation, but deliver us from the evil one.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">O Lord Jesus Christ, Son of God, have mercy on us. Amen.</p>\n<!-- /wp:paragraph -->",
+   "previous": [
+    "dcc80e9f755930b3312e4919a82cecb3"
+   ]
   },
   {
    "slug": "glory-both-now",
@@ -35,7 +44,10 @@
   {
    "slug": "o-come",
    "title": "O come, let us worship",
-   "content": "<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">O come, let us worship God our King.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">O come, let us worship Christ, our King and God.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">O come, let us worship and fall down before the Lord Jesus Christ himself, our King and God.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-rubric\"} -->\n<p class=\"is-style-rubric\">Three prostrations.</p>\n<!-- /wp:paragraph -->"
+   "content": "<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">O come, let us worship God our King. [bow]</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">O come, let us worship Christ, our King and God. [bow]</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">O come, let us worship and fall down before the Lord Jesus Christ himself, our King and God. [bow]</p>\n<!-- /wp:paragraph -->",
+   "previous": [
+    "74967798e4a8b32dcf10c10f53020b02"
+   ]
   },
   {
    "slug": "glory-to-thee-for-all",
@@ -45,7 +57,10 @@
   {
    "slug": "macarius-three-prostrations",
    "title": "Prayer of St Macarius, with three prostrations",
-   "content": "<!-- wp:paragraph {\"className\":\"is-style-rubric\"} -->\n<p class=\"is-style-rubric\">Make three prostrations, saying the prayer of Saint Macarius:</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">O God, cleanse me a sinner, for I have never done any good thing before thee. <span class=\"pr-red\">(prostration)</span></p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">But deliver me from the evil one, and let thy will be done in me. <span class=\"pr-red\">(prostration)</span></p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">That without condemnation I may open my unworthy mouth, and praise thy holy name, of the Father, and of the Son, and of the Holy Ghost, now and ever, and unto the ages of ages. Amen. <span class=\"pr-red\">(prostration)</span></p>\n<!-- /wp:paragraph -->"
+   "content": "<!-- wp:paragraph {\"className\":\"is-style-rubric\"} -->\n<p class=\"is-style-rubric\">The prayer of Saint Macarius, with three bows:</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">O God, cleanse me a sinner, for I have never done any good thing before thee. [bow]</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">But deliver me from the evil one, and let thy will be done in me. [bow]</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">That without condemnation I may open my unworthy mouth, and praise thy holy name, of the Father, and of the Son, and of the Holy Ghost, now and ever, and unto the ages of ages. Amen. [bow]</p>\n<!-- /wp:paragraph -->",
+   "previous": [
+    "92305686d3ea459fd0eb34d17defbd36"
+   ]
   },
   {
    "slug": "prayer-having-risen",
@@ -60,7 +75,11 @@
   {
    "slug": "glory-alleluia",
    "title": "Alleluia, glory to thee, O God",
-   "content": "<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">Alleluia, alleluia, glory to thee, O God. <span class=\"pr-red\">(three times, with three prostrations)</span></p>\n<!-- /wp:paragraph -->"
+   "content": "<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">Glory to the Father, and to the Son, and to the Holy Ghost, both now and ever, and unto the ages of ages. Amen.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">Alleluia, alleluia, glory to thee, O God. [bow]</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">Alleluia, alleluia, glory to thee, O God. [bow]</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">Alleluia, alleluia, glory to thee, O God. [bow]</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">Lord, have mercy. <span class=\"pr-red\">(three times)</span></p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">Glory to the Father, and to the Son, and to the Holy Ghost, both now and ever, and unto the ages of ages. Amen.</p>\n<!-- /wp:paragraph -->",
+   "previous": [
+    "3b06ee69a3ea28627b09f1798b13ba48",
+    "fb0a1f18a165fd85f71bec00e19788f6"
+   ]
   },
   {
    "slug": "jesus-prayer",
@@ -70,27 +89,42 @@
   {
    "slug": "ending-more-honorable",
    "title": "Ending: More honorable, with prostrations",
-   "content": "<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">More honorable than the cherubim, and beyond compare more glorious than the seraphim, who without corruption gavest birth to God the Word, true God-bearer, thee do we magnify. <span class=\"pr-red\">(prostration)</span></p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">Glory to the Father, and to the Son, and to the Holy Ghost. <span class=\"pr-red\">(prostration)</span></p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">Both now and ever, and unto the ages of ages. Amen. <span class=\"pr-red\">(prostration)</span></p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">Lord, have mercy. Lord, have mercy. Lord, bless. <span class=\"pr-red\">(prostration)</span></p>\n<!-- /wp:paragraph -->"
+   "content": "<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">More honorable than the cherubim, and beyond compare more glorious than the seraphim, who without corruption gavest birth to God the Word, true God-bearer, thee do we magnify. [bow]</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">Glory to the Father, and to the Son, and to the Holy Ghost. [bow]</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">Both now and ever, and unto the ages of ages. Amen. [bow]</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">Lord, have mercy. Lord, have mercy. Lord, bless. [bow]</p>\n<!-- /wp:paragraph -->",
+   "previous": [
+    "63bc2d7e91ed0d790dd2672106153f84"
+   ]
   },
   {
    "slug": "ending-truly-meet",
    "title": "Ending: It is truly meet, with prostrations",
-   "content": "<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">It is truly meet to bless thee, O God-bearer, ever blessed and most immaculate, and the Mother of our God. More honorable than the cherubim, and beyond compare more glorious than the seraphim, who without corruption gavest birth to God the Word, true God-bearer, thee do we magnify. <span class=\"pr-red\">(a great prostration)</span></p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">Glory to the Father, and to the Son, and to the Holy Ghost. <span class=\"pr-red\">(prostration)</span></p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">Both now and ever, and unto the ages of ages. Amen. <span class=\"pr-red\">(prostration)</span></p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">Lord, have mercy. Lord, have mercy. Lord, bless. <span class=\"pr-red\">(prostration)</span></p>\n<!-- /wp:paragraph -->"
+   "content": "<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">It is truly meet to bless thee, O God-bearer, ever blessed and most immaculate, and the Mother of our God. More honorable than the cherubim, and beyond compare more glorious than the seraphim, who without corruption gavest birth to God the Word, true God-bearer, thee do we magnify. [bow great]</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">Glory to the Father, and to the Son, and to the Holy Ghost. [bow]</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">Both now and ever, and unto the ages of ages. Amen. [bow]</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">Lord, have mercy. Lord, have mercy. Lord, bless. [bow]</p>\n<!-- /wp:paragraph -->",
+   "previous": [
+    "64fcbf9233c67d63c2e0226d57f0aed7"
+   ]
   },
   {
    "slug": "ending-glory-prostrations",
    "title": "Ending: Glory, both now, with prostrations",
-   "content": "<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">Glory to the Father, and to the Son, and to the Holy Ghost. <span class=\"pr-red\">(prostration)</span></p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">Both now and ever, and unto the ages of ages. Amen. <span class=\"pr-red\">(prostration)</span></p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">Lord, have mercy. Lord, have mercy. Lord, bless. <span class=\"pr-red\">(prostration)</span></p>\n<!-- /wp:paragraph -->"
+   "content": "<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">Glory to the Father, and to the Son, and to the Holy Ghost. [bow]</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">Both now and ever, and unto the ages of ages. Amen. [bow]</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">Lord, have mercy. Lord, have mercy. Lord, bless. [bow]</p>\n<!-- /wp:paragraph -->",
+   "previous": [
+    "f58374cf0c299381ebadf35174a6c171"
+   ]
   },
   {
    "slug": "ending-glory-no-prostrations",
    "title": "Ending: Glory, both now, without prostrations",
-   "content": "<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">Glory to the Father, and to the Son, and to the Holy Ghost, both now and ever, and unto the ages of ages. Amen.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">Lord, have mercy. Lord, have mercy. Lord, bless.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-rubric\"} -->\n<p class=\"is-style-rubric\">Without prostrations.</p>\n<!-- /wp:paragraph -->"
+   "content": "<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">Glory to the Father, and to the Son, and to the Holy Ghost, both now and ever, and unto the ages of ages. Amen.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">Lord, have mercy. Lord, have mercy. Lord, bless.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-rubric\"} -->\n<p class=\"is-style-rubric\">Without bows.</p>\n<!-- /wp:paragraph -->",
+   "previous": [
+    "e3f6938e6bed1e94d700c73836e7d393"
+   ]
   },
   {
    "slug": "prayer-of-forgiveness",
    "title": "Prayer of forgiveness: Remit, pardon",
-   "content": "<!-- wp:paragraph {\"className\":\"is-style-rubric\"} -->\n<p class=\"is-style-rubric\">Bow down to the ground and say this prayer of forgiveness:</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">Remit, pardon and forgive, O God, our transgressions, both voluntary and involuntary, in word and in deed, in knowledge and in ignorance, in mind and in thought, by day and by night: forgive me them all, for thou art good and the lover of mankind.</p>\n<!-- /wp:paragraph -->"
+   "content": "<!-- wp:paragraph {\"className\":\"is-style-rubric\"} -->\n<p class=\"is-style-rubric\">Make a [bow word] and say this prayer of forgiveness:</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">Remit, pardon and forgive, O God, our transgressions, both voluntary and involuntary, in word and in deed, in knowledge and in ignorance, in mind and in thought, by day and by night: forgive me them all, for thou art good and the lover of mankind.</p>\n<!-- /wp:paragraph -->",
+   "previous": [
+    "7dabcda5c893a5ce1a621286fdd9e8b7"
+   ]
   },
   {
    "slug": "forgive-them-that-hate",
@@ -100,7 +134,10 @@
   {
    "slug": "cell-twelve-prostrations",
    "title": "Cell rule: the twelve opening prostrations",
-   "content": "<!-- wp:paragraph {\"className\":\"is-style-rubric\"} -->\n<p class=\"is-style-rubric\">Stand in your usual place. With humility of heart and a contrite mind, make prostrations to the ground, saying:</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">O God, cleanse me a sinner, and have mercy on me. <span class=\"pr-red\">(prostration)</span></p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">Thou who hast created me, O Lord, have mercy on me. <span class=\"pr-red\">(prostration)</span></p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">Without number have I sinned; O Lord, forgive me. <span class=\"pr-red\">(prostration)</span></p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">O God, be merciful to me a sinner. <span class=\"pr-red\">(prostration)</span></p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">O God, forgive my iniquities and transgressions. <span class=\"pr-red\">(prostration)</span></p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">O my most holy Lady, God-bearer, have mercy on me and save me, and help me now in this life, and at the departure of my soul, and in the age to come. <span class=\"pr-red\">(prostration)</span></p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">O invincible and divine power of the honorable and life-giving Cross of the Lord, forsake me not, a sinner who hopeth in thee. <span class=\"pr-red\">(prostration)</span></p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">All ye heavenly powers, holy angels and archangels, cherubim and seraphim, have mercy on me, and pray for me unto the Lord God, and help me now in this life, and at the departure of my soul, and in the age to come. <span class=\"pr-red\">(prostration)</span></p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">O angel of Christ, my holy guardian, have mercy on me, and pray for me a sinner unto the Lord God, and help me now in this life, and at the departure of my soul, and in the age to come. <span class=\"pr-red\">(prostration)</span></p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">O holy and great John, prophet and forerunner of the Lord, have mercy on me, and pray for me unto the Lord God, and help me now in this life, and at the departure of my soul, and in the age to come. <span class=\"pr-red\">(prostration)</span></p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">O holy and glorious apostles, prophets and martyrs, hierarchs, venerable and righteous ones, and all ye saints, have mercy on me, and pray for me a sinner unto the Lord God, and help me now in this life, and at the departure of my soul, and in the age to come. <span class=\"pr-red\">(prostration)</span></p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">O Lord, whether in word, or in deed, or in thought I have sinned in all my life, have mercy on me and forgive me, for thy mercy's sake. <span class=\"pr-red\">(prostration)</span></p>\n<!-- /wp:paragraph -->"
+   "content": "<!-- wp:paragraph {\"className\":\"is-style-rubric\"} -->\n<p class=\"is-style-rubric\">Stand in your usual place. With humility of heart and a contrite mind, make these bows, saying:</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">O God, cleanse me a sinner, and have mercy on me. [bow rule]</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">Thou who hast created me, O Lord, have mercy on me. [bow rule]</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">Without number have I sinned; O Lord, forgive me. [bow rule]</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">O God, be merciful to me a sinner. [bow rule]</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">O God, forgive my iniquities and transgressions. [bow rule]</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">O my most holy Lady, God-bearer, have mercy on me and save me, and help me now in this life, and at the departure of my soul, and in the age to come. [bow rule]</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">O invincible and divine power of the honorable and life-giving Cross of the Lord, forsake me not, a sinner who hopeth in thee. [bow rule]</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">All ye heavenly powers, holy angels and archangels, cherubim and seraphim, have mercy on me, and pray for me unto the Lord God, and help me now in this life, and at the departure of my soul, and in the age to come. [bow rule]</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">O angel of Christ, my holy guardian, have mercy on me, and pray for me a sinner unto the Lord God, and help me now in this life, and at the departure of my soul, and in the age to come. [bow rule]</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">O holy and great John, prophet and forerunner of the Lord, have mercy on me, and pray for me unto the Lord God, and help me now in this life, and at the departure of my soul, and in the age to come. [bow rule]</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">O holy and glorious apostles, prophets and martyrs, hierarchs, venerable and righteous ones, and all ye saints, have mercy on me, and pray for me a sinner unto the Lord God, and help me now in this life, and at the departure of my soul, and in the age to come. [bow rule]</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">O Lord, whether in word, or in deed, or in thought I have sinned in all my life, have mercy on me and forgive me, for thy mercy's sake. [bow rule]</p>\n<!-- /wp:paragraph -->",
+   "previous": [
+    "67c92809f80b09f369e7d3f07664190a"
+   ]
   },
   {
    "slug": "prayer-macarius",
@@ -150,7 +187,10 @@
   {
    "slug": "ending-cell-rule",
    "title": "Ending of the cell rule",
-   "content": "<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">Lord, have mercy. <span class=\"pr-red\">(forty times)</span></p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">More honorable than the cherubim, and beyond compare more glorious than the seraphim, who without corruption gavest birth to God the Word, true God-bearer, thee do we magnify.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">Glory to the Father, and to the Son, and to the Holy Ghost, both now and ever, and unto the ages of ages. Amen.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">Lord, have mercy. Lord, have mercy. Lord, bless.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-rubric\"} -->\n<p class=\"is-style-rubric\">Three prostrations.</p>\n<!-- /wp:paragraph -->"
+   "content": "<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">Lord, have mercy. <span class=\"pr-red\">(forty times)</span></p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">More honorable than the cherubim, and beyond compare more glorious than the seraphim, who without corruption gavest birth to God the Word, true God-bearer, thee do we magnify.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">Glory to the Father, and to the Son, and to the Holy Ghost, both now and ever, and unto the ages of ages. Amen.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">Lord, have mercy. Lord, have mercy. Lord, bless. [bow rule 3]</p>\n<!-- /wp:paragraph -->",
+   "previous": [
+    "b5e47eddce8eb7729c7e22fbd2546db7"
+   ]
   },
   {
    "slug": "dismissal-fathers",
@@ -230,82 +270,135 @@
   {
    "slug": "additions-vespers",
    "title": "Daily additions: Vespers",
-   "content": "<!-- wp:paragraph {\"className\":\"is-style-rubric\"} -->\n<p class=\"is-style-rubric\">After finishing the kathismas or the lestovkas of Jesus Prayers, pray to the most holy God-bearer as much as you are able and wish: a lestovka, or 50 prostrations, or 12. Do the same for the saints who fall on that date.</p>\n<!-- /wp:paragraph -->"
+   "content": "<!-- wp:paragraph {\"className\":\"is-style-rubric\"} -->\n<p class=\"is-style-rubric\">After finishing the kathismas or the lestovkas of Jesus Prayers, pray to the most holy God-bearer as much as you are able and wish: a lestovka, or 50 prostrations, or 12. Do the same for the saints who fall on that date.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:shortcode -->\n[zapev god-bearer]\n<!-- /wp:shortcode -->\n\n<!-- wp:shortcode -->\n[zapev saint]\n<!-- /wp:shortcode -->",
+   "previous": [
+    "3a9f13ce148c1a6ce2cd767d870ac6e3"
+   ]
   },
   {
    "slug": "additions-vespers-sunday",
    "title": "Daily additions: Vespers on Saturday evening",
-   "content": "<!-- wp:paragraph {\"className\":\"is-style-rubric\"} -->\n<p class=\"is-style-rubric\">After finishing the kathismas or the lestovkas of Jesus Prayers, pray to the most holy God-bearer as much as you are able and wish: a lestovka, or 50 prostrations, or 12. Do the same for the saints who fall on that date. On Saturday, pray to the Cross and the Resurrection.</p>\n<!-- /wp:paragraph -->"
+   "content": "<!-- wp:paragraph {\"className\":\"is-style-rubric\"} -->\n<p class=\"is-style-rubric\">After finishing the kathismas or the lestovkas of Jesus Prayers, pray to the most holy God-bearer as much as you are able and wish: a lestovka, or 50 prostrations, or 12. Do the same for the saints who fall on that date. On Saturday, pray to the Cross and the Resurrection.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:shortcode -->\n[zapev god-bearer]\n<!-- /wp:shortcode -->\n\n<!-- wp:shortcode -->\n[zapev saint]\n<!-- /wp:shortcode -->\n\n<!-- wp:shortcode -->\n[zapev cross-resurrection]\n<!-- /wp:shortcode -->",
+   "previous": [
+    "968d70d8ce5508842dd9a6152e73e649"
+   ]
   },
   {
    "slug": "additions-vespers-feast",
    "title": "Daily additions: Vespers of a feast",
-   "content": "<!-- wp:paragraph {\"className\":\"is-style-rubric\"} -->\n<p class=\"is-style-rubric\">After finishing the kathismas or the lestovkas of Jesus Prayers, pray to the most holy God-bearer as much as you are able and wish: a lestovka, or 50 prostrations, or 12. Do the same for the saints who fall on that date. On a feast, pray to the feast.</p>\n<!-- /wp:paragraph -->"
+   "content": "<!-- wp:paragraph {\"className\":\"is-style-rubric\"} -->\n<p class=\"is-style-rubric\">After finishing the kathismas or the lestovkas of Jesus Prayers, pray to the most holy God-bearer as much as you are able and wish: a lestovka, or 50 prostrations, or 12. Do the same for the saints who fall on that date. On a feast, pray to the feast.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:shortcode -->\n[zapev god-bearer]\n<!-- /wp:shortcode -->\n\n<!-- wp:shortcode -->\n[zapev saint]\n<!-- /wp:shortcode -->\n\n<!-- wp:shortcode -->\n[zapev feast]\n<!-- /wp:shortcode -->",
+   "previous": [
+    "9ef26b89ef9d4664feee3e9b4d26898a"
+   ]
   },
   {
    "slug": "additions-compline",
    "title": "Daily additions: Compline",
-   "content": "<!-- wp:paragraph {\"className\":\"is-style-rubric\"} -->\n<p class=\"is-style-rubric\">After the kathisma or the lestovkas, pray to the God-bearer as your strength allows, in place of her canon. Laypeople who do not always pray the rule should pray to the guardian angel after the prostrations to the God-bearer.</p>\n<!-- /wp:paragraph -->"
+   "content": "<!-- wp:paragraph {\"className\":\"is-style-rubric\"} -->\n<p class=\"is-style-rubric\">After the kathisma or the lestovkas, pray to the God-bearer as your strength allows, in place of her canon. Laypeople who do not always pray the rule should pray to the guardian angel after the prostrations to the God-bearer.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:shortcode -->\n[zapev god-bearer]\n<!-- /wp:shortcode -->",
+   "previous": [
+    "455fb1290b73efec7e2515f7750fc47a"
+   ]
   },
   {
    "slug": "additions-compline-friday",
    "title": "Daily additions: Compline on Friday evening",
-   "content": "<!-- wp:paragraph {\"className\":\"is-style-rubric\"} -->\n<p class=\"is-style-rubric\">On Friday evening, when it is not a feast, make as many prostrations as you wish in place of the canon for the departed, before the prostrations to the God-bearer.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-rubric\"} -->\n<p class=\"is-style-rubric\">After the kathisma or the lestovkas, pray to the God-bearer as your strength allows, in place of her canon. Laypeople who do not always pray the rule should pray to the guardian angel after the prostrations to the God-bearer.</p>\n<!-- /wp:paragraph -->"
+   "content": "<!-- wp:paragraph {\"className\":\"is-style-rubric\"} -->\n<p class=\"is-style-rubric\">On Friday evening, when it is not a feast, make as many prostrations as you wish in place of the canon for the departed, before the prostrations to the God-bearer.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-rubric\"} -->\n<p class=\"is-style-rubric\">After the kathisma or the lestovkas, pray to the God-bearer as your strength allows, in place of her canon. Laypeople who do not always pray the rule should pray to the guardian angel after the prostrations to the God-bearer.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:shortcode -->\n[zapev departed]\n<!-- /wp:shortcode -->\n\n<!-- wp:shortcode -->\n[zapev god-bearer]\n<!-- /wp:shortcode -->",
+   "previous": [
+    "33d1e6193cb6e0acfe6ed04a1f9e9a00"
+   ]
   },
   {
    "slug": "additions-midnight",
    "title": "Daily additions: Midnight Office",
-   "content": "<!-- wp:paragraph {\"className\":\"is-style-rubric\"} -->\n<p class=\"is-style-rubric\">Make some prostrations for the reposed: 12, or fewer, or more.</p>\n<!-- /wp:paragraph -->"
+   "content": "<!-- wp:paragraph {\"className\":\"is-style-rubric\"} -->\n<p class=\"is-style-rubric\">Make some prostrations for the reposed: 12, or fewer, or more.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:shortcode -->\n[zapev departed]\n<!-- /wp:shortcode -->",
+   "previous": [
+    "ed431227dbb9969ee162f9827a62b4db"
+   ]
+  },
+  {
+   "slug": "additions-midnight-sunday",
+   "title": "Daily additions: Midnight Office on Sunday",
+   "content": "<!-- wp:paragraph {\"className\":\"is-style-rubric\"} -->\n<p class=\"is-style-rubric\">On Sunday, pray to the most holy Trinity.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:shortcode -->\n[zapev trinity]\n<!-- /wp:shortcode -->"
   },
   {
    "slug": "additions-matins-sunday",
    "title": "Daily additions: Matins on Sunday",
-   "content": "<!-- wp:paragraph {\"className\":\"is-style-rubric\"} -->\n<p class=\"is-style-rubric\">After the kathismas, pray first to the Cross and the Resurrection, and after that to the God-bearer. Pray also to the saint who falls on that date.</p>\n<!-- /wp:paragraph -->"
+   "content": "<!-- wp:paragraph {\"className\":\"is-style-rubric\"} -->\n<p class=\"is-style-rubric\">After the kathismas or lestovkas, pray first to the Cross and the Resurrection, and after that to the God-bearer. Pray also to the saint who falls on that date.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:shortcode -->\n[zapev cross-resurrection]\n<!-- /wp:shortcode -->\n\n<!-- wp:shortcode -->\n[zapev god-bearer]\n<!-- /wp:shortcode -->\n\n<!-- wp:shortcode -->\n[zapev saint]\n<!-- /wp:shortcode -->",
+   "previous": [
+    "7575e94c15ce2922a87cb165e68136aa"
+   ]
   },
   {
    "slug": "additions-matins-monday",
    "title": "Daily additions: Matins on Monday",
-   "content": "<!-- wp:paragraph {\"className\":\"is-style-rubric\"} -->\n<p class=\"is-style-rubric\">After the kathismas, pray to the God-bearer and to the archangels. Pray also to the saint who falls on that date.</p>\n<!-- /wp:paragraph -->"
+   "content": "<!-- wp:paragraph {\"className\":\"is-style-rubric\"} -->\n<p class=\"is-style-rubric\">After the kathismas or lestovkas, pray to the God-bearer and to the archangels. Pray also to the saint who falls on that date.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:shortcode -->\n[zapev god-bearer]\n<!-- /wp:shortcode -->\n\n<!-- wp:shortcode -->\n[zapev angels]\n<!-- /wp:shortcode -->\n\n<!-- wp:shortcode -->\n[zapev saint]\n<!-- /wp:shortcode -->",
+   "previous": [
+    "7908e17a549d07587283089543bbc46b"
+   ]
   },
   {
    "slug": "additions-matins-tuesday",
    "title": "Daily additions: Matins on Tuesday",
-   "content": "<!-- wp:paragraph {\"className\":\"is-style-rubric\"} -->\n<p class=\"is-style-rubric\">After the kathismas, pray to the God-bearer and to the Forerunner. Pray also to the saint who falls on that date.</p>\n<!-- /wp:paragraph -->"
+   "content": "<!-- wp:paragraph {\"className\":\"is-style-rubric\"} -->\n<p class=\"is-style-rubric\">After the kathismas or lestovkas, pray to the God-bearer and to the Forerunner. Pray also to the saint who falls on that date.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:shortcode -->\n[zapev god-bearer]\n<!-- /wp:shortcode -->\n\n<!-- wp:shortcode -->\n[zapev forerunner]\n<!-- /wp:shortcode -->\n\n<!-- wp:shortcode -->\n[zapev saint]\n<!-- /wp:shortcode -->",
+   "previous": [
+    "7814c22892a84330e540c1a81e0a29c5"
+   ]
   },
   {
    "slug": "additions-matins-cross",
    "title": "Daily additions: Matins on Wednesday and Friday",
-   "content": "<!-- wp:paragraph {\"className\":\"is-style-rubric\"} -->\n<p class=\"is-style-rubric\">After the kathismas, pray first to the honorable Cross, and after that to the God-bearer. Pray also to the saint who falls on that date.</p>\n<!-- /wp:paragraph -->"
+   "content": "<!-- wp:paragraph {\"className\":\"is-style-rubric\"} -->\n<p class=\"is-style-rubric\">After the kathismas or lestovkas, pray first to the honorable Cross, and after that to the God-bearer. Pray also to the saint who falls on that date.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:shortcode -->\n[zapev cross]\n<!-- /wp:shortcode -->\n\n<!-- wp:shortcode -->\n[zapev god-bearer]\n<!-- /wp:shortcode -->\n\n<!-- wp:shortcode -->\n[zapev saint]\n<!-- /wp:shortcode -->",
+   "previous": [
+    "307c36be4fa3af8eebd19d9e960b4189"
+   ]
   },
   {
    "slug": "additions-matins-thursday",
    "title": "Daily additions: Matins on Thursday",
-   "content": "<!-- wp:paragraph {\"className\":\"is-style-rubric\"} -->\n<p class=\"is-style-rubric\">After the kathismas, pray to the God-bearer and to the apostles and Nicholas. Pray also to the saint who falls on that date.</p>\n<!-- /wp:paragraph -->"
+   "content": "<!-- wp:paragraph {\"className\":\"is-style-rubric\"} -->\n<p class=\"is-style-rubric\">After the kathismas or lestovkas, pray to the God-bearer and to the apostles and Nicholas. Pray also to the saint who falls on that date.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:shortcode -->\n[zapev god-bearer]\n<!-- /wp:shortcode -->\n\n<!-- wp:shortcode -->\n[zapev apostles]\n<!-- /wp:shortcode -->\n\n<!-- wp:shortcode -->\n[zapev nicholas]\n<!-- /wp:shortcode -->\n\n<!-- wp:shortcode -->\n[zapev saint]\n<!-- /wp:shortcode -->",
+   "previous": [
+    "16112a75f5432ec3c21b8e137bb1c29b"
+   ]
   },
   {
    "slug": "additions-matins-saturday",
    "title": "Daily additions: Matins on Saturday",
-   "content": "<!-- wp:paragraph {\"className\":\"is-style-rubric\"} -->\n<p class=\"is-style-rubric\">After the kathismas, pray to the God-bearer and to all the saints. Pray also to the saint who falls on that date.</p>\n<!-- /wp:paragraph -->"
+   "content": "<!-- wp:paragraph {\"className\":\"is-style-rubric\"} -->\n<p class=\"is-style-rubric\">After the kathismas or lestovkas, pray to the God-bearer and to all the saints. Pray also to the saint who falls on that date.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:shortcode -->\n[zapev god-bearer]\n<!-- /wp:shortcode -->\n\n<!-- wp:shortcode -->\n[zapev all-saints]\n<!-- /wp:shortcode -->\n\n<!-- wp:shortcode -->\n[zapev saint]\n<!-- /wp:shortcode -->",
+   "previous": [
+    "7330276fd53fadcc50cb88550fd6399d"
+   ]
   },
   {
    "slug": "additions-matins-feast",
    "title": "Daily additions: Matins of a great feast of the Lord on a Sunday",
-   "content": "<!-- wp:paragraph {\"className\":\"is-style-rubric\"} -->\n<p class=\"is-style-rubric\">When a great feast of the Lord falls on a Sunday, do not pray to the Resurrection; pray to the feast. After that, pray to the God-bearer, and to the saint who falls on that date.</p>\n<!-- /wp:paragraph -->"
+   "content": "<!-- wp:paragraph {\"className\":\"is-style-rubric\"} -->\n<p class=\"is-style-rubric\">When a great feast of the Lord falls on a Sunday, do not pray to the Resurrection; pray to the feast. After that, pray to the God-bearer, and to the saint who falls on that date.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:shortcode -->\n[zapev feast]\n<!-- /wp:shortcode -->\n\n<!-- wp:shortcode -->\n[zapev god-bearer]\n<!-- /wp:shortcode -->\n\n<!-- wp:shortcode -->\n[zapev saint]\n<!-- /wp:shortcode -->",
+   "previous": [
+    "7618a304f3c2708ad666148f87c504ca"
+   ]
   },
   {
    "slug": "additions-hours",
    "title": "Daily additions: the Hours",
-   "content": "<!-- wp:paragraph {\"className\":\"is-style-rubric\"} -->\n<p class=\"is-style-rubric\">After the kathismas, make as many prostrations to the God-bearer as you wish, and pray to the saint who falls on that date.</p>\n<!-- /wp:paragraph -->"
+   "content": "<!-- wp:paragraph {\"className\":\"is-style-rubric\"} -->\n<p class=\"is-style-rubric\">After the kathismas or lestovkas, make as many prostrations to the God-bearer as you wish, and pray to the saint who falls on that date.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:shortcode -->\n[zapev god-bearer]\n<!-- /wp:shortcode -->\n\n<!-- wp:shortcode -->\n[zapev saint]\n<!-- /wp:shortcode -->",
+   "previous": [
+    "24c4e7854dd19d11a54b1d702df36d2d"
+   ]
   },
   {
    "slug": "additions-hours-sunday",
    "title": "Daily additions: the Hours on Sunday",
-   "content": "<!-- wp:paragraph {\"className\":\"is-style-rubric\"} -->\n<p class=\"is-style-rubric\">On Sunday, the day of the Resurrection, after the kathismas or lestovkas, pray first to the Resurrection, and then to the God-bearer and to the saint who falls on that date.</p>\n<!-- /wp:paragraph -->"
+   "content": "<!-- wp:paragraph {\"className\":\"is-style-rubric\"} -->\n<p class=\"is-style-rubric\">On Sunday, the day of the Resurrection, after the kathismas or lestovkas, pray first to the Resurrection, and then to the God-bearer and to the saint who falls on that date.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:shortcode -->\n[zapev resurrection]\n<!-- /wp:shortcode -->\n\n<!-- wp:shortcode -->\n[zapev god-bearer]\n<!-- /wp:shortcode -->\n\n<!-- wp:shortcode -->\n[zapev saint]\n<!-- /wp:shortcode -->",
+   "previous": [
+    "89a1ec7f79f733cbdcb4fa78cc4b1428"
+   ]
   },
   {
    "slug": "additions-hours-feast",
    "title": "Daily additions: the Hours of a great feast of the Lord on a Sunday",
-   "content": "<!-- wp:paragraph {\"className\":\"is-style-rubric\"} -->\n<p class=\"is-style-rubric\">When a great feast of the Lord falls on a Sunday, do not pray to the Resurrection; after the kathismas or lestovkas, pray first to the feast, and then to the God-bearer and to the saint who falls on that date.</p>\n<!-- /wp:paragraph -->"
+   "content": "<!-- wp:paragraph {\"className\":\"is-style-rubric\"} -->\n<p class=\"is-style-rubric\">When a great feast of the Lord falls on a Sunday, do not pray to the Resurrection; after the kathismas or lestovkas, pray first to the feast, and then to the God-bearer and to the saint who falls on that date.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:shortcode -->\n[zapev feast]\n<!-- /wp:shortcode -->\n\n<!-- wp:shortcode -->\n[zapev god-bearer]\n<!-- /wp:shortcode -->\n\n<!-- wp:shortcode -->\n[zapev saint]\n<!-- /wp:shortcode -->",
+   "previous": [
+    "491b46578b05d116e0cdd0b9a04302fb"
+   ]
   },
   {
    "slug": "dismissal-sep-01",
@@ -727,40 +820,45 @@
   {
    "service": "vespers",
    "title": "Vespers (Home Ustav)",
-   "items": "! When the time for vespers comes, put aside all worldly cares, stand before the image of God and say:\nentrance-opening\nthrough-the-prayers\nheavenly-king\ntrisagion-our-father\n> Lord, have mercy. (12 times)\nglory-both-now\no-come\nrule\nadditions\n> Lord, have mercy. (3 times)\nglory-both-now\nending-more-honorable\ndismissal\ndeparting-opening",
+   "items": "! When the time for vespers comes, put aside all worldly cares, stand before the image of God and say:\nentrance-opening\nthrough-the-prayers\nheavenly-king\ntrisagion-our-father\n> Lord, have mercy. (12 times)\nglory-both-now\no-come\nrule\nadditions\nending-more-honorable\ndismissal\ndeparting-opening",
    "previous": [
-    "98194148d3fa9cdbc217fd8731c2154b"
+    "98194148d3fa9cdbc217fd8731c2154b",
+    "c36f7433c9b18dac8fe658fd53434a7f"
    ]
   },
   {
    "service": "compline",
    "title": "Compline (Home Ustav)",
-   "items": "entrance-opening\nthrough-the-prayers\nheavenly-king\ntrisagion-our-father\n> Lord, have mercy. (12 times)\no-come\npsalm 50\ncreed\nrule\nadditions\n> Lord, have mercy. (3 times)\nending-glory-no-prostrations\ndismissal\nprayer-of-forgiveness\nforgive-them-that-hate",
+   "items": "entrance-opening\nthrough-the-prayers\nheavenly-king\ntrisagion-our-father\n> Lord, have mercy. (12 times)\no-come\npsalm 50\ncreed\nrule\nadditions\nending-glory-no-prostrations\ndismissal\nprayer-of-forgiveness\nforgive-them-that-hate",
    "previous": [
-    "ee1e2f5bf5a93755f259b7cb4acc1766"
+    "ee1e2f5bf5a93755f259b7cb4acc1766",
+    "f202628f34f07e70e1f7ce9c6d0b4ef1"
    ]
   },
   {
    "service": "midnight",
    "title": "Midnight Office (Home Ustav)",
-   "items": "entrance-opening\nthrough-the-prayers\nglory-to-thee-for-all\nmacarius-three-prostrations\nheavenly-king\ntrisagion-our-father\n> Lord, have mercy. (12 times)\nprayer-having-risen\no-come\npsalm 50\ncreed\nrule\nadditions\n> Lord, have mercy. (3 times)\nending-glory-no-prostrations\ndismissal\nprayer-of-forgiveness\nforgive-them-that-hate",
+   "items": "entrance-opening\nthrough-the-prayers\nglory-to-thee-for-all\nmacarius-three-prostrations\nheavenly-king\ntrisagion-our-father\n> Lord, have mercy. (12 times)\nprayer-having-risen\no-come\npsalm 50\ncreed\nrule\nadditions\nending-glory-no-prostrations\ndismissal\nprayer-of-forgiveness\nforgive-them-that-hate",
    "previous": [
-    "075e15bf3b38795cad9feb0079cdfe8e"
+    "075e15bf3b38795cad9feb0079cdfe8e",
+    "93515986bed78f151157648653048092"
    ]
   },
   {
    "service": "matins",
    "title": "Matins and the 1st Hour (Home Ustav)",
-   "items": "through-the-prayers\ntrisagion-our-father\n> Lord, have mercy. (12 times)\nglory-both-now\no-come\nrule\nadditions\n> Lord, have mercy. (3 times)\nglory-both-now\no-come\n! Then, for the first hour:\nrule first-hour\nending-glory-prostrations\ndismissal",
+   "items": "through-the-prayers\ntrisagion-our-father\n> Lord, have mercy. (12 times)\nglory-both-now\no-come\nrule\nadditions\no-come\n! Then, for the first hour:\nrule first-hour\nending-glory-prostrations\ndismissal",
    "previous": [
-    "409c74c4728fcbf2feba9423d3007a02"
+    "409c74c4728fcbf2feba9423d3007a02",
+    "a78b66d3fa34643c87ae2d83a03e6a50"
    ]
   },
   {
    "service": "hours",
    "title": "Hours (Home Ustav)",
-   "items": "entrance-opening\nthrough-the-prayers\nheavenly-king\ntrisagion-our-father\n> Lord, have mercy. (12 times)\nglory-both-now\no-come\nrule\nadditions\n> Lord, have mercy. (3 times)\nglory-both-now\nending-truly-meet\ndismissal",
+   "items": "entrance-opening\nthrough-the-prayers\nheavenly-king\ntrisagion-our-father\n> Lord, have mercy. (12 times)\nglory-both-now\no-come\nrule\nadditions\nending-truly-meet\ndismissal",
    "previous": [
+    "11412002d2d71f81c89b2f1551deaaef",
     "a8b801f5bfc32e93595c8f63b10d163e"
    ]
   },
@@ -847,7 +945,7 @@
    "saturday": "additions-compline-friday"
   },
   "midnight": {
-   "sunday": "",
+   "sunday": "additions-midnight-sunday",
    "monday": "additions-midnight",
    "tuesday": "additions-midnight",
    "wednesday": "additions-midnight",
@@ -2338,6 +2436,1272 @@
    }
   }
  ],
+ "zapevy": {
+  "fixed": {
+   "trinity": "O most holy Trinity, our God, glory to thee.",
+   "resurrection": "Glory to thy Resurrection, O Lord.",
+   "cross-resurrection": "Glory to thy Cross and Resurrection, O Lord.",
+   "god-bearer": "O most holy Lady God-bearer, save us.",
+   "angels": "O holy archangels and angels, pray to God for us.",
+   "forerunner": "O holy and great John, Forerunner of the Lord, pray to God for us.",
+   "cross": "Glory to thine honorable Cross, O Lord.",
+   "apostles": "O holy apostles, pray to God for us.",
+   "nicholas": "O hierarch of Christ Nicholas, pray to God for us.",
+   "all-saints": "O all ye saints, pray to God for us.",
+   "departed": "Give rest, O Lord, to the souls of thy servants who have fallen asleep.",
+   "feast": "Glory to thee, our God, glory to thee."
+  },
+  "dated": [
+   {
+    "kind": "season",
+    "text": "Glory to thee, our God, glory to thee.",
+    "menaion": [
+     9,
+     1,
+     9,
+     1
+    ]
+   },
+   {
+    "kind": "saint",
+    "text": "O holy Archangel Michael, pray to God for us.",
+    "menaion": [
+     9,
+     6,
+     9,
+     6
+    ]
+   },
+   {
+    "kind": "season",
+    "text": "O most holy Lady God-bearer, save us.",
+    "menaion": [
+     9,
+     7,
+     9,
+     7
+    ]
+   },
+   {
+    "kind": "feast",
+    "text": "O most holy Lady God-bearer, save us.",
+    "menaion": [
+     9,
+     8,
+     9,
+     8
+    ]
+   },
+   {
+    "kind": "season",
+    "text": "O most holy Lady God-bearer, save us.",
+    "menaion": [
+     9,
+     9,
+     9,
+     12
+    ]
+   },
+   {
+    "kind": "season",
+    "text": "Glory to thee, our God, glory to thee.",
+    "menaion": [
+     9,
+     13,
+     9,
+     13
+    ]
+   },
+   {
+    "kind": "season",
+    "text": "Glory to thine honorable Cross, O Lord.",
+    "menaion": [
+     9,
+     13,
+     9,
+     13
+    ]
+   },
+   {
+    "kind": "feast",
+    "text": "Glory to thine honorable Cross, O Lord.",
+    "menaion": [
+     9,
+     14,
+     9,
+     14
+    ]
+   },
+   {
+    "kind": "season",
+    "text": "Glory to thine honorable Cross, O Lord.",
+    "menaion": [
+     9,
+     15,
+     9,
+     21
+    ]
+   },
+   {
+    "kind": "saint",
+    "text": "O venerable fathers, right-believing princes, pray to God for us.",
+    "menaion": [
+     9,
+     19,
+     9,
+     19
+    ]
+   },
+   {
+    "kind": "saint",
+    "text": "O holy martyrs and confessors, Prince Michael and Theodore, pray to God for us.",
+    "menaion": [
+     9,
+     20,
+     9,
+     20
+    ]
+   },
+   {
+    "kind": "saint",
+    "text": "O holy and great John, Forerunner of the Lord, pray to God for us.",
+    "menaion": [
+     9,
+     23,
+     9,
+     23
+    ]
+   },
+   {
+    "kind": "saint",
+    "text": "O holy protomartyr and equal-to-the-apostles Thecla, pray to God for us.",
+    "menaion": [
+     9,
+     24,
+     9,
+     24
+    ]
+   },
+   {
+    "kind": "saint",
+    "text": "O holy apostle and evangelist John the Theologian, pray to God for us.",
+    "menaion": [
+     9,
+     26,
+     9,
+     26
+    ]
+   },
+   {
+    "kind": "feast",
+    "text": "O most holy Lady God-bearer, save us.",
+    "menaion": [
+     10,
+     1,
+     10,
+     1
+    ]
+   },
+   {
+    "kind": "saint",
+    "text": "O holy and great hierarchs Gurias and Barsanuphius, pray to God for us.",
+    "menaion": [
+     10,
+     4,
+     10,
+     4
+    ]
+   },
+   {
+    "kind": "saint",
+    "text": "O three holy hierarchs Peter, Alexis and Jonah, pray to God for us.",
+    "menaion": [
+     10,
+     5,
+     10,
+     5
+    ]
+   },
+   {
+    "kind": "saint",
+    "text": "O hierarch of Christ and confessor Theophanes, pray to God for us.",
+    "menaion": [
+     10,
+     11,
+     10,
+     11
+    ]
+   },
+   {
+    "kind": "saint",
+    "text": "O holy fathers, pray to God for us.",
+    "sunday": [
+     10,
+     8,
+     10,
+     14
+    ]
+   },
+   {
+    "kind": "saint",
+    "text": "O holy hieromartyr Lucian, pray to God for us.",
+    "menaion": [
+     10,
+     15,
+     10,
+     15
+    ]
+   },
+   {
+    "kind": "saint",
+    "text": "O hierarch of Christ Lazarus, pray to God for us.",
+    "menaion": [
+     10,
+     17,
+     10,
+     17
+    ]
+   },
+   {
+    "kind": "saint",
+    "text": "O holy apostle and evangelist Luke, pray to God for us.",
+    "menaion": [
+     10,
+     18,
+     10,
+     18
+    ]
+   },
+   {
+    "kind": "saint",
+    "text": "O holy martyrs, pray to God for us.",
+    "menaion": [
+     10,
+     22,
+     10,
+     22
+    ]
+   },
+   {
+    "kind": "saint",
+    "text": "O holy and righteous James, pray to God for us.",
+    "menaion": [
+     10,
+     23,
+     10,
+     23
+    ]
+   },
+   {
+    "kind": "saint",
+    "text": "O holy and righteous King Elesbaan, pray to God for us.",
+    "menaion": [
+     10,
+     24,
+     10,
+     24
+    ]
+   },
+   {
+    "kind": "season",
+    "text": "Glory to thee, our God, glory to thee.",
+    "menaion": [
+     10,
+     26,
+     10,
+     26
+    ]
+   },
+   {
+    "kind": "saint",
+    "text": "O holy wonderworkers and unmercenaries Cosmas and Damian, pray to God for us.",
+    "menaion": [
+     11,
+     1,
+     11,
+     1
+    ]
+   },
+   {
+    "kind": "saint",
+    "text": "O holy great-martyr George, pray to God for us.",
+    "menaion": [
+     11,
+     3,
+     11,
+     3
+    ]
+   },
+   {
+    "kind": "saint",
+    "text": "O holy archangels and angels, pray to God for us.",
+    "menaion": [
+     11,
+     8,
+     11,
+     8
+    ]
+   },
+   {
+    "kind": "saint",
+    "text": "O holy Archangel Michael, pray to God for us.",
+    "menaion": [
+     11,
+     8,
+     11,
+     8
+    ]
+   },
+   {
+    "kind": "saint",
+    "text": "O hierarch of Christ John Chrysostom, pray to God for us.",
+    "menaion": [
+     11,
+     13,
+     11,
+     13
+    ]
+   },
+   {
+    "kind": "saint",
+    "text": "O holy martyrs and confessors Gurias, Samonas and Abibus, pray to God for us.",
+    "menaion": [
+     11,
+     15,
+     11,
+     15
+    ]
+   },
+   {
+    "kind": "saint",
+    "text": "O holy apostle and evangelist Matthew, pray to God for us.",
+    "menaion": [
+     11,
+     16,
+     11,
+     16
+    ]
+   },
+   {
+    "kind": "saint",
+    "text": "O venerable father Joasaph, pray to God for us.",
+    "menaion": [
+     11,
+     19,
+     11,
+     19
+    ]
+   },
+   {
+    "kind": "season",
+    "text": "O most holy Lady God-bearer, save us.",
+    "menaion": [
+     11,
+     20,
+     11,
+     20
+    ]
+   },
+   {
+    "kind": "feast",
+    "text": "O most holy Lady God-bearer, save us.",
+    "menaion": [
+     11,
+     21,
+     11,
+     21
+    ]
+   },
+   {
+    "kind": "season",
+    "text": "O most holy Lady God-bearer, save us.",
+    "menaion": [
+     11,
+     22,
+     11,
+     25
+    ]
+   },
+   {
+    "kind": "saint",
+    "text": "O holy passion-bearer, Prince Michael, pray to God for us.",
+    "menaion": [
+     11,
+     22,
+     11,
+     22
+    ]
+   },
+   {
+    "kind": "saint",
+    "text": "O holy right-believing Prince Gabriel, pray to God for us.",
+    "menaion": [
+     11,
+     27,
+     11,
+     27
+    ]
+   },
+   {
+    "kind": "saint",
+    "text": "O holy and righteous Philaret, pray to God for us.",
+    "menaion": [
+     12,
+     2,
+     12,
+     2
+    ]
+   },
+   {
+    "kind": "feast",
+    "text": "O most holy Lady God-bearer, save us.",
+    "menaion": [
+     12,
+     9,
+     12,
+     9
+    ]
+   },
+   {
+    "kind": "saint",
+    "text": "O three holy youths, pray to God for us.",
+    "menaion": [
+     12,
+     17,
+     12,
+     17
+    ]
+   },
+   {
+    "kind": "saint",
+    "text": "O holy forefathers, pray to God for us.",
+    "sunday": [
+     12,
+     11,
+     12,
+     17
+    ]
+   },
+   {
+    "kind": "saint",
+    "text": "O holy fathers, pray to God for us.",
+    "sunday": [
+     12,
+     18,
+     12,
+     24
+    ]
+   },
+   {
+    "kind": "season",
+    "text": "Glory to thee, our God, glory to thee.",
+    "menaion": [
+     12,
+     20,
+     12,
+     24
+    ]
+   },
+   {
+    "kind": "feast",
+    "text": "Glory to thy Nativity, O Lord.",
+    "menaion": [
+     12,
+     25,
+     12,
+     25
+    ]
+   },
+   {
+    "kind": "season",
+    "text": "Glory to thy Nativity, O Lord.",
+    "menaion": [
+     12,
+     26,
+     12,
+     31
+    ]
+   },
+   {
+    "kind": "saint",
+    "text": "O holy ancestors of God, pray to God for us.",
+    "sunday": [
+     12,
+     26,
+     12,
+     31
+    ]
+   },
+   {
+    "kind": "saint",
+    "text": "O holy protomartyr and archdeacon Stephen, pray to God for us.",
+    "menaion": [
+     12,
+     27,
+     12,
+     27
+    ]
+   },
+   {
+    "kind": "saint",
+    "text": "O holy martyrs, pray to God for us.",
+    "menaion": [
+     12,
+     29,
+     12,
+     29
+    ]
+   },
+   {
+    "kind": "season",
+    "text": "Glory to thee, our God, glory to thee.",
+    "menaion": [
+     1,
+     1,
+     1,
+     1
+    ]
+   },
+   {
+    "kind": "season",
+    "text": "Glory to thee, our God, glory to thee.",
+    "menaion": [
+     1,
+     2,
+     1,
+     5
+    ]
+   },
+   {
+    "kind": "feast",
+    "text": "Glory to thy Theophany, O Lord.",
+    "menaion": [
+     1,
+     6,
+     1,
+     6
+    ]
+   },
+   {
+    "kind": "season",
+    "text": "Glory to thy Theophany, O Lord.",
+    "menaion": [
+     1,
+     7,
+     1,
+     14
+    ]
+   },
+   {
+    "kind": "saint",
+    "text": "O holy and great John, Forerunner of the Lord, pray to God for us.",
+    "menaion": [
+     1,
+     7,
+     1,
+     7
+    ]
+   },
+   {
+    "kind": "saint",
+    "text": "O holy chief apostle Peter, pray to God for us.",
+    "menaion": [
+     1,
+     16,
+     1,
+     16
+    ]
+   },
+   {
+    "kind": "saint",
+    "text": "O hierarch of Christ Gregory the Theologian, pray to God for us.",
+    "menaion": [
+     1,
+     25,
+     1,
+     25
+    ]
+   },
+   {
+    "kind": "saint",
+    "text": "O three holy and great hierarchs, pray to God for us.",
+    "menaion": [
+     1,
+     30,
+     1,
+     30
+    ]
+   },
+   {
+    "kind": "season",
+    "text": "Glory to thee, our God, glory to thee.",
+    "menaion": [
+     2,
+     1,
+     2,
+     1
+    ]
+   },
+   {
+    "kind": "feast",
+    "text": "Glory to thy Meeting, O Lord.",
+    "menaion": [
+     2,
+     2,
+     2,
+     2
+    ]
+   },
+   {
+    "kind": "season",
+    "text": "Glory to thy Meeting, O Lord.",
+    "menaion": [
+     2,
+     3,
+     2,
+     9
+    ]
+   },
+   {
+    "kind": "saint",
+    "text": "O holy and righteous Symeon, God-receiver, and Anna the prophetess, pray to God for us.",
+    "menaion": [
+     2,
+     3,
+     2,
+     3
+    ]
+   },
+   {
+    "kind": "saint",
+    "text": "O holy martyr and confessor, Prince Michael, pray to God for us.",
+    "menaion": [
+     2,
+     14,
+     2,
+     14
+    ]
+   },
+   {
+    "kind": "saint",
+    "text": "O holy and great John, Forerunner of the Lord, pray to God for us.",
+    "menaion": [
+     2,
+     24,
+     2,
+     24
+    ]
+   },
+   {
+    "kind": "saint",
+    "text": "O holy forty great-martyrs, pray to God for us.",
+    "menaion": [
+     3,
+     9,
+     3,
+     9
+    ]
+   },
+   {
+    "kind": "saint",
+    "text": "O holy monastic martyrs, pray to God for us.",
+    "menaion": [
+     3,
+     20,
+     3,
+     20
+    ]
+   },
+   {
+    "kind": "season",
+    "text": "O most holy Lady God-bearer, save us.",
+    "menaion": [
+     3,
+     24,
+     3,
+     24
+    ]
+   },
+   {
+    "kind": "feast",
+    "text": "O most holy Lady God-bearer, save us.",
+    "menaion": [
+     3,
+     25,
+     3,
+     25
+    ]
+   },
+   {
+    "kind": "saint",
+    "text": "O holy Archangel Gabriel, pray to God for us.",
+    "menaion": [
+     3,
+     26,
+     3,
+     26
+    ]
+   },
+   {
+    "kind": "saint",
+    "text": "O venerable father Stephen, pray to God for us.",
+    "menaion": [
+     3,
+     28,
+     3,
+     28
+    ]
+   },
+   {
+    "kind": "saint",
+    "text": "O holy great-martyrs Anthony, John and Eustathius, pray to God for us.",
+    "menaion": [
+     4,
+     14,
+     4,
+     14
+    ]
+   },
+   {
+    "kind": "saint",
+    "text": "O holy great-martyr George, pray to God for us.",
+    "menaion": [
+     4,
+     23,
+     4,
+     23
+    ]
+   },
+   {
+    "kind": "saint",
+    "text": "O holy apostle and evangelist Mark, pray to God for us.",
+    "menaion": [
+     4,
+     25,
+     4,
+     25
+    ]
+   },
+   {
+    "kind": "saint",
+    "text": "O holy passion-bearing princes Boris and Gleb, pray to God for us.",
+    "menaion": [
+     5,
+     2,
+     5,
+     2
+    ]
+   },
+   {
+    "kind": "saint",
+    "text": "O holy and righteous Job, pray to God for us.",
+    "menaion": [
+     5,
+     6,
+     5,
+     6
+    ]
+   },
+   {
+    "kind": "saint",
+    "text": "O holy passion-bearer Barbarus, pray to God for us.",
+    "menaion": [
+     5,
+     6,
+     5,
+     6
+    ]
+   },
+   {
+    "kind": "season",
+    "text": "Glory to thine honorable Cross, O Lord.",
+    "menaion": [
+     5,
+     7,
+     5,
+     7
+    ]
+   },
+   {
+    "kind": "saint",
+    "text": "O holy apostle and evangelist John the Theologian, pray to God for us.",
+    "menaion": [
+     5,
+     8,
+     5,
+     8
+    ]
+   },
+   {
+    "kind": "saint",
+    "text": "O holy passion-bearer, King's Son Demetrius, pray to God for us.",
+    "menaion": [
+     5,
+     15,
+     5,
+     15
+    ]
+   },
+   {
+    "kind": "saint",
+    "text": "O holy equals-to-the-apostles, King Constantine and Helen, pray to God for us.",
+    "menaion": [
+     5,
+     21,
+     5,
+     21
+    ]
+   },
+   {
+    "kind": "saint",
+    "text": "O holy right-believing princes Constantine, Michael and Theodore, pray to God for us.",
+    "menaion": [
+     5,
+     21,
+     5,
+     21
+    ]
+   },
+   {
+    "kind": "saint",
+    "text": "O holy and great John, Forerunner of the Lord, pray to God for us.",
+    "menaion": [
+     5,
+     25,
+     5,
+     25
+    ]
+   },
+   {
+    "kind": "saint",
+    "text": "O three holy hierarchs Photius, Cyprian and Jonah, pray to God for us.",
+    "menaion": [
+     5,
+     27,
+     5,
+     27
+    ]
+   },
+   {
+    "kind": "saint",
+    "text": "O holy right-believing princes Basil and Constantine, pray to God for us.",
+    "menaion": [
+     6,
+     8,
+     6,
+     8
+    ]
+   },
+   {
+    "kind": "saint",
+    "text": "O holy and great John, Forerunner of the Lord, pray to God for us.",
+    "menaion": [
+     6,
+     24,
+     6,
+     24
+    ]
+   },
+   {
+    "kind": "saint",
+    "text": "O holy wonderworkers Peter and Fevronia, pray to God for us.",
+    "menaion": [
+     6,
+     25,
+     6,
+     25
+    ]
+   },
+   {
+    "kind": "saint",
+    "text": "O holy chief apostles Peter and Paul, pray to God for us.",
+    "menaion": [
+     6,
+     29,
+     6,
+     29
+    ]
+   },
+   {
+    "kind": "saint",
+    "text": "O holy apostles, pray to God for us.",
+    "menaion": [
+     6,
+     30,
+     6,
+     30
+    ]
+   },
+   {
+    "kind": "feast",
+    "text": "O most holy Lady God-bearer, save us.",
+    "menaion": [
+     7,
+     2,
+     7,
+     2
+    ]
+   },
+   {
+    "kind": "feast",
+    "text": "Glory to thee, our God, glory to thee.",
+    "menaion": [
+     7,
+     10,
+     7,
+     10
+    ]
+   },
+   {
+    "kind": "saint",
+    "text": "O holy right-believing Princess Olga, pray to God for us.",
+    "menaion": [
+     7,
+     11,
+     7,
+     11
+    ]
+   },
+   {
+    "kind": "saint",
+    "text": "O holy Archangel Gabriel, pray to God for us.",
+    "menaion": [
+     7,
+     13,
+     7,
+     13
+    ]
+   },
+   {
+    "kind": "saint",
+    "text": "O holy martyrs Cyricus and Julitta, pray to God for us.",
+    "menaion": [
+     7,
+     15,
+     7,
+     15
+    ]
+   },
+   {
+    "kind": "saint",
+    "text": "O holy equal-to-the-apostles, Prince Vladimir, pray to God for us.",
+    "menaion": [
+     7,
+     15,
+     7,
+     15
+    ]
+   },
+   {
+    "kind": "saint",
+    "text": "O holy fathers, pray to God for us.",
+    "sunday": [
+     7,
+     13,
+     7,
+     19
+    ]
+   },
+   {
+    "kind": "saint",
+    "text": "O all ye holy Russian wonderworkers, pray to God for us.",
+    "menaion": [
+     7,
+     17,
+     7,
+     17
+    ]
+   },
+   {
+    "kind": "saint",
+    "text": "O holy and righteous Mary, equal to the apostles, pray to God for us.",
+    "menaion": [
+     7,
+     22,
+     7,
+     22
+    ]
+   },
+   {
+    "kind": "saint",
+    "text": "O holy Anna, mother of the God-bearer, pray to God for us.",
+    "menaion": [
+     7,
+     25,
+     7,
+     25
+    ]
+   },
+   {
+    "kind": "saint",
+    "text": "O holy and righteous Eudocimus, pray to God for us.",
+    "menaion": [
+     7,
+     31,
+     7,
+     31
+    ]
+   },
+   {
+    "kind": "season",
+    "text": "Glory to thee, our God, glory to thee.",
+    "menaion": [
+     8,
+     1,
+     8,
+     1
+    ]
+   },
+   {
+    "kind": "season",
+    "text": "Glory to thine honorable Cross, O Lord.",
+    "menaion": [
+     8,
+     1,
+     8,
+     1
+    ]
+   },
+   {
+    "kind": "saint",
+    "text": "O holy protomartyr and archdeacon Stephen, pray to God for us.",
+    "menaion": [
+     8,
+     2,
+     8,
+     2
+    ]
+   },
+   {
+    "kind": "season",
+    "text": "Glory to thee, our God, glory to thee.",
+    "menaion": [
+     8,
+     5,
+     8,
+     5
+    ]
+   },
+   {
+    "kind": "feast",
+    "text": "Glory to thy Transfiguration, O Lord.",
+    "menaion": [
+     8,
+     6,
+     8,
+     6
+    ]
+   },
+   {
+    "kind": "season",
+    "text": "Glory to thy Transfiguration, O Lord.",
+    "menaion": [
+     8,
+     7,
+     8,
+     13
+    ]
+   },
+   {
+    "kind": "season",
+    "text": "O most holy Lady God-bearer, save us.",
+    "menaion": [
+     8,
+     14,
+     8,
+     14
+    ]
+   },
+   {
+    "kind": "feast",
+    "text": "O most holy Lady God-bearer, save us.",
+    "menaion": [
+     8,
+     15,
+     8,
+     15
+    ]
+   },
+   {
+    "kind": "season",
+    "text": "O most holy Lady God-bearer, save us.",
+    "menaion": [
+     8,
+     16,
+     8,
+     23
+    ]
+   },
+   {
+    "kind": "season",
+    "text": "Glory to thee, our God, glory to thee.",
+    "menaion": [
+     8,
+     16,
+     8,
+     16
+    ]
+   },
+   {
+    "kind": "saint",
+    "text": "O holy hieromartyr and apostle Eutyches, pray to God for us.",
+    "menaion": [
+     8,
+     24,
+     8,
+     24
+    ]
+   },
+   {
+    "kind": "saint",
+    "text": "O holy and great John, Forerunner of the Lord, pray to God for us.",
+    "menaion": [
+     8,
+     29,
+     8,
+     29
+    ]
+   },
+   {
+    "kind": "feast",
+    "text": "O most holy Lady God-bearer, save us.",
+    "menaion": [
+     8,
+     31,
+     8,
+     31
+    ]
+   },
+   {
+    "kind": "season",
+    "text": "Glory to thee, our God, glory to thee.",
+    "pascha": [
+     -70,
+     -70
+    ]
+   },
+   {
+    "kind": "season",
+    "text": "Glory to thee, our God, glory to thee.",
+    "pascha": [
+     -63,
+     -63
+    ]
+   },
+   {
+    "kind": "season",
+    "text": "Glory to thee, our God, glory to thee.",
+    "pascha": [
+     -56,
+     -56
+    ]
+   },
+   {
+    "kind": "season",
+    "text": "Glory to thee, our God, glory to thee.",
+    "pascha": [
+     -49,
+     -49
+    ]
+   },
+   {
+    "kind": "season",
+    "text": "Glory to thee, our God, glory to thee.",
+    "pascha": [
+     -42,
+     -42
+    ]
+   },
+   {
+    "kind": "season",
+    "text": "Glory to thine honorable Cross, O Lord.",
+    "pascha": [
+     -21,
+     -21
+    ]
+   },
+   {
+    "kind": "feast",
+    "text": "Glory to thee, our God, glory to thee.",
+    "pascha": [
+     -8,
+     -1
+    ]
+   },
+   {
+    "kind": "season",
+    "text": "Glory to thee, our God, glory to thee.",
+    "pascha": [
+     7,
+     7
+    ]
+   },
+   {
+    "kind": "season",
+    "text": "Glory to thee, our God, glory to thee.",
+    "pascha": [
+     24,
+     24
+    ]
+   },
+   {
+    "kind": "feast",
+    "text": "Glory to thine Ascension, O Lord.",
+    "pascha": [
+     39,
+     39
+    ]
+   },
+   {
+    "kind": "season",
+    "text": "Glory to thine Ascension, O Lord.",
+    "pascha": [
+     40,
+     47
+    ]
+   },
+   {
+    "kind": "saint",
+    "text": "O holy fathers, pray to God for us.",
+    "pascha": [
+     42,
+     42
+    ]
+   },
+   {
+    "kind": "saint",
+    "text": "Give rest, O Lord, to the souls of thy servants who have fallen asleep.",
+    "pascha": [
+     48,
+     48
+    ]
+   },
+   {
+    "kind": "feast",
+    "text": "O most holy Trinity, our God, glory to thee.",
+    "pascha": [
+     49,
+     49
+    ]
+   },
+   {
+    "kind": "season",
+    "text": "O most holy Trinity, our God, glory to thee.",
+    "pascha": [
+     50,
+     55
+    ]
+   },
+   {
+    "kind": "saint",
+    "text": "O all ye saints, pray to God for us.",
+    "pascha": [
+     56,
+     56
+    ]
+   }
+  ]
+ },
  "paschal_prefix": {
   "from": 8,
   "to": 38,

@@ -1,0 +1,229 @@
+# Home Ustav (1910), the zapevy for the whole year (fol. 209-225v): English translation.
+# Built into data/ustav.json by tools/build_ustav.py, with home-ustav.txt.
+# A zapev is the refrain said with each prostration, or with each prayer on the lestovka.
+#
+#   = key | text                  a zapev for the days of the week, used as [zapev key]
+#   WHEN KIND | text              a zapev for a date of the year
+#     WHEN:  M-D                  this church (Julian) date
+#            M-D..M-D             these dates (a forefeast, a feast and its afterfeast)
+#            sunday M-D..M-D      the Sunday that falls between these dates
+#            pascha N  /  N..M    this many days from Pascha (negative: before)
+#     KIND:  feast                the feast of the day; no saint is taken from the calendar
+#            season               a forefeast, afterfeast or lesser feast; the saint of the day is still prayed to
+#            saint                the saint of the day; takes the place of the calendar's saint
+#
+# [zapev saint] in a prayer gives the date's zapevy; where the book has none, it is
+# made from the calendar's saint after the forms of the General Menaion (fol. 209v-210v):
+#   O holy prophet N. / apostle N. / martyr N. / great-martyr N. / hieromartyr N. /
+#   monastic martyr N. … ; O hierarch of Christ N. ; O venerable father N. ;
+#   O holy and righteous N. ; O holy right-believing prince N. ; O holy passion-bearer N. …,
+#   pray to God for us.
+# Where the book gives a second zapev ("Or:", "Another:"), the first is used; the
+# others are kept here as comments.
+
+# ---------------------------------------------------------------- the days of the week (fol. 209)
+
+= trinity | O most holy Trinity, our God, glory to thee.
+= resurrection | Glory to thy Resurrection, O Lord.
+= cross-resurrection | Glory to thy Cross and Resurrection, O Lord.
+= god-bearer | O most holy Lady God-bearer, save us.
+= angels | O holy archangels and angels, pray to God for us.
+= forerunner | O holy and great John, Forerunner of the Lord, pray to God for us.
+= cross | Glory to thine honorable Cross, O Lord.
+= apostles | O holy apostles, pray to God for us.
+= nicholas | O hierarch of Christ Nicholas, pray to God for us.
+= all-saints | O all ye saints, pray to God for us.
+= departed | Give rest, O Lord, to the souls of thy servants who have fallen asleep.
+= feast | Glory to thee, our God, glory to thee.
+
+# ---------------------------------------------------------------- September
+
+9-1 season | Glory to thee, our God, glory to thee.
+9-6 saint | O holy Archangel Michael, pray to God for us.
+# The Nativity of the God-bearer: one zapev for the forefeast, feast, afterfeast and leave-taking.
+9-7 season | O most holy Lady God-bearer, save us.
+9-8 feast | O most holy Lady God-bearer, save us.
+9-9..9-12 season | O most holy Lady God-bearer, save us.
+9-13 season | Glory to thee, our God, glory to thee.
+# The Exaltation: forefeast, feast, afterfeast and leave-taking.
+9-13 season | Glory to thine honorable Cross, O Lord.
+9-14 feast | Glory to thine honorable Cross, O Lord.
+9-15..9-21 season | Glory to thine honorable Cross, O Lord.
+9-19 saint | O venerable fathers, right-believing princes, pray to God for us.
+# Or: O holy wonderworking princes Theodore, David and Constantine, pray to God for us.
+9-20 saint | O holy martyrs and confessors, Prince Michael and Theodore, pray to God for us.
+# The Forerunner: one zapev for his Conception, Nativity, Beheading and the Findings of his head.
+9-23 saint | O holy and great John, Forerunner of the Lord, pray to God for us.
+9-24 saint | O holy protomartyr and equal-to-the-apostles Thecla, pray to God for us.
+9-26 saint | O holy apostle and evangelist John the Theologian, pray to God for us.
+
+# ---------------------------------------------------------------- October
+
+# "All her feasts" (with Sep 8): the Protection of the God-bearer.
+10-1 feast | O most holy Lady God-bearer, save us.
+10-4 saint | O holy and great hierarchs Gurias and Barsanuphius, pray to God for us.
+10-5 saint | O three holy hierarchs Peter, Alexis and Jonah, pray to God for us.
+10-11 saint | O hierarch of Christ and confessor Theophanes, pray to God for us.
+sunday 10-8..10-14 saint | O holy fathers, pray to God for us.
+10-15 saint | O holy hieromartyr Lucian, pray to God for us.
+10-17 saint | O hierarch of Christ Lazarus, pray to God for us.
+10-18 saint | O holy apostle and evangelist Luke, pray to God for us.
+10-22 saint | O holy martyrs, pray to God for us.
+# Another: O holy seven youths, pray to God for us.
+10-23 saint | O holy and righteous James, pray to God for us.
+10-24 saint | O holy and righteous King Elesbaan, pray to God for us.
+10-26 season | Glory to thee, our God, glory to thee.
+
+# ---------------------------------------------------------------- November
+
+11-1 saint | O holy wonderworkers and unmercenaries Cosmas and Damian, pray to God for us.
+11-3 saint | O holy great-martyr George, pray to God for us.
+11-8 saint | O holy archangels and angels, pray to God for us.
+11-8 saint | O holy Archangel Michael, pray to God for us.
+11-13 saint | O hierarch of Christ John Chrysostom, pray to God for us.
+11-15 saint | O holy martyrs and confessors Gurias, Samonas and Abibus, pray to God for us.
+11-16 saint | O holy apostle and evangelist Matthew, pray to God for us.
+11-19 saint | O venerable father Joasaph, pray to God for us.
+# "All her feasts": the Entry of the God-bearer into the Temple, with its forefeast and afterfeast.
+11-20 season | O most holy Lady God-bearer, save us.
+11-21 feast | O most holy Lady God-bearer, save us.
+11-22..11-25 season | O most holy Lady God-bearer, save us.
+11-22 saint | O holy passion-bearer, Prince Michael, pray to God for us.
+11-27 saint | O holy right-believing Prince Gabriel, pray to God for us.
+
+# ---------------------------------------------------------------- December
+
+12-2 saint | O holy and righteous Philaret, pray to God for us.
+12-9 feast | O most holy Lady God-bearer, save us.
+12-17 saint | O three holy youths, pray to God for us.
+sunday 12-11..12-17 saint | O holy forefathers, pray to God for us.
+sunday 12-18..12-24 saint | O holy fathers, pray to God for us.
+# The forefeast of the Nativity of Christ (and of all the feasts of the Lord).
+12-20..12-24 season | Glory to thee, our God, glory to thee.
+12-25 feast | Glory to thy Nativity, O Lord.
+12-26..12-31 season | Glory to thy Nativity, O Lord.
+sunday 12-26..12-31 saint | O holy ancestors of God, pray to God for us.
+12-27 saint | O holy protomartyr and archdeacon Stephen, pray to God for us.
+# Another: O holy apostle and protomartyr Stephen, pray to God for us.
+12-29 saint | O holy martyrs, pray to God for us.
+
+# ---------------------------------------------------------------- January
+
+1-1 season | Glory to thee, our God, glory to thee.
+1-2..1-5 season | Glory to thee, our God, glory to thee.
+1-6 feast | Glory to thy Theophany, O Lord.
+1-7..1-14 season | Glory to thy Theophany, O Lord.
+# The Synaxis of the Forerunner (not in the book; his zapev).
+1-7 saint | O holy and great John, Forerunner of the Lord, pray to God for us.
+1-16 saint | O holy chief apostle Peter, pray to God for us.
+1-25 saint | O hierarch of Christ Gregory the Theologian, pray to God for us.
+1-30 saint | O three holy and great hierarchs, pray to God for us.
+
+# ---------------------------------------------------------------- February
+
+2-1 season | Glory to thee, our God, glory to thee.
+2-2 feast | Glory to thy Meeting, O Lord.
+2-3..2-9 season | Glory to thy Meeting, O Lord.
+# The book gives one for each and a general one for both; the general one is used.
+2-3 saint | O holy and righteous Symeon, God-receiver, and Anna the prophetess, pray to God for us.
+2-14 saint | O holy martyr and confessor, Prince Michael, pray to God for us.
+2-24 saint | O holy and great John, Forerunner of the Lord, pray to God for us.
+
+# ---------------------------------------------------------------- March
+
+3-9 saint | O holy forty great-martyrs, pray to God for us.
+3-20 saint | O holy monastic martyrs, pray to God for us.
+3-24 season | O most holy Lady God-bearer, save us.
+3-25 feast | O most holy Lady God-bearer, save us.
+3-26 saint | O holy Archangel Gabriel, pray to God for us.
+3-28 saint | O venerable father Stephen, pray to God for us.
+
+# ---------------------------------------------------------------- April
+
+4-14 saint | O holy great-martyrs Anthony, John and Eustathius, pray to God for us.
+4-23 saint | O holy great-martyr George, pray to God for us.
+4-25 saint | O holy apostle and evangelist Mark, pray to God for us.
+
+# ---------------------------------------------------------------- May
+
+5-2 saint | O holy passion-bearing princes Boris and Gleb, pray to God for us.
+5-6 saint | O holy and righteous Job, pray to God for us.
+5-6 saint | O holy passion-bearer Barbarus, pray to God for us.
+# "All the feasts of the Cross of the Lord": the Appearance of the Cross in Jerusalem.
+5-7 season | Glory to thine honorable Cross, O Lord.
+5-8 saint | O holy apostle and evangelist John the Theologian, pray to God for us.
+5-15 saint | O holy passion-bearer, King's Son Demetrius, pray to God for us.
+5-21 saint | O holy equals-to-the-apostles, King Constantine and Helen, pray to God for us.
+5-21 saint | O holy right-believing princes Constantine, Michael and Theodore, pray to God for us.
+5-25 saint | O holy and great John, Forerunner of the Lord, pray to God for us.
+5-27 saint | O three holy hierarchs Photius, Cyprian and Jonah, pray to God for us.
+
+# ---------------------------------------------------------------- June
+
+6-8 saint | O holy right-believing princes Basil and Constantine, pray to God for us.
+6-24 saint | O holy and great John, Forerunner of the Lord, pray to God for us.
+6-25 saint | O holy wonderworkers Peter and Fevronia, pray to God for us.
+6-29 saint | O holy chief apostles Peter and Paul, pray to God for us.
+# The King's Son Peter (no date in the book): O venerable father Peter, pray to God for us.
+6-30 saint | O holy apostles, pray to God for us.
+
+# ---------------------------------------------------------------- July
+
+# "All her feasts": the Placing of the Robe of the God-bearer.
+7-2 feast | O most holy Lady God-bearer, save us.
+7-10 feast | Glory to thee, our God, glory to thee.
+7-11 saint | O holy right-believing Princess Olga, pray to God for us.
+7-13 saint | O holy Archangel Gabriel, pray to God for us.
+7-15 saint | O holy martyrs Cyricus and Julitta, pray to God for us.
+7-15 saint | O holy equal-to-the-apostles, Prince Vladimir, pray to God for us.
+sunday 7-13..7-19 saint | O holy fathers, pray to God for us.
+7-17 saint | O all ye holy Russian wonderworkers, pray to God for us.
+7-22 saint | O holy and righteous Mary, equal to the apostles, pray to God for us.
+7-25 saint | O holy Anna, mother of the God-bearer, pray to God for us.
+7-31 saint | O holy and righteous Eudocimus, pray to God for us.
+
+# ---------------------------------------------------------------- August
+
+8-1 season | Glory to thee, our God, glory to thee.
+8-1 season | Glory to thine honorable Cross, O Lord.
+8-2 saint | O holy protomartyr and archdeacon Stephen, pray to God for us.
+8-5 season | Glory to thee, our God, glory to thee.
+8-6 feast | Glory to thy Transfiguration, O Lord.
+8-7..8-13 season | Glory to thy Transfiguration, O Lord.
+# "All her feasts": the Dormition, with its forefeast and afterfeast.
+8-14 season | O most holy Lady God-bearer, save us.
+8-15 feast | O most holy Lady God-bearer, save us.
+8-16..8-23 season | O most holy Lady God-bearer, save us.
+8-16 season | Glory to thee, our God, glory to thee.
+8-24 saint | O holy hieromartyr and apostle Eutyches, pray to God for us.
+8-29 saint | O holy and great John, Forerunner of the Lord, pray to God for us.
+# "All her feasts": the Placing of the Belt of the God-bearer.
+8-31 feast | O most holy Lady God-bearer, save us.
+
+# ---------------------------------------------------------------- the Triodion and Pentecostarion
+
+# The Sundays of the Publican and Pharisee, the Prodigal Son, Meatfare, Cheesefare and Orthodoxy.
+pascha -70 season | Glory to thee, our God, glory to thee.
+pascha -63 season | Glory to thee, our God, glory to thee.
+pascha -56 season | Glory to thee, our God, glory to thee.
+pascha -49 season | Glory to thee, our God, glory to thee.
+pascha -42 season | Glory to thee, our God, glory to thee.
+# The Sunday of the Veneration of the Cross.
+pascha -21 season | Glory to thine honorable Cross, O Lord.
+# Lazarus Saturday, Palm Sunday and all of Holy Week.
+pascha -8..-1 feast | Glory to thee, our God, glory to thee.
+# Thomas Sunday, and Mid-Pentecost Wednesday.
+pascha 7 season | Glory to thee, our God, glory to thee.
+pascha 24 season | Glory to thee, our God, glory to thee.
+# The Ascension, to its leave-taking.
+pascha 39 feast | Glory to thine Ascension, O Lord.
+pascha 40..47 season | Glory to thine Ascension, O Lord.
+# The Seventh Sunday after Pascha, of the holy fathers of the First Council.
+pascha 42 saint | O holy fathers, pray to God for us.
+# The Saturday before Pentecost.
+pascha 48 saint | Give rest, O Lord, to the souls of thy servants who have fallen asleep.
+# Pentecost, to its leave-taking.
+pascha 49 feast | O most holy Trinity, our God, glory to thee.
+pascha 50..55 season | O most holy Trinity, our God, glory to thee.
+# All Saints' Sunday.
+pascha 56 saint | O all ye saints, pray to God for us.

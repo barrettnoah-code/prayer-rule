@@ -5,36 +5,39 @@
 #   @@@ service | Title           an order (pr_order) for that service
 #   ! text                        rubric paragraph (all red)
 #   any other line                a paragraph with a red first letter
-#   {text}                        red words inside a line (bows, Glory:)
+#   {text}                        red words inside a line (Glory:)
+#   [bow]                         after a line: (prostration) or (bow), as the day requires;
+#                                 [bow entrance] [bow departing] [bow rule] [bow great] [bow 3] [bow word]
 #   *text*                        italic
 #   [saint]                       the saint of the day (from the calendar)
+#   [zapev key]                   on a line of its own: a zapev (tools/ustav/zapevy.txt);
+#                                 [zapev saint] = the date's zapevy, or one made for the calendar's saint
 # Lines starting with # are comments in the prayers part only.
 
 # ---------------------------------------------------------------- openings
 
 === entrance-opening | The Entrance Opening
-O God, be merciful to me a sinner. {(prostration)}
-Thou who hast created me, O Lord, have mercy on me. {(prostration)}
-Without number have I sinned; O Lord, have mercy, and forgive me a sinner. {(prostration)}
-It is truly meet to bless thee, O God-bearer, ever blessed and most immaculate, and the Mother of our God. More honorable than the cherubim, and beyond compare more glorious than the seraphim, who without corruption gavest birth to God the Word, true God-bearer, thee do we magnify.
-! A great prostration. This one is never left out.
-Glory to the Father, and to the Son, and to the Holy Ghost. {(prostration)}
-Both now and ever, and unto the ages of ages. Amen. {(prostration)}
-Lord, have mercy. Lord, have mercy. Lord, bless. {(prostration)}
+O God, be merciful to me a sinner. [bow entrance]
+Thou who hast created me, O Lord, have mercy on me. [bow entrance]
+Without number have I sinned; O Lord, have mercy, and forgive me a sinner. [bow entrance]
+It is truly meet to bless thee, O God-bearer, ever blessed and most immaculate, and the Mother of our God. More honorable than the cherubim, and beyond compare more glorious than the seraphim, who without corruption gavest birth to God the Word, true God-bearer, thee do we magnify. [bow great]
+! This great prostration is never left out.
+Glory to the Father, and to the Son, and to the Holy Ghost. [bow entrance]
+Both now and ever, and unto the ages of ages. Amen. [bow entrance]
+Lord, have mercy. Lord, have mercy. Lord, bless. [bow entrance]
 ! Then the dismissal:
 O Lord Jesus Christ, Son of God, for the prayers of thy most pure Mother, and of Saint *N.*, whose church this is, and of the holy angel my guardian, and of all thy saints: O Lord Jesus Christ, Son of God, have mercy on me and save me, for thou art good and the lover of mankind.
-! All these prostrations are made to the ground, except on Saturdays, Sundays and feast days. Likewise, throughout Pentecost and during the twelve days after Christ's Nativity, they are made as waist bows.
 
 === departing-opening | The Departing Opening
 ! The departing opening, made in the same way as the entrance opening:
-O God, be merciful to me a sinner. {(prostration)}
-Thou who hast created me, O Lord, have mercy on me. {(prostration)}
-Without number have I sinned; O Lord, have mercy, and forgive me a sinner. {(prostration)}
-It is truly meet to bless thee, O God-bearer, ever blessed and most immaculate, and the Mother of our God. More honorable than the cherubim, and beyond compare more glorious than the seraphim, who without corruption gavest birth to God the Word, true God-bearer, thee do we magnify.
-! A great prostration. This one is never left out.
-Glory to the Father, and to the Son, and to the Holy Ghost. {(prostration)}
-Both now and ever, and unto the ages of ages. Amen. {(prostration)}
-Lord, have mercy. Lord, have mercy. Lord, bless. {(prostration)}
+O God, be merciful to me a sinner. [bow departing]
+Thou who hast created me, O Lord, have mercy on me. [bow departing]
+Without number have I sinned; O Lord, have mercy, and forgive me a sinner. [bow departing]
+It is truly meet to bless thee, O God-bearer, ever blessed and most immaculate, and the Mother of our God. More honorable than the cherubim, and beyond compare more glorious than the seraphim, who without corruption gavest birth to God the Word, true God-bearer, thee do we magnify. [bow great]
+! This great prostration is never left out.
+Glory to the Father, and to the Son, and to the Holy Ghost. [bow departing]
+Both now and ever, and unto the ages of ages. Amen. [bow departing]
+Lord, have mercy. Lord, have mercy. Lord, bless. [bow departing]
 ! Then the dismissal:
 O Lord Jesus Christ, Son of God, for the prayers of thy most pure Mother, and of Saint *N.*, whose church this is, and of the holy angel my guardian, and of all thy saints: O Lord Jesus Christ, Son of God, have mercy on me and save me, for thou art good and the lover of mankind.
 
@@ -45,7 +48,9 @@ Through the prayers of our holy fathers, O Lord Jesus Christ, Son of God, have m
 O Heavenly King, Comforter, the Spirit of truth, who art everywhere present and fillest all things, Treasury of good things and Giver of life: come and dwell in us, and cleanse us from every stain, and save our souls, O Good One.
 
 === trisagion-our-father | Trisagion through the Our Father
-Holy God, Holy Mighty, Holy Immortal, have mercy on us. {(three times, with three prostrations)}
+Holy God, Holy Mighty, Holy Immortal, have mercy on us. [bow]
+Holy God, Holy Mighty, Holy Immortal, have mercy on us. [bow]
+Holy God, Holy Mighty, Holy Immortal, have mercy on us. [bow]
 Glory to the Father, and to the Son, and to the Holy Ghost, both now and ever, and unto the ages of ages. Amen.
 O most holy Trinity, have mercy on us. O Lord, cleanse our sins. O Master, pardon our iniquities. O Holy One, visit and heal our infirmities, for thy name's sake.
 Lord, have mercy. {(three times)}
@@ -57,19 +62,18 @@ O Lord Jesus Christ, Son of God, have mercy on us. Amen.
 Glory to the Father, and to the Son, and to the Holy Ghost, both now and ever, and unto the ages of ages. Amen.
 
 === o-come | O come, let us worship
-O come, let us worship God our King.
-O come, let us worship Christ, our King and God.
-O come, let us worship and fall down before the Lord Jesus Christ himself, our King and God.
-! Three prostrations.
+O come, let us worship God our King. [bow]
+O come, let us worship Christ, our King and God. [bow]
+O come, let us worship and fall down before the Lord Jesus Christ himself, our King and God. [bow]
 
 === glory-to-thee-for-all | Glory to thee, our God, for all things
 Glory to thee, our God, glory to thee for all things. {(three times)}
 
 === macarius-three-prostrations | Prayer of St Macarius, with three prostrations
-! Make three prostrations, saying the prayer of Saint Macarius:
-O God, cleanse me a sinner, for I have never done any good thing before thee. {(prostration)}
-But deliver me from the evil one, and let thy will be done in me. {(prostration)}
-That without condemnation I may open my unworthy mouth, and praise thy holy name, of the Father, and of the Son, and of the Holy Ghost, now and ever, and unto the ages of ages. Amen. {(prostration)}
+! The prayer of Saint Macarius, with three bows:
+O God, cleanse me a sinner, for I have never done any good thing before thee. [bow]
+But deliver me from the evil one, and let thy will be done in me. [bow]
+That without condemnation I may open my unworthy mouth, and praise thy holy name, of the Father, and of the Son, and of the Holy Ghost, now and ever, and unto the ages of ages. Amen. [bow]
 
 === prayer-having-risen | Prayer: Having risen from sleep
 ! Prayer.
@@ -83,7 +87,12 @@ And in the Holy Ghost, the Lord, the true and life-giving, who proceedeth from t
 # ---------------------------------------------------------------- inside the rule
 
 === glory-alleluia | Alleluia, glory to thee, O God
-Alleluia, alleluia, glory to thee, O God. {(three times, with three prostrations)}
+Glory to the Father, and to the Son, and to the Holy Ghost, both now and ever, and unto the ages of ages. Amen.
+Alleluia, alleluia, glory to thee, O God. [bow]
+Alleluia, alleluia, glory to thee, O God. [bow]
+Alleluia, alleluia, glory to thee, O God. [bow]
+Lord, have mercy. {(three times)}
+Glory to the Father, and to the Son, and to the Holy Ghost, both now and ever, and unto the ages of ages. Amen.
 
 === jesus-prayer | The Jesus Prayer
 O Lord Jesus Christ, Son of God, have mercy on me a sinner.
@@ -91,29 +100,29 @@ O Lord Jesus Christ, Son of God, have mercy on me a sinner.
 # ---------------------------------------------------------------- endings
 
 === ending-more-honorable | Ending: More honorable, with prostrations
-More honorable than the cherubim, and beyond compare more glorious than the seraphim, who without corruption gavest birth to God the Word, true God-bearer, thee do we magnify. {(prostration)}
-Glory to the Father, and to the Son, and to the Holy Ghost. {(prostration)}
-Both now and ever, and unto the ages of ages. Amen. {(prostration)}
-Lord, have mercy. Lord, have mercy. Lord, bless. {(prostration)}
+More honorable than the cherubim, and beyond compare more glorious than the seraphim, who without corruption gavest birth to God the Word, true God-bearer, thee do we magnify. [bow]
+Glory to the Father, and to the Son, and to the Holy Ghost. [bow]
+Both now and ever, and unto the ages of ages. Amen. [bow]
+Lord, have mercy. Lord, have mercy. Lord, bless. [bow]
 
 === ending-truly-meet | Ending: It is truly meet, with prostrations
-It is truly meet to bless thee, O God-bearer, ever blessed and most immaculate, and the Mother of our God. More honorable than the cherubim, and beyond compare more glorious than the seraphim, who without corruption gavest birth to God the Word, true God-bearer, thee do we magnify. {(a great prostration)}
-Glory to the Father, and to the Son, and to the Holy Ghost. {(prostration)}
-Both now and ever, and unto the ages of ages. Amen. {(prostration)}
-Lord, have mercy. Lord, have mercy. Lord, bless. {(prostration)}
+It is truly meet to bless thee, O God-bearer, ever blessed and most immaculate, and the Mother of our God. More honorable than the cherubim, and beyond compare more glorious than the seraphim, who without corruption gavest birth to God the Word, true God-bearer, thee do we magnify. [bow great]
+Glory to the Father, and to the Son, and to the Holy Ghost. [bow]
+Both now and ever, and unto the ages of ages. Amen. [bow]
+Lord, have mercy. Lord, have mercy. Lord, bless. [bow]
 
 === ending-glory-prostrations | Ending: Glory, both now, with prostrations
-Glory to the Father, and to the Son, and to the Holy Ghost. {(prostration)}
-Both now and ever, and unto the ages of ages. Amen. {(prostration)}
-Lord, have mercy. Lord, have mercy. Lord, bless. {(prostration)}
+Glory to the Father, and to the Son, and to the Holy Ghost. [bow]
+Both now and ever, and unto the ages of ages. Amen. [bow]
+Lord, have mercy. Lord, have mercy. Lord, bless. [bow]
 
 === ending-glory-no-prostrations | Ending: Glory, both now, without prostrations
 Glory to the Father, and to the Son, and to the Holy Ghost, both now and ever, and unto the ages of ages. Amen.
 Lord, have mercy. Lord, have mercy. Lord, bless.
-! Without prostrations.
+! Without bows.
 
 === prayer-of-forgiveness | Prayer of forgiveness: Remit, pardon
-! Bow down to the ground and say this prayer of forgiveness:
+! Make a [bow word] and say this prayer of forgiveness:
 Remit, pardon and forgive, O God, our transgressions, both voluntary and involuntary, in word and in deed, in knowledge and in ignorance, in mind and in thought, by day and by night: forgive me them all, for thou art good and the lover of mankind.
 
 === forgive-them-that-hate | Prayer: Forgive them that hate and wrong us
@@ -123,19 +132,19 @@ Forgive them that hate and wrong us, O Lord, thou lover of mankind. Do good unto
 # ---------------------------------------------------------------- cell rule
 
 === cell-twelve-prostrations | Cell rule: the twelve opening prostrations
-! Stand in your usual place. With humility of heart and a contrite mind, make prostrations to the ground, saying:
-O God, cleanse me a sinner, and have mercy on me. {(prostration)}
-Thou who hast created me, O Lord, have mercy on me. {(prostration)}
-Without number have I sinned; O Lord, forgive me. {(prostration)}
-O God, be merciful to me a sinner. {(prostration)}
-O God, forgive my iniquities and transgressions. {(prostration)}
-O my most holy Lady, God-bearer, have mercy on me and save me, and help me now in this life, and at the departure of my soul, and in the age to come. {(prostration)}
-O invincible and divine power of the honorable and life-giving Cross of the Lord, forsake me not, a sinner who hopeth in thee. {(prostration)}
-All ye heavenly powers, holy angels and archangels, cherubim and seraphim, have mercy on me, and pray for me unto the Lord God, and help me now in this life, and at the departure of my soul, and in the age to come. {(prostration)}
-O angel of Christ, my holy guardian, have mercy on me, and pray for me a sinner unto the Lord God, and help me now in this life, and at the departure of my soul, and in the age to come. {(prostration)}
-O holy and great John, prophet and forerunner of the Lord, have mercy on me, and pray for me unto the Lord God, and help me now in this life, and at the departure of my soul, and in the age to come. {(prostration)}
-O holy and glorious apostles, prophets and martyrs, hierarchs, venerable and righteous ones, and all ye saints, have mercy on me, and pray for me a sinner unto the Lord God, and help me now in this life, and at the departure of my soul, and in the age to come. {(prostration)}
-O Lord, whether in word, or in deed, or in thought I have sinned in all my life, have mercy on me and forgive me, for thy mercy's sake. {(prostration)}
+! Stand in your usual place. With humility of heart and a contrite mind, make these bows, saying:
+O God, cleanse me a sinner, and have mercy on me. [bow rule]
+Thou who hast created me, O Lord, have mercy on me. [bow rule]
+Without number have I sinned; O Lord, forgive me. [bow rule]
+O God, be merciful to me a sinner. [bow rule]
+O God, forgive my iniquities and transgressions. [bow rule]
+O my most holy Lady, God-bearer, have mercy on me and save me, and help me now in this life, and at the departure of my soul, and in the age to come. [bow rule]
+O invincible and divine power of the honorable and life-giving Cross of the Lord, forsake me not, a sinner who hopeth in thee. [bow rule]
+All ye heavenly powers, holy angels and archangels, cherubim and seraphim, have mercy on me, and pray for me unto the Lord God, and help me now in this life, and at the departure of my soul, and in the age to come. [bow rule]
+O angel of Christ, my holy guardian, have mercy on me, and pray for me a sinner unto the Lord God, and help me now in this life, and at the departure of my soul, and in the age to come. [bow rule]
+O holy and great John, prophet and forerunner of the Lord, have mercy on me, and pray for me unto the Lord God, and help me now in this life, and at the departure of my soul, and in the age to come. [bow rule]
+O holy and glorious apostles, prophets and martyrs, hierarchs, venerable and righteous ones, and all ye saints, have mercy on me, and pray for me a sinner unto the Lord God, and help me now in this life, and at the departure of my soul, and in the age to come. [bow rule]
+O Lord, whether in word, or in deed, or in thought I have sinned in all my life, have mercy on me and forgive me, for thy mercy's sake. [bow rule]
 
 === prayer-macarius | Prayer of St Macarius
 ! The prayer of Saint Macarius.
@@ -179,8 +188,7 @@ Have mercy on us, O Lord, have mercy on us; for, being at a loss for any defense
 Lord, have mercy. {(forty times)}
 More honorable than the cherubim, and beyond compare more glorious than the seraphim, who without corruption gavest birth to God the Word, true God-bearer, thee do we magnify.
 Glory to the Father, and to the Son, and to the Holy Ghost, both now and ever, and unto the ages of ages. Amen.
-Lord, have mercy. Lord, have mercy. Lord, bless.
-! Three prostrations.
+Lord, have mercy. Lord, have mercy. Lord, bless. [bow rule 3]
 
 # ---------------------------------------------------------------- dismissals
 
@@ -236,52 +244,98 @@ O Lord Jesus Christ, Son of God, for the prayers of thy most pure Mother, and of
 
 === additions-vespers | Daily additions: Vespers
 ! After finishing the kathismas or the lestovkas of Jesus Prayers, pray to the most holy God-bearer as much as you are able and wish: a lestovka, or 50 prostrations, or 12. Do the same for the saints who fall on that date.
+[zapev god-bearer]
+[zapev saint]
 
 === additions-vespers-sunday | Daily additions: Vespers on Saturday evening
 ! After finishing the kathismas or the lestovkas of Jesus Prayers, pray to the most holy God-bearer as much as you are able and wish: a lestovka, or 50 prostrations, or 12. Do the same for the saints who fall on that date. On Saturday, pray to the Cross and the Resurrection.
+[zapev god-bearer]
+[zapev saint]
+[zapev cross-resurrection]
 
 === additions-vespers-feast | Daily additions: Vespers of a feast
 ! After finishing the kathismas or the lestovkas of Jesus Prayers, pray to the most holy God-bearer as much as you are able and wish: a lestovka, or 50 prostrations, or 12. Do the same for the saints who fall on that date. On a feast, pray to the feast.
+[zapev god-bearer]
+[zapev saint]
+[zapev feast]
 
 === additions-compline | Daily additions: Compline
 ! After the kathisma or the lestovkas, pray to the God-bearer as your strength allows, in place of her canon. Laypeople who do not always pray the rule should pray to the guardian angel after the prostrations to the God-bearer.
+[zapev god-bearer]
 
 === additions-compline-friday | Daily additions: Compline on Friday evening
 ! On Friday evening, when it is not a feast, make as many prostrations as you wish in place of the canon for the departed, before the prostrations to the God-bearer.
 ! After the kathisma or the lestovkas, pray to the God-bearer as your strength allows, in place of her canon. Laypeople who do not always pray the rule should pray to the guardian angel after the prostrations to the God-bearer.
+[zapev departed]
+[zapev god-bearer]
 
 === additions-midnight | Daily additions: Midnight Office
 ! Make some prostrations for the reposed: 12, or fewer, or more.
+[zapev departed]
+
+=== additions-midnight-sunday | Daily additions: Midnight Office on Sunday
+! On Sunday, pray to the most holy Trinity.
+[zapev trinity]
 
 === additions-matins-sunday | Daily additions: Matins on Sunday
-! After the kathismas, pray first to the Cross and the Resurrection, and after that to the God-bearer. Pray also to the saint who falls on that date.
+! After the kathismas or lestovkas, pray first to the Cross and the Resurrection, and after that to the God-bearer. Pray also to the saint who falls on that date.
+[zapev cross-resurrection]
+[zapev god-bearer]
+[zapev saint]
 
 === additions-matins-monday | Daily additions: Matins on Monday
-! After the kathismas, pray to the God-bearer and to the archangels. Pray also to the saint who falls on that date.
+! After the kathismas or lestovkas, pray to the God-bearer and to the archangels. Pray also to the saint who falls on that date.
+[zapev god-bearer]
+[zapev angels]
+[zapev saint]
 
 === additions-matins-tuesday | Daily additions: Matins on Tuesday
-! After the kathismas, pray to the God-bearer and to the Forerunner. Pray also to the saint who falls on that date.
+! After the kathismas or lestovkas, pray to the God-bearer and to the Forerunner. Pray also to the saint who falls on that date.
+[zapev god-bearer]
+[zapev forerunner]
+[zapev saint]
 
 === additions-matins-cross | Daily additions: Matins on Wednesday and Friday
-! After the kathismas, pray first to the honorable Cross, and after that to the God-bearer. Pray also to the saint who falls on that date.
+! After the kathismas or lestovkas, pray first to the honorable Cross, and after that to the God-bearer. Pray also to the saint who falls on that date.
+[zapev cross]
+[zapev god-bearer]
+[zapev saint]
 
 === additions-matins-thursday | Daily additions: Matins on Thursday
-! After the kathismas, pray to the God-bearer and to the apostles and Nicholas. Pray also to the saint who falls on that date.
+! After the kathismas or lestovkas, pray to the God-bearer and to the apostles and Nicholas. Pray also to the saint who falls on that date.
+[zapev god-bearer]
+[zapev apostles]
+[zapev nicholas]
+[zapev saint]
 
 === additions-matins-saturday | Daily additions: Matins on Saturday
-! After the kathismas, pray to the God-bearer and to all the saints. Pray also to the saint who falls on that date.
+! After the kathismas or lestovkas, pray to the God-bearer and to all the saints. Pray also to the saint who falls on that date.
+[zapev god-bearer]
+[zapev all-saints]
+[zapev saint]
 
 === additions-matins-feast | Daily additions: Matins of a great feast of the Lord on a Sunday
 ! When a great feast of the Lord falls on a Sunday, do not pray to the Resurrection; pray to the feast. After that, pray to the God-bearer, and to the saint who falls on that date.
+[zapev feast]
+[zapev god-bearer]
+[zapev saint]
 
 === additions-hours | Daily additions: the Hours
-! After the kathismas, make as many prostrations to the God-bearer as you wish, and pray to the saint who falls on that date.
+! After the kathismas or lestovkas, make as many prostrations to the God-bearer as you wish, and pray to the saint who falls on that date.
+[zapev god-bearer]
+[zapev saint]
 
 === additions-hours-sunday | Daily additions: the Hours on Sunday
 ! On Sunday, the day of the Resurrection, after the kathismas or lestovkas, pray first to the Resurrection, and then to the God-bearer and to the saint who falls on that date.
+[zapev resurrection]
+[zapev god-bearer]
+[zapev saint]
 
 === additions-hours-feast | Daily additions: the Hours of a great feast of the Lord on a Sunday
 ! When a great feast of the Lord falls on a Sunday, do not pray to the Resurrection; after the kathismas or lestovkas, pray first to the feast, and then to the God-bearer and to the saint who falls on that date.
+[zapev feast]
+[zapev god-bearer]
+[zapev saint]
 
 # ================================================================ orders
 # Order lines as on the Orders screen; "> text" is a short line said as
@@ -298,8 +352,6 @@ glory-both-now
 o-come
 rule
 additions
-> Lord, have mercy. (3 times)
-glory-both-now
 ending-more-honorable
 dismissal
 departing-opening
@@ -315,7 +367,6 @@ psalm 50
 creed
 rule
 additions
-> Lord, have mercy. (3 times)
 ending-glory-no-prostrations
 dismissal
 prayer-of-forgiveness
@@ -335,7 +386,6 @@ psalm 50
 creed
 rule
 additions
-> Lord, have mercy. (3 times)
 ending-glory-no-prostrations
 dismissal
 prayer-of-forgiveness
@@ -349,8 +399,6 @@ glory-both-now
 o-come
 rule
 additions
-> Lord, have mercy. (3 times)
-glory-both-now
 o-come
 ! Then, for the first hour:
 rule first-hour
@@ -367,8 +415,6 @@ glory-both-now
 o-come
 rule
 additions
-> Lord, have mercy. (3 times)
-glory-both-now
 ending-truly-meet
 dismissal
 

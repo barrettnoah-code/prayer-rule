@@ -31,6 +31,7 @@ foreach ( array(
 	'prayer_rule_dismissals',
 	'prayer_rule_ustav_hash',
 	'prayer_rule_saints',
+	'prayer_rule_zapevy',
 	'prayer_rule_additions',
 	'prayer_rule_fasting',
 	'prayer_rule_evening',

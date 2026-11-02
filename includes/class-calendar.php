@@ -72,6 +72,7 @@ class Calendar {
 			'great'         => false,
 			'saint'         => '',
 			'saint_source'  => '',
+			'rank'          => 9,    // highest Typikon sign of the day: 1 great feast, 2 vigil, 3 polyeleos, 4 doxology, 5 six stichera
 			'fast_label'    => '',   // the calendar's own name for the fast, when it has one
 		);
 		$top = null;
@@ -82,6 +83,7 @@ class Calendar {
 			foreach ( \OLCal\Store::for_day( $day ) as $item ) {
 				$out['lines'][] = trim( ( $item['sign'] ? $item['sign'] . ' ' : '' ) . self::plain( $item['body'] ) );
 				$out['great']   = $out['great'] || '🕀' === $item['sign'];
+				$out['rank']    = min( $out['rank'], self::rank( $item ) );
 				if ( 'menaion' === $item['cycle'] && ( ! $top || self::rank( $item ) < self::rank( $top ) ) ) {
 					$top = $item;
 				}
@@ -118,6 +120,7 @@ class Calendar {
 	public static function dismissal_name( $html ) {
 		$text = self::plain( $html );
 		$text = preg_replace( '/[\x{1F540}-\x{1F544}]\s*/u', '', $text );                     // Typikon signs
+		$text = self::without_dates( $text );
 		$text = preg_replace( '/^(the\s+)?(commemoration|memory)\s+of\s+/iu', '', $text );
 		// First sentence: stop at ". " unless the word before is an abbreviation (St., Ven., Sts.).
 		$parts = preg_split( '/(?<!\bSt)(?<!\bSts)(?<!\bSs)(?<!\bVen)(?<!\b[A-Z])[.;]\s/u', $text, 2 );
@@ -132,6 +135,15 @@ class Calendar {
 			$text = 'Saint ' . mb_substr( $text, 4 );
 		}
 		return $text;
+	}
+
+	/**
+	 * The calendar's dates in parentheses, "(1392)" or "(† c. 1380)", taken
+	 * out: they are for the calendar, not for prayers.
+	 */
+	public static function without_dates( $text ) {
+		$text = preg_replace( '/\s*\([^()]*\d[^()]*\)/u', '', $text );
+		return trim( preg_replace( '/\s+([,.;:])/u', '$1', preg_replace( '/\s{2,}/u', ' ', $text ) ) );
 	}
 
 	/** Names set by hand on the Saints screen. */

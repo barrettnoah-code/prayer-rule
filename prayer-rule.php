@@ -2,7 +2,7 @@
 /**
  * Plugin Name:       Prayer Rule
  * Description:       A private prayer rule for members: the daily cycle kept by kathismas and Jesus Prayers, a built-in Psalter, and an encrypted record of what was kept.
- * Version:           0.11.0
+ * Version:           0.13.0
  * Requires at least: 6.0
  * Requires PHP:      7.4
  * Author:            The Old Believers
@@ -16,7 +16,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'PRAYER_RULE_VERSION', '0.11.0' );
+define( 'PRAYER_RULE_VERSION', '0.13.0' );
 define( 'PRAYER_RULE_FILE', __FILE__ );
 define( 'PRAYER_RULE_DIR', plugin_dir_path( __FILE__ ) );
 define( 'PRAYER_RULE_URL', plugin_dir_url( __FILE__ ) );
@@ -30,6 +30,8 @@ require_once PRAYER_RULE_DIR . 'includes/class-dismissals.php';
 require_once PRAYER_RULE_DIR . 'includes/class-calendar.php';
 require_once PRAYER_RULE_DIR . 'includes/class-feasts.php';
 require_once PRAYER_RULE_DIR . 'includes/class-fasting.php';
+require_once PRAYER_RULE_DIR . 'includes/class-zapevy.php';
+require_once PRAYER_RULE_DIR . 'includes/class-bows.php';
 require_once PRAYER_RULE_DIR . 'includes/class-ustav.php';
 require_once PRAYER_RULE_DIR . 'includes/class-orders.php';
 require_once PRAYER_RULE_DIR . 'includes/class-render.php';
@@ -61,6 +63,8 @@ add_action(
 	function () {
 		add_shortcode( 'psalm', array( 'PrayerRule\\Render', 'shortcode' ) );
 		add_shortcode( 'saint', array( 'PrayerRule\\Render', 'saint_shortcode' ) );
+		add_shortcode( 'zapev', array( 'PrayerRule\\Zapevy', 'shortcode' ) );
+		add_shortcode( 'bow', array( 'PrayerRule\\Bows', 'shortcode' ) );
 		PrayerRule\Reader::register();
 	}
 );

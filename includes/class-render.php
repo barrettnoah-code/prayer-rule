@@ -23,6 +23,13 @@ class Render {
 	/** The saint of the day as named in a dismissal, when known (calendar). */
 	private static $saint = null;
 
+	/** The day (Calendar::day()) while a service is assembled, for [zapev] and [bow]. */
+	private static $info = null;
+
+	/** The service being assembled, and where in it: before | rule | after (for [bow]). */
+	private static $service = '';
+	private static $phase   = 'before';
+
 	/**
 	 * "God-bearer", never "Theotokos": applied to every prayer and calendar
 	 * line the plugin shows, whatever the source text says.
@@ -72,7 +79,9 @@ class Render {
 			return array();
 		}
 		$translation       = Psalter::translation( $context['translation'] ?? '' );
-		$previous          = array( self::$translation, self::$saint );
+		$previous          = array( self::$translation, self::$saint, self::$info, self::$service, self::$phase );
+		self::$service     = (string) $service_key;
+		self::$phase       = 'before';
 		self::$translation = $translation;
 		$info              = null;
 		if ( ! empty( $context['date'] ) ) {
@@ -81,6 +90,7 @@ class Render {
 			$context['lent']     = $context['lent'] ?? $info['lent'];
 			$context['saint']    = $context['saint'] ?? $info['saint'];
 		}
+		self::$info        = $info;
 		self::$saint       = isset( $context['saint'] ) && '' !== $context['saint'] ? (string) $context['saint'] : null;
 		$day               = Dismissals::day_key( $context['day'] ?? '' );
 		// The feast of the day for this service, and for the day as a whole
@@ -98,7 +108,9 @@ class Render {
 				$first    = min( 20, max( 1, (int) ( $portion['start'] ?? 1 ) ) );
 				$bookmark = ( ( $first - 1 + max( 0, (int) ( $portion['kathismas'] ?? 0 ) ) ) % 20 ) + 1;
 				$name    = $service['portions'][ $step['portion'] ]['name'] ?? $step['portion'];
+				self::$phase = 'rule';
 				$out     = array_merge( $out, self::rule_steps( $portion, $name, $translation, ! empty( $context['lent'] ) ) );
+				self::$phase = 'after';
 			} elseif ( 'psalm' === $step['type'] ) {
 				$out[] = array(
 					'type'   => 'psalm',
@@ -129,7 +141,7 @@ class Render {
 				$out[] = $step;
 			}
 		}
-		list( self::$translation, self::$saint ) = $previous;
+		list( self::$translation, self::$saint, self::$info, self::$service, self::$phase ) = $previous;
 		return $out;
 	}
 
@@ -186,6 +198,7 @@ class Render {
 
 	private static function text_step( $slug ) {
 		$post = Texts::find( $slug );
+		Zapevy::reset();
 		return $post ? array(
 			'type'  => 'text',
 			'slug'  => $slug,
@@ -217,6 +230,21 @@ class Render {
 	 */
 	public static function saint_shortcode() {
 		return null !== self::$saint ? esc_html( self::$saint ) : esc_html__( 'Saint', 'prayer-rule' ) . ' <em>N.</em>';
+	}
+
+	/** The day being assembled (Calendar::day()), or null without a date: for [zapev]. */
+	public static function day_info() {
+		return self::$info;
+	}
+
+	/** The service being assembled ('' outside a service). */
+	public static function service_key() {
+		return self::$service;
+	}
+
+	/** before | rule | after: where the service being assembled has got to. */
+	public static function phase() {
+		return self::$phase;
 	}
 
 	/** A short line said as written; (parentheses) in red. */

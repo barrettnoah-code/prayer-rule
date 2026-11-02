@@ -17,6 +17,7 @@ ROOT = Path(__file__).resolve().parent.parent
 SOURCE = ROOT / 'tools' / 'ustav' / 'home-ustav.txt'
 FEASTS = ROOT / 'tools' / 'ustav' / 'feasts.txt'
 FASTING = ROOT / 'tools' / 'ustav' / 'fasting.txt'
+ZAPEVY = ROOT / 'tools' / 'ustav' / 'zapevy.txt'
 WEEKDAYS = ['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat']
 PERIODS = ['lent', 'holy-week', 'bright-week', 'pentecost-season', 'trinity-week', 'apostles', 'dormition',
            'nativity-1', 'nativity-2', 'twelve-days', 'after-theophany', 'publican-week', 'prodigal-week',
@@ -45,7 +46,7 @@ DISMISSALS = {
 ADDITIONS = {
     'vespers':   ['additions-vespers-sunday'] + ['additions-vespers'] * 6,
     'compline':  ['additions-compline'] * 6 + ['additions-compline-friday'],   # Saturday's Compline is read on Friday evening
-    'midnight':  [''] + ['additions-midnight'] * 6,                           # none on Sunday
+    'midnight':  ['additions-midnight-sunday'] + ['additions-midnight'] * 6,  # Sunday: to the Trinity (zapevy, fol. 209)
     'matins':    ['additions-matins-sunday', 'additions-matins-monday', 'additions-matins-tuesday', 'additions-matins-cross',
                   'additions-matins-thursday', 'additions-matins-cross', 'additions-matins-saturday'],
     'hours':     ['additions-hours-sunday'] + ['additions-hours'] * 6,
@@ -191,6 +192,48 @@ def parse_fasting():
     return prayers, periods
 
 
+def parse_zapevy():
+    """zapevy.txt: {'fixed': {key: text}, 'dated': [{kind, text, menaion|sunday|pascha}]}."""
+    fixed, dated = {}, []
+    md = r'(1[0-2]|[1-9])-([1-9]|[12]\d|3[01])'
+    for number, raw in enumerate(ZAPEVY.read_text(encoding='utf-8').splitlines(), 1):
+        line = raw.strip()
+        if not line or line.startswith('#'):
+            continue
+        if '|' not in line:
+            sys.exit(f'zapevy.txt line {number}: no "|"')
+        left, text = [x.strip() for x in line.split('|', 1)]
+        if not text:
+            sys.exit(f'zapevy.txt line {number}: no text')
+        if left.startswith('='):
+            key = left[1:].strip()
+            if not re.fullmatch(r'[a-z-]+', key) or key in ('saint',) or key in fixed:
+                sys.exit(f'zapevy.txt line {number}: bad or repeated key "{key}"')
+            fixed[key] = text
+            continue
+        m = re.fullmatch(r'(.+?)\s+(feast|season|saint)', left)
+        if not m:
+            sys.exit(f'zapevy.txt line {number}: needs WHEN KIND')
+        when, kind = m.group(1).strip(), m.group(2)
+        item = {'kind': kind, 'text': text}
+        if re.fullmatch(md, when):
+            a = [int(x) for x in when.split('-')]
+            item['menaion'] = a + a
+        elif re.fullmatch(md + r'\.\.' + md, when):
+            item['menaion'] = [int(x) for x in re.split(r'-|\.\.', when)]
+        elif re.fullmatch(r'sunday\s+' + md + r'\.\.' + md, when):
+            item['sunday'] = [int(x) for x in re.split(r'-|\.\.', when.split(None, 1)[1])]
+        elif re.fullmatch(r'pascha\s+-?\d+(\.\.-?\d+)?', when):
+            nums = [int(x) for x in when.split(None, 1)[1].split('..')]
+            item['pascha'] = [nums[0], nums[-1]]
+            if nums[0] > nums[-1] or (nums[0] < 0) != (nums[-1] < 0):
+                sys.exit(f'zapevy.txt line {number}: bad Pascha range')
+        else:
+            sys.exit(f'zapevy.txt line {number}: when not understood: "{when}"')
+        dated.append(item)
+    return {'fixed': fixed, 'dated': dated}
+
+
 def inline(text):
     """Escape, then {red}, *italic*."""
     out = html.escape(text, quote=False)
@@ -200,6 +243,8 @@ def inline(text):
 
 
 def paragraph(line):
+    if re.fullmatch(r'\[zapev [a-z-]+\]', line):
+        return '<!-- wp:shortcode -->\n%s\n<!-- /wp:shortcode -->' % line
     if line.startswith('! '):
         style, text = 'is-style-rubric', line[2:]
     else:
@@ -236,6 +281,12 @@ def main():
     out_prayers = [{'slug': p['slug'], 'title': p['title'],
                     'content': '\n\n'.join(paragraph(l) for l in p['lines'])} for p in prayers]
     fasting_prayers, fasting = parse_fasting()
+    zapevy = parse_zapevy()
+    for p in prayers:
+        for line in p['lines']:
+            for key in re.findall(r'\[zapev ([a-z-]+)\]', line):
+                if key not in zapevy['fixed'] and key != 'saint':
+                    sys.exit(f'{p["slug"]}: no zapev "{key}"')
     out_prayers += fasting_prayers
     if len({p['slug'] for p in out_prayers}) != len(out_prayers):
         sys.exit('a short name is used twice')
@@ -273,7 +324,7 @@ def main():
 
     data = {
         'format': 'prayer-rule-ustav/1',
-        'source': 'Home Ustav (1910): fasts (fol. 9-30), prayer at home (ch. 4) and the dismissals for the whole year (fol. 226-253); English translation',
+        'source': 'Home Ustav (1910): fasts (fol. 9-30), prayer at home (ch. 4), the zapevy (fol. 209-225) and the dismissals for the whole year (fol. 226-253); English translation',
         'prayers': out_prayers,
         'orders': out_orders,
         'dismissals': {k: dict(zip(DAYS, v)) for k, v in DISMISSALS.items()},
@@ -281,11 +332,12 @@ def main():
         'additions_feast': ADDITIONS_FEAST,
         'feasts': feast_rules,
         'fasting': fasting,
+        'zapevy': zapevy,
         'paschal_prefix': {'from': 8, 'to': 38, 'services': ['vespers', 'matins', 'hours'],
                            'text': 'O Thou who didst rise from the dead: '},
     }
     TARGET.write_text(json.dumps(data, ensure_ascii=False, indent=1) + '\n', encoding='utf-8')
-    print(f'{TARGET.name}: {len(out_prayers)} prayers, {len(out_orders)} orders, {len(feast_rules)} feast rules, {len(fasting)} fasting periods')
+    print(f'{TARGET.name}: {len(out_prayers)} prayers, {len(out_orders)} orders, {len(feast_rules)} feast rules, {len(fasting)} fasting periods, {len(zapevy["dated"])} dated zapevy')
 
 
 if __name__ == '__main__':

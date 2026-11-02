@@ -513,16 +513,18 @@ class Admin {
 		// phpcs:ignore WordPress.Security.NonceVerification -- read-only choice of month
 		$jm    = isset( $_GET['month'] ) ? min( 12, max( 1, absint( $_GET['month'] ) ) ) : Calendar::day( '' )['julian']['m'];
 		$days  = Calendar::month( $jm );
-		$names = Calendar::names();
+		$names  = Calendar::names();
+		$zapevy = Zapevy::overrides();
 		global $wp_locale;
 		?>
 		<div class="wrap">
-			<h1><?php esc_html_e( 'Saints in the dismissals', 'prayer-rule' ); ?></h1>
+			<h1><?php esc_html_e( 'Saints in the dismissals and zapevy', 'prayer-rule' ); ?></h1>
 			<?php self::notice(); ?>
 			<?php if ( ! Calendar::available() ) : ?>
 				<div class="notice notice-warning inline"><p><?php esc_html_e( 'The Orthodox Liturgical Calendar plugin is not active, so there are no saints to show. Dismissals say "Saint N." until it is.', 'prayer-rule' ); ?></p></div>
 			<?php endif; ?>
 			<p><?php esc_html_e( 'The saint of each day comes from the calendar: its highest-ranked commemoration for the date, worded for the dismissal ("and of …, whose day it is"). Where the wording is not right, type it as it should be said. An empty box goes back to the calendar\'s wording.', 'prayer-rule' ); ?></p>
+			<p><?php esc_html_e( 'The zapev for the saint (said with the prostrations in the daily additions) is the Home Ustav\'s for that date where it gives one; otherwise it is made from the name in the dismissal, after the General Menaion ("O holy martyr N., pray to God for us"). Type it here where it is not right. On a great feast no zapev is made for a saint.', 'prayer-rule' ); ?></p>
 			<p class="description"><?php esc_html_e( 'Church (Julian) dates. The calendar itself is not changed.', 'prayer-rule' ); ?></p>
 			<form method="get" style="margin:1em 0">
 				<input type="hidden" name="page" value="prayer-rule-saints">
@@ -541,13 +543,25 @@ class Admin {
 					<thead><tr>
 						<th style="width:4em"><?php esc_html_e( 'Day', 'prayer-rule' ); ?></th>
 						<th><?php esc_html_e( 'In the calendar', 'prayer-rule' ); ?></th>
-						<th style="width:40%"><?php esc_html_e( 'Named in the dismissal', 'prayer-rule' ); ?></th>
+						<th style="width:28%"><?php esc_html_e( 'Named in the dismissal', 'prayer-rule' ); ?></th>
+						<th style="width:30%"><?php esc_html_e( 'Zapev', 'prayer-rule' ); ?></th>
 					</tr></thead>
 					<tbody>
 					<?php for ( $d = 1; $d <= ( 2 === $jm ? 29 : ( in_array( $jm, array( 4, 6, 9, 11 ), true ) ? 30 : 31 ) ); $d++ ) : ?>
 						<?php
 						$key  = $jm . '-' . $d;
 						$auto = $days[ $d ]['name'] ?? '';
+						$made = Zapevy::saint_lines(
+							array(
+								'julian'        => array( 'm' => $jm, 'd' => $d ),
+								'weekday'       => -1,
+								'before_pascha' => -1000,
+								'after_pascha'  => 1000,
+								'great'         => ! empty( $days[ $d ]['great'] ),
+								'saint'         => '' !== ( $names[ $key ] ?? '' ) ? $names[ $key ] : $auto,
+							),
+							false
+						)[0];
 						?>
 						<tr>
 							<td><?php echo (int) $d; ?></td>
@@ -555,11 +569,14 @@ class Admin {
 							<td>
 								<input type="text" style="width:100%" name="saints[<?php echo esc_attr( $key ); ?>]" value="<?php echo esc_attr( $names[ $key ] ?? '' ); ?>" placeholder="<?php echo esc_attr( $auto ); ?>">
 							</td>
+							<td>
+								<input type="text" style="width:100%" name="zapevy[<?php echo esc_attr( $key ); ?>]" value="<?php echo esc_attr( $zapevy[ $key ] ?? '' ); ?>" placeholder="<?php echo esc_attr( Render::god_bearer( implode( ' / ', $made ) ) ); ?>">
+							</td>
 						</tr>
 					<?php endfor; ?>
 					</tbody>
 				</table>
-				<?php submit_button( __( 'Save names', 'prayer-rule' ) ); ?>
+				<?php submit_button( __( 'Save', 'prayer-rule' ) ); ?>
 			</form>
 		</div>
 		<?php
@@ -572,7 +589,8 @@ class Admin {
 		check_admin_referer( 'prayer_rule_saints' );
 		$posted = isset( $_POST['saints'] ) ? map_deep( wp_unslash( (array) $_POST['saints'] ), 'sanitize_text_field' ) : array(); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput
 		Calendar::save_names( $posted );
-		self::back( 'prayer-rule-saints', __( 'Names saved.', 'prayer-rule' ), false, array( 'month' => isset( $_POST['month'] ) ? absint( $_POST['month'] ) : 1 ) );
+		Zapevy::save_overrides( isset( $_POST['zapevy'] ) ? map_deep( wp_unslash( (array) $_POST['zapevy'] ), 'sanitize_text_field' ) : array() ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput
+		self::back( 'prayer-rule-saints', __( 'Saved.', 'prayer-rule' ), false, array( 'month' => isset( $_POST['month'] ) ? absint( $_POST['month'] ) : 1 ) );
 	}
 
 	/** The line above the preview: the day, its saint, Great Lent, Vespers on the eve. */
@@ -598,6 +616,7 @@ class Admin {
 		} elseif ( '' !== Feasts::paschal_prefix( $info, $service ) ) {
 			echo '<p>' . esc_html__( 'Paschal season: the dismissal begins "O Thou who didst rise from the dead".', 'prayer-rule' ) . '</p>';
 		}
+		echo '<p>' . esc_html( Bows::summary( $info ) ) . '</p>';
 		$fast = Fasting::for_day( $info, Feasts::find( $info, 'matins' ) );
 		if ( $fast ) {
 			echo '<style>' . Render::css() . '</style>'; // phpcs:ignore WordPress.Security.EscapeOutput -- fixed CSS
