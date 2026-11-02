@@ -4,9 +4,11 @@
  * and settings. Prayers and Orders you wrote are kept as posts, so nothing
  * you typed is lost if the plugin is reinstalled.
  *
- * Members' private rules and records (table prayer_rule_vaults) are kept
- * too: they are only ciphertext, and deleting them would destroy members'
- * records with no way back. To remove them as well, drop that table by hand.
+ * Members' private rules and records (table prayer_rule_vaults), their
+ * shares and messages (prayer_rule_shares, prayer_rule_messages) and their
+ * public keys are kept too: they are only ciphertext, and deleting them
+ * would destroy members' records with no way back. To remove them as well,
+ * drop those tables by hand.
  */
 
 if ( ! defined( 'WP_UNINSTALL_PLUGIN' ) ) {

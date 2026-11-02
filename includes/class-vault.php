@@ -13,6 +13,7 @@
  *   salt_r, key_r   salt and wrapped key for the recovery code
  *   rule    the encrypted rule
  *   log     the encrypted record
+ *   priv    the member's private sharing key, encrypted (optional)
  *
  * All but v and iter are base64 strings. The site (and its administrators)
  * can see only that a member has an envelope, its size and when it changed.
@@ -26,7 +27,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 class Vault {
 
-	const DB_VERSION = '1';
+	const DB_VERSION = '2';   // 2: the sharing tables
 	const OPT_DB     = 'prayer_rule_vault_db';
 	const MAX_BYTES  = 4194304;   // 4 MB per member, far more than years of record need
 
@@ -51,6 +52,9 @@ class Vault {
 				PRIMARY KEY  (user_id)
 			) {$charset};"
 		);
+		foreach ( Sharing::schema( $charset ) as $sql ) {
+			dbDelta( $sql );
+		}
 		update_option( self::OPT_DB, self::DB_VERSION );
 	}
 
@@ -127,6 +131,13 @@ class Vault {
 		if ( $clean['iter'] < 100000 || $clean['iter'] > 10000000 ) {
 			return new \WP_Error( 'prayer_rule_bad_vault', 'Bad key settings.', array( 'status' => 400 ) );
 		}
+		if ( isset( $envelope['priv'] ) ) {
+			$priv = (string) $envelope['priv'];
+			if ( ! preg_match( '#^[A-Za-z0-9+/]+={0,2}$#', $priv ) ) {
+				return new \WP_Error( 'prayer_rule_bad_vault', 'Bad envelope field: priv', array( 'status' => 400 ) );
+			}
+			$clean['priv'] = $priv;
+		}
 		foreach ( self::FIELDS as $field ) {
 			$value = (string) ( $envelope[ $field ] ?? '' );
 			if ( '' === $value || ! preg_match( '#^[A-Za-z0-9+/]+={0,2}$#', $value ) ) {
@@ -198,10 +209,11 @@ class Vault {
 		return array( 'version' => $version + 1 );
 	}
 
-	/** Erase the member's rule and record for good. */
+	/** Erase the member's rule and record for good, with their shares. */
 	public static function erase() {
 		global $wpdb;
 		$wpdb->delete( self::table(), array( 'user_id' => get_current_user_id() ), array( '%d' ) ); // phpcs:ignore WordPress.DB
+		Sharing::forget_user( get_current_user_id() );
 		return array( 'erased' => true );
 	}
 
@@ -216,5 +228,6 @@ class Vault {
 	public static function delete_user( $user_id ) {
 		global $wpdb;
 		$wpdb->delete( self::table(), array( 'user_id' => (int) $user_id ), array( '%d' ) ); // phpcs:ignore WordPress.DB
+		Sharing::forget_user( $user_id );
 	}
 }

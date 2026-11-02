@@ -8,8 +8,8 @@ member (a nastavnik).
 **Status:** early development. The admin side works (Psalter, prayers,
 orders, dismissals, fasting, saints, kathismas, preview). Members read any
 service on the reading page, keep a private encrypted rule, and mark each
-service as kept, with weekly and monthly reports. Sharing with a nastavnik
-comes next.
+service as kept, with weekly and monthly reports, and share their rule
+and record with a nastavnik.
 
 ## The reading page
 
@@ -28,6 +28,12 @@ calendar. They can print a report or download their whole record as a CSV
 file. All of this is worked out in their browser from the decrypted record.
 Without a private rule, the settings are kept only in that browser.
 
+Under "Nastavnik" a member can share their rule and record with any
+number of people (each must have set up a private rule of their own). The
+nastavnik sees the rule, the reports and the record, and can send messages
+and suggested changes to the rule; the member accepts or declines each
+suggestion. Either side can end a share.
+
 ## Privacy
 
 Each member's rule and record are encrypted in their own browser
@@ -38,9 +44,18 @@ Each member's rule and record are encrypted in their own browser
   once under a one-time recovery code (PBKDF2-SHA-256, 600,000 iterations);
 - the passphrase, the recovery code and the key never leave the browser.
 
+For sharing, each member also has an ECDH (P-256) key pair: the public
+half is stored on the site, the private half sealed with the member's key.
+A member and a nastavnik derive the same key from their two key pairs
+(ECDH, then HKDF-SHA-256) and use it to encrypt the shared copy of the rule
+and record and every message (`includes/class-sharing.php` stores only
+ciphertext). Both see the same short safety code; comparing it in person or
+by phone shows that no one has swapped a key.
+
 The site keeps one row of ciphertext per member (`includes/class-vault.php`)
 and cannot read it; nor can its administrators or its host. They can see
-only that a member has set up a rule, its size and when it last changed. A
+only that a member has set up a rule, its size and when it last changed,
+and who shares with whom and when they write — never what. A
 lost passphrase can be replaced with the recovery code; if both are lost,
 no one can open the rule. Deleting the plugin keeps these rows.
 

@@ -10,6 +10,13 @@
  * Neither the passphrase, the recovery code nor the data key ever leaves
  * the browser. While unlocked, the data key is kept in this tab's
  * sessionStorage, and is gone when the tab closes or "Lock" is pressed.
+ *
+ * Sharing with a nastavnik: each member with a private rule also has an
+ * ECDH (P-256) key pair; the public half is on the site, the private half
+ * sealed with the data key. A member and a nastavnik derive the same pair
+ * key from their two key pairs (ECDH + HKDF), and with it encrypt the copy
+ * of the rule and record the member shares, and every message between
+ * them. The site relays only ciphertext.
  */
 (function () {
 	'use strict';
@@ -76,7 +83,7 @@
 
 	// ------------------------------------------------------------ the vault (server holds ciphertext only)
 
-	var V = { exists: false, version: 0, envelope: null, key: null, raw: null, rule: null, log: null };
+	var V = { exists: false, version: 0, envelope: null, key: null, raw: null, rule: null, log: null, priv: null, pub: '' };
 
 	async function api(method, body) {
 		var r = await fetch(C.vault, { method: method, credentials: 'same-origin', cache: 'no-store', headers: { 'Content-Type': 'application/json', 'X-WP-Nonce': C.nonce }, body: body ? JSON.stringify(body) : undefined });
@@ -94,11 +101,41 @@
 	async function readEnvelope(env) {
 		V.rule = JSON.parse(dec.decode(await unseal(V.key, env.rule, 'rule')));
 		V.log = JSON.parse(dec.decode(await unseal(V.key, env.log, 'log')));
+		if (env.priv) { await usePrivate(await unseal(V.key, env.priv, 'priv')); }
+	}
+
+	// ---- the sharing key pair
+
+	async function usePrivate(pkcs8) {
+		V.priv = await crypto.subtle.importKey('pkcs8', pkcs8, { name: 'ECDH', namedCurve: 'P-256' }, true, ['deriveBits']);
+		var jwk = await crypto.subtle.exportKey('jwk', V.priv);
+		var pub = await crypto.subtle.importKey('jwk', { kty: jwk.kty, crv: jwk.crv, x: jwk.x, y: jwk.y, ext: true }, { name: 'ECDH', namedCurve: 'P-256' }, true, []);
+		V.pub = b64(await crypto.subtle.exportKey('raw', pub));
+	}
+	/** Make the key pair if this rule has none yet, and make sure the site has the public half. */
+	async function ensureKeys(env) {
+		if (!env.priv) {
+			var pair = await crypto.subtle.generateKey({ name: 'ECDH', namedCurve: 'P-256' }, true, ['deriveBits']);
+			var pkcs8 = new Uint8Array(await crypto.subtle.exportKey('pkcs8', pair.privateKey));
+			env.priv = await seal(V.key, pkcs8, 'priv');
+			await usePrivate(pkcs8);
+			return true;   // the envelope changed: save it
+		}
+		return false;
+	}
+	async function publishKey() {
+		if (V.pub && V.pub !== C.mykey) {
+			var r = await fetch(C.sharing + 'key', { method: 'PUT', credentials: 'same-origin', headers: { 'Content-Type': 'application/json', 'X-WP-Nonce': C.nonce }, body: JSON.stringify({ key: V.pub }) });
+			if (r.ok) { C.mykey = V.pub; }
+		}
 	}
 	async function openWith(raw) {
 		V.raw = raw; V.key = await dataKey(raw);
 		await readEnvelope(V.envelope);
 		try { sessionStorage.setItem(SESSION, b64(raw)); } catch (e) {}
+		if (await ensureKeys(V.envelope)) { await saveVault(); }
+		await publishKey();
+		loadShares().then(function () { pushShares(); drawSharing(); });
 	}
 	async function unwrap(secret, which) {
 		var env = V.envelope, k = await derive(secret, unb64(env['salt_' + which]), env.iter);
@@ -108,7 +145,7 @@
 		var salt = rand(16), k = await derive(secret, salt, ITER);
 		env['salt_' + which] = b64(salt); env['key_' + which] = await seal(k, V.raw, 'key_' + which); env.iter = ITER;
 	}
-	function lock() { V.key = null; V.raw = null; V.rule = null; V.log = null; try { sessionStorage.removeItem(SESSION); } catch (e) {} }
+	function lock() { V.key = null; V.raw = null; V.rule = null; V.log = null; V.priv = null; V.pub = ''; SH.mine = []; SH.withMe = []; SH.open = null; try { sessionStorage.removeItem(SESSION); } catch (e) {} }
 
 	/** Merge two records: every entry, the most recently edited one winning. */
 	function mergeLog(a, b) {
@@ -123,7 +160,7 @@
 			env.rule = await seal(V.key, enc.encode(JSON.stringify(V.rule)), 'rule');
 			env.log = await seal(V.key, enc.encode(JSON.stringify(V.log)), 'log');
 			var r = await api('PUT', { version: V.version, envelope: env });
-			if (r.status === 200) { V.version = r.data.version; V.envelope = env; status(''); return true; }
+			if (r.status === 200) { V.version = r.data.version; V.envelope = env; status(''); pushShares(); return true; }
 			if (r.status === 409 && r.data.envelope) {
 				var theirs = { rule: JSON.parse(dec.decode(await unseal(V.key, r.data.envelope.rule, 'rule'))), log: JSON.parse(dec.decode(await unseal(V.key, r.data.envelope.log, 'log'))) };
 				V.log = mergeLog(theirs.log, V.log);
@@ -225,6 +262,7 @@
 			try {
 				var raw = rand(32); V.raw = raw; V.key = await dataKey(raw);
 				var env = { v: 1, iter: ITER };
+				await ensureKeys(env);
 				await wrap(p1[1].value, 'p', env);
 				await wrap(normCode(code), 'r', env);
 				V.rule = JSON.parse(JSON.stringify(L)); V.rule.updated = now();
@@ -235,6 +273,7 @@
 				if (r.status !== 200) { throw new Error(r.data.message || 'failed'); }
 				V.exists = true; V.version = r.data.version; V.envelope = env;
 				try { sessionStorage.setItem(SESSION, b64(raw)); } catch (e) {}
+				await publishKey(); loadShares().then(drawSharing);
 				UI.panel = ''; redraw();
 				status('Your private rule is set up.');
 			} catch (e) { lock(); go.disabled = false; msg.textContent = 'Setup failed: ' + e.message; }
@@ -372,28 +411,30 @@
 		return box;
 	}
 
-	// ---- the record: reports by week or month, worked out here from the decrypted record
+	// ---- the record: reports by week or month, worked out here from a decrypted record
+	// (the member's own, or one shared with them as nastavnik)
 
 	UI.report = { mode: 'week', anchor: defaultDay() };
 
 	function weekStart(day) { return addDays(day, -parseIso(day).getDay()); }              // weeks run Sunday to Saturday
-	function reportRange() {
-		var a = UI.report.anchor, start, end;
-		if (UI.report.mode === 'week') { start = weekStart(a); end = addDays(start, 6); }
+	function reportRange(st8) {
+		var a = st8.anchor, start, end;
+		if (st8.mode === 'week') { start = weekStart(a); end = addDays(start, 6); }
 		else { var d = parseIso(a); start = iso(new Date(d.getFullYear(), d.getMonth(), 1)); end = iso(new Date(d.getFullYear(), d.getMonth() + 1, 0)); }
 		return { start: start, end: end };
 	}
-	function keptServices() { return C.services.filter(function (s) { return !V.rule.services[s.key] || V.rule.services[s.key].keep !== false; }); }
+	function keptIn(rule) { return C.services.filter(function (s) { return !rule.services[s.key] || rule.services[s.key].keep !== false; }); }
+	function entryIn(log, day, svc) { return log && log.entries[entryKey(day, svc)]; }
 
 	/** Counts for the days from start to end (days after today are left out). */
-	function stats(start, end) {
-		var today = defaultDay(), keep = keptServices(), out = { days: 0, full: 0, kathismas: 0, ladders: 0, corrected: 0, per: {}, byDay: {} };
+	function stats(ctx, start, end) {
+		var today = defaultDay(), keep = keptIn(ctx.rule), out = { days: 0, full: 0, kathismas: 0, ladders: 0, corrected: 0, per: {}, byDay: {} };
 		C.services.forEach(function (s) { out.per[s.key] = 0; });
 		for (var day = start; day <= end && day <= today; day = addDays(day, 1)) {
 			var n = 0;
 			out.days++;
 			C.services.forEach(function (s) {
-				var e = entry(day, s.key);
+				var e = entryIn(ctx.log, day, s.key);
 				if (e && e.corrected) { out.corrected++; }
 				if (!e || !e.kept) { return; }
 				out.per[s.key]++;
@@ -407,9 +448,9 @@
 		return out;
 	}
 
-	function rangeLabel(r) {
+	function rangeLabel(st8, r) {
 		var a = parseIso(r.start), b = parseIso(r.end);
-		if (UI.report.mode === 'month') { return a.toLocaleDateString(undefined, { month: 'long', year: 'numeric' }); }
+		if (st8.mode === 'month') { return a.toLocaleDateString(undefined, { month: 'long', year: 'numeric' }); }
 		return a.toLocaleDateString(undefined, { month: 'short', day: 'numeric' }) + ' – ' + b.toLocaleDateString(undefined, { month: 'short', day: 'numeric', year: 'numeric' });
 	}
 
@@ -419,54 +460,63 @@
 		if (!V.key) { record.style.display = 'none'; return; }
 		record.style.display = '';
 		record.appendChild(el('summary', { text: 'My record' }));
-		var r = reportRange(), st = stats(r.start, r.end), keep = keptServices();
+		var body = el('div');
+		record.appendChild(body);
+		renderReport(body, { rule: V.rule, log: V.log, own: true }, UI.report);
+		record.open = open;
+	}
 
+	/** A report into box. ctx: { rule, log, own, name }; st8: { mode, anchor } (kept between redraws). */
+	function renderReport(box, ctx, st8) {
+		box.innerHTML = '';
+		var r = reportRange(st8), st = stats(ctx, r.start, r.end), keep = keptIn(ctx.rule);
+		function again() { renderReport(box, ctx, st8); }
 		function go(step) {
-			var d = parseIso(UI.report.anchor);
-			if (UI.report.mode === 'week') { d.setDate(d.getDate() + 7 * step); } else { d = new Date(d.getFullYear(), d.getMonth() + step, 1, 12); }
-			UI.report.anchor = iso(d); drawRecord();
+			var d = parseIso(st8.anchor);
+			if (st8.mode === 'week') { d.setDate(d.getDate() + 7 * step); } else { d = new Date(d.getFullYear(), d.getMonth() + step, 1, 12); }
+			st8.anchor = iso(d); again();
 		}
-		function mode(m) { var b = el('button', { type: 'button', 'aria-pressed': UI.report.mode === m ? 'true' : 'false', text: m === 'week' ? 'Week' : 'Month' }); b.addEventListener('click', function () { UI.report.mode = m; drawRecord(); }); return b; }
+		function mode(m) { var b = el('button', { type: 'button', 'aria-pressed': st8.mode === m ? 'true' : 'false', text: m === 'week' ? 'Week' : 'Month' }); b.addEventListener('click', function () { st8.mode = m; again(); }); return b; }
 		var later = r.end >= defaultDay();
-		record.appendChild(el('div', { class: 'pr-report-bar' }, [
+		box.appendChild(el('div', { class: 'pr-report-bar' }, [
 			el('span', { class: 'pr-tabs' }, [mode('week'), mode('month')]),
 			el('button', { type: 'button', text: '‹', title: 'Earlier', on: { click: function () { go(-1); } } }),
-			el('strong', { text: ' ' + rangeLabel(r) + ' ' }),
+			el('strong', { text: ' ' + rangeLabel(st8, r) + ' ' }),
 			later ? null : el('button', { type: 'button', text: '›', title: 'Later', on: { click: function () { go(1); } } })
 		]));
 
-		// Per service: kept on how many of the days.
 		var t = el('table', { class: 'pr-grid pr-summary' });
 		t.appendChild(el('tr', {}, [el('th', { text: '' }), el('th', { text: 'Kept' }), el('th', { text: '' })]));
 		keep.forEach(function (s) {
 			var n = st.per[s.key], pct = st.days ? Math.round(100 * n / st.days) : 0;
 			t.appendChild(el('tr', {}, [el('th', { text: s.name }), el('td', { text: n + ' of ' + st.days }), el('td', {}, [el('span', { class: 'pr-bar', style: 'width:' + (pct * 0.08).toFixed(2) + 'em' }), ' ' + pct + '%'])]));
 		});
-		record.appendChild(t);
+		box.appendChild(t);
 
 		var lines = [];
-		lines.push(st.full + ' of ' + st.days + ' days with every service of your rule kept.');
-		if (st.kathismas) { lines.push(st.kathismas + ' kathismas read (' + (Math.round(st.kathismas / 2) / 10).toString().replace('.', '.') + ' times the whole Psalter).'); }
+		lines.push(st.full + ' of ' + st.days + ' days with every service of ' + (ctx.own ? 'your' : 'the') + ' rule kept.');
+		if (st.kathismas) { lines.push(st.kathismas + ' kathismas read (' + (Math.round(st.kathismas / 2) / 10) + ' times the whole Psalter).'); }
 		if (st.ladders) { lines.push(half(st.ladders) + ' ladders of the Jesus Prayer (' + Math.round(st.ladders * 100).toLocaleString() + ' prayers).'); }
 		if (st.corrected) { lines.push(st.corrected + ' marked "corrected later".'); }
-		record.appendChild(el('ul', { class: 'pr-report-lines' }, lines.map(function (x) { return el('li', { text: x }); })));
+		box.appendChild(el('ul', { class: 'pr-report-lines' }, lines.map(function (x) { return el('li', { text: x }); })));
 
-		record.appendChild(UI.report.mode === 'week' ? weekGrid(r, keep) : monthGrid(r, st, keep));
-		record.appendChild(el('p', { class: 'pr-note', text: '✓* marks a service checked or unchecked more than 7 days after its day. Days are church days: Vespers and Compline count for the next day.' }));
-		record.appendChild(el('p', {}, [
-			el('button', { type: 'button', text: 'Print this report', on: { click: function () { record.open = true; window.print(); } } }), ' ',
-			el('button', { type: 'button', text: 'Download my whole record (CSV)', on: { click: downloadCsv } })
-		]));
-		record.open = open;
+		box.appendChild(st8.mode === 'week' ? weekGrid(ctx, r, keep) : monthGrid(ctx, r, st, keep));
+		box.appendChild(el('p', { class: 'pr-note', text: '✓* marks a service checked or unchecked more than 7 days after its day. Days are church days: Vespers and Compline count for the next day.' }));
+		if (ctx.own) {
+			box.appendChild(el('p', {}, [
+				el('button', { type: 'button', text: 'Print this report', on: { click: function () { record.open = true; document.body.classList.add('pr-printing-own'); window.print(); document.body.classList.remove('pr-printing-own'); } } }), ' ',
+				el('button', { type: 'button', text: 'Download my whole record (CSV)', on: { click: downloadCsv } })
+			]));
+		}
 	}
 
-	function weekGrid(r, keep) {
+	function weekGrid(ctx, r, keep) {
 		var t = el('table', { class: 'pr-grid' }), today = defaultDay();
 		t.appendChild(el('tr', {}, [el('th', { text: '' })].concat(keep.map(function (s) { return el('th', { text: s.name }); }))));
 		for (var day = r.start; day <= r.end; day = addDays(day, 1)) {
 			var row = [el('th', { text: parseIso(day).toLocaleDateString(undefined, { weekday: 'short', month: 'short', day: 'numeric' }) })];
 			keep.forEach(function (s) {
-				var e = entry(day, s.key);
+				var e = entryIn(ctx.log, day, s.key);
 				row.push(el('td', { text: day > today ? '' : (e && e.kept ? (e.corrected ? '✓*' : '✓') : '·') }));
 			});
 			t.appendChild(el('tr', { class: day === today ? 'is-today' : '' }, row));
@@ -474,7 +524,7 @@
 		return t;
 	}
 
-	function monthGrid(r, st, keep) {
+	function monthGrid(ctx, r, st, keep) {
 		var t = el('table', { class: 'pr-month' }), today = defaultDay(), m = keep.length || 1;
 		var names = []; for (var i = 0; i < 7; i++) { names.push(el('th', { text: new Date(2026, 10, 1 + i).toLocaleDateString(undefined, { weekday: 'short' }) })); }   // Nov 1, 2026 is a Sunday
 		t.appendChild(el('tr', {}, names));
@@ -488,7 +538,7 @@
 				future ? null : el('span', { class: 'pr-month-n', text: n + '/' + m })
 			]);
 			if (!future && n) { cell.style.background = 'rgba(146,26,10,' + (0.12 + 0.6 * Math.min(1, n / m)).toFixed(2) + ')'; if (n / m > 0.6) { cell.style.color = '#fff'; } }
-			cell.addEventListener('click', (function (d) { return function () { UI.day = d; dateInput.value = d; drawTabs(); show(); }; })(day));
+			if (ctx.own) { cell.addEventListener('click', (function (d) { return function () { UI.day = d; dateInput.value = d; drawTabs(); show(); }; })(day)); }
 			row.appendChild(cell);
 		}
 		t.appendChild(row);
@@ -506,6 +556,281 @@
 		var a = el('a', { href: url, download: 'prayer-rule-record-' + defaultDay() + '.csv' });
 		document.body.appendChild(a); a.click(); a.remove();
 		setTimeout(function () { URL.revokeObjectURL(url); }, 1000);
+	}
+
+	// ---- sharing with a nastavnik
+
+	var SH = { mine: [], withMe: [], keys: {}, open: null, report: { mode: 'week', anchor: defaultDay() } };
+
+	/** base + path, with any ?query joined right whether or not the site uses pretty permalinks. */
+	function restUrl(base, path) {
+		var i = path.indexOf('?'), q = i >= 0 ? path.slice(i + 1) : '', u = base + (i >= 0 ? path.slice(0, i) : path);
+		return q ? u + (u.indexOf('?') >= 0 ? '&' : '?') + q : u;
+	}
+	async function shareApi(method, path, body) {
+		var r = await fetch(restUrl(C.sharing, path), { method: method, credentials: 'same-origin', cache: 'no-store', headers: { 'Content-Type': 'application/json', 'X-WP-Nonce': C.nonce }, body: body ? JSON.stringify(body) : undefined });
+		var data = await r.json().catch(function () { return {}; });
+		return { status: r.status, data: data };
+	}
+	/** The AES key this member shares with another (the same on both sides). */
+	async function pairKey(otherId, otherPub) {
+		var id = otherId + ':' + otherPub;
+		if (SH.keys[id]) { return SH.keys[id]; }
+		var pub = await crypto.subtle.importKey('raw', unb64(otherPub), { name: 'ECDH', namedCurve: 'P-256' }, false, []);
+		var bits = await crypto.subtle.deriveBits({ name: 'ECDH', public: pub }, V.priv, 256);
+		var hk = await crypto.subtle.importKey('raw', bits, 'HKDF', false, ['deriveKey']);
+		var ids = [C.user, otherId].map(Number).sort(function (a, b) { return a - b; }).join('-');
+		SH.keys[id] = await crypto.subtle.deriveKey({ name: 'HKDF', hash: 'SHA-256', salt: enc.encode('prayer-rule/share/1'), info: enc.encode(ids) }, hk, { name: 'AES-GCM', length: 256 }, false, ['encrypt', 'decrypt']);
+		return SH.keys[id];
+	}
+	/** A short code both people see the same, to check no one has swapped a key. */
+	async function safetyCode(otherPub) {
+		var a = [V.pub, otherPub].sort(), h = new Uint8Array(await crypto.subtle.digest('SHA-256', enc.encode(a[0] + '|' + a[1])));
+		var abc = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789', s = '';
+		for (var i = 0; i < 12; i++) { s += abc[h[i] % 32] + (i % 4 === 3 && i < 11 ? '-' : ''); }
+		return s;
+	}
+	function shareAad(owner, viewer, what) { return enc.encode('prayer-rule/share/' + owner + '/' + viewer + '/' + what); }
+	async function sealFor(key, obj, aadBytes) {
+		var iv = rand(12), ct = new Uint8Array(await crypto.subtle.encrypt({ name: 'AES-GCM', iv: iv, additionalData: aadBytes }, key, enc.encode(JSON.stringify(obj))));
+		var all = new Uint8Array(12 + ct.length); all.set(iv); all.set(ct, 12); return b64(all);
+	}
+	async function openFrom(key, text, aadBytes) {
+		var all = unb64(text);
+		return JSON.parse(dec.decode(await crypto.subtle.decrypt({ name: 'AES-GCM', iv: all.slice(0, 12), additionalData: aadBytes }, key, all.slice(12))));
+	}
+
+	async function loadShares() {
+		if (!V.priv) { return; }
+		var r = await shareApi('GET', 'shares');
+		if (r.status !== 200) { return; }
+		SH.mine = r.data.mine || []; SH.withMe = r.data.with_me || [];
+	}
+	/** Send the nastavniks a fresh encrypted copy of the rule and record. */
+	async function pushShares() {
+		if (!V.priv || !SH.mine.length) { return; }
+		for (var i = 0; i < SH.mine.length; i++) {
+			var sh = SH.mine[i];
+			if (!sh.viewer.key) { continue; }
+			var k = await pairKey(sh.viewer.id, sh.viewer.key);
+			var data = await sealFor(k, { rule: V.rule, log: V.log, at: now() }, shareAad(C.user, sh.viewer.id, 'data'));
+			await shareApi('PUT', 'shares/' + sh.id, { data: data });
+		}
+	}
+
+	var sharing = el('details', { class: 'pr-sharing' });
+	root.insertBefore(sharing, note);
+
+	function unreadCount() {
+		var n = 0;
+		SH.mine.concat(SH.withMe).forEach(function (sh) { if (sh.last_message && sh.last_author !== C.user && sh.last_message > seen(sh.id)) { n++; } });
+		return n;
+	}
+	function seen(id, set) { var k = 'prayerRule.seen.' + C.user + '.' + id; try { if (set) { localStorage.setItem(k, set); } return localStorage.getItem(k) || ''; } catch (e) { return ''; } }
+
+	function drawSharing() {
+		var open = sharing.open;
+		sharing.innerHTML = '';
+		if (!V.key || !V.priv) { sharing.style.display = 'none'; return; }
+		sharing.style.display = '';
+		var unread = unreadCount();
+		sharing.appendChild(el('summary', { text: 'Nastavnik' + (unread ? ' (' + unread + ' new)' : '') }));
+		var body = el('div');
+		sharing.appendChild(body);
+		if (SH.open) { drawThread(body, SH.open); sharing.open = true; return; }
+
+		body.appendChild(el('h4', { text: 'Sharing my rule and record' }));
+		if (!SH.mine.length) { body.appendChild(el('p', { class: 'pr-note', text: 'You are not sharing with anyone.' })); }
+		SH.mine.forEach(function (sh) {
+			var code = el('code', { class: 'pr-code' }), row = el('p', {}, [
+				el('strong', { text: sh.viewer.name }), '   safety code ', code, '   ',
+				el('button', { type: 'button', text: 'Messages' + (sh.last_message && sh.last_author !== C.user && sh.last_message > seen(sh.id) ? ' (new)' : ''), on: { click: function () { SH.open = { share: sh, mine: true }; drawSharing(); } } }), ' ',
+				el('button', { type: 'button', class: 'pr-link', text: 'Stop sharing', on: { click: async function () { if (row.dataset.sure !== '1') { row.dataset.sure = '1'; this.textContent = 'Click again to stop sharing'; return; } await shareApi('DELETE', 'shares/' + sh.id); await loadShares(); drawSharing(); } } })
+			]);
+			if (sh.viewer.key) { safetyCode(sh.viewer.key).then(function (c) { code.textContent = c; }); } else { code.textContent = '—'; }
+			body.appendChild(row);
+		});
+		var who = el('input', { type: 'text', placeholder: 'their username or email' }), msg = el('p', { class: 'pr-status' });
+		var find = el('button', { type: 'button', text: 'Find' });
+		find.addEventListener('click', async function () {
+			msg.textContent = 'Looking…';
+			var r = await shareApi('GET', 'people?who=' + encodeURIComponent(who.value.trim()));
+			if (r.status !== 200) { msg.textContent = r.data.message || 'No one found.'; return; }
+			var person = r.data;
+			if (!person.key) { msg.textContent = person.name + ' has not set up a private rule yet. They need one (even an empty one) before you can share with them.'; return; }
+			var code = await safetyCode(person.key);
+			msg.innerHTML = '';
+			msg.appendChild(document.createTextNode('Share your rule and record with ' + person.name + '? Safety code: '));
+			msg.appendChild(el('code', { class: 'pr-code', text: code }));
+			msg.appendChild(document.createTextNode(' '));
+			msg.appendChild(el('button', { type: 'button', class: 'pr-primary', text: 'Share', on: { click: async function () {
+				var k = await pairKey(person.id, person.key);
+				var data = await sealFor(k, { rule: V.rule, log: V.log, at: now() }, shareAad(C.user, person.id, 'data'));
+				var c = await shareApi('POST', 'shares', { viewer: person.id, data: data });
+				if (c.status !== 200) { msg.textContent = c.data.message || 'Could not share.'; return; }
+				await loadShares(); drawSharing(); status('You are now sharing with ' + person.name + '.');
+			} } }));
+		});
+		body.appendChild(el('p', {}, ['Share with: ', who, ' ', find]));
+		body.appendChild(msg);
+		body.appendChild(el('p', { class: 'pr-note', text: 'Your nastavnik sees your rule and record and can send you messages and suggested changes; you decide whether to accept them. Everything is encrypted between the two of you. The safety code is the same on both sides: compare it in person or by phone to be sure no one is in between.' }));
+
+		body.appendChild(el('h4', { text: 'Shared with me' }));
+		if (!SH.withMe.length) { body.appendChild(el('p', { class: 'pr-note', text: 'No one is sharing with you.' })); }
+		SH.withMe.forEach(function (sh) {
+			var code = el('code', { class: 'pr-code' });
+			body.appendChild(el('p', {}, [
+				el('strong', { text: sh.owner.name }), '   safety code ', code, '   ',
+				el('button', { type: 'button', text: 'Open' + (sh.last_message && sh.last_author !== C.user && sh.last_message > seen(sh.id) ? ' (new)' : ''), on: { click: function () { SH.open = { share: sh, mine: false }; drawSharing(); } } })
+			]));
+			if (sh.owner.key) { safetyCode(sh.owner.key).then(function (c) { code.textContent = c; }); }
+		});
+		sharing.open = open;
+	}
+
+	/** One share: as the member (messages, suggestions to accept) or as the nastavnik (their record, messages, suggest). */
+	async function drawThread(box, o) {
+		var sh = o.share, other = o.mine ? sh.viewer : sh.owner, owner = o.mine ? C.user : sh.owner.id, viewer = o.mine ? sh.viewer.id : C.user;
+		box.appendChild(el('p', {}, [el('button', { type: 'button', text: '‹ Back', on: { click: function () { SH.open = null; drawSharing(); } } }), ' ', el('strong', { text: o.mine ? 'Messages with ' + other.name : other.name })]));
+		if (!other.key) { box.appendChild(el('p', { text: 'This person has no key yet.' })); return; }
+		var k = await pairKey(other.id, other.key), theirs = null;
+		if (!o.mine) {
+			var r = await shareApi('GET', 'shares/' + sh.id);
+			try { theirs = await openFrom(k, r.data.data, shareAad(owner, viewer, 'data')); } catch (e) { theirs = null; }
+			if (!theirs) { box.appendChild(el('p', { class: 'pr-status is-error', text: 'Their record could not be opened.' })); }
+			else {
+				box.appendChild(el('p', { class: 'pr-note', text: 'Last updated ' + new Date(theirs.at).toLocaleString() + '. Next kathisma: ' + theirs.rule.next + '.' }));
+				box.appendChild(ruleSummary(theirs.rule));
+				var rep = el('div'); box.appendChild(rep);
+				renderReport(rep, { rule: theirs.rule, log: theirs.log, own: false, name: other.name }, SH.report);
+			}
+		}
+		// Messages.
+		var list = el('div', { class: 'pr-thread' }); box.appendChild(el('h4', { text: 'Messages' })); box.appendChild(list);
+		var mr = await shareApi('GET', 'shares/' + sh.id + '/messages'), msgs = [];
+		for (var i = 0; i < (mr.data.messages || []).length; i++) {
+			var m = mr.data.messages[i];
+			try { msgs.push({ id: m.id, author: m.author, at: m.created, body: await openFrom(k, m.body, shareAad(owner, viewer, 'msg/' + m.author)) }); } catch (e) { msgs.push({ id: m.id, author: m.author, at: m.created, body: { type: 'text', text: '(could not be opened)' } }); }
+		}
+		var answered = {};
+		msgs.forEach(function (m) { if (m.body.type === 'answer') { answered[m.body.to] = m.body.accepted; } });
+		if (!msgs.length) { list.appendChild(el('p', { class: 'pr-note', text: 'No messages yet.' })); }
+		msgs.forEach(function (m) {
+			var who = m.author === C.user ? 'You' : other.name, when = new Date(m.at.replace(' ', 'T') + 'Z').toLocaleString();
+			var item = el('div', { class: 'pr-msg' + (m.author === C.user ? ' is-mine' : '') }, [el('p', { class: 'pr-msg-head', text: who + ' · ' + when })]);
+			if (m.body.text) { item.appendChild(el('p', { text: m.body.text })); }
+			if (m.body.type === 'suggest') {
+				item.appendChild(el('p', { class: 'pr-msg-head', text: 'Suggested changes to the rule:' }));
+				item.appendChild(el('ul', {}, describeChanges(m.body.changes, m.id in answered ? null : (o.mine ? V.rule : (theirs && theirs.rule))).map(function (x) { return el('li', { text: x }); })));
+				if (m.id in answered) { item.appendChild(el('p', { class: 'pr-note', text: answered[m.id] ? 'Accepted.' : 'Declined.' })); }
+				else if (o.mine) {
+					item.appendChild(el('p', {}, [
+						el('button', { type: 'button', class: 'pr-primary', text: 'Accept', on: { click: function () { answer(m, true); } } }), ' ',
+						el('button', { type: 'button', text: 'Decline', on: { click: function () { answer(m, false); } } })
+					]));
+				} else { item.appendChild(el('p', { class: 'pr-note', text: 'Waiting for an answer.' })); }
+			}
+			if (m.body.type === 'answer') { item.appendChild(el('p', { class: 'pr-note', text: m.body.accepted ? 'Accepted the suggested changes.' : 'Declined the suggested changes.' })); }
+			list.appendChild(item);
+		});
+		if (msgs.length) { seen(sh.id, msgs[msgs.length - 1].at); }
+
+		async function send(body) {
+			var sealed = await sealFor(k, body, shareAad(owner, viewer, 'msg/' + C.user));
+			var r = await shareApi('POST', 'shares/' + sh.id + '/messages', { body: sealed });
+			if (r.status !== 200) { status(r.data.message || 'Not sent.', true); return; }
+			await loadShares(); SH.open.share = (o.mine ? SH.mine : SH.withMe).filter(function (x) { return x.id === sh.id; })[0] || sh; drawSharing();
+		}
+		async function answer(m, accepted) {
+			if (accepted) { applyChanges(V.rule, m.body.changes); V.rule.updated = now(); await saveVault(); drawSettings(); drawTabs(); show(); }
+			await send({ type: 'answer', to: m.id, accepted: accepted });
+		}
+		var text = el('textarea', { rows: '3', style: 'width:100%' });
+		box.appendChild(el('p', {}, [text]));
+		box.appendChild(el('p', {}, [el('button', { type: 'button', text: 'Send', on: { click: function () { if (text.value.trim()) { send({ type: 'text', text: text.value.trim() }); } } } })]));
+		if (!o.mine && theirs) { box.appendChild(suggestForm(theirs.rule, send)); }
+	}
+
+	function ruleSummary(rule) {
+		var ul = el('ul', { class: 'pr-report-lines' });
+		C.services.forEach(function (s) {
+			var svc = rule.services[s.key];
+			if (svc && svc.keep === false) { ul.appendChild(el('li', { text: s.name + ': not kept' })); return; }
+			var parts = s.portions.map(function (p) { var v = (svc && svc.portions[p.key]) || { kathismas: 0, ladders: 0 }; return (s.portions.length > 1 && p.name !== s.name ? p.name + ' ' : '') + portionText(v); });
+			ul.appendChild(el('li', { text: s.name + ': ' + parts.join('; ') }));
+		});
+		return ul;
+	}
+	function portionText(v) {
+		var a = [];
+		if (v.kathismas) { a.push(v.kathismas + (v.kathismas === 1 ? ' kathisma' : ' kathismas')); }
+		if (v.ladders) { a.push(half(v.ladders) + (v.ladders > 1 ? ' ladders' : ' ladder')); }
+		return a.length ? a.join(' and ') : 'nothing chosen';
+	}
+	/** changes: { services: { key: { keep, portions: { pkey: { kathismas, ladders } } } } } */
+	function describeChanges(changes, rule) {
+		var out = [];
+		Object.keys((changes && changes.services) || {}).forEach(function (key) {
+			var s = serviceByKey(key), c = changes.services[key], cur = rule && rule.services[key];
+			if (!s) { return; }
+			if (c.keep === false) { out.push(s.name + ': no longer kept'); return; }
+			if (c.keep === true && cur && cur.keep === false) { out.push(s.name + ': to be kept'); }
+			Object.keys(c.portions || {}).forEach(function (pk) {
+				var p = s.portions.filter(function (x) { return x.key === pk; })[0], was = cur && cur.portions[pk];
+				out.push(s.name + (s.portions.length > 1 && p && p.name !== s.name ? ' (' + p.name + ')' : '') + ': ' + portionText(c.portions[pk]) + (was ? ' (now ' + portionText(was) + ')' : ''));
+			});
+		});
+		return out.length ? out : ['(no changes)'];
+	}
+	function applyChanges(rule, changes) {
+		Object.keys((changes && changes.services) || {}).forEach(function (key) {
+			var c = changes.services[key];
+			rule.services[key] = rule.services[key] || { keep: true, portions: {} };
+			if (typeof c.keep === 'boolean') { rule.services[key].keep = c.keep; }
+			Object.keys(c.portions || {}).forEach(function (pk) { rule.services[key].portions[pk] = { kathismas: +c.portions[pk].kathismas || 0, ladders: +c.portions[pk].ladders || 0 }; });
+		});
+	}
+
+	/** The nastavnik's form: the member's rule, to change and send as a suggestion. */
+	function suggestForm(rule, send) {
+		var draft = JSON.parse(JSON.stringify(rule.services)), box = el('details', { class: 'pr-suggest' });
+		box.appendChild(el('summary', { text: 'Suggest a change to the rule' }));
+		var t = el('table');
+		C.services.forEach(function (s) {
+			var svc = draft[s.key] || (draft[s.key] = { keep: true, portions: {} });
+			var cb = el('input', { type: 'checkbox' }); cb.checked = svc.keep !== false;
+			cb.addEventListener('change', function () { svc.keep = cb.checked; });
+			t.appendChild(el('tr', {}, [el('th', { colspan: '3' }, [el('label', {}, [cb, ' ', el('strong', { text: s.name })])])]));
+			s.portions.forEach(function (p) {
+				var v = svc.portions[p.key] || (svc.portions[p.key] = { kathismas: 0, ladders: 0 });
+				var k = [[0, 'none']].concat(p.kathismas.map(function (n) { return [n, n]; })), l = [[0, 'none']].concat(p.ladders.map(function (n) { return [n, half(n)]; }));
+				if (v.kathismas && !p.kathismas.some(function (n) { return n === v.kathismas; })) { k.push([v.kathismas, v.kathismas]); }
+				if (v.ladders && !p.ladders.some(function (n) { return n === v.ladders; })) { l.push([v.ladders, half(v.ladders)]); }
+				t.appendChild(el('tr', {}, [
+					el('td', { text: s.portions.length > 1 ? p.name : '' }),
+					el('td', {}, ['kathismas ', select(k, v.kathismas, function (x) { v.kathismas = +x; })]),
+					el('td', {}, ['ladders ', select(l, v.ladders, function (x) { v.ladders = +x; })])
+				]));
+			});
+		});
+		box.appendChild(t);
+		var why = el('textarea', { rows: '2', style: 'width:100%', placeholder: 'A word of explanation (optional)' });
+		box.appendChild(why);
+		box.appendChild(el('p', {}, [el('button', { type: 'button', class: 'pr-primary', text: 'Send the suggestion', on: { click: function () {
+			var changes = { services: {} };
+			C.services.forEach(function (s) {
+				var a = rule.services[s.key] || { keep: true, portions: {} }, b = draft[s.key], c = {};
+				if ((a.keep !== false) !== (b.keep !== false)) { c.keep = b.keep !== false; }
+				s.portions.forEach(function (p) {
+					var x = a.portions[p.key] || { kathismas: 0, ladders: 0 }, y = b.portions[p.key];
+					if (y && (x.kathismas !== y.kathismas || x.ladders !== y.ladders)) { c.portions = c.portions || {}; c.portions[p.key] = { kathismas: y.kathismas, ladders: y.ladders }; }
+				});
+				if (Object.keys(c).length) { changes.services[s.key] = c; }
+			});
+			if (!Object.keys(changes.services).length) { status('Nothing has been changed.', true); return; }
+			send({ type: 'suggest', changes: changes, text: why.value.trim() });
+		} } })]));
+		return box;
 	}
 
 	// ---- loading and showing a service
@@ -575,7 +900,7 @@
 		var done = out.querySelector('.pr-done'); if (done) { done.innerHTML = ''; finishControls().forEach(function (k) { done.appendChild(k); }); }
 	}
 
-	function redraw() { drawAccount(); drawTabs(); drawSettings(); drawRecord(); show(); }
+	function redraw() { drawAccount(); drawTabs(); drawSettings(); drawRecord(); drawSharing(); show(); }
 
 	loadVault().then(redraw, function () { redraw(); status('Your private rule could not be loaded.', true); });
 })();

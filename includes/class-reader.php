@@ -67,6 +67,8 @@ class Reader {
 			'evening'      => self::evening_hour(),
 			'user'         => get_current_user_id(),
 			'vault'        => esc_url_raw( rest_url( Rest::NS . '/vault' ) ),
+			'sharing'      => esc_url_raw( rest_url( Rest::NS . '/sharing/' ) ),
+			'mykey'        => (string) get_user_meta( get_current_user_id(), Sharing::META_KEY, true ),
 		);
 		wp_enqueue_script( 'prayer-rule-reader', PRAYER_RULE_URL . 'assets/reader.js', array(), PRAYER_RULE_VERSION, true );
 		wp_add_inline_script( 'prayer-rule-reader', 'window.prayerRuleReader = ' . wp_json_encode( $config ) . ';', 'before' );
@@ -132,6 +134,14 @@ class Reader {
 .prayer-rule-reader .pr-grid th,.prayer-rule-reader .pr-grid td{padding:.2em .5em;text-align:center;border-bottom:1px solid rgba(127,127,127,.25)}
 .prayer-rule-reader .pr-grid tr th:first-child{text-align:left;white-space:nowrap}
 .prayer-rule-reader .pr-kept{font-weight:600}
+.prayer-rule-reader details.pr-sharing{margin:0 0 1.2em}
+.prayer-rule-reader details.pr-sharing summary,.prayer-rule-reader details.pr-suggest summary{cursor:pointer}
+.prayer-rule-reader .pr-thread{margin:.4em 0 1em}
+.prayer-rule-reader .pr-msg{border-left:3px solid rgba(127,127,127,.4);padding:.1em 0 .1em .8em;margin:.6em 0}
+.prayer-rule-reader .pr-msg.is-mine{border-left-color:#921a0a}
+.prayer-rule-reader .pr-msg p{margin:.2em 0}
+.prayer-rule-reader .pr-msg-head{font-size:.85em;opacity:.75}
+.prayer-rule-reader details.pr-suggest{margin:1em 0}
 .prayer-rule-reader .pr-report-bar{display:flex;flex-wrap:wrap;gap:.5em;align-items:center;margin:.6em 0}
 .prayer-rule-reader .pr-report-bar .pr-tabs{margin:0}
 .prayer-rule-reader .pr-report-bar > button{cursor:pointer;padding:.2em .7em}
