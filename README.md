@@ -6,24 +6,37 @@ a record of what was kept, with reports and optional sharing with a chosen
 member (a nastavnik).
 
 **Status:** early development. The admin side works (Psalter, prayers,
-orders, dismissals, fasting, saints, kathismas, preview), and members can
-read any service on the reading page. The private rule and its record come
-next.
+orders, dismissals, fasting, saints, kathismas, preview). Members read any
+service on the reading page, keep a private encrypted rule, and mark each
+service as kept. Reports and sharing with a nastavnik come next.
 
 ## The reading page
 
 Put `[prayer_rule]` on any page. A member chooses the day and the service
 and reads it, with the day's church date, commemorations and fasting, and
-their own kathismas or ladders in place. Until the private rule is built,
-the portion, the next kathisma, the Psalter translation and verse numbers
-are chosen on the page and kept only in the member's own browser.
+their own kathismas or ladders in place.
+
+A member can set up a private rule there: which services they keep, the
+portion for each, the next kathisma, the Psalter translation. They then
+mark each service as kept; the next kathisma moves on by itself, and a
+change made more than 7 days after the day is marked "corrected later".
+Without a private rule, the settings are kept only in that browser.
 
 ## Privacy
 
-Each member's rule and record are encrypted in their own browser with a
-passphrase before they are saved. The site, its administrators and its host
-store only scrambled data and cannot read it. A lost passphrase cannot be
-reset; a one-time recovery code is given at setup.
+Each member's rule and record are encrypted in their own browser
+(`assets/reader.js`, WebCrypto) before they are saved:
+
+- a random 256-bit key encrypts them (AES-GCM);
+- that key is stored only wrapped, once under the member's passphrase and
+  once under a one-time recovery code (PBKDF2-SHA-256, 600,000 iterations);
+- the passphrase, the recovery code and the key never leave the browser.
+
+The site keeps one row of ciphertext per member (`includes/class-vault.php`)
+and cannot read it; nor can its administrators or its host. They can see
+only that a member has set up a rule, its size and when it last changed. A
+lost passphrase can be replaced with the recovery code; if both are lost,
+no one can open the rule. Deleting the plugin keeps these rows.
 
 The code is public so anyone can check this claim.
 

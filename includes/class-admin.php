@@ -122,6 +122,14 @@ class Admin {
 					<?php submit_button( __( 'Add the missing ones again', 'prayer-rule' ), 'secondary', '', false ); ?>
 				</form>
 			<?php endif; ?>
+			<h2><?php esc_html_e( 'Members', 'prayer-rule' ); ?></h2>
+			<p>
+				<?php
+				/* translators: %d: number of members */
+				echo esc_html( sprintf( _n( '%d member has set up a private rule.', '%d members have set up a private rule.', Vault::count(), 'prayer-rule' ), Vault::count() ) );
+				?>
+				<?php esc_html_e( 'Their rules and records are encrypted in their browsers; the site keeps only ciphertext, which no one here can read.', 'prayer-rule' ); ?>
+			</p>
 			<h2><?php esc_html_e( 'Psalter', 'prayer-rule' ); ?></h2>
 			<?php if ( ! $counts ) : ?>
 				<p><?php esc_html_e( 'The Psalter is not loaded. Deactivate and activate the plugin, or use Settings → Reload the Psalter.', 'prayer-rule' ); ?></p>

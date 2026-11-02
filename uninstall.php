@@ -3,6 +3,10 @@
  * Removing the plugin (Delete, not just Deactivate): drop the Psalter table
  * and settings. Prayers and Orders you wrote are kept as posts, so nothing
  * you typed is lost if the plugin is reinstalled.
+ *
+ * Members' private rules and records (table prayer_rule_vaults) are kept
+ * too: they are only ciphertext, and deleting them would destroy members'
+ * records with no way back. To remove them as well, drop that table by hand.
  */
 
 if ( ! defined( 'WP_UNINSTALL_PLUGIN' ) ) {
@@ -28,6 +32,7 @@ foreach ( array(
 	'prayer_rule_additions',
 	'prayer_rule_fasting',
 	'prayer_rule_evening',
+	'prayer_rule_vault_db',
 ) as $option ) {
 	delete_option( $option );
 }
