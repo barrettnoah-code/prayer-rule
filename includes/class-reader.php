@@ -88,7 +88,7 @@ class Reader {
 		}
 		$html = '<div class="pr-day"><p class="pr-day-date">' . esc_html( implode( ' · ', $parts ) ) . '</p>';
 		if ( $info['lines'] ) {
-			$html .= '<p class="pr-day-lines">' . esc_html( implode( ' · ', $info['lines'] ) ) . '</p>';
+			$html .= '<p class="pr-day-lines">' . Render::signs( esc_html( implode( ' · ', $info['lines'] ) ) ) . '</p>';
 		}
 		if ( in_array( $service, array( 'vespers', 'compline' ), true ) ) {
 			/* translators: %s: the evening before, e.g. Saturday, October 31 */

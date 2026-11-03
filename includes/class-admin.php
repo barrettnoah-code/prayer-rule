@@ -518,6 +518,7 @@ class Admin {
 		global $wp_locale;
 		?>
 		<div class="wrap">
+			<style><?php echo Render::sign_css(); // phpcs:ignore WordPress.Security.EscapeOutput -- fixed CSS ?></style>
 			<h1><?php esc_html_e( 'Saints in the dismissals and zapevy', 'prayer-rule' ); ?></h1>
 			<?php self::notice(); ?>
 			<?php if ( ! Calendar::available() ) : ?>
@@ -565,7 +566,7 @@ class Admin {
 						?>
 						<tr>
 							<td><?php echo (int) $d; ?></td>
-							<td><?php echo esc_html( implode( ' · ', $days[ $d ]['lines'] ?? array() ) ); ?></td>
+							<td><?php echo Render::signs( esc_html( implode( ' · ', $days[ $d ]['lines'] ?? array() ) ) ); // phpcs:ignore WordPress.Security.EscapeOutput -- escaped, then signs wrapped ?></td>
 							<td>
 								<input type="text" style="width:100%" name="saints[<?php echo esc_attr( $key ); ?>]" value="<?php echo esc_attr( $names[ $key ] ?? '' ); ?>" placeholder="<?php echo esc_attr( $auto ); ?>">
 							</td>
@@ -607,7 +608,8 @@ class Admin {
 		echo '<div style="max-width:52em;margin:0 0 1em">';
 		echo '<p><strong>' . esc_html( implode( ' · ', $parts ) ) . '</strong></p>';
 		if ( $info['lines'] ) {
-			echo '<p>' . esc_html( implode( ' · ', $info['lines'] ) ) . '</p>';
+			echo '<style>' . Render::sign_css() . '</style>'; // phpcs:ignore WordPress.Security.EscapeOutput -- fixed CSS
+			echo '<p>' . Render::signs( esc_html( implode( ' · ', $info['lines'] ) ) ) . '</p>'; // phpcs:ignore WordPress.Security.EscapeOutput -- escaped, then signs wrapped
 		}
 		$feast = Feasts::find( $info, $service );
 		if ( $feast ) {

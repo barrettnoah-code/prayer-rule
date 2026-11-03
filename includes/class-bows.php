@@ -16,6 +16,7 @@
  *   [bow rule]       a bow of the rule itself (the cell rule, the zapevy)
  *   [bow great]      the great prostration after "It is truly meet": always
  *   [bow 3]          "(three prostrations)" / "(three bows)"
+ *   [bow thrice]     a short prayer said three times: "(thrice, with prostrations)"
  *   [bow word]       the bare word, for a rubric: "Make a [bow word] and say …"
  */
 
@@ -134,7 +135,11 @@ class Bows {
 		return self::render( self::kind( $class ), 1, false );
 	}
 
-	private static function render( $kind, $count, $word ) {
+	private static function render( $kind, $count, $word, $thrice = false ) {
+		if ( $thrice ) {
+			$text = 'bow' === $kind ? __( 'thrice, with bows', 'prayer-rule' ) : __( 'thrice, with prostrations', 'prayer-rule' );
+			return '<span class="pr-red pr-bow">(' . esc_html( $text ) . ')</span>';
+		}
 		$numbers = array( 2 => __( 'two', 'prayer-rule' ), 3 => __( 'three', 'prayer-rule' ), 4 => __( 'four', 'prayer-rule' ), 12 => __( 'twelve', 'prayer-rule' ) );
 		if ( 'great' === $kind ) {
 			$text = __( 'great prostration', 'prayer-rule' );
@@ -152,17 +157,20 @@ class Bows {
 		$class = '';
 		$count = 1;
 		$word  = false;
+		$three = false;
 		foreach ( (array) $atts as $att ) {
 			$att = strtolower( trim( (string) $att ) );
 			if ( ctype_digit( $att ) ) {
 				$count = max( 1, (int) $att );
+			} elseif ( 'thrice' === $att ) {
+				$three = true;
 			} elseif ( 'word' === $att ) {
 				$word = true;
 			} elseif ( in_array( $att, array( 'entrance', 'departing', 'rule', 'great' ), true ) ) {
 				$class = $att;
 			}
 		}
-		return self::render( self::kind( $class ), $count, $word );
+		return self::render( self::kind( $class ), $count, $word, $three );
 	}
 
 	/** A line for the top of the day: what the bows are today, and why. */

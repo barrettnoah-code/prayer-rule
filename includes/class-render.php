@@ -363,10 +363,33 @@ class Render {
 		return $html . '</div>';
 	}
 
+	/**
+	 * The five Typikon signs (U+1F540-1F544: great feast, vigil, polyeleos,
+	 * doxology, six stichera) as an embedded font, so they show on phones
+	 * that have no font for them. A 2 KB subset of GNU FreeSerif (GPLv3
+	 * with font exception), the same as the calendar plugin's, inlined so
+	 * that caching plugins cannot break its path.
+	 */
+	public static function sign_css() {
+		static $css = null;
+		if ( null === $css ) {
+			$path = PRAYER_RULE_DIR . 'assets/fonts/typikon-signs.woff2';
+			$data = is_readable( $path ) ? base64_encode( (string) file_get_contents( $path ) ) : ''; // phpcs:ignore WordPress.WP.AlternativeFunctions
+			$css  = ( '' === $data ? '' : '@font-face{font-family:"Prayer Rule Typikon";src:url(data:font/woff2;base64,' . $data . ') format("woff2");unicode-range:U+1F540-1F544;font-display:block}' )
+				. '.pr-sign{font-family:"Prayer Rule Typikon","Segoe UI Symbol","Noto Sans Symbols",Symbola,serif;font-style:normal;font-weight:normal}';
+		}
+		return $css;
+	}
+
+	/** Escaped text with each Typikon sign wrapped to use the embedded font. */
+	public static function signs( $escaped ) {
+		return preg_replace( '/[\x{1F540}-\x{1F544}]/u', '<span class="pr-sign">$0</span>', $escaped );
+	}
+
 	/** The reading styles (preview, members' page, prayer editor). */
 	public static function css() {
 		$red = self::RED;
-		return ".prayer-rule-reading{--pr-red:{$red};max-width:42em}
+		return self::sign_css() . ".prayer-rule-reading{--pr-red:{$red};max-width:42em}
 .prayer-rule-reading .pr-kathisma{color:var(--pr-red);text-align:center;font-size:1.25em;margin:2em 0 .5em}
 .prayer-rule-reading .pr-stasis-label{color:var(--pr-red);font-size:.8em;text-transform:uppercase;letter-spacing:.06em;margin:1.6em 0 0}
 .prayer-rule-reading .pr-psalm{color:var(--pr-red);font-size:1.05em;margin:1.2em 0 .4em}

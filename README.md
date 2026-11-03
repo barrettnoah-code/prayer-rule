@@ -118,7 +118,8 @@ date. Anything edited on the site is left alone.
   openings and the rule stay to the ground; Vespers and Compline read on a
   Sunday or feast evening begin with waist bows. `[bow entrance]`,
   `[bow departing]`, `[bow rule]` and `[bow great]` (always "great
-  prostration") mark the other kinds; `[bow 3]` gives "(three prostrations)".
+  prostration") mark the other kinds; `[bow 3]` gives "(three prostrations)", and `[bow thrice]`
+  after a short prayer said three times gives "(thrice, with prostrations)".
 - **Services** – the six services (Vespers, Compline, Midnight Office,
   Matins with the 1st Hour, Hours, Cell Rule): which order each uses, the
   suggested amounts, and the prayers inside the rule (after each stasis,
