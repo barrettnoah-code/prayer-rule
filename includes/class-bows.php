@@ -56,6 +56,21 @@ class Bows {
 		if ( $after >= 7 && $after <= 56 ) {
 			return __( 'from Pascha to All Saints', 'prayer-rule' );
 		}
+		// Great Lent and Holy Week (Clean Monday to Great Friday) go by their own rule,
+		// not the calendar's: prostrations except on Saturdays and Sundays, and,
+		// before Holy Week, on a great feast such as the Annunciation.
+		if ( $before >= -48 && $before <= -2 ) {
+			if ( 0 === (int) $info['weekday'] ) {
+				return __( 'Sunday', 'prayer-rule' );
+			}
+			if ( 6 === (int) $info['weekday'] ) {
+				return __( 'Saturday', 'prayer-rule' );
+			}
+			if ( $before <= -8 && 1 === (int) ( $info['rank'] ?? 9 ) ) {
+				return __( 'a great feast', 'prayer-rule' );
+			}
+			return '';
+		}
 		if ( ( 12 === $jm && $jd >= 25 ) || ( 1 === $jm && $jd <= 5 ) ) {
 			return __( 'the twelve days after the Nativity of Christ', 'prayer-rule' );
 		}

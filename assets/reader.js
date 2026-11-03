@@ -212,17 +212,57 @@
 
 	// ------------------------------------------------------------ the page
 
-	var dateInput = el('input', { type: 'date', value: UI.day });
-	dateInput.addEventListener('change', function () { if (dateInput.value) { UI.day = dateInput.value; drawTabs(); show(); } });
-	var bar = el('div', { class: 'pr-controls' }, [el('label', {}, ['Day ', dateInput]), el('button', { type: 'button', text: 'Today', on: { click: function () { UI.day = defaultDay(); dateInput.value = UI.day; drawTabs(); show(); } } })]);
+	var dateInput = el('input', { type: 'date', value: UI.day, 'aria-label': 'Day' });
+	function setDay(d) { UI.day = d; dateInput.value = d; drawTabs(); show(); }
+	dateInput.addEventListener('change', function () { if (dateInput.value) { setDay(dateInput.value); } });
+	var bar = el('div', { class: 'pr-controls' }, [
+		el('button', { type: 'button', class: 'pr-nav', 'aria-label': 'The day before', text: '‹', on: { click: function () { setDay(addDays(UI.day, -1)); } } }),
+		dateInput,
+		el('button', { type: 'button', class: 'pr-nav', 'aria-label': 'The day after', text: '›', on: { click: function () { setDay(addDays(UI.day, 1)); } } }),
+		el('button', { type: 'button', class: 'pr-today', text: 'Today', on: { click: function () { setDay(defaultDay()); } } })
+	]);
 	var account = el('div', { class: 'pr-account' });
 	var tabs = el('div', { class: 'pr-tabs', role: 'group' });
-	var settings = el('details', { class: 'pr-settings' });
-	var record = el('details', { class: 'pr-record' });
+	var tools = el('div', { class: 'pr-tools' });
+	var head = el('div', { class: 'pr-head' }, [bar, tabs, tools]);
+
+	/**
+	 * A window over the page (like the calendar's) for My rule, My record and
+	 * Nastavnik. Returns its body; the button that opens it sits in the head.
+	 */
+	function panel(cls) {
+		var body = el('div', { class: 'pr-dialog-body ' + cls });
+		var title = el('h2', { class: 'pr-dialog-title' });
+		var dlg = el('dialog', { class: 'pr-dialog' }, [
+			el('button', { type: 'button', class: 'pr-dialog-close', 'aria-label': 'Close', text: '×', on: { click: function () { dlg.close(); } } }),
+			title, body
+		]);
+		dlg.addEventListener('click', function (e) { if (e.target === dlg) { dlg.close(); } });   // a click outside the box
+		dlg.addEventListener('close', function () { document.documentElement.classList.remove('pr-modal-open'); });
+		var btn = el('button', { type: 'button', class: 'pr-tool', on: { click: function () { openPanel(body); } } });
+		body.dlg = dlg; body.titleEl = title; body.btn = btn;
+		tools.appendChild(btn);
+		root.appendChild(dlg);
+		return body;
+	}
+	function openPanel(body) {
+		if (!body.dlg.open) { if (body.dlg.showModal) { body.dlg.showModal(); } else { body.dlg.setAttribute('open', ''); } }
+		document.documentElement.classList.add('pr-modal-open');
+	}
+	function panelTitle(body, text, badge) {
+		body.titleEl.textContent = text;
+		body.btn.innerHTML = '';
+		body.btn.appendChild(document.createTextNode(text));
+		if (badge) { body.btn.appendChild(el('span', { class: 'pr-badge', text: String(badge) })); }
+	}
+	function panelShown(body, yes) { body.btn.style.display = yes ? '' : 'none'; if (!yes && body.dlg.open) { body.dlg.close(); } }
+
+	var settings = panel('pr-settings');
+	var record = panel('pr-record');
 	var note = el('p', { class: 'pr-status', role: 'status' });
 	var out = el('div', { class: 'pr-out', 'aria-live': 'polite' });
 	var footer = el('div', { class: 'pr-footer' });
-	[account, bar, tabs, settings, record, note, out, footer].forEach(function (x) { root.appendChild(x); });
+	[account, head, note, out, footer].forEach(function (x) { root.insertBefore(x, settings.dlg); });
 
 	function status(text, error) { note.textContent = text; note.className = 'pr-status' + (error ? ' is-error' : ''); }
 	function entryKey(day, svc) { return day + '|' + svc; }
@@ -259,8 +299,7 @@
 		var box = el('div', { class: 'pr-notice', role: 'status' });
 		fresh.forEach(function (x) {
 			box.appendChild(el('p', {}, ['New message from ' + x.who + '. ', el('button', { type: 'button', class: 'pr-primary', text: 'Read it', on: { click: function () {
-				SH.open = { share: x.share, mine: x.mine }; sharing.open = true; drawSharing();
-				sharing.scrollIntoView({ behavior: 'smooth', block: 'start' });
+				SH.open = { share: x.share, mine: x.mine }; drawSharing(); openPanel(sharing);
 			} } })]));
 		});
 		account.appendChild(box);
@@ -372,7 +411,7 @@
 	function drawSettings() {
 		var open = settings.open, r = R();
 		settings.innerHTML = '';
-		settings.appendChild(el('summary', { text: V.key ? 'My rule' : 'My portion and settings' }));
+		panelTitle(settings, V.key ? 'My rule' : 'My portion and settings');
 		var t = el('table');
 		C.services.forEach(function (s) {
 			var svc = r.services[s.key] || (r.services[s.key] = { keep: true, portions: {} });
@@ -486,9 +525,9 @@
 	function drawRecord() {
 		var open = record.open;
 		record.innerHTML = '';
-		if (!V.key) { record.style.display = 'none'; return; }
-		record.style.display = '';
-		record.appendChild(el('summary', { text: 'My record' }));
+		if (!V.key) { panelShown(record, false); return; }
+		panelShown(record, true);
+		panelTitle(record, 'My record');
 		var body = el('div');
 		record.appendChild(body);
 		renderReport(body, { rule: V.rule, log: V.log, own: true }, UI.report);
@@ -647,8 +686,7 @@
 		}
 	}
 
-	var sharing = el('details', { class: 'pr-sharing' });
-	root.insertBefore(sharing, note);
+	var sharing = panel('pr-sharing');
 
 	function unreadCount() {
 		var n = 0;
@@ -660,10 +698,10 @@
 	function drawSharing() {
 		var open = sharing.open;
 		sharing.innerHTML = '';
-		if (!V.key || !V.priv) { sharing.style.display = 'none'; return; }
-		sharing.style.display = '';
+		if (!V.key || !V.priv) { panelShown(sharing, false); return; }
+		panelShown(sharing, true);
 		var unread = unreadCount();
-		sharing.appendChild(el('summary', { text: 'Nastavnik' + (unread ? ' (' + unread + ' new)' : '') }));
+		panelTitle(sharing, 'Nastavnik', unread);
 		var body = el('div');
 		sharing.appendChild(body);
 		if (SH.open) { drawThread(body, SH.open); sharing.open = true; return; }
@@ -881,7 +919,9 @@
 			body: JSON.stringify({ date: UI.day, translation: r.translation, verses: r.verses ? 1 : 0, p: p })
 		}).then(function (res) { if (!res.ok) { throw res; } return res.json(); }).then(function (data) {
 			if (mine !== req) { return; }
-			out.innerHTML = data.day_html + data.html;
+			out.innerHTML = data.day_html;
+			out.appendChild(el('h2', { class: 'pr-service-title', text: svc.name }));
+			out.insertAdjacentHTML('beforeend', data.html);
 			shown = { day: UI.day, service: svc.key, start: start, total: total, ladders: ladders };
 			out.appendChild(el('div', { class: 'pr-done' }, finishControls()));
 		}).catch(function () { if (mine === req) { out.innerHTML = ''; out.appendChild(el('p', { text: 'The service could not be loaded. Please try again.' })); } });

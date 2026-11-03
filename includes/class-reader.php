@@ -101,20 +101,47 @@ class Reader {
 
 	private static function css() {
 		return '
+.prayer-rule-reader{--pr-red:#921a0a;--pr-line:rgba(127,127,127,.28);--pr-tint:rgba(146,26,10,.045)}
 .prayer-rule-reader select,.prayer-rule-reader input,.prayer-rule-reader button{font:inherit}
-.prayer-rule-reader .pr-controls{display:flex;flex-wrap:wrap;gap:.6em 1em;align-items:center;margin:0 0 1em}
-.prayer-rule-reader .pr-tabs{display:flex;flex-wrap:wrap;gap:.4em;margin:0 0 1em}
-.prayer-rule-reader .pr-tabs button{cursor:pointer;padding:.35em .8em;border:1px solid currentColor;background:transparent;color:inherit;border-radius:3px;font:inherit}
+.prayer-rule-reader button{cursor:pointer}
+.prayer-rule-reader .pr-head{border:1px solid var(--pr-line);border-radius:8px;background:var(--pr-tint);padding:.9em 1em;margin:0 0 1.8em;display:flex;flex-direction:column;gap:.8em}
+.prayer-rule-reader .pr-controls{display:flex;flex-wrap:wrap;gap:.5em;align-items:center;justify-content:center}
+.prayer-rule-reader .pr-controls input[type=date]{max-width:11em;padding:.3em .5em;border:1px solid var(--pr-line);border-radius:4px;background:transparent;color:inherit}
+.prayer-rule-reader .pr-nav{background:transparent;border:1px solid var(--pr-line);border-radius:4px;color:var(--pr-red);font-size:1.3em;line-height:1;padding:.15em .6em .3em}
+.prayer-rule-reader .pr-nav:hover,.prayer-rule-reader .pr-nav:focus-visible,.prayer-rule-reader .pr-today:hover,.prayer-rule-reader .pr-tool:hover{background:rgba(146,26,10,.1)}
+.prayer-rule-reader .pr-today{background:transparent;border:1px solid var(--pr-line);border-radius:4px;color:inherit;padding:.3em .8em;font-size:.9em}
+.prayer-rule-reader .pr-tabs{display:flex;flex-wrap:wrap;gap:.4em;justify-content:center;margin:0}
+.prayer-rule-reader .pr-tabs button{padding:.4em .9em;border:1px solid var(--pr-line);background:transparent;color:inherit;border-radius:999px;font:inherit}
+.prayer-rule-reader .pr-tabs button:hover{border-color:#921a0a}
 .prayer-rule-reader .pr-tabs button[aria-pressed=true]{background:#921a0a;border-color:#921a0a;color:#fff}
-.prayer-rule-reader details.pr-settings{margin:0 0 1.2em}
-.prayer-rule-reader details.pr-settings summary{cursor:pointer}
+.prayer-rule-reader .pr-tabs button.is-kept:not([aria-pressed=true]){border-color:#921a0a;color:#921a0a}
+.prayer-rule-reader .pr-tools{display:flex;flex-wrap:wrap;gap:.5em;justify-content:center;border-top:1px solid var(--pr-line);padding-top:.8em}
+.prayer-rule-reader .pr-tool{background:transparent;border:1px solid #921a0a;color:#921a0a;border-radius:4px;padding:.35em 1em;font-size:.85em;letter-spacing:.05em;text-transform:uppercase}
+.prayer-rule-reader .pr-badge{display:inline-block;margin-left:.5em;min-width:1.5em;padding:0 .35em;border-radius:999px;background:#921a0a;color:#fff;font-size:.85em;text-align:center;letter-spacing:0}
+.prayer-rule-reader .pr-dialog{border:0;border-radius:8px;padding:2.4em 2em 1.8em;width:calc(100% - 2em);max-width:760px;max-height:88vh;overflow-y:auto;overflow-x:hidden;box-sizing:border-box;box-shadow:0 8px 40px rgba(0,0,0,.35);background:#fff;color:#222}
+.prayer-rule-reader .pr-dialog::backdrop{background:rgba(0,0,0,.55)}
+.prayer-rule-reader .pr-dialog-close{position:absolute;top:.4em;right:.6em;background:none;border:0;font-size:1.9em;line-height:1;color:#999;padding:.1em .3em}
+.prayer-rule-reader .pr-dialog-close:hover{color:#921a0a}
+.prayer-rule-reader .pr-dialog-close:focus{outline:none;box-shadow:none}
+.prayer-rule-reader .pr-dialog-close:focus-visible{outline:2px solid #921a0a}
+.prayer-rule-reader .pr-dialog-body .pr-grid,.prayer-rule-reader .pr-dialog-body .pr-settings-table{display:block;overflow-x:auto;max-width:100%}
+.prayer-rule-reader .pr-dialog-title{color:#921a0a;font-size:1.35em;margin:0 0 .8em;padding-bottom:.4em;border-bottom:1px solid var(--pr-line)}
+.prayer-rule-reader .pr-dialog h4{margin:1.4em 0 .5em}
+html.pr-modal-open{overflow:hidden}
+@media (max-width:600px){.prayer-rule-reader .pr-dialog{padding:2.2em .9em 1.2em;width:calc(100% - .8em);max-height:92vh}.prayer-rule-reader .pr-controls{gap:.35em}.prayer-rule-reader .pr-head{padding:.8em .6em}}
+.prayer-rule-reader .pr-service-title{text-align:center;color:#921a0a;font-weight:normal;letter-spacing:.04em;margin:1.4em 0 1em;display:flex;align-items:center;gap:.8em}
+.prayer-rule-reader .pr-service-title::before,.prayer-rule-reader .pr-service-title::after{content:"";flex:1;border-top:1px solid var(--pr-line)}
 .prayer-rule-reader .pr-settings table{border-collapse:collapse;margin:.6em 0}
 .prayer-rule-reader .pr-settings td,.prayer-rule-reader .pr-settings th{padding:.25em .6em .25em 0;text-align:left;vertical-align:middle}
-.prayer-rule-reader .pr-day{margin:0 0 1.2em}
+.prayer-rule-reader .pr-day{margin:0 0 1.2em;text-align:center}
 .prayer-rule-reader .pr-day p{margin:.2em 0}
 .prayer-rule-reader .pr-day-date{font-weight:600}
+.prayer-rule-reader .pr-day-lines{font-size:.95em}
+.prayer-rule-reader .pr-day-bows{font-size:.9em;opacity:.8}
+.prayer-rule-reader .pr-day .pr-fasting{text-align:left}
 .prayer-rule-reader .pr-day-eve,.prayer-rule-reader .pr-note{opacity:.75;font-size:.9em}
-.prayer-rule-reader .pr-done{margin:2em 0 1em}
+.prayer-rule-reader .pr-done{margin:2.4em 0 1em;padding:1em;border:1px solid var(--pr-line);border-radius:8px;background:var(--pr-tint);text-align:center}
+.prayer-rule-reader .pr-done p{margin:.3em 0}
 .prayer-rule-reader .pr-done button{cursor:pointer;padding:.45em 1em;font:inherit;margin:.25em 0}
 .prayer-rule-reader .pr-tabs button.is-not-kept{opacity:.55}
 .prayer-rule-reader .pr-box{border:1px solid currentColor;border-radius:4px;padding:.8em 1em;margin:0 0 1.2em}
@@ -163,6 +190,6 @@ class Reader {
 .prayer-rule-reader .pr-month td.is-today{outline:2px solid #921a0a}
 .prayer-rule-reader .pr-month-day{display:block;font-weight:600}
 .prayer-rule-reader .pr-month-n{display:block;font-size:.85em}
-@media print{body *{visibility:hidden}.prayer-rule-reader .pr-record,.prayer-rule-reader .pr-record *{visibility:visible}.prayer-rule-reader .pr-record{position:absolute;left:0;top:0;width:100%}.prayer-rule-reader .pr-record button{display:none}.prayer-rule-reader .pr-month td{-webkit-print-color-adjust:exact;print-color-adjust:exact}}';
+@media print{.prayer-rule-reader .pr-dialog[open]{position:absolute;inset:0 auto auto 0;margin:0;padding:0;max-width:none;width:100%;max-height:none;overflow:visible;box-shadow:none}.prayer-rule-reader .pr-dialog::backdrop{background:none}body *{visibility:hidden}.prayer-rule-reader .pr-record,.prayer-rule-reader .pr-record *{visibility:visible}.prayer-rule-reader .pr-record{position:absolute;left:0;top:0;width:100%}.prayer-rule-reader .pr-record button{display:none}.prayer-rule-reader .pr-month td{-webkit-print-color-adjust:exact;print-color-adjust:exact}}';
 	}
 }
