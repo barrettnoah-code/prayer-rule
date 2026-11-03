@@ -129,6 +129,11 @@ class Reader {
 .prayer-rule-reader .pr-link{background:none;border:0;padding:0;color:inherit;text-decoration:underline;cursor:pointer}
 .prayer-rule-reader .pr-status.is-error{color:#b32d2e}
 .prayer-rule-reader .pr-lockline{margin:0 0 1em;opacity:.85}
+.prayer-rule-reader .pr-footer{margin:3em 0 1em;padding-top:1em;border-top:1px solid rgba(127,127,127,.3);font-size:.9em}
+.prayer-rule-reader .pr-footer .pr-lockline{opacity:.7}
+.prayer-rule-reader .pr-footer details summary{cursor:pointer}
+.prayer-rule-reader .pr-notice{border-left:4px solid #921a0a;padding:.5em 1em;margin:0 0 1.2em;background:rgba(146,26,10,.06)}
+.prayer-rule-reader .pr-notice p{margin:.3em 0}
 .prayer-rule-reader details.pr-record{margin:0 0 1.2em}
 .prayer-rule-reader details.pr-record summary{cursor:pointer}
 .prayer-rule-reader .pr-grid{border-collapse:collapse;margin:.6em 0;font-size:.92em}

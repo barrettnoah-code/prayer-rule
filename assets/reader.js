@@ -135,7 +135,7 @@
 		try { sessionStorage.setItem(SESSION, b64(raw)); } catch (e) {}
 		if (await ensureKeys(V.envelope)) { await saveVault(); }
 		await publishKey();
-		loadShares().then(function () { pushShares(); drawSharing(); });
+		loadShares().then(function () { pushShares(); drawSharing(); drawAccount(); });
 	}
 	async function unwrap(secret, which) {
 		var env = V.envelope, k = await derive(secret, unb64(env['salt_' + which]), env.iter);
@@ -221,7 +221,8 @@
 	var record = el('details', { class: 'pr-record' });
 	var note = el('p', { class: 'pr-status', role: 'status' });
 	var out = el('div', { class: 'pr-out', 'aria-live': 'polite' });
-	[account, bar, tabs, settings, record, note, out].forEach(function (x) { root.appendChild(x); });
+	var footer = el('div', { class: 'pr-footer' });
+	[account, bar, tabs, settings, record, note, out, footer].forEach(function (x) { root.appendChild(x); });
 
 	function status(text, error) { note.textContent = text; note.className = 'pr-status' + (error ? ' is-error' : ''); }
 	function entryKey(day, svc) { return day + '|' + svc; }
@@ -234,7 +235,7 @@
 	function drawAccount() {
 		account.innerHTML = '';
 		if (V.key) {
-			account.appendChild(el('p', { class: 'pr-lockline' }, ['Your private rule is open. ', el('button', { type: 'button', class: 'pr-link', text: 'Lock', on: { click: function () { lock(); redraw(); } } })]));
+			drawNotice();
 			return;
 		}
 		if (!V.exists) {
@@ -247,6 +248,36 @@
 		}
 		if (UI.panel === 'recover') { drawRecover(); return; }
 		drawUnlock();
+	}
+
+	/** New messages from a nastavnik (or, for a nastavnik, from those who share with them). */
+	function drawNotice() {
+		var fresh = SH.mine.map(function (sh) { return { share: sh, mine: true, who: sh.viewer.name }; })
+			.concat(SH.withMe.map(function (sh) { return { share: sh, mine: false, who: sh.owner.name }; }))
+			.filter(function (x) { var sh = x.share; return sh.last_message && sh.last_author !== C.user && sh.last_message > seen(sh.id); });
+		if (!fresh.length) { return; }
+		var box = el('div', { class: 'pr-notice', role: 'status' });
+		fresh.forEach(function (x) {
+			box.appendChild(el('p', {}, ['New message from ' + x.who + '. ', el('button', { type: 'button', class: 'pr-primary', text: 'Read it', on: { click: function () {
+				SH.open = { share: x.share, mine: x.mine }; sharing.open = true; drawSharing();
+				sharing.scrollIntoView({ behavior: 'smooth', block: 'start' });
+			} } })]));
+		});
+		account.appendChild(box);
+	}
+
+	/** At the foot of the page: passphrase, recovery code, erasing, and locking. */
+	function drawFooter() {
+		var open = footer.querySelector('details') ? footer.querySelector('details').open : false;
+		footer.innerHTML = '';
+		if (!V.key) { return; }
+		var d = el('details', { class: 'pr-keys-box' }, [el('summary', { text: 'Passphrase, recovery code and erasing' }), drawKeys()]);
+		d.open = open;
+		footer.appendChild(d);
+		footer.appendChild(el('p', { class: 'pr-lockline' }, [
+			'Your private rule is open in this browser tab, and closes by itself when the tab is closed. On a shared computer, ',
+			el('button', { type: 'button', class: 'pr-link', text: 'lock it now', on: { click: function () { lock(); redraw(); window.scrollTo(0, 0); } } }), '.'
+		]));
 	}
 
 	function drawSetup() {
@@ -373,8 +404,7 @@
 			el('label', {}, ['Psalter ', select(tr, r.translation, function (x) { r.translation = x; saveSettings(); show(); })]), '   ',
 			el('label', {}, [vb, ' verse numbers'])
 		]));
-		if (V.key) { settings.appendChild(drawKeys()); }
-		else { settings.appendChild(el('p', { class: 'pr-note', text: 'These settings are kept only in this browser.' })); }
+		if (!V.key) { settings.appendChild(el('p', { class: 'pr-note', text: 'These settings are kept only in this browser.' })); }
 		settings.open = open;
 	}
 
@@ -403,7 +433,6 @@
 			if (erase.value !== 'ERASE') { msg.textContent = 'Type ERASE in the box to confirm.'; return; }
 			var r = await api('DELETE'); if (r.status === 200) { lock(); V.exists = false; V.envelope = null; redraw(); status('Your private rule and record are erased.'); }
 		});
-		box.appendChild(el('h4', { text: 'Passphrase and recovery code' }));
 		box.appendChild(el('p', {}, [p1[0], ' ', p2[0], ' ', change]));
 		box.appendChild(el('p', {}, [newCode]));
 		box.appendChild(el('p', {}, [erase, ' ', eraseBtn]));
@@ -733,7 +762,7 @@
 			if (m.body.type === 'answer') { item.appendChild(el('p', { class: 'pr-note', text: m.body.accepted ? 'Accepted the suggested changes.' : 'Declined the suggested changes.' })); }
 			list.appendChild(item);
 		});
-		if (msgs.length) { seen(sh.id, msgs[msgs.length - 1].at); }
+		if (msgs.length) { seen(sh.id, msgs[msgs.length - 1].at); drawAccount(); }
 
 		async function send(body) {
 			var sealed = await sealFor(k, body, shareAad(owner, viewer, 'msg/' + C.user));
@@ -900,7 +929,15 @@
 		var done = out.querySelector('.pr-done'); if (done) { done.innerHTML = ''; finishControls().forEach(function (k) { done.appendChild(k); }); }
 	}
 
-	function redraw() { drawAccount(); drawTabs(); drawSettings(); drawRecord(); drawSharing(); show(); }
+	function redraw() { drawAccount(); drawTabs(); drawSettings(); drawRecord(); drawSharing(); drawFooter(); show(); }
+
+	// Look for new messages every two minutes while the page is open and visible.
+	setInterval(async function () {
+		if (!V.key || !V.priv || document.hidden) { return; }
+		await loadShares();
+		drawAccount();
+		if (!SH.open && !sharing.contains(document.activeElement)) { drawSharing(); }
+	}, 120000);
 
 	loadVault().then(redraw, function () { redraw(); status('Your private rule could not be loaded.', true); });
 })();
