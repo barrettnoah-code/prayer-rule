@@ -99,8 +99,8 @@ class Render {
 		$day_feast         = $info ? ( Feasts::find( $info, 'matins' ) ?? Feasts::find( $info, 'vespers' ) ) : null;
 		$out               = array();
 		$bookmark          = null;   // next kathisma, carried from one portion to the next
-		$order_id          = $info ? ( Ustav::seasonal_order( $service_key, $info ) ? Ustav::seasonal_order( $service_key, $info ) : $service['order'] ) : $service['order'];
-		foreach ( Orders::steps( $order_id ) as $step ) {
+		$order_steps       = $info ? Ustav::seasonal_steps( $service_key, $info ) : null;
+		foreach ( ( null !== $order_steps ? $order_steps : Orders::steps( $service['order'] ) ) as $step ) {
 			if ( 'rule' === $step['type'] ) {
 				$portion = $context['portions'][ $step['portion'] ] ?? array();
 				if ( empty( $portion['start'] ) && null !== $bookmark ) {
@@ -200,6 +200,14 @@ class Render {
 	private static function text_step( $slug ) {
 		$post = Texts::find( $slug );
 		Zapevy::reset();
+		if ( ! $post && '' !== Ustav::bundled_prayer( $slug ) ) {
+			return array(                   // a Home Ustav prayer not yet added to the site
+				'type'  => 'text',
+				'slug'  => $slug,
+				'title' => $slug,
+				'html'  => Texts::content_html( Ustav::bundled_prayer( $slug ) ),
+			);
+		}
 		return $post ? array(
 			'type'  => 'text',
 			'slug'  => $slug,

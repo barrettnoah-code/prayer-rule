@@ -148,14 +148,55 @@ class Ustav {
 	 * its own, from data "seasons" (Pascha and Bright Week), or 0.
 	 */
 	public static function seasonal_order( $service, $info ) {
+		$key = self::seasonal_key( $service, $info );
+		if ( '' === $key ) {
+			return 0;
+		}
+		$id = self::order_for( $key );
+		return $id && 'publish' === get_post_status( $id ) ? $id : 0;
+	}
+
+	/** The key of the seasonal order for a service on a day ("vespers-bright"), or ''. */
+	public static function seasonal_key( $service, $info ) {
 		$after = (int) $info['after_pascha'];
 		foreach ( self::data()['seasons'] ?? array() as $season ) {
 			if ( $after >= (int) $season['from'] && $after <= (int) $season['to'] && ! empty( $season['orders'][ $service ] ) ) {
-				$id = self::order_for( $season['orders'][ $service ] );
-				return $id && 'publish' === get_post_status( $id ) ? $id : 0;
+				return (string) $season['orders'][ $service ];
 			}
 		}
-		return 0;
+		return '';
+	}
+
+	/**
+	 * The steps of the order for a service on a day: the seasonal order on the
+	 * site, or, until the Home Ustav import has made it, the bundled one.
+	 * Null when the service's own order applies.
+	 */
+	public static function seasonal_steps( $service, $info ) {
+		$key = self::seasonal_key( $service, $info );
+		if ( '' === $key ) {
+			return null;
+		}
+		$id = self::seasonal_order( $service, $info );
+		if ( $id ) {
+			return Orders::steps( $id );
+		}
+		foreach ( self::data()['orders'] ?? array() as $order ) {
+			if ( $key === $order['service'] ) {
+				return Orders::parse_steps( (string) $order['items'] );
+			}
+		}
+		return null;
+	}
+
+	/** A bundled prayer's content by short name, or '' (for one not yet imported). */
+	public static function bundled_prayer( $slug ) {
+		foreach ( self::data()['prayers'] ?? array() as $prayer ) {
+			if ( $slug === $prayer['slug'] ) {
+				return (string) $prayer['content'];
+			}
+		}
+		return '';
 	}
 
 	/** The prayer said in place of another on a day (data "substitutions"), or the same slug. */

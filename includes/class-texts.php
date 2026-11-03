@@ -135,7 +135,11 @@ class Texts {
 
 	/** The prayer's text as HTML. */
 	public static function html( $post ) {
-		$content = $post->post_content;
+		return self::content_html( $post->post_content );
+	}
+
+	/** Prayer content (blocks or plain) as HTML. */
+	public static function content_html( $content ) {
 		$html    = has_blocks( $content ) ? do_blocks( $content ) : wpautop( $content );
 		$html    = shortcode_unautop( wptexturize( $html ) );
 		return Render::god_bearer( do_shortcode( $html ) );
