@@ -127,7 +127,7 @@ class Fasting {
 		if ( '' !== $saved ) {
 			return $saved;
 		}
-		return $period['day'][ $wd ] ?? __( 'Not a fast day.', 'prayer-rule' );
+		return $period['day'][ $wd ] ?? '';
 	}
 
 	public static function saved() {
@@ -154,9 +154,15 @@ class Fasting {
 		if ( ! $fast ) {
 			return '';
 		}
-		$html  = '<div class="pr-fasting">';
-		$html .= '<p class="pr-fasting-today"><strong>' . esc_html( $fast['title'] ) . ':</strong> ' . esc_html( $fast['today'] ) . '</p>';
-		if ( '' !== $fast['general'] ) {
+		// Through the year (outside the named fasts) the period's name adds nothing; on a
+		// day with no line there, a single short line is enough.
+		$ordinary = 'ordinary' === $fast['key'];
+		$today    = '' !== $fast['today'] ? $fast['today'] : __( 'No fast today.', 'prayer-rule' );
+		$label    = $ordinary ? __( 'Fasting today', 'prayer-rule' ) : __( 'Fasting today', 'prayer-rule' ) . ' · ' . $fast['title'];
+		$html     = '<div class="pr-fasting' . ( '' === $fast['today'] ? ' is-free' : '' ) . '">';
+		$html    .= '<p class="pr-fasting-label">' . esc_html( $label ) . '</p>';
+		$html    .= '<p class="pr-fasting-today">' . esc_html( $today ) . '</p>';
+		if ( '' !== $fast['general'] && ! ( $ordinary && '' === $fast['today'] ) ) {
 			$html .= '<details class="pr-fasting-rule"><summary>' . esc_html__( 'The rule', 'prayer-rule' ) . '</summary>' . $fast['general'];
 			if ( '' !== $fast['other'] ) {
 				$html .= '<details class="pr-fasting-other"><summary>' . esc_html__( 'Other typika', 'prayer-rule' ) . '</summary>' . $fast['other'] . '</details>';

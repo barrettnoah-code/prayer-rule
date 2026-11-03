@@ -889,23 +889,46 @@
 
 	function kathismaList(start, total) { var a = []; for (var i = 0; i < total; i++) { a.push(((start - 1 + i) % 20) + 1); } return a; }
 
+	/** The service after this one in the member's rule: later the same day, or the first one of the next day. */
+	function nextService(day, svcKey) {
+		var list = V.key ? keptIn(V.rule) : C.services, i = list.map(function (x) { return x.key; }).indexOf(svcKey);
+		if (!list.length) { return null; }
+		if (i >= 0 && i + 1 < list.length) { return { service: list[i + 1], day: day, label: list[i + 1].name }; }
+		var d = addDays(day, 1);
+		return { service: list[0], day: d, label: list[0].name + ' (' + parseIso(d).toLocaleDateString(undefined, { weekday: 'long' }) + ')' };
+	}
+	function goTo(n) {
+		UI.service = n.service.key; UI.day = n.day; dateInput.value = n.day;
+		try { localStorage.setItem(LOCAL + '.service', n.service.key); } catch (x) {}
+		drawTabs(); drawSettings(); show();
+		tabs.scrollIntoView({ behavior: 'smooth', block: 'start' });
+	}
+
 	function finishControls() {
-		var s = shown, name = serviceByKey(s.service).name, next = ((s.start - 1 + s.total) % 20) + 1;
+		var s = shown, name = serviceByKey(s.service).name, next = ((s.start - 1 + s.total) % 20) + 1, after = nextService(s.day, s.service);
 		if (!V.key) {
-			if (!s.total) { return []; }
-			var b = el('button', { type: 'button', text: 'Finished: next time begin with kathisma ' + next });
-			b.addEventListener('click', function () { L.next = next; saveSettings(); drawSettings(); b.replaceWith(el('p', { text: 'The next kathisma is now ' + next + '.' })); });
-			return [b];
+			var kids0 = [];
+			if (s.total) {
+				var b = el('button', { type: 'button', text: 'Finished: next time begin with kathisma ' + next });
+				b.addEventListener('click', function () { L.next = next; saveSettings(); drawSettings(); b.replaceWith(el('p', { text: 'The next kathisma is now ' + next + '.' })); });
+				kids0.push(b, ' ');
+			}
+			if (after) {
+				kids0.push(el('button', { type: 'button', class: 'pr-primary', text: (s.total ? 'Finished: continue to ' : 'Continue to ') + after.label + ' ›', on: { click: function () { if (s.total && L.next === s.start) { L.next = next; saveSettings(); } goTo(after); } } }));
+			}
+			return kids0.length ? [el('p', {}, kids0)] : [];
 		}
 		var e = entry(s.day, s.service), late = daysAgo(s.day) > 7;
 		if (e && e.kept) {
 			var undo = el('button', { type: 'button', class: 'pr-link', text: 'Undo' });
 			undo.addEventListener('click', function () { setKept(false); });
-			return [el('p', { class: 'pr-kept' }, ['✓ ' + name + ' kept' + (e.k && e.k.length ? ' (kathismas ' + e.k.join(', ') + ')' : '') + (e.ladders ? (e.k && e.k.length ? ' and ' : ' (') + half(e.ladders) + ' ladders' + (e.k && e.k.length ? '' : ')') : '') + (e.corrected ? ', corrected later' : '') + '. ', undo])];
+			var keptKids = [el('p', { class: 'pr-kept' }, ['✓ ' + name + ' kept' + (e.k && e.k.length ? ' (kathismas ' + e.k.join(', ') + ')' : '') + (e.ladders ? (e.k && e.k.length ? ' and ' : ' (') + half(e.ladders) + ' ladders' + (e.k && e.k.length ? '' : ')') : '') + (e.corrected ? ', corrected later' : '') + '. ', undo])];
+			if (after) { keptKids.push(el('p', {}, [el('button', { type: 'button', class: 'pr-primary', text: 'Continue to ' + after.label + ' ›', on: { click: function () { goTo(after); } } })])); }
+			return keptKids;
 		}
 		var mark = el('button', { type: 'button', class: 'pr-primary', text: 'Mark ' + name + ' as kept' });
 		mark.addEventListener('click', function () { setKept(true); });
-		var kids = [mark];
+		var kids = [el('p', {}, after ? [mark, ' ', el('button', { type: 'button', text: 'Mark as kept and continue to ' + after.label + ' ›', on: { click: async function () { this.disabled = true; await setKept(true); goTo(after); } } })] : [mark])];
 		if (s.total) { kids.push(el('p', { class: 'pr-note', text: 'Your next kathisma will then be ' + next + '.' })); }
 		if (late) { kids.push(el('p', { class: 'pr-note', text: 'This day is more than 7 days ago: it will be marked "corrected later".' })); }
 		return kids;
