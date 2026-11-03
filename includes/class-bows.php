@@ -127,6 +127,12 @@ class Bows {
 			return 'prostration';
 		}
 		$service = Render::service_key();
+		if ( self::great_saturday_evening( $info, $service ) ) {
+			// Vespers, Compline and the burial canon of Pascha's day, read on Great
+			// Saturday evening: the service has waist bows; until the Resurrection
+			// matins the entrance and departing bows and the rule are to the ground.
+			return in_array( $class, array( 'entrance', 'departing', 'rule' ), true ) ? 'prostration' : 'bow';
+		}
 		if ( '' !== self::waist_reason( $info ) ) {
 			return 'bow';
 		}
@@ -143,6 +149,10 @@ class Bows {
 			return 'bow';
 		}
 		return 'prostration';
+	}
+
+	private static function great_saturday_evening( $info, $service ) {
+		return 0 === (int) $info['after_pascha'] && in_array( $service, array( 'vespers', 'compline', 'midnight' ), true );
 	}
 
 	/** The red mark after a line, for a class. */
@@ -191,9 +201,12 @@ class Bows {
 	/** A line for the top of the day: what the bows are today, and why. */
 	public static function summary( $info ) {
 		$why = self::waist_reason( $info );
+		if ( 0 === (int) $info['after_pascha'] ) {
+			return __( 'Bows today: waist bows (Pascha). Vespers, Compline and the burial canon, read on the evening of Great Saturday, keep the entrance and departing bows and the bows of the rule to the ground. The great prostration after "Shine, shine" is always made.', 'prayer-rule' );
+		}
 		if ( '' !== $why ) {
 			/* translators: %s: the reason, e.g. Sunday */
-			return sprintf( __( 'Bows today: waist bows, not to the ground (%s). The great prostration after "It is truly meet" is always made.', 'prayer-rule' ), $why );
+			return sprintf( __( 'Bows today: waist bows, not to the ground (%s). The great prostration after "It is truly meet" (in Bright Week, "Shine, shine") is always made.', 'prayer-rule' ), $why );
 		}
 		$before = (int) $info['before_pascha'];
 		if ( $before >= -4 && $before <= -1 ) {

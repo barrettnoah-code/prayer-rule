@@ -88,6 +88,11 @@ each period the general rule, the other typika, and a short line for each
 day of the week. `tools/ustav/zapevy.txt` holds the zapevy for the whole
 year (the refrains said with the prostrations in the daily additions): for
 the days of the week, for dated feasts and saints, and for the Triodion.
+From the evening of Great Saturday to Bright Saturday, each service uses
+its own Pascha or Bright Week order (the "… (Home Ustav)" orders for Pascha and
+Bright Week on the Orders screen, from the Home Ustav fol. 184v-205); from
+Thomas Sunday to the leave-taking of Pascha, "Christ is risen" thrice is said
+in place of "O Heavenly King".
 `tools/build_ustav.py` turns it into `data/ustav.json`. The plugin adds
 these as ordinary Prayers and Orders the first time an administrator opens
 the admin, and again whenever the file changes: missing ones are added,

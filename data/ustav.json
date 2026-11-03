@@ -432,6 +432,156 @@
    ]
   },
   {
+   "slug": "christ-is-risen-thrice",
+   "title": "Christ is risen (thrice)",
+   "content": "<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">Christ is risen from the dead, trampling down death by death, and to them that are in the tombs he hath given life. <span class=\"pr-red\">(thrice)</span></p>\n<!-- /wp:paragraph -->"
+  },
+  {
+   "slug": "christ-is-risen-once",
+   "title": "Christ is risen (once)",
+   "content": "<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">Christ is risen from the dead, trampling down death by death, and to them that are in the tombs he hath given life.</p>\n<!-- /wp:paragraph -->"
+  },
+  {
+   "slug": "thy-resurrection-o-christ",
+   "title": "Thy Resurrection, O Christ our Saviour",
+   "content": "<!-- wp:paragraph {\"className\":\"is-style-rubric\"} -->\n<p class=\"is-style-rubric\">Light the candles and make ready the censer. Then sing or read this verse with compunction:</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">Thy Resurrection, O Christ our Saviour, the angels in heaven do hymn; vouchsafe also us on earth to glorify thee with pure hearts. <span class=\"pr-red\">(thrice)</span></p>\n<!-- /wp:paragraph -->"
+  },
+  {
+   "slug": "paschal-verses",
+   "title": "Christ is risen, with the paschal verses",
+   "content": "<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">Christ is risen from the dead, trampling down death by death, and to them that are in the tombs he hath given life. <span class=\"pr-red\">(thrice)</span></p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">Christ is risen. <span class=\"pr-red\">(thrice)</span></p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">Let God arise, and let his enemies be scattered. Christ is risen. <span class=\"pr-red\">(thrice)</span></p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">As smoke vanisheth, so let them vanish. Christ is risen. <span class=\"pr-red\">(thrice)</span></p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">So let sinners perish at the presence of God, and let the righteous rejoice. Christ is risen. <span class=\"pr-red\">(thrice)</span></p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">This is the day which the Lord hath made; let us rejoice and be glad therein. Christ is risen. <span class=\"pr-red\">(thrice)</span></p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\"><span class=\"pr-red\">Glory:</span> Christ is risen. <span class=\"pr-red\">(thrice)</span></p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\"><span class=\"pr-red\">Both now:</span> Christ is risen. <span class=\"pr-red\">(thrice)</span></p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">Christ is risen from the dead, trampling down death by death, and to them that are in the tombs he hath given life.</p>\n<!-- /wp:paragraph -->"
+  },
+  {
+   "slug": "having-beheld",
+   "title": "Having beheld the Resurrection of Christ",
+   "content": "<!-- wp:paragraph {\"className\":\"is-style-rubric\"} -->\n<p class=\"is-style-rubric\">When the kathismas or lestovkas are finished, say this hymn three times, with three bows each time:</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">Having beheld the Resurrection of Christ, let us worship the holy Lord Jesus, [bow] the only Sinless One. We worship thy Cross, O Christ, and thy holy Resurrection we hymn and glorify: for thou art our God, and we know none other beside thee; we call upon thy name. O come, [bow] all ye faithful, let us worship the holy Resurrection of Christ: for behold, through the Cross joy hath come to all the world. Ever blessing the Lord, we hymn his Resurrection: for having endured the Cross, he hath destroyed death by death. [bow] <span class=\"pr-red\">(thrice)</span></p>\n<!-- /wp:paragraph -->"
+  },
+  {
+   "slug": "bright-zapevy-matins",
+   "title": "Bright Week: the lestovkas at Matins",
+   "content": "<!-- wp:paragraph {\"className\":\"is-style-rubric\"} -->\n<p class=\"is-style-rubric\">Then 300 bows, or as many as you wish, with the refrain:</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:shortcode -->\n[zapev resurrection]\n<!-- /wp:shortcode -->\n\n<!-- wp:paragraph {\"className\":\"is-style-rubric\"} -->\n<p class=\"is-style-rubric\">Then 100 with the refrain:</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:shortcode -->\n[zapev god-bearer]\n<!-- /wp:shortcode -->"
+  },
+  {
+   "slug": "god-bearer-rejoice",
+   "title": "O God-bearer and Virgin, rejoice",
+   "content": "<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">O God-bearer and Virgin, rejoice, Mary full of grace, the Lord is with thee; blessed art thou among women, and blessed is the fruit of thy womb, for thou hast borne Christ the Saviour, the Deliverer of our souls. <span class=\"pr-red\">(twelve times)</span></p>\n<!-- /wp:paragraph -->"
+  },
+  {
+   "slug": "paschal-kissing-first",
+   "title": "Pascha: the kissing of the Cross and the icons",
+   "content": "<!-- wp:paragraph {\"className\":\"is-style-rubric\"} -->\n<p class=\"is-style-rubric\">Then sign yourself, kiss the honorable Cross, and after kissing it make one prostration. Kiss also the icons of the Resurrection of Christ and of the God-bearer. Those praying together kiss one another: the one who comes forward says, Christ is risen; the other answers, Truly he is risen. While the icons are kissed, sing Christ is risen without ceasing.</p>\n<!-- /wp:paragraph -->"
+  },
+  {
+   "slug": "paschal-kissing-cross",
+   "title": "Bright Week: the kissing of the Cross",
+   "content": "<!-- wp:paragraph {\"className\":\"is-style-rubric\"} -->\n<p class=\"is-style-rubric\">Then kiss the honorable Cross, as on the first day, singing Christ is risen.</p>\n<!-- /wp:paragraph -->"
+  },
+  {
+   "slug": "paschal-after-dismissal",
+   "title": "After the paschal dismissal: Truly he is risen",
+   "content": "<!-- wp:paragraph {\"className\":\"is-style-rubric\"} -->\n<p class=\"is-style-rubric\">Signing yourself, say three times:</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">Christ is risen. <span class=\"pr-red\">(thrice)</span></p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">Truly he is risen. <span class=\"pr-red\">(thrice)</span></p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">And to us he hath given life eternal; we worship his Resurrection on the third day. <span class=\"pr-red\">(bow)</span></p>\n<!-- /wp:paragraph -->"
+  },
+  {
+   "slug": "dismissal-pascha-short",
+   "title": "Dismissal: Pascha, the short form",
+   "content": "<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">O Thou who didst rise from the dead: O Lord Jesus Christ, Son of God, for the prayers of thy most pure Mother and of all the saints, have mercy on us and save us, for thou art good and the lover of mankind.</p>\n<!-- /wp:paragraph -->"
+  },
+  {
+   "slug": "bright-god-bearer-twelve",
+   "title": "Bright Week: twelve bows to the God-bearer",
+   "content": "<!-- wp:paragraph {\"className\":\"is-style-rubric\"} -->\n<p class=\"is-style-rubric\">Then 12 bows to the God-bearer, with the refrain:</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:shortcode -->\n[zapev god-bearer]\n<!-- /wp:shortcode -->"
+  },
+  {
+   "slug": "ending-glory-waist-bows",
+   "title": "Ending: Glory, both now, with waist bows",
+   "content": "<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">Glory to the Father, and to the Son, and to the Holy Ghost. <span class=\"pr-red\">(bow)</span></p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">Both now and ever, and unto the ages of ages. Amen. <span class=\"pr-red\">(bow)</span></p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">Lord, have mercy. Lord, have mercy. Lord, bless. <span class=\"pr-red\">(bow)</span></p>\n<!-- /wp:paragraph -->"
+  },
+  {
+   "slug": "shine-shine",
+   "title": "Shine, shine (in place of It is truly meet)",
+   "content": "<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">Shine, shine, O new Jerusalem, for the glory of the Lord hath arisen upon thee. Exult now and be glad, O Sion; and do thou, O pure God-bearer, rejoice in the arising of him whom thou didst bear. [bow great]</p>\n<!-- /wp:paragraph -->"
+  },
+  {
+   "slug": "entrance-opening-paschal",
+   "title": "The Entrance Opening, at Pascha",
+   "content": "<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">God, be merciful to me, a sinner. [bow entrance]</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">Thou who hast created me, O Lord, have mercy on me. [bow entrance]</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">Without number have I sinned; O Lord, have mercy, and forgive me a sinner. [bow entrance]</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">Shine, shine, O new Jerusalem, for the glory of the Lord hath arisen upon thee. Exult now and be glad, O Sion; and do thou, O pure God-bearer, rejoice in the arising of him whom thou didst bear. [bow great]</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-rubric\"} -->\n<p class=\"is-style-rubric\">In place of It is truly meet, from Pascha to the end of Bright Week.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">Glory to the Father, and to the Son, and to the Holy Ghost. [bow entrance]</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">Both now and ever, and unto the ages of ages. Amen. [bow entrance]</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">Lord, have mercy. Lord, have mercy. Lord, bless. [bow entrance]</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-rubric\"} -->\n<p class=\"is-style-rubric\">Then the dismissal:</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">O Lord Jesus Christ, Son of God, for the sake of the prayers of thy most pure Mother, and of my holy guardian angel, and of all thy saints: O Lord Jesus Christ, Son of God, have mercy on me and save me, for thou art good and the lover of mankind.</p>\n<!-- /wp:paragraph -->"
+  },
+  {
+   "slug": "departing-opening-paschal",
+   "title": "The Departing Opening, at Pascha",
+   "content": "<!-- wp:paragraph {\"className\":\"is-style-rubric\"} -->\n<p class=\"is-style-rubric\">The departing opening, made in the same way as the entrance opening:</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">God, be merciful to me, a sinner. [bow departing]</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">Thou who hast created me, O Lord, have mercy on me. [bow departing]</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">Without number have I sinned; O Lord, have mercy, and forgive me a sinner. [bow departing]</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">Shine, shine, O new Jerusalem, for the glory of the Lord hath arisen upon thee. Exult now and be glad, O Sion; and do thou, O pure God-bearer, rejoice in the arising of him whom thou didst bear. [bow great]</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-rubric\"} -->\n<p class=\"is-style-rubric\">In place of It is truly meet, from Pascha to the end of Bright Week.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">Glory to the Father, and to the Son, and to the Holy Ghost. [bow departing]</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">Both now and ever, and unto the ages of ages. Amen. [bow departing]</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">Lord, have mercy. Lord, have mercy. Lord, bless. [bow departing]</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-rubric\"} -->\n<p class=\"is-style-rubric\">Then the dismissal:</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">O Lord Jesus Christ, Son of God, for the sake of the prayers of thy most pure Mother, and of my holy guardian angel, and of all thy saints: O Lord Jesus Christ, Son of God, have mercy on me and save me, for thou art good and the lover of mankind.</p>\n<!-- /wp:paragraph -->"
+  },
+  {
+   "slug": "bright-zapevy-hours",
+   "title": "Bright Week: the lestovkas at the Hours",
+   "content": "<!-- wp:paragraph {\"className\":\"is-style-rubric\"} -->\n<p class=\"is-style-rubric\">Then 100 or 200 bows with the refrain:</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:shortcode -->\n[zapev resurrection]\n<!-- /wp:shortcode -->\n\n<!-- wp:paragraph {\"className\":\"is-style-rubric\"} -->\n<p class=\"is-style-rubric\">Then another 100 to the God-bearer:</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:shortcode -->\n[zapev god-bearer]\n<!-- /wp:shortcode -->"
+  },
+  {
+   "slug": "bright-zapevy-vespers",
+   "title": "Bright Week: the lestovkas at Vespers",
+   "content": "<!-- wp:paragraph {\"className\":\"is-style-rubric\"} -->\n<p class=\"is-style-rubric\">Then 100 bows with the refrain:</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:shortcode -->\n[zapev resurrection]\n<!-- /wp:shortcode -->\n\n<!-- wp:paragraph {\"className\":\"is-style-rubric\"} -->\n<p class=\"is-style-rubric\">Then 100 to the God-bearer, or as many as you wish:</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:shortcode -->\n[zapev god-bearer]\n<!-- /wp:shortcode -->"
+  },
+  {
+   "slug": "bright-end-of-service",
+   "title": "Bright Week: Christ is risen at the end of a service",
+   "content": "<!-- wp:paragraph {\"className\":\"is-style-rubric\"} -->\n<p class=\"is-style-rubric\">When the lestovkas are finished:</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">Christ is risen from the dead, trampling down death by death, and to them that are in the tombs he hath given life. <span class=\"pr-red\">(thrice)</span></p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">Christ is risen from the dead, trampling down death by death, and to them that are in the tombs he hath given life.</p>\n<!-- /wp:paragraph -->"
+  },
+  {
+   "slug": "pascha-eve-vespers-note",
+   "title": "Great Saturday evening: before vespers",
+   "content": "<!-- wp:paragraph {\"className\":\"is-style-rubric\"} -->\n<p class=\"is-style-rubric\">On the evening of holy and great Saturday, vespers begins at six o'clock in the evening. From then until the Resurrection matins, the entrance and departing bows are prostrations to the ground.</p>\n<!-- /wp:paragraph -->"
+  },
+  {
+   "slug": "pascha-eve-zapevy-vespers",
+   "title": "Great Saturday evening: the lestovkas at Vespers",
+   "content": "<!-- wp:paragraph {\"className\":\"is-style-rubric\"} -->\n<p class=\"is-style-rubric\">After the last kathisma, or the last lestovka of Jesus Prayers, make 300 bows with the refrain:</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:shortcode -->\n[zapev cross-resurrection]\n<!-- /wp:shortcode -->\n\n<!-- wp:paragraph {\"className\":\"is-style-rubric\"} -->\n<p class=\"is-style-rubric\">Then 100 to the God-bearer, with the refrain:</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:shortcode -->\n[zapev god-bearer]\n<!-- /wp:shortcode -->"
+  },
+  {
+   "slug": "pascha-eve-zapevy",
+   "title": "Great Saturday evening: the lestovkas at Compline and the burial canon",
+   "content": "<!-- wp:paragraph {\"className\":\"is-style-rubric\"} -->\n<p class=\"is-style-rubric\">Then 100 bows with the refrain:</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:shortcode -->\n[zapev glory-to-thee]\n<!-- /wp:shortcode -->\n\n<!-- wp:paragraph {\"className\":\"is-style-rubric\"} -->\n<p class=\"is-style-rubric\">Then another 100 to the God-bearer:</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:shortcode -->\n[zapev god-bearer]\n<!-- /wp:shortcode -->"
+  },
+  {
+   "slug": "more-honorable",
+   "title": "More honorable than the cherubim",
+   "content": "<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">More honorable than the cherubim, and truly more glorious than the seraphim, without corruption, having borne God the Word; who art the God-bearer, thee do we magnify.</p>\n<!-- /wp:paragraph -->"
+  },
+  {
+   "slug": "more-honorable-prostration",
+   "title": "More honorable, with a prostration to the ground",
+   "content": "<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">More honorable than the cherubim, and truly more glorious than the seraphim, without corruption, having borne God the Word; who art the God-bearer, thee do we magnify. <span class=\"pr-red\">(prostration)</span></p>\n<!-- /wp:paragraph -->"
+  },
+  {
+   "slug": "ending-glory-ground",
+   "title": "Ending: Glory, both now, with prostrations to the ground",
+   "content": "<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">Glory to the Father, and to the Son, and to the Holy Ghost. <span class=\"pr-red\">(prostration)</span></p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">Both now and ever, and unto the ages of ages. Amen. <span class=\"pr-red\">(prostration)</span></p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">Lord, have mercy. Lord, have mercy. Lord, bless. <span class=\"pr-red\">(prostration)</span></p>\n<!-- /wp:paragraph -->"
+  },
+  {
+   "slug": "pascha-eve-rule-note",
+   "title": "Great Saturday evening: the rule",
+   "content": "<!-- wp:paragraph {\"className\":\"is-style-rubric\"} -->\n<p class=\"is-style-rubric\">Then pray the rule with prostrations to the ground. After this, eat a little bread. Some other typika direct that bread be eaten from ten o'clock in the evening.</p>\n<!-- /wp:paragraph -->"
+  },
+  {
+   "slug": "pascha-eve-reading",
+   "title": "Great Saturday evening: reading until the paschal canon",
+   "content": "<!-- wp:paragraph {\"className\":\"is-style-rubric\"} -->\n<p class=\"is-style-rubric\">After this, until half past ten, read the book of the Acts of the holy apostles. If you have no book of the Acts, read other books, but do not sleep. Whoever cannot read should say the Jesus Prayer in silence.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-rubric\"} -->\n<p class=\"is-style-rubric\">If you wish to keep the Great Saturday fast until the end of the tenth hour of the evening, end compline with Glory, both now; Lord, have mercy twice; Lord, bless, with prostrations to the ground; leave out Remit, pardon and Forgive them that hate, and say only Lord, have mercy three times. Then read until the appointed hour, and afterward eat a little bread with kvass.</p>\n<!-- /wp:paragraph -->"
+  },
+  {
+   "slug": "pascha-eve-canon-note",
+   "title": "In place of the canon of the God-bodied burial",
+   "content": "<!-- wp:paragraph {\"className\":\"is-style-rubric\"} -->\n<p class=\"is-style-rubric\">At half past ten, pray in place of the canon of the God-bodied burial in this way:</p>\n<!-- /wp:paragraph -->"
+  },
+  {
+   "slug": "weep-not-for-me",
+   "title": "Weep not for me, O Mother (in place of It is truly meet)",
+   "content": "<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">Weep not for me, O Mother, beholding in the tomb the Son whom thou didst conceive in thy womb without seed; for I shall arise and be glorified, and as God I shall exalt with glory unceasingly them that with faith and love magnify thee. <span class=\"pr-red\">(prostration)</span></p>\n<!-- /wp:paragraph -->"
+  },
+  {
+   "slug": "troparion-when-thou-didst-descend",
+   "title": "Troparion, Tone 2: When thou didst descend unto death",
+   "content": "<!-- wp:paragraph {\"className\":\"is-style-rubric\"} -->\n<p class=\"is-style-rubric\">The troparion, in Tone 2:</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">When thou didst descend unto death, O Life Immortal, then didst thou slay hell with the lightning of thy Godhead; and when thou didst raise the dead from the nethermost depths, all the powers of heaven cried out unto thee: O Christ our God, Giver of life, glory to thee.</p>\n<!-- /wp:paragraph -->"
+  },
+  {
    "slug": "dismissal-sep-01",
    "title": "Dismissal: Sep 1, the Indiction",
    "content": "<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">O Thou who by thine almighty and ineffable wisdom didst establish the beginning of the indiction, that is, of the new year: O Lord Jesus Christ, Son of God, for the prayers of thy most pure Mother, and of her honorable and glorious synaxis in Miasena; and of our venerable father Symeon the Stylite and archimandrite, and of his mother Martha; and of the holy martyr Aithalas; and of the holy forty women, and of holy Ammon the deacon, their teacher; and of the holy martyrs Callistus, Evodus and Hermogenes, brothers according to the flesh; and of Joshua the son of Nun, and of all the saints, have mercy on us and save us, for thou art good and the lover of mankind.</p>\n<!-- /wp:paragraph -->"
@@ -896,7 +1046,72 @@
   {
    "service": "cell-rule",
    "title": "Cell Rule (Home Ustav)",
-   "items": "cell-twelve-prostrations\nprayer-macarius\nprayer-isaac-the-syrian\nprayer-stephen-of-thebes\nprayer-chrysostom\nprayer-fifth-cell\ncross-blessing\nglory-to-thee-for-all\nthrough-the-prayers\nheavenly-king\ntrisagion-our-father\n> Lord, have mercy. (12 times)\nglory-both-now\no-come\npsalm 50\ncreed\nrule\ngod-bearer-prayers\nit-is-truly-meet\ntrisagion-our-father\ncell-troparia\nending-cell-rule\ndismissal",
+   "items": "cell-twelve-prostrations\nprayer-macarius\nprayer-isaac-the-syrian\nprayer-stephen-of-thebes\nprayer-chrysostom\nprayer-fifth-cell\ncross-blessing\nglory-to-thee-for-all\nthrough-the-prayers\nheavenly-king\ntrisagion-our-father\n> Lord, have mercy. (12 times)\nglory-both-now\no-come\npsalm 50\ncreed\nrule\ngod-bearer-prayers\nit-is-truly-meet\ntrisagion-our-father\ncell-troparia\nending-cell-rule\ndismissal\n# ---------------------------------------------------------------- Pascha and Bright Week\n# Used in place of the service's own order on the days given in data \"seasons\":\n# the evening of Great Saturday (the services of Pascha's liturgical day read\n# that evening), Pascha, and Bright Week.",
+   "previous": [
+    "843d2284af66d226b8401c4e7862eb29"
+   ]
+  },
+  {
+   "service": "vespers-pascha-eve",
+   "title": "Vespers on the evening of Great Saturday (Home Ustav)",
+   "items": "pascha-eve-vespers-note\nentrance-opening\nthrough-the-prayers\nheavenly-king\ntrisagion-our-father\n> Lord, have mercy. (12 times)\nglory-both-now\no-come\nrule\npascha-eve-zapevy-vespers\nmore-honorable\nending-glory-ground\ndismissal-great-saturday-another\n> Amen. Lord, have mercy. (3 times)\ndeparting-opening\npascha-eve-rule-note",
+   "season": true,
+   "previous": []
+  },
+  {
+   "service": "compline-pascha-eve",
+   "title": "Compline on the evening of Great Saturday (Home Ustav)",
+   "items": "entrance-opening\nthrough-the-prayers\nheavenly-king\ntrisagion-our-father\n> Lord, have mercy. (12 times)\no-come\npsalm 50\ncreed\nrule\npascha-eve-zapevy\nending-glory-no-prostrations\ndismissal-great-saturday\nprayer-of-forgiveness\nforgive-them-that-hate\npascha-eve-reading",
+   "season": true,
+   "previous": []
+  },
+  {
+   "service": "midnight-pascha-eve",
+   "title": "In place of the canon of the God-bodied burial (Home Ustav)",
+   "items": "pascha-eve-canon-note\nthrough-the-prayers\ntrisagion-our-father\n> Lord, have mercy. (12 times)\nglory-both-now\no-come\npsalm 50\n> O Lord Jesus Christ, Son of God, have mercy on us. Amen.\nrule\npascha-eve-zapevy\nweep-not-for-me\ntrisagion-our-father\ntroparion-when-thou-didst-descend\n> Lord, have mercy. (40 times)\nglory-both-now\nmore-honorable-prostration\nending-glory-ground\ndismissal-great-saturday\n> Lord, have mercy. (3 times)",
+   "season": true,
+   "previous": []
+  },
+  {
+   "service": "matins-pascha",
+   "title": "Matins and the 1st Hour on Pascha (Home Ustav)",
+   "items": "thy-resurrection-o-christ\nthrough-the-prayers\npaschal-verses\n> Lord, have mercy. (12 times)\n> O Lord Jesus Christ, Son of God, have mercy on us. Amen.\nrule\nhaving-beheld\nbright-zapevy-matins\ngod-bearer-rejoice\nchrist-is-risen-thrice\npaschal-kissing-first\n> Lord, have mercy. (40 times)\nglory-both-now\n> Lord, have mercy. (12 times)\nglory-both-now\nchrist-is-risen-thrice\nchrist-is-risen-once\ndismissal\npaschal-after-dismissal\n! Then, for the first hour:\nchrist-is-risen-thrice\nrule first-hour\nbright-god-bearer-twelve\nending-glory-no-prostrations\ndismissal-pascha-short\nprayer-of-forgiveness\ndeparting-opening-paschal",
+   "season": true,
+   "previous": []
+  },
+  {
+   "service": "matins-bright",
+   "title": "Matins and the 1st Hour in Bright Week (Home Ustav)",
+   "items": "through-the-prayers\npaschal-verses\n> Lord, have mercy. (12 times)\n> O Lord Jesus Christ, Son of God, have mercy on us. Amen.\nrule\nhaving-beheld\nbright-zapevy-matins\ngod-bearer-rejoice\nbright-end-of-service\ndismissal\npaschal-after-dismissal\npaschal-kissing-cross\n! Then, for the first hour:\nchrist-is-risen-thrice\nrule first-hour\nbright-god-bearer-twelve\nending-glory-waist-bows\ndismissal-pascha-short\n> Lord, have mercy. (3 times)",
+   "season": true,
+   "previous": []
+  },
+  {
+   "service": "hours-bright",
+   "title": "The Hours on Pascha and in Bright Week (Home Ustav)",
+   "items": "entrance-opening-paschal\nthrough-the-prayers\nchrist-is-risen-thrice\nrule\nbright-zapevy-hours\nshine-shine\nbright-end-of-service\ndismissal\npaschal-after-dismissal\npaschal-kissing-cross\nchrist-is-risen-thrice\n> Lord, have mercy. (3 times)\ndeparting-opening-paschal",
+   "season": true,
+   "previous": []
+  },
+  {
+   "service": "vespers-bright",
+   "title": "Vespers in Bright Week (Home Ustav)",
+   "items": "entrance-opening-paschal\nthrough-the-prayers\npaschal-verses\n> Lord, have mercy. (12 times)\nglory-both-now\nrule\nbright-zapevy-vespers\nbright-end-of-service\ndismissal\npaschal-after-dismissal\npaschal-kissing-cross\nchrist-is-risen-thrice\n> Lord, have mercy. (3 times)\ndeparting-opening-paschal",
+   "season": true,
+   "previous": []
+  },
+  {
+   "service": "compline-bright",
+   "title": "Compline and the Midnight Office in Bright Week (Home Ustav)",
+   "items": "entrance-opening-paschal\nthrough-the-prayers\nchrist-is-risen-thrice\nrule\nbright-god-bearer-twelve\nending-glory-no-prostrations\ndismissal-pascha-short\nprayer-of-forgiveness\nforgive-them-that-hate",
+   "season": true,
+   "previous": []
+  },
+  {
+   "service": "cell-rule-bright",
+   "title": "The Cell Rule in Bright Week (Home Ustav)",
+   "items": "entrance-opening-paschal\nthrough-the-prayers\nchrist-is-risen-thrice\npsalm 50\ncreed\nrule\ngod-bearer-prayers\ncell-troparia\nshine-shine\nglory-both-now\n> Lord, have mercy. Lord, have mercy. Lord, bless.\ndismissal",
+   "season": true,
    "previous": []
   }
  ],
@@ -2480,7 +2695,8 @@
    "nicholas": "O hierarch of Christ Nicholas, pray to God for us.",
    "all-saints": "O all ye saints, pray to God for us.",
    "departed": "Give rest, O Lord, to the souls of thy servants who have fallen asleep.",
-   "feast": "Glory to thee, our God, glory to thee."
+   "feast": "Glory to thee, our God, glory to thee.",
+   "glory-to-thee": "Glory to thee, our God, glory to thee."
   },
   "dated": [
    {
@@ -3733,6 +3949,40 @@
    }
   ]
  },
+ "seasons": [
+  {
+   "from": 0,
+   "to": 0,
+   "orders": {
+    "vespers": "vespers-pascha-eve",
+    "compline": "compline-pascha-eve",
+    "midnight": "midnight-pascha-eve",
+    "matins": "matins-pascha",
+    "hours": "hours-bright",
+    "cell-rule": "cell-rule-bright"
+   }
+  },
+  {
+   "from": 1,
+   "to": 6,
+   "orders": {
+    "vespers": "vespers-bright",
+    "compline": "compline-bright",
+    "midnight": "compline-bright",
+    "matins": "matins-bright",
+    "hours": "hours-bright",
+    "cell-rule": "cell-rule-bright"
+   }
+  }
+ ],
+ "substitutions": [
+  {
+   "from": 7,
+   "to": 38,
+   "replace": "heavenly-king",
+   "with": "christ-is-risen-thrice"
+  }
+ ],
  "paschal_prefix": {
   "from": 8,
   "to": 38,

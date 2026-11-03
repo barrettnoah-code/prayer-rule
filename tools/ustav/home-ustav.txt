@@ -340,6 +340,157 @@ O Lord Jesus Christ, Son of God, for the prayers of thy most pure Mother, and of
 [zapev god-bearer]
 [zapev saint]
 
+# ---------------------------------------------------------------- Pascha and Bright Week
+# Home Ustav, prayer at home on Pascha and in Bright Week (fol. 184v-205): orders
+# "vespers-pascha-eve" … "cell-rule-bright" below, used from the evening of Great
+# Saturday to Bright Saturday (data "seasons").
+
+=== christ-is-risen-thrice | Christ is risen (thrice)
+Christ is risen from the dead, trampling down death by death, and to them that are in the tombs he hath given life. {(thrice)}
+
+=== christ-is-risen-once | Christ is risen (once)
+Christ is risen from the dead, trampling down death by death, and to them that are in the tombs he hath given life.
+
+=== thy-resurrection-o-christ | Thy Resurrection, O Christ our Saviour
+! Light the candles and make ready the censer. Then sing or read this verse with compunction:
+Thy Resurrection, O Christ our Saviour, the angels in heaven do hymn; vouchsafe also us on earth to glorify thee with pure hearts. {(thrice)}
+
+=== paschal-verses | Christ is risen, with the paschal verses
+Christ is risen from the dead, trampling down death by death, and to them that are in the tombs he hath given life. {(thrice)}
+Christ is risen. {(thrice)}
+Let God arise, and let his enemies be scattered. Christ is risen. {(thrice)}
+As smoke vanisheth, so let them vanish. Christ is risen. {(thrice)}
+So let sinners perish at the presence of God, and let the righteous rejoice. Christ is risen. {(thrice)}
+This is the day which the Lord hath made; let us rejoice and be glad therein. Christ is risen. {(thrice)}
+{Glory:} Christ is risen. {(thrice)}
+{Both now:} Christ is risen. {(thrice)}
+Christ is risen from the dead, trampling down death by death, and to them that are in the tombs he hath given life.
+
+=== having-beheld | Having beheld the Resurrection of Christ
+! When the kathismas or lestovkas are finished, say this hymn three times, with three bows each time:
+Having beheld the Resurrection of Christ, let us worship the holy Lord Jesus, [bow] the only Sinless One. We worship thy Cross, O Christ, and thy holy Resurrection we hymn and glorify: for thou art our God, and we know none other beside thee; we call upon thy name. O come, [bow] all ye faithful, let us worship the holy Resurrection of Christ: for behold, through the Cross joy hath come to all the world. Ever blessing the Lord, we hymn his Resurrection: for having endured the Cross, he hath destroyed death by death. [bow] {(thrice)}
+
+=== bright-zapevy-matins | Bright Week: the lestovkas at Matins
+! Then 300 bows, or as many as you wish, with the refrain:
+[zapev resurrection]
+! Then 100 with the refrain:
+[zapev god-bearer]
+
+=== god-bearer-rejoice | O God-bearer and Virgin, rejoice
+O God-bearer and Virgin, rejoice, Mary full of grace, the Lord is with thee; blessed art thou among women, and blessed is the fruit of thy womb, for thou hast borne Christ the Saviour, the Deliverer of our souls. {(twelve times)}
+
+=== paschal-kissing-first | Pascha: the kissing of the Cross and the icons
+! Then sign yourself, kiss the honorable Cross, and after kissing it make one prostration. Kiss also the icons of the Resurrection of Christ and of the God-bearer. Those praying together kiss one another: the one who comes forward says, Christ is risen; the other answers, Truly he is risen. While the icons are kissed, sing Christ is risen without ceasing.
+
+=== paschal-kissing-cross | Bright Week: the kissing of the Cross
+! Then kiss the honorable Cross, as on the first day, singing Christ is risen.
+
+=== paschal-after-dismissal | After the paschal dismissal: Truly he is risen
+! Signing yourself, say three times:
+Christ is risen. {(thrice)}
+Truly he is risen. {(thrice)}
+And to us he hath given life eternal; we worship his Resurrection on the third day. {(bow)}
+
+=== dismissal-pascha-short | Dismissal: Pascha, the short form
+O Thou who didst rise from the dead: O Lord Jesus Christ, Son of God, for the prayers of thy most pure Mother and of all the saints, have mercy on us and save us, for thou art good and the lover of mankind.
+
+=== bright-god-bearer-twelve | Bright Week: twelve bows to the God-bearer
+! Then 12 bows to the God-bearer, with the refrain:
+[zapev god-bearer]
+
+=== ending-glory-waist-bows | Ending: Glory, both now, with waist bows
+Glory to the Father, and to the Son, and to the Holy Ghost. {(bow)}
+Both now and ever, and unto the ages of ages. Amen. {(bow)}
+Lord, have mercy. Lord, have mercy. Lord, bless. {(bow)}
+
+=== shine-shine | Shine, shine (in place of It is truly meet)
+Shine, shine, O new Jerusalem, for the glory of the Lord hath arisen upon thee. Exult now and be glad, O Sion; and do thou, O pure God-bearer, rejoice in the arising of him whom thou didst bear. [bow great]
+
+=== entrance-opening-paschal | The Entrance Opening, at Pascha
+God, be merciful to me, a sinner. [bow entrance]
+Thou who hast created me, O Lord, have mercy on me. [bow entrance]
+Without number have I sinned; O Lord, have mercy, and forgive me a sinner. [bow entrance]
+Shine, shine, O new Jerusalem, for the glory of the Lord hath arisen upon thee. Exult now and be glad, O Sion; and do thou, O pure God-bearer, rejoice in the arising of him whom thou didst bear. [bow great]
+! In place of It is truly meet, from Pascha to the end of Bright Week.
+Glory to the Father, and to the Son, and to the Holy Ghost. [bow entrance]
+Both now and ever, and unto the ages of ages. Amen. [bow entrance]
+Lord, have mercy. Lord, have mercy. Lord, bless. [bow entrance]
+! Then the dismissal:
+O Lord Jesus Christ, Son of God, for the sake of the prayers of thy most pure Mother, and of my holy guardian angel, and of all thy saints: O Lord Jesus Christ, Son of God, have mercy on me and save me, for thou art good and the lover of mankind.
+
+=== departing-opening-paschal | The Departing Opening, at Pascha
+! The departing opening, made in the same way as the entrance opening:
+God, be merciful to me, a sinner. [bow departing]
+Thou who hast created me, O Lord, have mercy on me. [bow departing]
+Without number have I sinned; O Lord, have mercy, and forgive me a sinner. [bow departing]
+Shine, shine, O new Jerusalem, for the glory of the Lord hath arisen upon thee. Exult now and be glad, O Sion; and do thou, O pure God-bearer, rejoice in the arising of him whom thou didst bear. [bow great]
+! In place of It is truly meet, from Pascha to the end of Bright Week.
+Glory to the Father, and to the Son, and to the Holy Ghost. [bow departing]
+Both now and ever, and unto the ages of ages. Amen. [bow departing]
+Lord, have mercy. Lord, have mercy. Lord, bless. [bow departing]
+! Then the dismissal:
+O Lord Jesus Christ, Son of God, for the sake of the prayers of thy most pure Mother, and of my holy guardian angel, and of all thy saints: O Lord Jesus Christ, Son of God, have mercy on me and save me, for thou art good and the lover of mankind.
+
+=== bright-zapevy-hours | Bright Week: the lestovkas at the Hours
+! Then 100 or 200 bows with the refrain:
+[zapev resurrection]
+! Then another 100 to the God-bearer:
+[zapev god-bearer]
+
+=== bright-zapevy-vespers | Bright Week: the lestovkas at Vespers
+! Then 100 bows with the refrain:
+[zapev resurrection]
+! Then 100 to the God-bearer, or as many as you wish:
+[zapev god-bearer]
+
+=== bright-end-of-service | Bright Week: Christ is risen at the end of a service
+! When the lestovkas are finished:
+Christ is risen from the dead, trampling down death by death, and to them that are in the tombs he hath given life. {(thrice)}
+Christ is risen from the dead, trampling down death by death, and to them that are in the tombs he hath given life.
+
+=== pascha-eve-vespers-note | Great Saturday evening: before vespers
+! On the evening of holy and great Saturday, vespers begins at six o'clock in the evening. From then until the Resurrection matins, the entrance and departing bows are prostrations to the ground.
+
+=== pascha-eve-zapevy-vespers | Great Saturday evening: the lestovkas at Vespers
+! After the last kathisma, or the last lestovka of Jesus Prayers, make 300 bows with the refrain:
+[zapev cross-resurrection]
+! Then 100 to the God-bearer, with the refrain:
+[zapev god-bearer]
+
+=== pascha-eve-zapevy | Great Saturday evening: the lestovkas at Compline and the burial canon
+! Then 100 bows with the refrain:
+[zapev glory-to-thee]
+! Then another 100 to the God-bearer:
+[zapev god-bearer]
+
+=== more-honorable | More honorable than the cherubim
+More honorable than the cherubim, and truly more glorious than the seraphim, without corruption, having borne God the Word; who art the God-bearer, thee do we magnify.
+
+=== more-honorable-prostration | More honorable, with a prostration to the ground
+More honorable than the cherubim, and truly more glorious than the seraphim, without corruption, having borne God the Word; who art the God-bearer, thee do we magnify. {(prostration)}
+
+=== ending-glory-ground | Ending: Glory, both now, with prostrations to the ground
+Glory to the Father, and to the Son, and to the Holy Ghost. {(prostration)}
+Both now and ever, and unto the ages of ages. Amen. {(prostration)}
+Lord, have mercy. Lord, have mercy. Lord, bless. {(prostration)}
+
+=== pascha-eve-rule-note | Great Saturday evening: the rule
+! Then pray the rule with prostrations to the ground. After this, eat a little bread. Some other typika direct that bread be eaten from ten o'clock in the evening.
+
+=== pascha-eve-reading | Great Saturday evening: reading until the paschal canon
+! After this, until half past ten, read the book of the Acts of the holy apostles. If you have no book of the Acts, read other books, but do not sleep. Whoever cannot read should say the Jesus Prayer in silence.
+! If you wish to keep the Great Saturday fast until the end of the tenth hour of the evening, end compline with Glory, both now; Lord, have mercy twice; Lord, bless, with prostrations to the ground; leave out Remit, pardon and Forgive them that hate, and say only Lord, have mercy three times. Then read until the appointed hour, and afterward eat a little bread with kvass.
+
+=== pascha-eve-canon-note | In place of the canon of the God-bodied burial
+! At half past ten, pray in place of the canon of the God-bodied burial in this way:
+
+=== weep-not-for-me | Weep not for me, O Mother (in place of It is truly meet)
+Weep not for me, O Mother, beholding in the tomb the Son whom thou didst conceive in thy womb without seed; for I shall arise and be glorified, and as God I shall exalt with glory unceasingly them that with faith and love magnify thee. {(prostration)}
+
+=== troparion-when-thou-didst-descend | Troparion, Tone 2: When thou didst descend unto death
+! The troparion, in Tone 2:
+When thou didst descend unto death, O Life Immortal, then didst thou slay hell with the lightning of thy Godhead; and when thou didst raise the dead from the nethermost depths, all the powers of heaven cried out unto thee: O Christ our God, Giver of life, glory to thee.
+
 # ================================================================ orders
 # Order lines as on the Orders screen; "> text" is a short line said as
 # written, with (parentheses) in red; "! text" is a rubric.
@@ -444,4 +595,171 @@ it-is-truly-meet
 trisagion-our-father
 cell-troparia
 ending-cell-rule
+dismissal
+
+# ---------------------------------------------------------------- Pascha and Bright Week
+# Used in place of the service's own order on the days given in data "seasons":
+# the evening of Great Saturday (the services of Pascha's liturgical day read
+# that evening), Pascha, and Bright Week.
+
+@@@ vespers-pascha-eve | Vespers on the evening of Great Saturday (Home Ustav)
+pascha-eve-vespers-note
+entrance-opening
+through-the-prayers
+heavenly-king
+trisagion-our-father
+> Lord, have mercy. (12 times)
+glory-both-now
+o-come
+rule
+pascha-eve-zapevy-vespers
+more-honorable
+ending-glory-ground
+dismissal-great-saturday-another
+> Amen. Lord, have mercy. (3 times)
+departing-opening
+pascha-eve-rule-note
+
+@@@ compline-pascha-eve | Compline on the evening of Great Saturday (Home Ustav)
+entrance-opening
+through-the-prayers
+heavenly-king
+trisagion-our-father
+> Lord, have mercy. (12 times)
+o-come
+psalm 50
+creed
+rule
+pascha-eve-zapevy
+ending-glory-no-prostrations
+dismissal-great-saturday
+prayer-of-forgiveness
+forgive-them-that-hate
+pascha-eve-reading
+
+@@@ midnight-pascha-eve | In place of the canon of the God-bodied burial (Home Ustav)
+pascha-eve-canon-note
+through-the-prayers
+trisagion-our-father
+> Lord, have mercy. (12 times)
+glory-both-now
+o-come
+psalm 50
+> O Lord Jesus Christ, Son of God, have mercy on us. Amen.
+rule
+pascha-eve-zapevy
+weep-not-for-me
+trisagion-our-father
+troparion-when-thou-didst-descend
+> Lord, have mercy. (40 times)
+glory-both-now
+more-honorable-prostration
+ending-glory-ground
+dismissal-great-saturday
+> Lord, have mercy. (3 times)
+
+@@@ matins-pascha | Matins and the 1st Hour on Pascha (Home Ustav)
+thy-resurrection-o-christ
+through-the-prayers
+paschal-verses
+> Lord, have mercy. (12 times)
+> O Lord Jesus Christ, Son of God, have mercy on us. Amen.
+rule
+having-beheld
+bright-zapevy-matins
+god-bearer-rejoice
+christ-is-risen-thrice
+paschal-kissing-first
+> Lord, have mercy. (40 times)
+glory-both-now
+> Lord, have mercy. (12 times)
+glory-both-now
+christ-is-risen-thrice
+christ-is-risen-once
+dismissal
+paschal-after-dismissal
+! Then, for the first hour:
+christ-is-risen-thrice
+rule first-hour
+bright-god-bearer-twelve
+ending-glory-no-prostrations
+dismissal-pascha-short
+prayer-of-forgiveness
+departing-opening-paschal
+
+@@@ matins-bright | Matins and the 1st Hour in Bright Week (Home Ustav)
+through-the-prayers
+paschal-verses
+> Lord, have mercy. (12 times)
+> O Lord Jesus Christ, Son of God, have mercy on us. Amen.
+rule
+having-beheld
+bright-zapevy-matins
+god-bearer-rejoice
+bright-end-of-service
+dismissal
+paschal-after-dismissal
+paschal-kissing-cross
+! Then, for the first hour:
+christ-is-risen-thrice
+rule first-hour
+bright-god-bearer-twelve
+ending-glory-waist-bows
+dismissal-pascha-short
+> Lord, have mercy. (3 times)
+
+@@@ hours-bright | The Hours on Pascha and in Bright Week (Home Ustav)
+entrance-opening-paschal
+through-the-prayers
+christ-is-risen-thrice
+rule
+bright-zapevy-hours
+shine-shine
+bright-end-of-service
+dismissal
+paschal-after-dismissal
+paschal-kissing-cross
+christ-is-risen-thrice
+> Lord, have mercy. (3 times)
+departing-opening-paschal
+
+@@@ vespers-bright | Vespers in Bright Week (Home Ustav)
+entrance-opening-paschal
+through-the-prayers
+paschal-verses
+> Lord, have mercy. (12 times)
+glory-both-now
+rule
+bright-zapevy-vespers
+bright-end-of-service
+dismissal
+paschal-after-dismissal
+paschal-kissing-cross
+christ-is-risen-thrice
+> Lord, have mercy. (3 times)
+departing-opening-paschal
+
+@@@ compline-bright | Compline and the Midnight Office in Bright Week (Home Ustav)
+entrance-opening-paschal
+through-the-prayers
+christ-is-risen-thrice
+rule
+bright-god-bearer-twelve
+ending-glory-no-prostrations
+dismissal-pascha-short
+prayer-of-forgiveness
+forgive-them-that-hate
+
+@@@ cell-rule-bright | The Cell Rule in Bright Week (Home Ustav)
+entrance-opening-paschal
+through-the-prayers
+christ-is-risen-thrice
+psalm 50
+creed
+rule
+god-bearer-prayers
+cell-troparia
+shine-shine
+glory-both-now
+> Lord, have mercy. Lord, have mercy. Lord, bless.
 dismissal

@@ -35,6 +35,7 @@
 = all-saints | O all ye saints, pray to God for us.
 = departed | Give rest, O Lord, to the souls of thy servants who have fallen asleep.
 = feast | Glory to thee, our God, glory to thee.
+= glory-to-thee | Glory to thee, our God, glory to thee.
 
 # ---------------------------------------------------------------- September
 

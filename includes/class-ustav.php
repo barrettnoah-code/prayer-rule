@@ -103,8 +103,9 @@ class Ustav {
 			}
 		}
 		foreach ( $data['orders'] ?? array() as $order ) {
-			$service = sanitize_key( $order['service'] );
-			if ( ! Services::get( $service ) ) {
+			$service  = sanitize_key( $order['service'] );
+			$seasonal = ! empty( $order['season'] );      // used in place of a service's order on some days
+			if ( ! $seasonal && ! Services::get( $service ) ) {
 				continue;
 			}
 			$id = self::order_for( $service );
@@ -130,7 +131,7 @@ class Ustav {
 				update_post_meta( $id, Orders::META_ITEMS, wp_slash( $order['items'] ) );   // never edited: bring up to date
 				++$count['updated'];
 			}
-			if ( $assign || ! Services::get( $service )['order'] ) {
+			if ( ! $seasonal && ( $assign || ! Services::get( $service )['order'] ) ) {
 				Services::set_order( $service, $id );
 			}
 		}
@@ -140,6 +141,32 @@ class Ustav {
 	/** md5 of an order's lines, ignoring line-ending differences. */
 	private static function items_hash( $items ) {
 		return md5( trim( str_replace( array( "\r\n", "\r" ), "\n", $items ) ) );
+	}
+
+	/**
+	 * The order to use for a service on a day (Calendar::day()) instead of
+	 * its own, from data "seasons" (Pascha and Bright Week), or 0.
+	 */
+	public static function seasonal_order( $service, $info ) {
+		$after = (int) $info['after_pascha'];
+		foreach ( self::data()['seasons'] ?? array() as $season ) {
+			if ( $after >= (int) $season['from'] && $after <= (int) $season['to'] && ! empty( $season['orders'][ $service ] ) ) {
+				$id = self::order_for( $season['orders'][ $service ] );
+				return $id && 'publish' === get_post_status( $id ) ? $id : 0;
+			}
+		}
+		return 0;
+	}
+
+	/** The prayer said in place of another on a day (data "substitutions"), or the same slug. */
+	public static function substitute( $slug, $info ) {
+		$after = (int) $info['after_pascha'];
+		foreach ( self::data()['substitutions'] ?? array() as $sub ) {
+			if ( $slug === $sub['replace'] && $after >= (int) $sub['from'] && $after <= (int) $sub['to'] ) {
+				return (string) $sub['with'];
+			}
+		}
+		return $slug;
 	}
 
 	/** The Home Ustav order already made for a service (not in the trash), or 0. */

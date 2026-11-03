@@ -99,7 +99,8 @@ class Render {
 		$day_feast         = $info ? ( Feasts::find( $info, 'matins' ) ?? Feasts::find( $info, 'vespers' ) ) : null;
 		$out               = array();
 		$bookmark          = null;   // next kathisma, carried from one portion to the next
-		foreach ( Orders::steps( $service['order'] ) as $step ) {
+		$order_id          = $info ? ( Ustav::seasonal_order( $service_key, $info ) ? Ustav::seasonal_order( $service_key, $info ) : $service['order'] ) : $service['order'];
+		foreach ( Orders::steps( $order_id ) as $step ) {
 			if ( 'rule' === $step['type'] ) {
 				$portion = $context['portions'][ $step['portion'] ] ?? array();
 				if ( empty( $portion['start'] ) && null !== $bookmark ) {
@@ -117,7 +118,7 @@ class Render {
 					'psalms' => self::psalms( $step['pieces'], $translation ),
 				);
 			} elseif ( 'text' === $step['type'] ) {
-				$out[] = self::text_step( $step['slug'] );
+				$out[] = self::text_step( $info ? Ustav::substitute( $step['slug'], $info ) : $step['slug'] );
 			} elseif ( 'dismissal' === $step['type'] ) {
 				$slug = $feast ? $feast['slug'] : Dismissals::slug( $service_key, $day );
 				if ( '' === $slug ) {

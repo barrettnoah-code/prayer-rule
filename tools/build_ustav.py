@@ -60,6 +60,23 @@ ADDITIONS_FEAST = {
 }
 
 
+# Orders used in place of a service's own order, by days from Pascha (the
+# liturgical day: Vespers of Pascha is read on the evening of Great Saturday).
+SEASONS = [
+    {'from': 0, 'to': 0, 'orders': {'vespers': 'vespers-pascha-eve', 'compline': 'compline-pascha-eve',
+                                    'midnight': 'midnight-pascha-eve', 'matins': 'matins-pascha',
+                                    'hours': 'hours-bright', 'cell-rule': 'cell-rule-bright'}},
+    {'from': 1, 'to': 6, 'orders': {'vespers': 'vespers-bright', 'compline': 'compline-bright',
+                                    'midnight': 'compline-bright', 'matins': 'matins-bright',
+                                    'hours': 'hours-bright', 'cell-rule': 'cell-rule-bright'}},
+]
+# From Thomas Sunday (its Vespers on Bright Saturday evening) to the leave-taking
+# of Pascha: "Christ is risen" thrice in place of "O Heavenly King" (fol. 208v).
+SUBSTITUTIONS = [
+    {'from': 7, 'to': 38, 'replace': 'heavenly-king', 'with': 'christ-is-risen-thrice'},
+]
+
+
 def parse_feasts(slugs_out):
     """feasts.txt => (prayers, rules)."""
     prayers, rules = [], []
@@ -296,6 +313,17 @@ def main():
             if re.fullmatch(r'[a-z0-9-]+', line) and line not in ('rule', 'dismissal', 'additions') and line not in slugs:
                 sys.exit(f'order {o["service"]}: no prayer "{line}"')
         out_orders.append({'service': o['service'], 'title': o['title'], 'items': '\n'.join(o['lines'])})
+    order_keys = {o['service'] for o in out_orders}
+    for season in SEASONS:
+        for service, key in season['orders'].items():
+            if service not in SERVICES or key not in order_keys:
+                sys.exit(f'seasons: bad {service} -> {key}')
+    for sub in SUBSTITUTIONS:
+        if sub['replace'] not in slugs or sub['with'] not in slugs:
+            sys.exit(f'substitutions: no prayer {sub}')
+    for o in out_orders:
+        if o['service'] not in SERVICES:
+            o['season'] = True
     for table in (DISMISSALS, ADDITIONS, ADDITIONS_FEAST['any'], ADDITIONS_FEAST['sunday']):
         for service, row in table.items():
             for slug in (row if isinstance(row, list) else [row]):
@@ -333,6 +361,8 @@ def main():
         'feasts': feast_rules,
         'fasting': fasting,
         'zapevy': zapevy,
+        'seasons': SEASONS,
+        'substitutions': SUBSTITUTIONS,
         'paschal_prefix': {'from': 8, 'to': 38, 'services': ['vespers', 'matins', 'hours'],
                            'text': 'O Thou who didst rise from the dead: '},
     }
