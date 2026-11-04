@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Download the three whole Bibles for the Scripture reading (run once).
+"""Download the whole Bibles for the Scripture reading (run once).
 
     python3 tools/fetch_bibles.py
 
@@ -7,7 +7,11 @@ Saves the eBible.org USFM archives into sources/bibles/:
     kjv.zip      King James Version with the Apocrypha (1769)
     dra.zip      Douay-Rheims, Challoner revision (1899 American edition)
     brenton.zip  Brenton's English Septuagint (1851)
-All three are in the public domain. Already downloaded files are skipped,
+    wyc.zip      Wycliffe's Bible with Modern Spelling (Terry Noble)
+The first three are in the public domain. The Wycliffe is copyright Terry
+Noble, shared under CC BY-NC-ND 4.0: free, unchanged, with attribution
+(the plugin shows his notice wherever it is read). It also gives the
+Wycliffe Psalter (tools/build_psalter.py reads it from this zip). Already downloaded files are skipped,
 so an interrupted run just continues. Then: python3 tools/build_bibles.py
 """
 import sys
@@ -27,6 +31,7 @@ BIBLES = {
             "https://ebible.org/Scriptures/eng-dra_usfm.zip"],
     "brenton": ["https://ebible.org/Scriptures/eng-Brenton_usfm.zip",
                 "https://ebible.org/Scriptures/engBrenton_usfm.zip"],
+    "wyc": ["https://ebible.org/Scriptures/engwyc2017_usfm.zip"],
 }
 
 
@@ -66,7 +71,8 @@ def main():
         print("\nNot downloaded: " + ", ".join(missing) + ". Messages:")
         print("\n".join(problems))
         return 1
-    print("\nAll three downloaded into sources/bibles/. Next: python3 tools/build_bibles.py")
+    print("\nAll downloaded into sources/bibles/. Next: python3 tools/build_bibles.py"
+          " and python3 tools/build_psalter.py")
     return 0
 
 

@@ -106,6 +106,12 @@ class Bible {
 		return null;
 	}
 
+	/** The copyright notice to show with a translation's text, or ''. */
+	public static function notice( $id ) {
+		$t = self::translation( $id );
+		return $t ? (string) ( $t['notice'] ?? '' ) : '';
+	}
+
 	/** Load translations whose files have changed (admin, after an update). */
 	public static function maybe_update() {
 		if ( ! current_user_can( 'manage_options' ) || ! self::index() ) {

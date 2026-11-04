@@ -217,6 +217,29 @@ cd ~ && rm -f prayer-rule.zip && zip -r prayer-rule.zip prayer-rule \
      'prayer-rule/*/__pycache__/*'
 ```
 
+## Texts and their licences
+
+The plugin's code is GPL (below). The texts it carries are not all:
+
+- Coverdale (1662 Book of Common Prayer), the King James Version,
+  Douay-Rheims and Brenton's Septuagint are in the public domain.
+- **Wycliffe's Bible with Modern Spelling** is copyright © 2001, 2010, 2011,
+  2012, 2013, 2015 Terry Noble, and is used under the Creative Commons
+  Attribution-NonCommercial-NoDerivatives 4.0 licence
+  (https://creativecommons.org/licenses/by-nc-nd/4.0/), from eBible.org
+  (engwyc2017). It may be shared only with that notice, not for profit, and
+  without changing its words or punctuation. The plugin shows the notice
+  under the psalms and chapters whenever this translation is read, does not
+  alter its text (Coverdale's colon setting does not apply to it), leaves
+  out the psalm titles and gives the psalms the Greek numbering. Anyone
+  reusing this plugin may not sell it, or use the text commercially,
+  without Terry Noble's permission. It is in `data/psalter.json`
+  ("wycliffe") and `data/bible-wyc.json.gz`, built by:
+
+      python3 tools/fetch_bibles.py
+      python3 tools/build_bibles.py
+      python3 tools/build_psalter.py
+
 ## License
 
 GPL-2.0-or-later. See LICENSE.

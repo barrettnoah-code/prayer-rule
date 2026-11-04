@@ -79,6 +79,7 @@ class Rest {
 		$html    = '';
 		$section = '';
 		$parts   = array();                 // section => its chapters, for the page to place one by one
+		$used    = array();                 // section => translation, for the copyright notices
 		foreach ( array_slice( (array) $request->get_param( 'items' ), 0, 60 ) as $item ) {
 			$t = sanitize_key( (string) ( $item['t'] ?? '' ) );
 			$b = strtoupper( preg_replace( '/[^A-Za-z0-9]/', '', (string) ( $item['b'] ?? '' ) ) );
@@ -100,7 +101,18 @@ class Rest {
 			$one          = '<section class="pr-chapter"><h4 class="pr-psalm">' . esc_html( $name . ' ' . $c ) . '</h4>' . Bible::chapter_html( $t, $b, $c, $numbers ) . '</section>';
 			$html        .= $one;
 			$parts[ $s ]  = ( $parts[ $s ] ?? '' ) . $one;
+			$used[ $s ]   = $t;
 		}
+		// The notice of a translation shared on condition of attribution, after its chapters.
+		$notes = array();
+		foreach ( $used as $s => $t ) {
+			$notice = Bible::notice( $t );
+			if ( '' !== $notice ) {
+				$parts[ $s ]  .= '<p class="pr-source-note">' . esc_html( $notice ) . '</p>';
+				$notes[ $t ]   = '<p class="pr-source-note">' . esc_html( $notice ) . '</p>';
+			}
+		}
+		$html .= implode( '', $notes );
 		return array(
 			'html'     => '<div class="prayer-rule-reading pr-scripture">' . $html . '</div>',
 			'sections' => (object) $parts,
@@ -212,12 +224,22 @@ class Rest {
 				'fast'   => Fasting::for_day( $info, Feasts::find( $info, 'matins' ) ),
 			);
 		}
+		// A translation shared on condition of attribution (the Wycliffe) shows its notice
+		// whenever its psalms are read.
+		$translation = Psalter::translation( $request['translation'] );
+		$notice      = '';
+		foreach ( $steps as $step ) {
+			if ( in_array( $step['type'], array( 'psalm', 'stasis' ), true ) && '' !== Psalter::notice( $translation ) ) {
+				$notice = '<p class="pr-source-note">' . esc_html( Psalter::notice( $translation ) ) . '</p>';
+				break;
+			}
+		}
 		return array(
 			'service'     => $key,
 			'day'         => $day,
-			'translation' => Psalter::translation( $request['translation'] ),
+			'translation' => $translation,
 			'steps'       => $steps,
-			'html'        => Render::html( $steps ),
+			'html'        => Render::html( $steps ) . $notice,
 			'day_html'    => $request['date'] ? Reader::day_html( Calendar::day( (string) $request['date'] ), $key ) : '',
 		);
 	}

@@ -144,6 +144,7 @@ html.pr-modal-open{overflow:hidden}
 .prayer-rule-reader .pr-chapter-title{font-style:italic;opacity:.8}
 .prayer-rule-reader .pr-tabs .pr-tab-reading{margin-left:.6em;border-style:dashed}
 .prayer-rule-reader .pr-tabs .pr-tab-reading[aria-pressed=true]{border-style:solid}
+.prayer-rule-reader .pr-source-note{font-size:.78em;opacity:.65;margin:1.6em 0 0;line-height:1.45}
 .prayer-rule-reader .pr-reading-part{margin:0 0 2.6em}
 .prayer-rule-reader .pr-reading-how{text-align:center;font-size:.9em;opacity:.7;margin:-.1em 0 1.4em}
 .prayer-rule-reader .pr-reading-part .pr-done{margin-top:1.4em}

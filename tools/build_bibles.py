@@ -42,11 +42,22 @@ ORDERS = {
     "brenton": ("GEN EXO LEV NUM DEU JOS JDG RUT 1SA 2SA 1KI 2KI 1CH 2CH EZR NEH EST ESG JOB "
                 "PSA PRO ECC SNG ISA JER LAM EZK DAN DAG HOS JOL AMO OBA JON MIC NAM HAB ZEP "
                 "HAG ZEC MAL TOB JDT WIS SIR BAR LJE SUS BEL 1MA 2MA 1ES MAN 3MA 4MA").split(),
+    # Wycliffe (Noble): as his edition arranges it, the Apocrypha after Malachi.
+    "wyc": OT + "TOB JDT ESG WIS SIR BAR LJE S3Y SUS BEL 1MA 2MA 1ES MAN".split() + NT,
 }
 NAMES = {
     "kjv": "King James Version (with the Apocrypha)",
     "dra": "Douay-Rheims (Challoner, 1899)",
     "brenton": "Brenton Septuagint (1851)",
+    "wyc": "Wycliffe's Bible with Modern Spelling (Terry Noble)",
+}
+# Copyright notices, shown with the text wherever it is read. The Wycliffe
+# is shared under CC BY-NC-ND 4.0: with this notice, not for profit, and
+# without changing its words or punctuation.
+NOTICES = {
+    "wyc": ("Wycliffe's Bible with Modern Spelling, copyright \u00a9 2001, 2010, 2011, 2012, 2013, 2015 "
+            "Terry Noble. Used under the Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 "
+            "licence (creativecommons.org/licenses/by-nc-nd/4.0). Source: eBible.org (engwyc2017)."),
 }
 SCRIPTURE = set(OT) | set(NT) | set(DEUTERO)
 
@@ -71,6 +82,7 @@ BOOK_NAMES = {
             "MAT": "St. Matthew", "MRK": "St. Mark", "LUK": "St. Luke", "JHN": "St. John",
             "ACT": "Acts of the Apostles", "REV": "Apocalypse"},
     "brenton": {"EZR": "Esdras II (Ezra and Nehemiah)", "ESG": "Esther", "DAG": "Daniel"},
+    "wyc": {"WIS": "Wisdom of Solomon"},
 }
 
 
@@ -189,6 +201,8 @@ def report(key, books, extra):
     print(f"   New Testament {nt[0]} chapters, {nt[1]} verses")
     if extra:
         print(f"   not in the printed order, put before the NT: {', '.join(extra)}")
+    if key == "wyc":
+        print("   book names: " + "; ".join(f"{b['code']} {b['name']}" for b in books))
     problems = []
     has_nt = key != "brenton"
     if has_nt and nt[0] != 260:
@@ -215,19 +229,23 @@ def main():
         print("\nNOT WRITTEN:\n  " + "\n  ".join(problems))
         return 1
     for key, books in built.items():
-        payload = json.dumps({"format": FORMAT, "id": key, "name": NAMES[key], "books": books},
+        head = {"format": FORMAT, "id": key, "name": NAMES[key]}
+        if key in NOTICES:
+            head["notice"] = NOTICES[key]           # only where there is one: the others stay byte for byte
+        payload = json.dumps(dict(head, books=books),
                              ensure_ascii=False, separators=(",", ":")).encode("utf-8")
         target = DATA / f"bible-{key}.json.gz"
         target.write_bytes(gzip.compress(payload, compresslevel=9, mtime=0))
-        index.append({
-            "id": key,
-            "name": NAMES[key],
+        entry = {"id": key, "name": NAMES[key]}
+        if key in NOTICES:
+            entry["notice"] = NOTICES[key]
+        index.append(dict(entry, **{
             "file": target.name,
             "md5": hashlib.md5(target.read_bytes()).hexdigest(),
             "testaments": sorted({"nt" if b["code"] in NT else "ot" for b in books}),
             "books": [{"code": b["code"], "name": b["name"], "abbr": b["abbr"], "group": b["group"],
                        "chapters": [c["n"] for c in b["chapters"]]} for b in books],
-        })
+        }))
         print(f"{target.name}: {target.stat().st_size // 1024} KB")
     (DATA / "bibles.json").write_text(json.dumps({"format": "prayer-rule-bibles/1", "translations": index},
                                                  ensure_ascii=False, indent=1) + "\n", encoding="utf-8")

@@ -18,6 +18,7 @@ class Psalter {
 	const OPT_HASH    = 'prayer_rule_psalter_hash';
 	const OPT_TRANS   = 'prayer_rule_translations';
 	const OPT_DEFAULT = 'prayer_rule_default_translation';
+	const OPT_NOTICES = 'prayer_rule_translation_notices';   // id => copyright notice to show with the text
 
 	public static function table() {
 		global $wpdb;
@@ -71,11 +72,15 @@ class Psalter {
 
 		$table = self::table();
 		$wpdb->query( "DELETE FROM {$table}" ); // phpcs:ignore WordPress.DB
-		$names = array();
-		$count = 0;
+		$names   = array();
+		$notices = array();
+		$count   = 0;
 		foreach ( $data['translations'] as $translation ) {
 			$id           = sanitize_key( $translation['id'] );
 			$names[ $id ] = sanitize_text_field( $translation['name'] );
+			if ( ! empty( $translation['notice'] ) ) {
+				$notices[ $id ] = sanitize_text_field( $translation['notice'] );
+			}
 			$rows         = array();
 			foreach ( $translation['psalms'] as $psalm => $verses ) {
 				foreach ( array_values( $verses ) as $index => $text ) {
@@ -89,6 +94,7 @@ class Psalter {
 			$count += self::insert( $rows );
 		}
 		update_option( self::OPT_TRANS, $names );
+		update_option( self::OPT_NOTICES, $notices );
 		if ( ! isset( $names[ get_option( self::OPT_DEFAULT ) ] ) ) {
 			update_option( self::OPT_DEFAULT, sanitize_key( $data['default'] ?? key( $names ) ) );
 		}
@@ -110,6 +116,12 @@ class Psalter {
 	public static function translations() {
 		$names = get_option( self::OPT_TRANS, array() );
 		return is_array( $names ) ? $names : array();
+	}
+
+	/** The copyright notice to show with a translation's psalms, or ''. */
+	public static function notice( $id ) {
+		$notices = get_option( self::OPT_NOTICES, array() );
+		return is_array( $notices ) ? (string) ( $notices[ $id ] ?? '' ) : '';
 	}
 
 	public static function default_translation() {

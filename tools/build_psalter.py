@@ -6,11 +6,15 @@
 Every translation gets the Greek and Slavonic (LXX) psalm numbering, all
 titles are dropped, and each psalm's verses are numbered from 1. A check
 report is printed at the end; nothing is written if a check fails.
+
+The Wycliffe Psalter is read from sources/bibles/wyc.zip (fetched by
+tools/fetch_bibles.py); without it the other four are built as before.
 """
 import html
 import json
 import re
 import sys
+import zipfile
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -51,11 +55,12 @@ def hebrew_to_lxx(psalms, label, split_116, split_147):
     for number in range(11, 114):
         lxx[number - 1] = psalms[number]
     lxx[113] = psalms[114] + psalms[115]
-    cut = find_verse(psalms[116], split_116, f"{label} Psalm 116")
+    # A split is either the first words of the verse, or its index (from 0).
+    cut = split_116 if isinstance(split_116, int) else find_verse(psalms[116], split_116, f"{label} Psalm 116")
     lxx[114], lxx[115] = psalms[116][:cut], psalms[116][cut:]
     for number in range(117, 147):
         lxx[number - 1] = psalms[number]
-    cut = find_verse(psalms[147], split_147, f"{label} Psalm 147")
+    cut = split_147 if isinstance(split_147, int) else find_verse(psalms[147], split_147, f"{label} Psalm 147")
     lxx[146], lxx[147] = psalms[147][:cut], psalms[147][cut:]
     for number in range(148, 151):
         lxx[number] = psalms[number]
@@ -182,6 +187,101 @@ def read_kjv():
                           for n in numbers]
     return hebrew_to_lxx(result, "KJV",
                          "I believed", "Praise the LORD, O Jerusalem")
+
+
+# ------------------------------------------- Wycliffe, modern spelling (eBible)
+
+WYCLIFFE_ZIP = SOURCES / "bibles" / "wyc.zip"
+WYCLIFFE_NAME = "Wycliffe (modern spelling, Terry Noble)"
+WYCLIFFE_NOTICE = (
+    "Wycliffe's Bible with Modern Spelling, copyright \u00a9 2001, 2010, 2011, 2012, 2013, 2015 "
+    "Terry Noble. Used under the Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 "
+    "licence (creativecommons.org/licenses/by-nc-nd/4.0). Source: eBible.org (engwyc2017). "
+    "Psalm titles are not shown, and the psalms are numbered as in the Greek.")
+
+
+def usfm_psalms(text, label):
+    """{psalm: [verses]} from a USFM Psalms book, numbered as in the file;
+    titles (\\d, headings) left out."""
+    text = re.sub(r"\\(f|fe|x)\s.*?\\\1\*", "", text, flags=re.S)       # notes, cross references
+    text = re.sub(r"\\\+?w ([^|\\]*)(\|[^\\]*)?\\\+?w\*", r"\1", text)
+    psalms, chapter, verse = {}, None, None
+    for line in text.splitlines():
+        line = line.strip()
+        marker = re.match(r"\\(\S+)\s?(.*)", line)
+        if not marker:
+            if verse is not None and line:
+                psalms[chapter][verse] += " " + line
+            continue
+        tag, rest = marker.groups()
+        if tag == "c":
+            chapter, verse = int(re.match(r"\d+", rest).group()), None
+            psalms[chapter] = {}
+        elif tag in ("d", "qa", "s", "s1", "s2", "s3", "ms", "ms1", "mr", "r", "mt", "mt1", "mt2",
+                     "h", "toc1", "toc2", "toc3", "id", "ide", "rem", "cl", "sts", "usfm"):
+            continue                                          # titles, headings
+        elif chapter is not None:
+            for part in re.split(r"(?=\\v \d)", line):
+                found = re.match(r"\\v (\d+)\S*\s*(.*)", part)
+                if found:
+                    verse = int(found.group(1))
+                    psalms[chapter][verse] = found.group(2)
+                elif verse is not None:
+                    psalms[chapter][verse] += " " + re.sub(r"^\\\S+\s?", "", part)
+    result = {}
+    for number, verses in psalms.items():
+        numbers = sorted(verses)
+        if numbers != list(range(1, len(numbers) + 1)):
+            raise SystemExit(f"{label} Psalm {number}: verses {numbers}")
+        result[number] = [clean(re.sub(r"\\\+?[a-z]+\d*\*?", " ", verses[n])) for n in numbers]
+    return result
+
+
+def read_wycliffe(brenton, totals):
+    """The Wycliffe Psalter in the LXX numbering, without titles.
+
+    Wycliffe translated the Latin, whose psalms are numbered as in the
+    Greek; an edition may also give them the Hebrew numbering. Which one is
+    told by Psalm 9 (the Greek joins Hebrew 9 and 10: about 39 verses, not
+    20). Where a title is counted as a verse (as in the Latin), as many
+    leading verses are dropped as the title takes in Brenton."""
+    with zipfile.ZipFile(WYCLIFFE_ZIP) as archive:
+        text = None
+        for name in archive.namelist():
+            if name.lower().endswith((".usfm", ".sfm")):
+                body = archive.read(name).decode("utf-8-sig")
+                if re.search(r"^\\id PSA", body, re.M):
+                    text = body
+                    break
+    if text is None:
+        raise SystemExit(f"Wycliffe: no Psalms book in {WYCLIFFE_ZIP}")
+    # Noble's edition puts a psalm's title in italics at the start of verse 1
+    # ("\\v 1 \\em The psalm of David …\\em*. Lord, …"): drop it, keep the verse.
+    text, titles = re.subn(r"(\\v 1\s+)\\em\s.*?\\em\*[.;:,]?\s*", r"\1", text, flags=re.S)
+    print(f"Wycliffe: {titles} titles dropped from the start of verse 1")
+    psalms = usfm_psalms(text, "Wycliffe")
+    psalms = {n: [v for v in verses if v] for n, verses in psalms.items()}   # a verse that was only a title
+    greek = len(psalms.get(9, [])) >= 30
+    print(f"Wycliffe: {len(psalms)} psalms, numbered as in the "
+          f"{'Greek and Latin' if greek else 'Hebrew'} (Psalm 9 has {len(psalms.get(9, []))} verses)")
+    if not greek:
+        # Hebrew 116:10 begins LXX 115, Hebrew 147:12 begins LXX 147 (verse
+        # numbers as in the English Bible).
+        psalms = hebrew_to_lxx(psalms, "Wycliffe", 9, 11)
+    with_titles = sum(1 for n in range(1, 151)
+                      if totals[n] != len(brenton[n]) and len(psalms.get(n, [])) == totals[n])
+    without = sum(1 for n in range(1, 151)
+                  if totals[n] != len(brenton[n]) and len(psalms.get(n, [])) == len(brenton[n]))
+    print(f"Wycliffe: psalms whose verse count matches Brenton with titles {with_titles}, "
+          f"without titles {without}")
+    if with_titles > without:
+        print("Wycliffe: titles are counted as verses; dropping them by Brenton's count")
+        psalms = {n: psalms[n][totals[n] - len(brenton[n]):] for n in psalms if n <= 150}
+    differ = [n for n in range(1, 151) if len(psalms.get(n, [])) != len(brenton[n])]
+    if differ:
+        print(f"Wycliffe: {len(differ)} psalms have a different verse count from Brenton "
+              f"(normal for a few): {', '.join(map(str, differ[:30]))}{' ...' if len(differ) > 30 else ''}")
+    return {n: psalms[n] for n in range(1, 151) if n in psalms}
 
 
 # ----------------------------------------------- Brenton (divinerevelations)
@@ -342,6 +442,13 @@ def main():
         ("douay-rheims", "Douay-Rheims (Challoner)", douay),
         ("brenton", "Brenton's Septuagint", brenton),
     ]
+    notices = {}
+    if WYCLIFFE_ZIP.exists():
+        translations.append(("wycliffe", WYCLIFFE_NAME, read_wycliffe(brenton, totals)))
+        notices["wycliffe"] = WYCLIFFE_NOTICE
+    else:
+        print(f"(No {WYCLIFFE_ZIP.relative_to(ROOT)}: the Wycliffe Psalter is left out. "
+              "Run python3 tools/fetch_bibles.py to add it.)\n")
     problems = []
     for key, _name, psalms in translations:
         problems += check(key, psalms, expect_151=(key == "brenton"))
@@ -359,8 +466,9 @@ def main():
         "numbering": "LXX psalm numbers; titles dropped; verses from 1",
         "default": "coverdale",
         "translations": [
-            {"id": key, "name": name,
-             "psalms": {str(n): psalms[n] for n in sorted(psalms)}}
+            dict({"id": key, "name": name},
+                 **({"notice": notices[key]} if key in notices else {}),
+                 psalms={str(n): psalms[n] for n in sorted(psalms)})
             for key, name, psalms in translations
         ],
     }

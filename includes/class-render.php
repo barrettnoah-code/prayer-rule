@@ -299,7 +299,7 @@ class Render {
 		foreach ( $pieces as $piece ) {
 			list( $psalm, $from, $to ) = $piece;
 			$verses = Psalter::psalm( $translation, $psalm, $from ? $from : 1, $to );
-			if ( ! self::show_colons() ) {
+			if ( ! self::show_colons() && 'coverdale' === $translation ) {   // Coverdale's half-verse colons only
 				$verses = array_map(
 					function ( $verse ) {
 						return str_replace( ' : ', ' ', $verse );
