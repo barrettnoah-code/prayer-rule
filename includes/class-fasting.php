@@ -121,7 +121,11 @@ class Fasting {
 			}
 		}
 		if ( $feast && ! empty( $period['feast'] ) && in_array( $wd, $period['feast']['days'], true ) ) {
-			return $period['feast']['text'];
+			// The line for the kind of feast (the Lord's or the God-bearer's: fish; an icon or
+			// relic, or another feast: oil and wine), or the general one.
+			$kind = (string) ( $feast['fast'] ?? '' );
+			$line = '' !== $kind ? ( $period['feast']['by'][ $kind ] ?? '' ) : '';
+			return '' !== $line ? $line : $period['feast']['text'];
 		}
 		$saved = self::saved()[ $period['key'] ][ $wd ] ?? '';
 		if ( '' !== $saved ) {

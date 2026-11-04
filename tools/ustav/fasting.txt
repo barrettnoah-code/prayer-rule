@@ -12,6 +12,7 @@
 #   @ on date M-D | text          a church (Julian) date
 #   @ on pascha N | text          days from Pascha
 #   @ feast wed,fri | text        on those weekdays when the day has a feast dismissal
+#   @ feast wed,fri KIND | text   the same, for a feast of that kind (feasts.txt "@ fast")
 #   == general | Source           the general rule, shown with the day
 #   == other | Source             the other typika, behind "Other typika"
 # Today's lines are short summaries of the general rule; the rule itself
@@ -181,7 +182,13 @@ On Monday of Cheesefare week we eat twice a day. On Wednesday and Friday there i
 @ day mon | Abstaining from meat on Monday is good, but not required.
 @ on date 6-24 | The Nativity of the Forerunner: fish is allowed.
 @ on date 6-29 | Peter and Paul: fish is allowed.
+@ on date 8-29 | The Beheading of the Forerunner: a fast day, whatever the weekday. No fish; oil and wine are allowed.
+@ on date 9-14 | The Exaltation of the Cross: a fast day, whatever the weekday. No fish; oil and wine are allowed.
 @ feast wed,fri | A feast: on the feasts of the Lord and of the God-bearer the fast is released for fish; on feasts of apostles, martyrs and hierarchs, for oil and wine only. See below.
+@ feast wed,fri lord | A feast of the Lord: the fast is released for fish. See below.
+@ feast wed,fri god-bearer | A feast of the God-bearer: the fast is released for fish. See below.
+@ feast wed,fri icon | A feast of a holy icon or relic: the fast is released for oil and wine only.
+@ feast wed,fri saint | A feast: the fast is released for oil and wine only. See below.
 == general | Nikon of the Black Mountain, ch. 57, and On the Christian Life
 From the fast of the holy apostles until the memory of the holy apostle Philip, and throughout the whole year, apart from the appointed fasts and the fast-free days, lay people are to keep two days of every week as fasts, Wednesday and Friday. These two days are kept as in holy Great Lent: no fish, oil or wine. Whoever chooses also to abstain from meat on Monday does well. But at the very least, every Christian is bound to fast on Wednesday and Friday without fail, as the divine apostles laid down in canon 69, saying:
 If any bishop, presbyter, deacon, subdeacon, reader or singer does not fast during the forty days, that is, Great Lent, or on every Wednesday and Friday throughout the year, let him be deposed, unless bodily illness prevents him. For the sick are permitted to take oil and wine according to their strength. If a layman does not fast, let him be excommunicated.

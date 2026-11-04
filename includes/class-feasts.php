@@ -58,6 +58,7 @@ class Feasts {
 			'sunday'    => $sunday,
 			'lordly'    => ! empty( $rule['lordly'] ),
 			'additions' => $rule['additions'] ?? 'feast',
+			'fast'      => $rule['fast'] ?? '',                  // lord, god-bearer, icon or saint (Fasting)
 		);
 	}
 

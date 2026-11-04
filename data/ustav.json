@@ -1428,7 +1428,8 @@
    ],
    "on_sunday": "weekly",
    "lordly": false,
-   "additions": "feast"
+   "additions": "feast",
+   "fast": "saint"
   },
   {
    "slug": "dismissal-sep-06",
@@ -1448,7 +1449,8 @@
    ],
    "on_sunday": "weekly",
    "lordly": false,
-   "additions": "feast"
+   "additions": "feast",
+   "fast": "saint"
   },
   {
    "slug": "dismissal-sep-08",
@@ -1468,7 +1470,8 @@
    ],
    "on_sunday": "weekly",
    "lordly": false,
-   "additions": "feast"
+   "additions": "feast",
+   "fast": "god-bearer"
   },
   {
    "slug": "dismissal-sep-13",
@@ -1488,7 +1491,8 @@
    ],
    "on_sunday": "weekly",
    "lordly": false,
-   "additions": "feast"
+   "additions": "feast",
+   "fast": "saint"
   },
   {
    "slug": "dismissal-sep-14",
@@ -1508,7 +1512,8 @@
    ],
    "on_sunday": "feast",
    "lordly": true,
-   "additions": "feast"
+   "additions": "feast",
+   "fast": "lord"
   },
   {
    "slug": "dismissal-sep-23",
@@ -1544,7 +1549,8 @@
    ],
    "on_sunday": "weekly",
    "lordly": false,
-   "additions": "feast"
+   "additions": "feast",
+   "fast": "saint"
   },
   {
    "slug": "dismissal-sep-25",
@@ -1564,7 +1570,8 @@
    ],
    "on_sunday": "weekly",
    "lordly": false,
-   "additions": "feast"
+   "additions": "feast",
+   "fast": "icon"
   },
   {
    "slug": "dismissal-oct-01",
@@ -1584,7 +1591,8 @@
    ],
    "on_sunday": "weekly",
    "lordly": false,
-   "additions": "feast"
+   "additions": "feast",
+   "fast": "god-bearer"
   },
   {
    "slug": "dismissal-oct-11",
@@ -1606,7 +1614,8 @@
    ],
    "on_sunday": "feast",
    "lordly": false,
-   "additions": "weekly"
+   "additions": "weekly",
+   "fast": "saint"
   },
   {
    "slug": "dismissal-oct-22",
@@ -1626,7 +1635,8 @@
    ],
    "on_sunday": "weekly",
    "lordly": false,
-   "additions": "feast"
+   "additions": "feast",
+   "fast": "icon"
   },
   {
    "slug": "dismissal-oct-26",
@@ -1646,7 +1656,8 @@
    ],
    "on_sunday": "weekly",
    "lordly": false,
-   "additions": "feast"
+   "additions": "feast",
+   "fast": "saint"
   },
   {
    "slug": "dismissal-nov-08",
@@ -1666,7 +1677,8 @@
    ],
    "on_sunday": "weekly",
    "lordly": false,
-   "additions": "feast"
+   "additions": "feast",
+   "fast": "saint"
   },
   {
    "slug": "dismissal-nov-21",
@@ -1686,7 +1698,8 @@
    ],
    "on_sunday": "weekly",
    "lordly": false,
-   "additions": "feast"
+   "additions": "feast",
+   "fast": "god-bearer"
   },
   {
    "slug": "dismissal-nov-27",
@@ -1706,7 +1719,8 @@
    ],
    "on_sunday": "weekly",
    "lordly": false,
-   "additions": "feast"
+   "additions": "feast",
+   "fast": "icon"
   },
   {
    "slug": "dismissal-dec-09",
@@ -1726,7 +1740,8 @@
    ],
    "on_sunday": "weekly",
    "lordly": false,
-   "additions": "feast"
+   "additions": "feast",
+   "fast": "god-bearer"
   },
   {
    "slug": "dismissal-forefathers",
@@ -1748,7 +1763,8 @@
    ],
    "on_sunday": "feast",
    "lordly": false,
-   "additions": "weekly"
+   "additions": "weekly",
+   "fast": "saint"
   },
   {
    "slug": "dismissal-fathers-before-nativity",
@@ -1770,7 +1786,8 @@
    ],
    "on_sunday": "feast",
    "lordly": false,
-   "additions": "weekly"
+   "additions": "weekly",
+   "fast": "saint"
   },
   {
    "slug": "dismissal-dec-25",
@@ -1790,7 +1807,8 @@
    ],
    "on_sunday": "feast",
    "lordly": true,
-   "additions": "feast"
+   "additions": "feast",
+   "fast": "lord"
   },
   {
    "slug": "dismissal-dec-26",
@@ -1810,7 +1828,8 @@
    ],
    "on_sunday": "weekly",
    "lordly": false,
-   "additions": "feast"
+   "additions": "feast",
+   "fast": "god-bearer"
   },
   {
    "slug": "dismissal-sunday-after-nativity",
@@ -1832,7 +1851,8 @@
    ],
    "on_sunday": "feast",
    "lordly": false,
-   "additions": "weekly"
+   "additions": "weekly",
+   "fast": "saint"
   },
   {
    "slug": "dismissal-jan-01",
@@ -1852,7 +1872,8 @@
    ],
    "on_sunday": "weekly",
    "lordly": false,
-   "additions": "feast"
+   "additions": "feast",
+   "fast": "lord"
   },
   {
    "slug": "dismissal-jan-06",
@@ -1872,7 +1893,8 @@
    ],
    "on_sunday": "feast",
    "lordly": true,
-   "additions": "feast"
+   "additions": "feast",
+   "fast": "lord"
   },
   {
    "slug": "dismissal-jan-07",
@@ -1892,7 +1914,8 @@
    ],
    "on_sunday": "weekly",
    "lordly": false,
-   "additions": "feast"
+   "additions": "feast",
+   "fast": "saint"
   },
   {
    "slug": "dismissal-feb-02",
@@ -1912,7 +1935,8 @@
    ],
    "on_sunday": "weekly",
    "lordly": false,
-   "additions": "feast"
+   "additions": "feast",
+   "fast": "lord"
   },
   {
    "slug": "dismissal-mar-25",
@@ -1932,7 +1956,8 @@
    ],
    "on_sunday": "weekly",
    "lordly": false,
-   "additions": "feast"
+   "additions": "feast",
+   "fast": "god-bearer"
   },
   {
    "slug": "dismissal-mar-26",
@@ -1956,7 +1981,8 @@
    ],
    "on_sunday": "weekly",
    "lordly": false,
-   "additions": "feast"
+   "additions": "feast",
+   "fast": "saint"
   },
   {
    "slug": "dismissal-may-07",
@@ -1976,7 +2002,8 @@
    ],
    "on_sunday": "weekly",
    "lordly": false,
-   "additions": "feast"
+   "additions": "feast",
+   "fast": "lord"
   },
   {
    "slug": "dismissal-may-21",
@@ -2004,7 +2031,8 @@
    ],
    "on_sunday": "weekly",
    "lordly": false,
-   "additions": "feast"
+   "additions": "feast",
+   "fast": "icon"
   },
   {
    "slug": "dismissal-jun-26",
@@ -2024,7 +2052,8 @@
    ],
    "on_sunday": "weekly",
    "lordly": false,
-   "additions": "feast"
+   "additions": "feast",
+   "fast": "icon"
   },
   {
    "slug": "dismissal-jun-29",
@@ -2044,7 +2073,8 @@
    ],
    "on_sunday": "weekly",
    "lordly": false,
-   "additions": "feast"
+   "additions": "feast",
+   "fast": "saint"
   },
   {
    "slug": "dismissal-jul-02",
@@ -2064,7 +2094,8 @@
    ],
    "on_sunday": "weekly",
    "lordly": false,
-   "additions": "feast"
+   "additions": "feast",
+   "fast": "icon"
   },
   {
    "slug": "dismissal-jul-08",
@@ -2084,7 +2115,8 @@
    ],
    "on_sunday": "weekly",
    "lordly": false,
-   "additions": "feast"
+   "additions": "feast",
+   "fast": "icon"
   },
   {
    "slug": "dismissal-jul-09",
@@ -2104,7 +2136,8 @@
    ],
    "on_sunday": "weekly",
    "lordly": false,
-   "additions": "feast"
+   "additions": "feast",
+   "fast": "icon"
   },
   {
    "slug": "dismissal-jul-10",
@@ -2124,7 +2157,8 @@
    ],
    "on_sunday": "dismissal-jul-10-sunday",
    "lordly": false,
-   "additions": "feast"
+   "additions": "feast",
+   "fast": "icon"
   },
   {
    "slug": "dismissal-jul-16",
@@ -2146,7 +2180,8 @@
    ],
    "on_sunday": "feast",
    "lordly": false,
-   "additions": "weekly"
+   "additions": "weekly",
+   "fast": "saint"
   },
   {
    "slug": "dismissal-jul-28",
@@ -2166,7 +2201,8 @@
    ],
    "on_sunday": "weekly",
    "lordly": false,
-   "additions": "feast"
+   "additions": "feast",
+   "fast": "icon"
   },
   {
    "slug": "dismissal-aug-01",
@@ -2186,7 +2222,8 @@
    ],
    "on_sunday": "weekly",
    "lordly": false,
-   "additions": "feast"
+   "additions": "feast",
+   "fast": "lord"
   },
   {
    "slug": "dismissal-aug-06",
@@ -2206,7 +2243,8 @@
    ],
    "on_sunday": "feast",
    "lordly": true,
-   "additions": "feast"
+   "additions": "feast",
+   "fast": "lord"
   },
   {
    "slug": "dismissal-aug-15",
@@ -2226,7 +2264,8 @@
    ],
    "on_sunday": "weekly",
    "lordly": false,
-   "additions": "feast"
+   "additions": "feast",
+   "fast": "god-bearer"
   },
   {
    "slug": "dismissal-aug-16",
@@ -2246,7 +2285,8 @@
    ],
    "on_sunday": "weekly",
    "lordly": false,
-   "additions": "feast"
+   "additions": "feast",
+   "fast": "icon"
   },
   {
    "slug": "dismissal-aug-31",
@@ -2266,7 +2306,8 @@
    ],
    "on_sunday": "weekly",
    "lordly": false,
-   "additions": "feast"
+   "additions": "feast",
+   "fast": "icon"
   },
   {
    "slug": "dismissal-lazarus-saturday",
@@ -2287,7 +2328,8 @@
    ],
    "on_sunday": "weekly",
    "lordly": false,
-   "additions": "feast"
+   "additions": "feast",
+   "fast": "lord"
   },
   {
    "slug": "dismissal-palm-sunday",
@@ -2308,7 +2350,8 @@
    ],
    "on_sunday": "feast",
    "lordly": true,
-   "additions": "feast"
+   "additions": "feast",
+   "fast": "lord"
   },
   {
    "slug": "dismissal-holy-week",
@@ -2329,7 +2372,8 @@
    ],
    "on_sunday": "weekly",
    "lordly": false,
-   "additions": "feast"
+   "additions": "feast",
+   "fast": "lord"
   },
   {
    "slug": "dismissal-great-saturday",
@@ -2350,7 +2394,8 @@
    ],
    "on_sunday": "weekly",
    "lordly": false,
-   "additions": "feast"
+   "additions": "feast",
+   "fast": "lord"
   },
   {
    "slug": "dismissal-pascha",
@@ -2381,7 +2426,8 @@
    ],
    "on_sunday": "feast",
    "lordly": false,
-   "additions": "feast"
+   "additions": "feast",
+   "fast": "lord"
   },
   {
    "slug": "dismissal-thomas-sunday",
@@ -2402,7 +2448,8 @@
    ],
    "on_sunday": "feast",
    "lordly": false,
-   "additions": "weekly"
+   "additions": "weekly",
+   "fast": "lord"
   },
   {
    "slug": "dismissal-myrrhbearers",
@@ -2423,7 +2470,8 @@
    ],
    "on_sunday": "feast",
    "lordly": false,
-   "additions": "weekly"
+   "additions": "weekly",
+   "fast": "lord"
   },
   {
    "slug": "dismissal-mid-pentecost",
@@ -2444,7 +2492,8 @@
    ],
    "on_sunday": "weekly",
    "lordly": false,
-   "additions": "feast"
+   "additions": "feast",
+   "fast": "lord"
   },
   {
    "slug": "dismissal-ascension",
@@ -2465,7 +2514,8 @@
    ],
    "on_sunday": "weekly",
    "lordly": false,
-   "additions": "feast"
+   "additions": "feast",
+   "fast": "lord"
   },
   {
    "slug": "dismissal-seventh-sunday-pascha",
@@ -2486,7 +2536,8 @@
    ],
    "on_sunday": "feast",
    "lordly": false,
-   "additions": "weekly"
+   "additions": "weekly",
+   "fast": "saint"
   },
   {
    "slug": "dismissal-pentecost",
@@ -2515,7 +2566,8 @@
    ],
    "on_sunday": "feast",
    "lordly": true,
-   "additions": "feast"
+   "additions": "feast",
+   "fast": "lord"
   },
   {
    "slug": "dismissal-pentecost-vespers",
@@ -2538,7 +2590,8 @@
    ],
    "on_sunday": "weekly",
    "lordly": false,
-   "additions": "feast"
+   "additions": "feast",
+   "fast": "lord"
   }
  ],
  "fasting": [
@@ -2842,6 +2895,20 @@
       29
      ],
      "text": "Peter and Paul: fish is allowed."
+    },
+    {
+     "date": [
+      8,
+      29
+     ],
+     "text": "The Beheading of the Forerunner: a fast day, whatever the weekday. No fish; oil and wine are allowed."
+    },
+    {
+     "date": [
+      9,
+      14
+     ],
+     "text": "The Exaltation of the Cross: a fast day, whatever the weekday. No fish; oil and wine are allowed."
     }
    ],
    "feast": {
@@ -2849,7 +2916,13 @@
      "wed",
      "fri"
     ],
-    "text": "A feast: on the feasts of the Lord and of the God-bearer the fast is released for fish; on feasts of apostles, martyrs and hierarchs, for oil and wine only. See below."
+    "text": "A feast: on the feasts of the Lord and of the God-bearer the fast is released for fish; on feasts of apostles, martyrs and hierarchs, for oil and wine only. See below.",
+    "by": {
+     "lord": "A feast of the Lord: the fast is released for fish. See below.",
+     "god-bearer": "A feast of the God-bearer: the fast is released for fish. See below.",
+     "icon": "A feast of a holy icon or relic: the fast is released for oil and wine only.",
+     "saint": "A feast: the fast is released for oil and wine only. See below."
+    }
    }
   }
  ],

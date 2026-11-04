@@ -84,6 +84,9 @@ SUBSTITUTIONS = [
 ]
 
 
+FAST_KINDS = ['lord', 'god-bearer', 'icon', 'saint']   # feasts.txt "@ fast"
+
+
 def parse_feasts(slugs_out):
     """feasts.txt => (prayers, rules)."""
     prayers, rules = [], []
@@ -123,6 +126,10 @@ def parse_feasts(slugs_out):
                 rule['lordly'] = True
             elif words[0] == 'additions':
                 rule['additions'] = words[1]
+            elif words[0] == 'fast':
+                if words[1] not in FAST_KINDS:
+                    sys.exit(f'feasts.txt line {number}: "@ fast" is one of {", ".join(FAST_KINDS)}')
+                rule['fast'] = words[1]
             else:
                 sys.exit(f'feasts.txt line {number}: unknown "@ {words[0]}"')
         else:
@@ -184,7 +191,14 @@ def parse_fasting():
                 for d in weekdays(words[1], number):
                     current['day'][d] = text
             elif words[0] == 'feast':
-                current['feast'] = {'days': weekdays(words[1], number), 'text': text}
+                feast = current['feast'] or {'days': weekdays(words[1], number), 'text': '', 'by': {}}
+                if len(words) > 2:
+                    if words[2] not in FAST_KINDS:
+                        sys.exit(f'fasting.txt line {number}: unknown feast kind "{words[2]}"')
+                    feast['by'][words[2]] = text
+                else:
+                    feast['text'] = text
+                current['feast'] = feast
             elif words[0] == 'on' and words[1] == 'week1':
                 current['on'].append({'week1': weekdays(words[2], number), 'text': text})
             elif words[0] == 'on' and words[1] == 'date':

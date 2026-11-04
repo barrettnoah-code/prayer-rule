@@ -488,6 +488,9 @@ class Admin {
 							<?php endforeach; ?>
 							<?php if ( $period['feast'] ) : ?>
 								<li><?php echo esc_html( $period['feast']['text'] ); ?></li>
+								<?php foreach ( (array) ( $period['feast']['by'] ?? array() ) as $line ) : ?>
+									<li><?php echo esc_html( $line ); ?></li>
+								<?php endforeach; ?>
 							<?php endif; ?>
 						</ul>
 					<?php endif; ?>

@@ -11,32 +11,42 @@
 #   @ on-sunday other-short-name  on a Sunday, use that dismissal instead
 #   @ lordly                      a great feast of the Lord (on a Sunday: prayer to the feast, not the Resurrection)
 #   @ additions weekly            the daily additions stay as on an ordinary day (the Sundays of the fathers …)
+#   @ fast lord|god-bearer|icon|saint
+#                                 what kind of feast it is for the Wednesday and Friday fast (fasting.txt
+#                                 "@ feast" lines): the Lord's and the God-bearer's feasts release it for fish;
+#                                 icons and relics, and the other feasts, for oil and wine
 #   ! text                        rubric;  [saint] = the saint of the day
 # The book's "…" endings are written out in full.
 
 === dismissal-sep-01 | Dismissal: Sep 1, the Indiction
+@ fast saint
 @ menaion 9-1
 O Thou who by thine almighty and ineffable wisdom didst establish the beginning of the indiction, that is, of the new year: O Lord Jesus Christ, Son of God, for the prayers of thy most pure Mother, and of her honorable and glorious synaxis in Miasena; and of our venerable father Symeon the Stylite and archimandrite, and of his mother Martha; and of the holy martyr Aithalas; and of the holy forty women, and of holy Ammon the deacon, their teacher; and of the holy martyrs Callistus, Evodus and Hermogenes, brothers according to the flesh; and of Joshua the son of Nun, and of all the saints, have mercy on us and save us, for thou art good and the lover of mankind.
 
 === dismissal-sep-06 | Dismissal: Sep 6, the Archangel Michael
+@ fast saint
 @ menaion 9-6
 O Lord Jesus Christ, Son of God, for the prayers of thy most pure Mother, and through the intercession of the holy and great captain of the hosts, the Archistrategos Michael, and of all the saints, have mercy on us and save us, for thou art good and the lover of mankind.
 
 === dismissal-sep-08 | Dismissal: Sep 8, the Nativity of the God-bearer
+@ fast god-bearer
 @ menaion 9-8
 O Lord Jesus Christ, Son of God, for the prayers of thy most pure Mother, and of her honorable and glorious Nativity, and of all the saints, have mercy on us and save us, for thou art good and the lover of mankind.
 
 === dismissal-sep-13 | Dismissal: Sep 13, the Renewal of the Temple
+@ fast saint
 @ menaion 9-13
 O Thou who didst fulfill all thy dispensation for our sake, and wast well pleased that the holy church be built and renewed by consecration in the name of thy holy Resurrection: O Lord Jesus Christ, Son of God, for the prayers of thy most pure Mother, and of the holy, glorious and all-praised apostles, and of all the saints, have mercy on us and save us, for thou art good and the lover of mankind.
 
 === dismissal-sep-14 | Dismissal: Sep 14, the Exaltation of the Cross of the Lord
+@ fast lord
 @ lordly
 @ menaion 9-14
 @ on-sunday feast
 O Lord Jesus Christ, Son of God, for the prayers of thy most pure Mother, by the power of the honorable and life-giving Cross, and of all the saints, have mercy on us and save us, for thou art good and the lover of mankind.
 
 === dismissal-sep-23 | Dismissal: Sep 23, the Conception of John the Baptist
+@ fast saint
 @ menaion 9-23
 @ menaion 6-24
 @ menaion 8-29
@@ -46,195 +56,238 @@ O Lord Jesus Christ, Son of God, for the prayers of thy most pure Mother, by the
 O Lord Jesus Christ, Son of God, for the prayers of thy most pure Mother, and of the honorable and glorious prophet, forerunner and baptist John, and of all the saints, have mercy on us and save us, for thou art good and the lover of mankind.
 
 === dismissal-sep-25 | Dismissal: Sep 25, the Sign from the Icon of the God-bearer in the City of Pskov
+@ fast icon
 @ menaion 9-25
 O Lord Jesus Christ, Son of God, for the prayers of thy most pure Mother, and of the honorable and glorious sign that came to pass from her icon in the city of Pskov, and of all the saints, have mercy on us and save us, for thou art good and the lover of mankind.
 
 === dismissal-oct-01 | Dismissal: Oct 1, the Protection of the God-bearer
+@ fast god-bearer
 @ menaion 10-1
 O Lord Jesus Christ, Son of God, for the prayers of thy most pure Mother, and of her honorable and glorious Protection, and of all the saints, have mercy on us and save us, for thou art good and the lover of mankind.
 
 === dismissal-oct-11 | Dismissal: Oct 11, the Synaxis of the Holy Fathers
+@ fast saint
 @ additions weekly
 @ sunday 10-11..10-17
 @ on-sunday feast
 O Thou who didst rise from the dead: O Lord Jesus Christ, Son of God, for the prayers of thy most pure Mother, by the power of the honorable and life-giving Cross, and of the holy, glorious and all-praised apostles, and of our fathers among the saints, the ecumenical teachers, who assembled in Nicaea the second time for the destruction of the iconoclasts, and of [saint], whose day it is, and of all the saints, have mercy on us and save us, for thou art good and the lover of mankind.
 
 === dismissal-oct-22 | Dismissal: Oct 22, the Kazan Icon of the God-bearer
+@ fast icon
 @ menaion 10-22
 O Lord Jesus Christ, Son of God, for the prayers of thy most pure Mother, and of the honorable and glorious feast of her wonderworking Kazan icon, for the deliverance of the reigning city of Moscow from Lithuania, and of all the saints, have mercy on us and save us, for thou art good and the lover of mankind.
 
 === dismissal-oct-26 | Dismissal: Oct 26, the Commemoration of the Earthquake
+@ fast saint
 @ menaion 10-26
 O Thou who by thine ineffable power didst shake the earth with a fearful earthquake: O Lord Jesus Christ, Son of God, for the prayers of thy most pure Mother, and of the holy great-martyr Demetrius, and of all the saints, have mercy on us and save us, for thou art good and the lover of mankind.
 
 === dismissal-nov-08 | Dismissal: Nov 8, the Synaxis of the Archangel Michael
+@ fast saint
 @ menaion 11-8
 O Lord Jesus Christ, Son of God, for the prayers of thy most pure Mother, and through the intercession of the holy and great captain of the hosts, the Archistrategos Michael, and of the other holy heavenly bodiless powers, and of all the saints, have mercy on us and save us, for thou art good and the lover of mankind.
 
 === dismissal-nov-21 | Dismissal: Nov 21, the Entry of the God-bearer
+@ fast god-bearer
 @ menaion 11-21
 O Lord Jesus Christ, Son of God, for the prayers of thy most pure Mother, and of her honorable and glorious Entry, and of all the saints, have mercy on us and save us, for thou art good and the lover of mankind.
 
 === dismissal-nov-27 | Dismissal: Nov 27, the Sign of the God-bearer in Novgorod
+@ fast icon
 @ menaion 11-27
 O Lord Jesus Christ, Son of God, for the prayers of thy most pure Mother, and of the honorable and glorious sign that came to pass from her icon in Great Novgorod, and of all the saints, have mercy on us and save us, for thou art good and the lover of mankind.
 
 === dismissal-dec-09 | Dismissal: Dec 9, the Conception of the God-bearer
+@ fast god-bearer
 @ menaion 12-9
 O Lord Jesus Christ, Son of God, for the prayers of thy most pure Mother, and of her honorable and glorious Conception, and of all the saints, have mercy on us and save us, for thou art good and the lover of mankind.
 
 === dismissal-forefathers | Dismissal: Sunday of the Holy Forefathers
+@ fast saint
 @ additions weekly
 @ sunday 12-11..12-17
 @ on-sunday feast
 O Thou who didst rise from the dead: O Lord Jesus Christ, Son of God, for the prayers of thy most pure Mother, by the power of the honorable and life-giving Cross, and of the holy, glorious and all-praised apostles, and of the holy forefathers, and of [saint], whose day it is, and of all the saints, have mercy on us and save us, for thou art good and the lover of mankind.
 
 === dismissal-fathers-before-nativity | Dismissal: Sunday of the Holy Fathers before the Nativity
+@ fast saint
 @ additions weekly
 @ sunday 12-18..12-24
 @ on-sunday feast
 O Thou who didst rise from the dead: O Lord Jesus Christ, Son of God, for the prayers of thy most pure Mother, by the power of the honorable and life-giving Cross, and of the holy, glorious and all-praised apostles, and of the holy fathers, and of [saint], whose day it is, and of all the saints, have mercy on us and save us, for thou art good and the lover of mankind.
 
 === dismissal-dec-25 | Dismissal: Dec 25, the Nativity of Christ
+@ fast lord
 @ lordly
 @ menaion 12-25
 @ on-sunday feast
 O Thou who wast born in Bethlehem of Judaea and didst lie in a manger: O Lord Jesus Christ, Son of God, for the prayers of thy most pure Mother and of all the saints, have mercy on us and save us, for thou art good and the lover of mankind.
 
 === dismissal-dec-26 | Dismissal: Dec 26, the Synaxis of the God-bearer
+@ fast god-bearer
 @ menaion 12-26
 O Thou who wast born in Bethlehem of Judaea and didst lie in a manger: O Lord Jesus Christ, Son of God, for the prayers of thy most pure Mother, and of her honorable and glorious synaxis, and of all the saints, have mercy on us and save us, for thou art good and the lover of mankind.
 
 === dismissal-sunday-after-nativity | Dismissal: Sunday after the Nativity of Christ
+@ fast saint
 @ additions weekly
 @ sunday 12-26..12-31
 @ on-sunday feast
 O Thou who didst rise from the dead: O Lord Jesus Christ, Son of God, for the prayers of thy most pure Mother, by the power of the honorable and life-giving Cross, and of the holy, glorious and all-praised apostles, and of the holy and righteous ancestors of God, Joseph the betrothed, and David the king, and James thy brother according to the flesh, and of [saint], whose day it is, and of all the saints, have mercy on us and save us, for thou art good and the lover of mankind.
 
 === dismissal-jan-01 | Dismissal: Jan 1, the Circumcision of the Lord
+@ fast lord
 @ menaion 1-1
 O Thou who according to the law didst receive circumcision on the eighth day: O Lord Jesus Christ, Son of God, for the prayers of thy most pure Mother, and of our father among the saints Basil the Great, archbishop of Caesarea in Cappadocia, and of all the saints, have mercy on us and save us, for thou art good and the lover of mankind.
 
 === dismissal-jan-06 | Dismissal: Jan 6, the Theophany of the Lord
+@ fast lord
 @ lordly
 @ menaion 1-6
 @ on-sunday feast
 O Thou who wast baptized by John in the Jordan: O Lord Jesus Christ, Son of God, for the prayers of thy most pure Mother and of all the saints, have mercy on us and save us, for thou art good and the lover of mankind.
 
 === dismissal-jan-07 | Dismissal: Jan 7, the Synaxis of John the Baptist
+@ fast saint
 @ menaion 1-7
 O Thou who wast baptized by John in the Jordan: O Lord Jesus Christ, Son of God, for the prayers of thy most pure Mother, and of the honorable and glorious prophet, forerunner and baptist John, and of all the saints, have mercy on us and save us, for thou art good and the lover of mankind.
 
 === dismissal-feb-02 | Dismissal: Feb 2, the Meeting of the Lord
+@ fast lord
 @ menaion 2-2
 O Thou who wast held in the arms of righteous Symeon: O Lord Jesus Christ, Son of God, for the prayers of thy most pure Mother and of all the saints, have mercy on us and save us, for thou art good and the lover of mankind.
 
 === dismissal-mar-25 | Dismissal: Mar 25, the Annunciation of the God-bearer
+@ fast god-bearer
 @ menaion 3-25
 O Lord Jesus Christ, Son of God, for the prayers of thy most pure Mother, and of her honorable and glorious Annunciation, and of all the saints, have mercy on us and save us, for thou art good and the lover of mankind.
 
 === dismissal-mar-26 | Dismissal: Mar 26, the Synaxis of the Archangel Gabriel
+@ fast saint
 @ menaion 3-26
 @ menaion 7-13
 O Lord Jesus Christ, Son of God, for the prayers of thy most pure Mother, and through the intercession of the holy and great captain of the hosts, the Archistrategos Gabriel, and of all the saints, have mercy on us and save us, for thou art good and the lover of mankind.
 
 === dismissal-may-07 | Dismissal: May 7, the Commemoration of the Sign of the Cross of the Lord
+@ fast lord
 @ menaion 5-7
 O Lord Jesus Christ, Son of God, for the prayers of thy most pure Mother, by the power of the honorable and life-giving Cross, and of [saint], whose day it is, and of all the saints, have mercy on us and save us, for thou art good and the lover of mankind.
 
 === dismissal-may-21 | Dismissal: May 21, the Meeting of the Wonderworking Vladimir Icon
+@ fast icon
 @ menaion 5-21
 @ menaion 8-26
 @ menaion 6-23
 O Lord Jesus Christ, Son of God, for the prayers of thy most pure Mother, and of the honorable and glorious meeting of her wonderworking Vladimir icon, and of all the saints, have mercy on us and save us, for thou art good and the lover of mankind.
 
 === dismissal-jun-26 | Dismissal: Jun 26, the Appearance of the Tikhvin Icon of the Hodegetria
+@ fast icon
 @ menaion 6-26
 O Lord Jesus Christ, Son of God, for the prayers of thy most pure Mother, and of the honorable and glorious appearance of her wonderworking icon at Tikhvin, and of all the saints, have mercy on us and save us, for thou art good and the lover of mankind.
 
 === dismissal-jun-29 | Dismissal: Jun 29, Peter and Paul
+@ fast saint
 @ menaion 6-29
 O Lord Jesus Christ, Son of God, for the prayers of thy most pure Mother, and of the holy, glorious and all-praised chief apostles Peter and Paul, and of all the saints, have mercy on us and save us, for thou art good and the lover of mankind.
 
 === dismissal-jul-02 | Dismissal: Jul 2, the Placing of the Robe of the God-bearer
+@ fast icon
 @ menaion 7-2
 O Lord Jesus Christ, Son of God, for the prayers of thy most pure Mother, and of the honorable and glorious placing of her robe in the church at Blachernae, and of all the saints, have mercy on us and save us, for thou art good and the lover of mankind.
 
 === dismissal-jul-08 | Dismissal: Jul 8, the Appearance of the Kazan Icon of the God-bearer
+@ fast icon
 @ menaion 7-8
 O Lord Jesus Christ, Son of God, for the prayers of thy most pure Mother, and of the honorable and glorious appearance of her wonderworking icon in the city of Kazan, and of all the saints, have mercy on us and save us, for thou art good and the lover of mankind.
 
 === dismissal-jul-09 | Dismissal: Jul 9, the Appearance of the Mozhaisk Icon of the God-bearer
+@ fast icon
 @ menaion 7-9
 O Lord Jesus Christ, Son of God, for the prayers of thy most pure Mother, and of the honorable and glorious appearance of her wonderworking icon in the city of Mozhaisk, which is at Kolocha, and of all the saints, have mercy on us and save us, for thou art good and the lover of mankind.
 
 === dismissal-jul-10 | Dismissal: Jul 10, the Placing of the Robe of the Lord
+@ fast icon
 @ menaion 7-10
 @ on-sunday dismissal-jul-10-sunday
 O Thou who didst deign to wear thine honorable, glorious and healing robe, that is, the tunic, and that it should be laid in the glorious and most renowned reigning city of Moscow: O Lord Jesus Christ, Son of God, for the prayers of thy most pure Mother and of all the saints, have mercy on us and save us, for thou art good and the lover of mankind.
 
 === dismissal-jul-10-sunday | Dismissal: Jul 10, the Placing of the Robe of the Lord, on a Sunday
+@ fast icon
 O Thou who didst rise from the dead: O Lord Jesus Christ, Son of God, for the prayers of thy most pure Mother, by the power of the honorable and life-giving Cross, and by the placing of the honorable, glorious and healing robe, that is, the tunic, in the glorious and most renowned reigning city of Moscow, and of the holy, glorious and all-praised apostles, and of all the saints, have mercy on us and save us, for thou art good and the lover of mankind.
 
 === dismissal-jul-16 | Dismissal: Jul 16, the Synaxis of the Holy Fathers
+@ fast saint
 @ additions weekly
 @ sunday 7-13..7-19
 @ on-sunday feast
 O Thou who didst rise from the dead: O Lord Jesus Christ, Son of God, for the prayers of thy most pure Mother, by the power of the honorable and life-giving Cross, and of the holy, glorious and all-praised apostles, and of our holy and God-bearing fathers, the ecumenical teachers, who assembled at the six ecumenical councils for the destruction of heresies, and of [saint], whose day it is, and of all the saints, have mercy on us and save us, for thou art good and the lover of mankind.
 
 === dismissal-jul-28 | Dismissal: Jul 28, the Appearance of the Smolensk Icon of the God-bearer, the Hodegetria
+@ fast icon
 @ menaion 7-28
 O Lord Jesus Christ, Son of God, for the prayers of thy most pure Mother, and of the honorable and glorious appearance of her wonderworking Smolensk icon, the Hodegetria, and of all the saints, have mercy on us and save us, for thou art good and the lover of mankind.
 
 === dismissal-aug-01 | Dismissal: Aug 1, the All-Merciful Saviour
+@ fast lord
 @ menaion 8-1
 O Lord Jesus Christ, Son of God, for the prayers of thy most pure Mother, by the power of the honorable and life-giving Cross, and of the holy martyrs, the seven Maccabees, brothers according to the flesh, and of Eleazar their teacher, and of Solomonia their mother, and of all the saints, have mercy on us and save us, for thou art good and the lover of mankind.
 
 === dismissal-aug-06 | Dismissal: Aug 6, the Transfiguration of the Lord
+@ fast lord
 @ lordly
 @ menaion 8-6
 @ on-sunday feast
 O Thou who wast transfigured in majestic glory on Mount Tabor before thy disciples: O Lord Jesus Christ, Son of God, for the prayers of thy most pure Mother, and of the holy, glorious and all-praised apostles, and of all the saints, have mercy on us and save us, for thou art good and the lover of mankind.
 
 === dismissal-aug-15 | Dismissal: Aug 15, the Dormition of the God-bearer
+@ fast god-bearer
 @ menaion 8-15
 O Lord Jesus Christ, Son of God, for the prayers of thy most pure Mother, and of her honorable and glorious Dormition, and of the holy, glorious and all-praised apostles, and of all the saints, have mercy on us and save us, for thou art good and the lover of mankind.
 
 === dismissal-aug-16 | Dismissal: Aug 16, the Image Not Made by Hands
+@ fast icon
 @ menaion 8-16
 O Thou who by thine ineffable providence, before thy voluntary Passion, wast well pleased to imprint the most holy image not made by hands of thy most pure and divine-human face upon a cloth, that is, the holy Mandylion: O Lord Jesus Christ, Son of God, for the prayers of thy most pure Mother and of all the saints, have mercy on us and save us, for thou art good and the lover of mankind.
 
 === dismissal-aug-31 | Dismissal: Aug 31, the Placing of the Belt of the Most Holy God-bearer
+@ fast icon
 @ menaion 8-31
 O Lord Jesus Christ, Son of God, for the prayers of thy most pure Mother, and of the honorable and glorious placing of her belt in Chalkoprateia, and of all the saints, have mercy on us and save us, for thou art good and the lover of mankind.
 
 # ---------------------------------------------------------------- Triodion
 
 === dismissal-lazarus-saturday | Dismissal: Lazarus Saturday
+@ fast lord
 @ pascha -8
 O Thou who didst come to Bethany to raise up thy friend, righteous Lazarus: O Lord Jesus Christ, Son of God, for the prayers of thy most pure Mother and of all the saints, have mercy on us and save us, for thou art good and the lover of mankind.
 
 === dismissal-palm-sunday | Dismissal: Palm Sunday
+@ fast lord
 @ lordly
 @ pascha -7
 @ on-sunday feast
 O Thou who ridest upon the throne of the cherubim, and wast pleased to sit upon the colt of an ass: O Lord Jesus Christ, Son of God, for the prayers of thy most pure Mother and of all the saints, have mercy on us and save us, for thou art good and the lover of mankind.
 
 === dismissal-palm-sunday-another | Dismissal: Palm Sunday (another)
+@ fast lord
 O Thou who didst come into the city of Jerusalem, and didst receive praise from the children of the Hebrews: O Lord Jesus Christ, Son of God, for the prayers of thy most pure Mother and of all the saints, have mercy on us and save us, for thou art good and the lover of mankind.
 
 === dismissal-holy-week | Dismissal: Holy Week, until Great Saturday
+@ fast lord
 @ pascha -6..-2
 O Thou who didst come to thy voluntary Passion: O Lord Jesus Christ, Son of God, for the prayers of thy most pure Mother and of all the saints, have mercy on us and save us, for thou art good and the lover of mankind.
 
 === dismissal-great-saturday | Dismissal: Great Saturday
+@ fast lord
 @ pascha -1
 O Thou who for our sake wast of thine own will laid in the tomb: O Lord Jesus Christ, Son of God, for the prayers of thy most pure Mother and of all the saints, have mercy on us and save us, for thou art good and the lover of mankind.
 
 === dismissal-great-saturday-another | Dismissal: Great Saturday (another)
+@ fast lord
 O Thou who for us men and for our salvation didst humble thyself, and wast clothed in our poverty, and of thine own will didst endure the passion, and didst taste death, and wast laid in the tomb: O Lord Jesus Christ, Son of God, for the prayers of thy most pure Mother and of all the saints, have mercy on us and save us, for thou art good and the lover of mankind.
 
 === dismissal-pascha | Dismissal: Pascha and Bright Week (and the leave-taking of Pascha, at the Hours)
+@ fast lord
 @ pascha 0..6
 @ services all
 @ on-sunday feast
@@ -242,32 +295,38 @@ O Thou who for us men and for our salvation didst humble thyself, and wast cloth
 O Thou who didst rise from the dead: O Lord Jesus Christ, Son of God, for the prayers of thy most pure Mother, by the power of the honorable and life-giving Cross, and of the holy, glorious and all-praised apostles, and of all the saints, have mercy on us and save us, for thou art good and the lover of mankind.
 
 === dismissal-thomas-sunday | Dismissal: Thomas Sunday
+@ fast lord
 @ additions weekly
 @ pascha 7
 @ on-sunday feast
 O Thou who didst come in to thy disciples when the doors were shut, and didst assure Thomas: O Lord Jesus Christ, Son of God, for the prayers of thy most pure Mother, by the power of the honorable and life-giving Cross, and of the holy, glorious and all-praised apostles, and of all the saints, have mercy on us and save us, for thou art good and the lover of mankind.
 
 === dismissal-myrrhbearers | Dismissal: Sunday of the Myrrhbearers
+@ fast lord
 @ additions weekly
 @ pascha 14
 @ on-sunday feast
 O Thou who didst rise from the dead: O Lord Jesus Christ, Son of God, for the prayers of thy most pure Mother, by the power of the honorable and life-giving Cross, and of the holy, glorious and all-praised apostles, and of the holy and righteous Joseph of Arimathaea, and Nicodemus, and of the holy myrrhbearing women, and of [saint], whose day it is, and of all the saints, have mercy on us and save us, for thou art good and the lover of mankind.
 
 === dismissal-mid-pentecost | Dismissal: Mid-Pentecost
+@ fast lord
 @ pascha 24
 O Thou who at the midfeast of Pentecost didst enter the temple and teach the Pharisees and Sadducees: O Lord Jesus Christ, Son of God, for the prayers of thy most pure Mother and of all the saints, have mercy on us and save us, for thou art good and the lover of mankind.
 
 === dismissal-ascension | Dismissal: Ascension
+@ fast lord
 @ pascha 39
 O Thou who didst ascend in glory into the heavens: O Lord Jesus Christ, Son of God, for the prayers of thy most pure Mother, and of the holy, glorious and all-praised apostles, and of all the saints, have mercy on us and save us, for thou art good and the lover of mankind.
 
 === dismissal-seventh-sunday-pascha | Dismissal: Seventh Sunday after Pascha
+@ fast saint
 @ additions weekly
 @ pascha 42
 @ on-sunday feast
 O Thou who didst rise from the dead: O Lord Jesus Christ, Son of God, for the prayers of thy most pure Mother, by the power of the honorable and life-giving Cross, and of the holy, glorious and all-praised apostles, and of our holy and God-bearing fathers, the three hundred and eighteen ecumenical teachers, who assembled in Nicaea the first time against the godless Arius, and of [saint], whose day it is, and of all the saints, have mercy on us and save us, for thou art good and the lover of mankind.
 
 === dismissal-pentecost | Dismissal: Pentecost
+@ fast lord
 @ lordly
 @ pascha 49
 @ on-sunday feast
@@ -275,5 +334,6 @@ O Thou who didst rise from the dead: O Lord Jesus Christ, Son of God, for the pr
 O Thou who in the form of fiery tongues didst send down the most Holy Spirit on the day of Pentecost upon thy holy disciples and apostles: O Lord Jesus Christ, Son of God, for the prayers of thy most pure Mother, and of the holy, glorious and all-praised apostles, and of all the saints, have mercy on us and save us, for thou art good and the lover of mankind.
 
 === dismissal-pentecost-vespers | Dismissal: Pentecost Sunday at Vespers (Monday of the Holy Spirit)
+@ fast lord
 @ pascha 50 vespers
 O Thou who didst empty thyself from the Father's divine bosom, and didst come down from heaven to earth, and didst take upon thyself our whole human nature and deify it, and with it didst straightway ascend into the heavens and sit at the right hand of God the Father; and who didst send down the divine and holy, life-giving and almighty, consubstantial and co-enthroned Spirit, equal in glory and in worship, upon thy sacred and holy disciples and apostles, and didst enlighten them thereby, and through them didst enlighten the whole world: O Lord Jesus Christ, Son of God, for the prayers of thy most pure Mother, and of thine all-glorious and all-praised Spirit-bearing holy disciples and apostles, and of all the saints, have mercy on us and save us, for thou art good and the lover of mankind.
