@@ -34,6 +34,21 @@ nastavnik sees the rule, the reports and the record, and can send messages
 and suggested changes to the rule; the member accepts or declines each
 suggestion. Either side can end a share.
 
+### Who may use it (Prayer Rule → Settings)
+
+- **Who may read**: everyone without logging in (the default), anyone
+  logged in, or only those who may keep a private rule. Readers without a
+  private rule choose their portion and Scripture bookmarks on the page,
+  kept only in their browser.
+- **Who may keep a private rule**: anyone logged in, or members of chosen
+  Paid Memberships Pro levels. This covers the record and nastavnik sharing.
+  A nastavnik is found only by exact username or email, only by such a
+  member, and only among such members.
+
+For visitors to read, the page with `[prayer_rule]` must not itself be
+restricted by Paid Memberships Pro. Visitors send no REST nonce, so a page
+cache serving the page to them does no harm.
+
 ## Privacy
 
 Each member's rule and record are encrypted in their own browser

@@ -872,7 +872,16 @@ class Admin {
 				<?php wp_nonce_field( 'prayer_rule_settings' ); ?>
 				<table class="form-table" role="presentation">
 					<tr>
-						<th scope="row"><?php esc_html_e( 'Who may use it', 'prayer-rule' ); ?></th>
+						<th scope="row"><?php esc_html_e( 'Who may read', 'prayer-rule' ); ?></th>
+						<td>
+							<label><input type="radio" name="reading" value="public" <?php checked( 'public', $access['reading'] ); ?>> <?php esc_html_e( 'Everyone, without logging in', 'prayer-rule' ); ?></label><br>
+							<label><input type="radio" name="reading" value="logged_in" <?php checked( 'logged_in', $access['reading'] ); ?>> <?php esc_html_e( 'Anyone logged in', 'prayer-rule' ); ?></label><br>
+							<label><input type="radio" name="reading" value="members" <?php checked( 'members', $access['reading'] ); ?>> <?php esc_html_e( 'Only those who may keep a private rule (below)', 'prayer-rule' ); ?></label>
+							<p class="description"><?php esc_html_e( 'The services, the Psalter and the Scripture reading on the reading page. Without a private rule, a reader\'s portion and bookmarks are kept only in their browser.', 'prayer-rule' ); ?></p>
+						</td>
+					</tr>
+					<tr>
+						<th scope="row"><?php esc_html_e( 'Who may keep a private rule', 'prayer-rule' ); ?></th>
 						<td>
 							<label><input type="radio" name="mode" value="logged_in" <?php checked( 'logged_in', $access['mode'] ); ?>> <?php esc_html_e( 'Anyone logged in', 'prayer-rule' ); ?></label><br>
 							<label><input type="radio" name="mode" value="levels" <?php checked( 'levels', $access['mode'] ); ?> <?php disabled( ! $levels ); ?>> <?php esc_html_e( 'Members with one of these levels:', 'prayer-rule' ); ?></label>
@@ -885,7 +894,7 @@ class Admin {
 							<?php else : ?>
 								<p class="description" style="margin-left:1.8em"><?php esc_html_e( 'Paid Memberships Pro is not active, or has no levels.', 'prayer-rule' ); ?></p>
 							<?php endif; ?>
-							<p class="description"><?php esc_html_e( 'Administrators can always use it.', 'prayer-rule' ); ?></p>
+							<p class="description"><?php esc_html_e( 'The private rule, its record and sharing with a nastavnik. Only these people can find one another to share. Administrators always may.', 'prayer-rule' ); ?></p>
 						</td>
 					</tr>
 					<tr>
@@ -947,7 +956,8 @@ class Admin {
 		if ( 'levels' === $mode && ! $levels ) {
 			self::back( 'prayer-rule-settings', __( 'Choose at least one level, or allow anyone logged in. Nothing was saved.', 'prayer-rule' ), true );
 		}
-		Access::save( $mode, $levels );
+		$reading = isset( $_POST['reading'] ) ? sanitize_key( $_POST['reading'] ) : 'public';
+		Access::save( $mode, $levels, $reading );
 		$default = isset( $_POST['default_translation'] ) ? sanitize_key( $_POST['default_translation'] ) : '';
 		if ( isset( Psalter::translations()[ $default ] ) ) {
 			update_option( Psalter::OPT_DEFAULT, $default );

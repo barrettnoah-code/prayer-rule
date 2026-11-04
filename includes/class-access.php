@@ -1,7 +1,14 @@
 <?php
 /**
- * Who may use the prayer rule: logged-in users, optionally limited to
- * chosen Paid Memberships Pro levels. Administrators always may.
+ * Who may use the prayer rule.
+ *
+ * Two parts, set apart in Prayer Rule → Settings:
+ *   - the reading (services, Psalter, Scripture): everyone, logged-in users,
+ *     or the same people as the private rule (can_read);
+ *   - the private rule, its record and sharing with a nastavnik: logged-in
+ *     users, optionally limited to chosen Paid Memberships Pro levels
+ *     (can_use). Only they can find one another to share.
+ * Administrators always may.
  */
 
 namespace PrayerRule;
@@ -14,28 +21,52 @@ class Access {
 
 	const OPTION = 'prayer_rule_access';
 
-	/** Settings with defaults: mode 'logged_in' | 'levels', levels = ids. */
+	/** Settings with defaults: mode 'logged_in' | 'levels', levels = ids, reading 'public' | 'logged_in' | 'members'. */
 	public static function settings() {
 		$saved = get_option( self::OPTION, array() );
 		return wp_parse_args(
 			is_array( $saved ) ? $saved : array(),
 			array(
-				'mode'   => 'logged_in',
-				'levels' => array(),
+				'mode'    => 'logged_in',
+				'levels'  => array(),
+				'reading' => 'public',
 			)
 		);
 	}
 
-	public static function save( $mode, $levels ) {
-		$mode   = ( 'levels' === $mode ) ? 'levels' : 'logged_in';
-		$levels = array_values( array_filter( array_map( 'absint', (array) $levels ) ) );
+	public static function save( $mode, $levels, $reading = 'public' ) {
+		$mode    = ( 'levels' === $mode ) ? 'levels' : 'logged_in';
+		$levels  = array_values( array_filter( array_map( 'absint', (array) $levels ) ) );
+		$reading = in_array( $reading, array( 'public', 'logged_in', 'members' ), true ) ? $reading : 'public';
 		update_option(
 			self::OPTION,
 			array(
-				'mode'   => $mode,
-				'levels' => $levels,
+				'mode'    => $mode,
+				'levels'  => $levels,
+				'reading' => $reading,
 			)
 		);
+	}
+
+	/** REST permission for the reading (services, Psalter, Scripture). */
+	public static function rest_read_permission() {
+		return self::can_read( get_current_user_id() );
+	}
+
+	/** May the user (0: a visitor) read the services and the Scripture? */
+	public static function can_read( $user_id = null ) {
+		$user_id = null === $user_id ? get_current_user_id() : ( is_numeric( $user_id ) ? (int) $user_id : -1 );
+		if ( $user_id < 0 ) {
+			return false;
+		}
+		$reading = self::settings()['reading'];
+		if ( 'public' === $reading ) {
+			return true;
+		}
+		if ( 'logged_in' === $reading ) {
+			return $user_id > 0;
+		}
+		return self::can_use( $user_id );
 	}
 
 	/** True when Paid Memberships Pro is active. */

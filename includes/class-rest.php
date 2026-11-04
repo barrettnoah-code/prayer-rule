@@ -1,7 +1,8 @@
 <?php
 /**
- * Read-only REST routes for the members' reader (phase 4 uses them).
- * Everything here needs a user who may use the prayer rule.
+ * Read-only REST routes for the reading page: the services, the Psalter
+ * and the Scripture. Open to whoever may read (Access::can_read), visitors
+ * included when the reading is public.
  */
 
 namespace PrayerRule;
@@ -15,7 +16,7 @@ class Rest {
 	const NS = 'prayer-rule/v1';
 
 	public static function register() {
-		$member = array( 'PrayerRule\\Access', 'rest_permission' );
+		$member = array( 'PrayerRule\\Access', 'rest_read_permission' );   // the private rule's routes are in Vault and Sharing
 		register_rest_route(
 			self::NS,
 			'/translations',

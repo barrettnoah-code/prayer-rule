@@ -55,6 +55,8 @@
 	function unb64(str) { var s = atob(str), b = new Uint8Array(s.length); for (var i = 0; i < s.length; i++) { b[i] = s.charCodeAt(i); } return b; }
 	function rand(n) { return crypto.getRandomValues(new Uint8Array(n)); }
 	function now() { return new Date().toISOString(); }
+	/** JSON headers for the site; the nonce only for a logged-in reader (a visitor needs none, and a cached one would be stale). */
+	function jsonHeaders() { var h = { 'Content-Type': 'application/json' }; if (C.nonce) { h['X-WP-Nonce'] = C.nonce; } return h; }
 	function serviceByKey(k) { return C.services.filter(function (s) { return s.key === k; })[0]; }
 
 	// ------------------------------------------------------------ crypto
@@ -86,11 +88,12 @@
 	var V = { exists: false, version: 0, envelope: null, key: null, raw: null, rule: null, log: null, priv: null, pub: '' };
 
 	async function api(method, body) {
-		var r = await fetch(C.vault, { method: method, credentials: 'same-origin', cache: 'no-store', headers: { 'Content-Type': 'application/json', 'X-WP-Nonce': C.nonce }, body: body ? JSON.stringify(body) : undefined });
+		var r = await fetch(C.vault, { method: method, credentials: 'same-origin', cache: 'no-store', headers: jsonHeaders(), body: body ? JSON.stringify(body) : undefined });
 		var data = await r.json().catch(function () { return {}; });
 		return { status: r.status, data: data };
 	}
 	async function loadVault() {
+		if (!C.private) { return; }                // a visitor, or a reader who may not keep a private rule
 		var r = await api('GET');
 		V.exists = !!r.data.exists; V.version = r.data.version || 0; V.envelope = r.data.envelope || null;
 		if (!V.exists) { V.key = null; V.rule = null; V.log = null; try { sessionStorage.removeItem(SESSION); } catch (e) {} return; }
@@ -125,7 +128,7 @@
 	}
 	async function publishKey() {
 		if (V.pub && V.pub !== C.mykey) {
-			var r = await fetch(C.sharing + 'key', { method: 'PUT', credentials: 'same-origin', headers: { 'Content-Type': 'application/json', 'X-WP-Nonce': C.nonce }, body: JSON.stringify({ key: V.pub }) });
+			var r = await fetch(C.sharing + 'key', { method: 'PUT', credentials: 'same-origin', headers: jsonHeaders(), body: JSON.stringify({ key: V.pub }) });
 			if (r.ok) { C.mykey = V.pub; }
 		}
 	}
@@ -391,6 +394,16 @@
 		account.innerHTML = '';
 		if (V.key) {
 			drawNotice();
+			return;
+		}
+		if (!C.private) {
+			// The reading is open to them; the private rule is for those logged in (and, if so set, members).
+			var why = C.login ? 'Log in to keep a private rule, mark each service as kept, and share your rule with a nastavnik. ' : 'Members can keep a private rule, mark each service as kept, and share their rule with a nastavnik. ';
+			var links = [];
+			if (C.login) { links.push(el('a', { href: C.login, text: 'Log in' })); }
+			if (C.register) { links.push(' or ', el('a', { href: C.register, text: 'create an account' })); }
+			if (!C.login && C.join) { links.push(el('a', { href: C.join, text: 'Become a member' })); }
+			account.appendChild(el('p', { class: 'pr-lockline' }, [why].concat(links).concat(links.length ? ['.'] : [])));
 			return;
 		}
 		if (!V.exists) {
@@ -887,7 +900,7 @@
 		return q ? u + (u.indexOf('?') >= 0 ? '&' : '?') + q : u;
 	}
 	async function shareApi(method, path, body) {
-		var r = await fetch(restUrl(C.sharing, path), { method: method, credentials: 'same-origin', cache: 'no-store', headers: { 'Content-Type': 'application/json', 'X-WP-Nonce': C.nonce }, body: body ? JSON.stringify(body) : undefined });
+		var r = await fetch(restUrl(C.sharing, path), { method: method, credentials: 'same-origin', cache: 'no-store', headers: jsonHeaders(), body: body ? JSON.stringify(body) : undefined });
 		var data = await r.json().catch(function () { return {}; });
 		return { status: r.status, data: data };
 	}
@@ -1207,7 +1220,7 @@
 		out.innerHTML = ''; out.appendChild(el('p', { class: 'pr-note', text: 'Loading…' }));
 		fetch(C.rest + svc.key + '/reading', {
 			method: 'POST', credentials: 'same-origin',
-			headers: { 'Content-Type': 'application/json', 'X-WP-Nonce': C.nonce },
+			headers: jsonHeaders(),
 			body: JSON.stringify({ date: UI.day, translation: r.translation, verses: r.verses ? 1 : 0, p: p })
 		}).then(function (res) { if (!res.ok) { throw res; } return res.json(); }).then(function (data) {
 			if (mine !== req) { return; }
@@ -1251,7 +1264,7 @@
 		items.forEach(function (it) { it.list.forEach(function (bc) { list.push({ s: it.sec.key, t: it.t, b: bc[0], c: bc[1] }); }); });
 		return fetch(C.scripture, {
 			method: 'POST', credentials: 'same-origin',
-			headers: { 'Content-Type': 'application/json', 'X-WP-Nonce': C.nonce },
+			headers: jsonHeaders(),
 			body: JSON.stringify({ date: UI.day, verses: r.verses ? 1 : 0, items: list })
 		}).then(function (res) { if (!res.ok) { throw res; } return res.json(); });
 	}

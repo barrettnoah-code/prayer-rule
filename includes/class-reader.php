@@ -30,13 +30,14 @@ class Reader {
 	}
 
 	public static function shortcode() {
-		if ( ! is_user_logged_in() ) {
-			return '<div class="prayer-rule-reader"><p>' . esc_html__( 'Please log in to use the prayer rule.', 'prayer-rule' ) . ' <a href="' . esc_url( wp_login_url( get_permalink() ) ) . '">' . esc_html__( 'Log in', 'prayer-rule' ) . '</a></p></div>';
+		$join = function_exists( 'pmpro_url' ) ? (string) pmpro_url( 'levels' ) : '';
+		if ( ! Access::can_read() ) {
+			if ( ! is_user_logged_in() ) {
+				return '<div class="prayer-rule-reader"><p>' . esc_html__( 'Please log in to use the prayer rule.', 'prayer-rule' ) . ' <a href="' . esc_url( wp_login_url( get_permalink() ) ) . '">' . esc_html__( 'Log in', 'prayer-rule' ) . '</a></p></div>';
+			}
+			return '<div class="prayer-rule-reader"><p>' . esc_html__( 'The prayer rule is for members.', 'prayer-rule' ) . ( $join ? ' <a href="' . esc_url( $join ) . '">' . esc_html__( 'Become a member', 'prayer-rule' ) . '</a>' : '' ) . '</p></div>';
 		}
-		if ( ! Access::can_use() ) {
-			$link = function_exists( 'pmpro_url' ) ? pmpro_url( 'levels' ) : '';
-			return '<div class="prayer-rule-reader"><p>' . esc_html__( 'The prayer rule is for members.', 'prayer-rule' ) . ( $link ? ' <a href="' . esc_url( $link ) . '">' . esc_html__( 'Become a member', 'prayer-rule' ) . '</a>' : '' ) . '</p></div>';
-		}
+		$private = Access::can_use();
 		$services = array();
 		foreach ( Services::all() as $key => $service ) {
 			if ( ! $service['order'] ) {
@@ -59,16 +60,21 @@ class Reader {
 		}
 		$config = array(
 			'rest'         => esc_url_raw( rest_url( Rest::NS . '/services/' ) ),
-			'nonce'        => wp_create_nonce( 'wp_rest' ),
+			// A visitor sends no nonce: a page cached for visitors would carry a stale one, and they need none.
+			'nonce'        => is_user_logged_in() ? wp_create_nonce( 'wp_rest' ) : '',
+			'private'      => $private,
+			'login'        => is_user_logged_in() ? '' : wp_login_url( get_permalink() ),
+			'register'     => is_user_logged_in() || ! get_option( 'users_can_register' ) ? '' : wp_registration_url(),
+			'join'         => $join,
 			'services'     => $services,
 			'translations' => Psalter::translations(),
 			'translation'  => Psalter::default_translation(),
 			'verses'       => Render::show_verse_numbers(),
 			'evening'      => self::evening_hour(),
 			'user'         => get_current_user_id(),
-			'vault'        => esc_url_raw( rest_url( Rest::NS . '/vault' ) ),
-			'sharing'      => esc_url_raw( rest_url( Rest::NS . '/sharing/' ) ),
-			'mykey'        => (string) get_user_meta( get_current_user_id(), Sharing::META_KEY, true ),
+			'vault'        => $private ? esc_url_raw( rest_url( Rest::NS . '/vault' ) ) : '',
+			'sharing'      => $private ? esc_url_raw( rest_url( Rest::NS . '/sharing/' ) ) : '',
+			'mykey'        => $private ? (string) get_user_meta( get_current_user_id(), Sharing::META_KEY, true ) : '',
 			'scripture'    => esc_url_raw( rest_url( Rest::NS . '/scripture' ) ),
 			'bibles'       => Bible::for_reader(),
 		);
