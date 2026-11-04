@@ -121,6 +121,15 @@ books; the Psalms optional), the translations, and where each section has got
 to. Marking the reading as done moves the bookmarks on; the reading starts
 again at the end.
 
+Each section can be read every day, every other day, once a week on a set day,
+or once a week on any day of the week (Sunday to Saturday). Sections not due
+are listed under the day's reading with when they come next.
+
+My record counts the reading apart from the services: a Scripture table (read
+of due, per section), Scripture columns in the week, a mark in the month, and
+the chapters in the CSV. A nastavnik sees the same in the shared record and can
+suggest chapters and how often for each section.
+
 ## In the admin (Prayer Rule menu)
 
 - **Prayers** – texts written on the site, each with a *short name*

@@ -217,6 +217,35 @@
 		{ key: 'apostle', name: 'The Apostle', groups: ['apostle'], testament: 'nt', start: 'ACT' },
 		{ key: 'old', name: 'The Old Testament', groups: ['ot', 'deutero'], testament: 'ot', start: 'GEN' }
 	];
+	// How often a section is read: every day, every other day (counted from x.anchor),
+	// once a week on a set day (x.wd), or once a week on any day.
+	var FREQS = ['daily', 'alternate', 'weekday', 'weekly'];
+	var WEEKDAYS = []; (function () { for (var i = 0; i < 7; i++) { WEEKDAYS.push(new Date(2026, 10, 1 + i).toLocaleDateString(undefined, { weekday: 'long' })); } })();   // Nov 1, 2026 is a Sunday
+	function dayNum(d) { return Math.round(parseIso(d) / 86400000); }
+	function freqText(x) {
+		var n = x.per + (x.per === 1 ? ' chapter' : ' chapters');
+		if (x.freq === 'alternate') { return n + ' every other day'; }
+		if (x.freq === 'weekday') { return n + ' every ' + WEEKDAYS[x.wd]; }
+		if (x.freq === 'weekly') { return n + ' once a week'; }
+		return n + ' a day';
+	}
+	/** Is a section due on a day by its frequency alone (once-a-week-any-day sections always are)? */
+	function dueOn(x, day) {
+		if (x.freq === 'alternate') { return ((dayNum(day) - dayNum(x.anchor || day)) % 2 + 2) % 2 === 0; }
+		if (x.freq === 'weekday') { return parseIso(day).getDay() === x.wd; }
+		return true;
+	}
+	/** Read on another day of the same week (Sunday to Saturday)? */
+	function readInWeek(log, key, day) {
+		if (!log) { return false; }
+		var start = weekStart(day);
+		for (var i = 0; i < 7; i++) {
+			var d = addDays(start, i), e = d !== day && log.entries[entryKey(d, 'reading')];
+			if (e && e.kept && e.read && e.read[key]) { return true; }
+		}
+		return false;
+	}
+	function nextDue(x, day) { for (var i = 1; i <= 7; i++) { if (dueOn(x, addDays(day, i))) { return addDays(day, i); } } return addDays(day, 1); }
 	function bibles(testament) { return (C.bibles || []).filter(function (b) { return b.testaments.indexOf(testament) >= 0; }); }
 	function bible(id) { return (C.bibles || []).filter(function (b) { return b.id === id; })[0]; }
 	function readingOf(r) {
@@ -226,6 +255,8 @@
 		SECTIONS.forEach(function (sec) {
 			var x = rd[sec.key] || (rd[sec.key] = {});
 			if (typeof x.per !== 'number') { x.per = 0; }
+			if (FREQS.indexOf(x.freq) < 0) { x.freq = 'daily'; }
+			if (typeof x.wd !== 'number') { x.wd = 6; }
 			if (!x.b) { x.b = sec.start; x.c = 1; }
 			if (sec.key === 'old' && typeof x.psalms !== 'boolean') { x.psalms = true; }
 		});
@@ -253,12 +284,18 @@
 		var after = all[(i + n) % all.length];
 		return { list: list, next: { b: after[0], c: after[1] } };
 	}
-	/** Today's reading: for each section with chapters set, the chapters and the bookmark after them. */
-	function readingParts(r) {
-		var rd = readingOf(r), parts = [];
+	/** A day's reading: the sections due (chapters, and the bookmark after them), and the others with the reason. */
+	function readingParts(r, day, log) {
+		var rd = readingOf(r), parts = [], later = [];
 		SECTIONS.forEach(function (sec) {
-			if (rd[sec.key].per > 0) { var got = sectionChapters(sec, rd, rd[sec.key].per); parts.push({ sec: sec, t: sectionBible(sec, rd).id, list: got.list, next: got.next }); }
+			var x = rd[sec.key];
+			if (!(x.per > 0) || !sectionBible(sec, rd)) { return; }
+			var got = sectionChapters(sec, rd, x.per), part = { sec: sec, t: sectionBible(sec, rd).id, list: got.list, next: got.next };
+			if (!day || (dueOn(x, day) && !(x.freq === 'weekly' && readInWeek(log, sec.key, day)))) { parts.push(part); return; }
+			part.why = x.freq === 'weekly' ? 'read this week' : 'next on ' + parseIso(nextDue(x, day)).toLocaleDateString(undefined, { weekday: 'long', month: 'short', day: 'numeric' });
+			later.push(part);
 		});
+		parts.later = later;
 		return parts;
 	}
 	function bookLabel(sec, rd, code) {
@@ -528,20 +565,21 @@
 			var bk = books.filter(function (b) { return b[0] === x.b; })[0] || books[0];
 			var bookSel = select(books.map(function (b) { return [b[0], b[1]]; }), bk[0], function (code) { x.b = code; x.c = chaptersOf(books.filter(function (b) { return b[0] === code; })[0])[0]; changed(); });
 			var chSel = select(chaptersOf(bk).map(function (c) { return [c, c]; }), x.c, function (c) { x.b = bk[0]; x.c = +c; changed(); });
-			var row = [
-				el('th', { text: sec.name }),
-				el('td', {}, ['chapters a day ', select(per, x.per, function (v) { x.per = +v; changed(); })]),
-				el('td', {}, ['next ', bookSel, ' ', chSel])
-			];
-			t.appendChild(el('tr', {}, row));
+			var freq = select([['daily', 'every day'], ['alternate', 'every other day'], ['weekday', 'once a week, on'], ['weekly', 'once a week, any day']], x.freq, function (v) {
+				x.freq = v; if (v === 'alternate') { x.anchor = UI.day; } changed();
+			});
+			var how = [select(per, x.per, function (v) { if (!(x.per > 0) && +v > 0) { x.since = defaultDay(); } x.per = +v; changed(); }), ' chapters ', freq];
+			if (x.freq === 'weekday') { how.push(' ', select(WEEKDAYS.map(function (n, i) { return [i, n]; }), x.wd, function (v) { x.wd = +v; changed(); })); }
+			t.appendChild(el('tr', {}, [el('th', { text: sec.name }), el('td', {}, how)]));
+			t.appendChild(el('tr', {}, [el('td', {}), el('td', {}, ['next: ', bookSel, ' ', chSel])]));
 			if (sec.key === 'old') {
 				var ps = el('input', { type: 'checkbox' }); ps.checked = x.psalms !== false;
 				ps.addEventListener('change', function () { x.psalms = ps.checked; changed(); });
-				t.appendChild(el('tr', {}, [el('td', {}), el('td', { colspan: '2' }, [el('label', {}, [ps, ' include the Psalms (leave this off if you read them in the kathismas)'])])]));
+				t.appendChild(el('tr', {}, [el('td', {}), el('td', {}, [el('label', {}, [ps, ' include the Psalms (leave this off if you read them in the kathismas)'])])]));
 			}
 		});
 		box.appendChild(t);
-		box.appendChild(el('p', { class: 'pr-note', text: 'The reading goes on from where it stopped each day, and starts again from the beginning at the end.' }));
+		box.appendChild(el('p', { class: 'pr-note', text: 'Each section goes on from where it stopped, and starts again from the beginning at the end. "Every other day" counts from the day it is chosen; "once a week, any day" can be read on any day from Sunday to Saturday.' }));
 		return box;
 	}
 
@@ -614,6 +652,44 @@
 		return out;
 	}
 
+	/**
+	 * The Scripture reading over the days from start to end, apart from the prayer counts:
+	 * for each section set in the rule, how many times it was due and how many of those it was read.
+	 * A once-a-week-any-day section counts by weeks.
+	 */
+	function readingStats(ctx, start, end) {
+		var rd = ctx.rule.reading, today = defaultDay(), out = { sections: [], chapters: 0, byDay: {}, bySec: {} };
+		if (!rd || !(C.bibles || []).length) { return out; }
+		for (var day = start; day <= end && day <= today; day = addDays(day, 1)) {
+			var e = entryIn(ctx.log, day, 'reading');
+			if (e && e.kept && e.read) {
+				out.byDay[day] = e.read;
+				Object.keys(e.read).forEach(function (k) { out.chapters += e.read[k].list.length; out.bySec[k] = (out.bySec[k] || 0) + e.read[k].list.length; });
+			}
+		}
+		// count from the day each section was set (or, for a rule set before that was kept, the first reading marked)
+		var first = Object.keys(ctx.log ? ctx.log.entries : {}).filter(function (k) { return /\|reading$/.test(k); }).map(function (k) { return k.split('|')[0]; }).sort()[0] || today;
+		SECTIONS.forEach(function (sec) {
+			var x = rd[sec.key];
+			if (!x || !(x.per > 0)) { return; }
+			var due = 0, done = 0, d, since = x.since || first, from = start < since ? since : start;
+			if (x.freq === 'weekly') {
+				for (var w = weekStart(from); w <= end && w <= today; w = addDays(w, 7)) {
+					due++;
+					for (var i = 0; i < 7; i++) { var ee = entryIn(ctx.log, addDays(w, i), 'reading'); if (ee && ee.kept && ee.read && ee.read[sec.key]) { done++; break; } }
+				}
+			} else {
+				for (d = from; d <= end && d <= today; d = addDays(d, 1)) {
+					if (!dueOn(x, d)) { continue; }
+					due++;
+					if (out.byDay[d] && out.byDay[d][sec.key]) { done++; }
+				}
+			}
+			out.sections.push({ sec: sec, x: x, due: due, done: done, since: since });
+		});
+		return out;
+	}
+
 	function rangeLabel(st8, r) {
 		var a = parseIso(r.start), b = parseIso(r.end);
 		if (st8.mode === 'month') { return a.toLocaleDateString(undefined, { month: 'long', year: 'numeric' }); }
@@ -659,15 +735,33 @@
 		});
 		box.appendChild(t);
 
+		var rs = readingStats(ctx, r.start, r.end);
+		if (rs.sections.length) {
+			var t2 = el('table', { class: 'pr-grid pr-summary pr-reading-summary' });
+			t2.appendChild(el('tr', {}, [el('th', { text: 'Scripture' }), el('th', { text: 'Read' }), el('th', { text: '' })]));
+			rs.sections.forEach(function (x) {
+				var pct = x.due ? Math.round(100 * x.done / x.due) : 0;
+				t2.appendChild(el('tr', {}, [
+					el('th', {}, [x.sec.name, el('span', { class: 'pr-note', text: ' (' + freqText(x.x) + ')' })]),
+					el('td', { text: x.due ? x.done + ' of ' + x.due + (x.x.freq === 'weekly' ? (x.due === 1 ? ' week' : ' weeks') : '') : '—' }),
+					el('td', {}, x.due ? [el('span', { class: 'pr-bar', style: 'width:' + (pct * 0.08).toFixed(2) + 'em' }), ' ' + pct + '%'] : [el('span', { class: 'pr-note', text: 'none due yet' })])
+				]));
+			});
+			box.appendChild(t2);
+		}
+
 		var lines = [];
 		lines.push(st.full + ' of ' + st.days + ' days with every service of ' + (ctx.own ? 'your' : 'the') + ' rule kept.');
 		if (st.kathismas) { lines.push(st.kathismas + ' kathismas read (' + (Math.round(st.kathismas / 2) / 10) + ' times the whole Psalter).'); }
 		if (st.ladders) { lines.push(half(st.ladders) + ' ladders of the Jesus Prayer (' + Math.round(st.ladders * 100).toLocaleString() + ' prayers).'); }
+		if (rs.chapters) {
+			lines.push(rs.chapters + (rs.chapters === 1 ? ' chapter' : ' chapters') + ' of Scripture read (' + SECTIONS.filter(function (sec) { return rs.bySec[sec.key]; }).map(function (sec) { return sec.name.replace(/^The /, '') + ' ' + rs.bySec[sec.key]; }).join(', ') + ').');
+		}
 		if (st.corrected) { lines.push(st.corrected + ' marked "corrected later".'); }
 		box.appendChild(el('ul', { class: 'pr-report-lines' }, lines.map(function (x) { return el('li', { text: x }); })));
 
-		box.appendChild(st8.mode === 'week' ? weekGrid(ctx, r, keep) : monthGrid(ctx, r, st, keep));
-		box.appendChild(el('p', { class: 'pr-note', text: '✓* marks a service checked or unchecked more than 7 days after its day. Days are church days: Vespers and Compline count for the next day.' }));
+		box.appendChild(st8.mode === 'week' ? weekGrid(ctx, r, keep, rs) : monthGrid(ctx, r, st, keep, rs));
+		box.appendChild(el('p', { class: 'pr-note', text: '✓* marks a service or reading checked or unchecked more than 7 days after its day. Days are church days: Vespers and Compline count for the next day. In the Scripture columns, · is a reading due and not done; a blank day had none due.' }));
 		if (ctx.own) {
 			box.appendChild(el('p', {}, [
 				el('button', { type: 'button', text: 'Print this report', on: { click: function () { record.open = true; document.body.classList.add('pr-printing-own'); window.print(); document.body.classList.remove('pr-printing-own'); } } }), ' ',
@@ -676,21 +770,26 @@
 		}
 	}
 
-	function weekGrid(ctx, r, keep) {
-		var t = el('table', { class: 'pr-grid' }), today = defaultDay();
-		t.appendChild(el('tr', {}, [el('th', { text: '' })].concat(keep.map(function (s) { return el('th', { text: s.name }); }))));
+	function weekGrid(ctx, r, keep, rs) {
+		var t = el('table', { class: 'pr-grid' }), today = defaultDay(), secs = rs.sections;
+		t.appendChild(el('tr', {}, [el('th', { text: '' })].concat(keep.map(function (s) { return el('th', { text: s.name }); })).concat(secs.map(function (x, i) { return el('th', { class: i === 0 ? 'pr-grid-reading' : '', title: x.sec.name, text: { gospel: 'Gospel', apostle: 'Apostle', old: 'O.T.' }[x.sec.key] || x.sec.name }); }))));
 		for (var day = r.start; day <= r.end; day = addDays(day, 1)) {
 			var row = [el('th', { text: parseIso(day).toLocaleDateString(undefined, { weekday: 'short', month: 'short', day: 'numeric' }) })];
 			keep.forEach(function (s) {
 				var e = entryIn(ctx.log, day, s.key);
 				row.push(el('td', { text: day > today ? '' : (e && e.kept ? (e.corrected ? '✓*' : '✓') : '·') }));
 			});
+			secs.forEach(function (x, i) {
+				var read = rs.byDay[day] && rs.byDay[day][x.sec.key], er = entryIn(ctx.log, day, 'reading');
+				var mark = day > today ? '' : read ? (er && er.corrected ? '✓*' : '✓') : (x.x.freq !== 'weekly' && day >= x.since && dueOn(x.x, day) ? '·' : '');
+				row.push(el('td', { class: i === 0 ? 'pr-grid-reading' : '', text: mark }));
+			});
 			t.appendChild(el('tr', { class: day === today ? 'is-today' : '' }, row));
 		}
 		return t;
 	}
 
-	function monthGrid(ctx, r, st, keep) {
+	function monthGrid(ctx, r, st, keep, rs) {
 		var t = el('table', { class: 'pr-month' }), today = defaultDay(), m = keep.length || 1;
 		var names = []; for (var i = 0; i < 7; i++) { names.push(el('th', { text: new Date(2026, 10, 1 + i).toLocaleDateString(undefined, { weekday: 'short' }) })); }   // Nov 1, 2026 is a Sunday
 		t.appendChild(el('tr', {}, names));
@@ -701,7 +800,8 @@
 			var n = st.byDay[day], future = day > today;
 			var cell = el('td', { class: (future ? 'is-future' : '') + (day === today ? ' is-today' : ''), title: future ? '' : n + ' of ' + m + ' kept' }, [
 				el('span', { class: 'pr-month-day', text: String(parseIso(day).getDate()) }),
-				future ? null : el('span', { class: 'pr-month-n', text: n + '/' + m })
+				future ? null : el('span', { class: 'pr-month-n', text: n + '/' + m }),
+				!future && rs.byDay[day] ? el('span', { class: 'pr-month-read', title: 'Scripture read', text: '✦ Scripture' }) : null
 			]);
 			if (!future && n) { cell.style.background = 'rgba(146,26,10,' + (0.12 + 0.6 * Math.min(1, n / m)).toFixed(2) + ')'; if (n / m > 0.6) { cell.style.color = '#fff'; } }
 			if (ctx.own) { cell.addEventListener('click', (function (d) { return function () { UI.day = d; dateInput.value = d; drawTabs(); show(); }; })(day)); }
@@ -712,9 +812,14 @@
 	}
 
 	function downloadCsv() {
-		var rows = [['date', 'service', 'kept', 'kathismas', 'ladders', 'corrected later', 'first marked', 'last changed']];
+		var rows = [['date', 'service', 'kept', 'kathismas or chapters', 'ladders', 'corrected later', 'first marked', 'last changed']];
 		Object.keys(V.log.entries).sort().forEach(function (k) {
 			var e = V.log.entries[k], a = k.split('|'), s = serviceByKey(a[1]);
+			if (a[1] === 'reading') {
+				var ch = Object.keys(e.read || {}).map(function (sk) { return e.read[sk].list.map(function (bc) { return bc[0] + ' ' + bc[1]; }).join(' '); }).join('; ');
+				rows.push([a[0], 'Scripture', e.kept ? 'yes' : 'no', ch, '', e.corrected ? 'yes' : '', e.first || '', e.edited || '']);
+				return;
+			}
 			rows.push([a[0], s ? s.name : a[1], e.kept ? 'yes' : 'no', (e.k || []).join(' '), e.ladders || 0, e.corrected ? 'yes' : '', e.first || '', e.edited || '']);
 		});
 		var csv = rows.map(function (r) { return r.map(function (x) { x = String(x); return /[",\n]/.test(x) ? '"' + x.replace(/"/g, '""') + '"' : x; }).join(','); }).join('\n');
@@ -932,9 +1037,15 @@
 		if (v.ladders) { a.push(half(v.ladders) + (v.ladders > 1 ? ' ladders' : ' ladder')); }
 		return a.length ? a.join(' and ') : 'nothing chosen';
 	}
-	/** changes: { services: { key: { keep, portions: { pkey: { kathismas, ladders } } } } } */
+	/** changes: { services: { key: { keep, portions: { pkey: { kathismas, ladders } } } }, reading: { section: { per, freq, wd } } } */
 	function describeChanges(changes, rule) {
 		var out = [];
+		Object.keys((changes && changes.reading) || {}).forEach(function (key) {
+			var sec = SECTIONS.filter(function (x) { return x.key === key; })[0], c = changes.reading[key], cur = rule && rule.reading && rule.reading[key];
+			if (!sec) { return; }
+			var text = c.per > 0 ? freqText(c) : 'no reading';
+			out.push('Scripture, ' + sec.name.replace(/^The /, '') + ': ' + text + (cur ? ' (now ' + (cur.per > 0 ? freqText(Object.assign({ freq: 'daily', wd: 6 }, cur)) : 'no reading') + ')' : ''));
+		});
 		Object.keys((changes && changes.services) || {}).forEach(function (key) {
 			var s = serviceByKey(key), c = changes.services[key], cur = rule && rule.services[key];
 			if (!s) { return; }
@@ -948,6 +1059,17 @@
 		return out.length ? out : ['(no changes)'];
 	}
 	function applyChanges(rule, changes) {
+		if (changes && changes.reading) {
+			var rd = readingOf(rule);
+			Object.keys(changes.reading).forEach(function (key) {
+				var x = rd[key], c = changes.reading[key];
+				if (!x) { return; }
+				if (!(x.per > 0) && +c.per > 0) { x.since = defaultDay(); }
+				x.per = +c.per || 0;
+				if (FREQS.indexOf(c.freq) >= 0) { if (c.freq === 'alternate' && x.freq !== 'alternate') { x.anchor = defaultDay(); } x.freq = c.freq; }
+				if (typeof c.wd === 'number') { x.wd = c.wd; }
+			});
+		}
 		Object.keys((changes && changes.services) || {}).forEach(function (key) {
 			var c = changes.services[key];
 			rule.services[key] = rule.services[key] || { keep: true, portions: {} };
@@ -979,6 +1101,22 @@
 			});
 		});
 		box.appendChild(t);
+		var rdraft = null;
+		if ((C.bibles || []).length) {
+			rdraft = JSON.parse(JSON.stringify(readingOf(JSON.parse(JSON.stringify(rule)))));
+			var t3 = el('table');
+			t3.appendChild(el('tr', {}, [el('th', { colspan: '2', text: 'Daily Scripture reading' })]));
+			var per = [[0, 'none']]; for (var n = 1; n <= 10; n++) { per.push([n, n]); }
+			SECTIONS.forEach(function (sec) {
+				var x = rdraft[sec.key], wd = select(WEEKDAYS.map(function (nm, i) { return [i, nm]; }), x.wd, function (v) { x.wd = +v; });
+				wd.style.display = x.freq === 'weekday' ? '' : 'none';
+				t3.appendChild(el('tr', {}, [el('td', { text: sec.name }), el('td', {}, [
+					select(per, x.per, function (v) { x.per = +v; }), ' chapters ',
+					select([['daily', 'every day'], ['alternate', 'every other day'], ['weekday', 'once a week, on'], ['weekly', 'once a week, any day']], x.freq, function (v) { x.freq = v; wd.style.display = v === 'weekday' ? '' : 'none'; }), ' ', wd
+				])]));
+			});
+			box.appendChild(t3);
+		}
 		var why = el('textarea', { rows: '2', style: 'width:100%', placeholder: 'A word of explanation (optional)' });
 		box.appendChild(why);
 		box.appendChild(el('p', {}, [el('button', { type: 'button', class: 'pr-primary', text: 'Send the suggestion', on: { click: function () {
@@ -992,7 +1130,14 @@
 				});
 				if (Object.keys(c).length) { changes.services[s.key] = c; }
 			});
-			if (!Object.keys(changes.services).length) { status('Nothing has been changed.', true); return; }
+			if (rdraft) {
+				var cur = readingOf(JSON.parse(JSON.stringify(rule)));
+				SECTIONS.forEach(function (sec) {
+					var a = cur[sec.key], b = rdraft[sec.key];
+					if (a.per !== b.per || a.freq !== b.freq || (b.freq === 'weekday' && a.wd !== b.wd)) { changes.reading = changes.reading || {}; changes.reading[sec.key] = { per: b.per, freq: b.freq, wd: b.wd }; }
+				});
+			}
+			if (!Object.keys(changes.services).length && !changes.reading) { status('Nothing has been changed.', true); return; }
 			send({ type: 'suggest', changes: changes, text: why.value.trim() });
 		} } })]));
 		return box;
@@ -1034,12 +1179,20 @@
 		if (e && e.kept && e.read) {
 			parts = SECTIONS.filter(function (sec) { return e.read[sec.key]; }).map(function (sec) { return { sec: sec, t: e.read[sec.key].t, list: e.read[sec.key].list, next: null }; });
 		} else {
-			parts = readingParts(r);
+			parts = readingParts(r, UI.day, V.key ? V.log : null);
+		}
+		var later = parts.later || [];
+		function notToday() {
+			if (!later.length) { return null; }
+			return el('div', { class: 'pr-reading-later' }, later.map(function (pt) {
+				return el('p', {}, [el('strong', { text: pt.sec.name + ': ' }), freqText(rd[pt.sec.key]) + ', ' + pt.why + ' (' + readingSummary([pt], rd) + ').']);
+			}));
 		}
 		out.innerHTML = '';
 		if (!parts.length) {
 			out.appendChild(el('h2', { class: 'pr-service-title', text: 'Scripture' }));
-			out.appendChild(el('p', {}, ['No daily reading is set. ', el('button', { type: 'button', class: 'pr-primary', text: V.key ? 'Set it in My rule' : 'Set it in My portion and settings', on: { click: function () { openPanel(settings); } } })]));
+			if (later.length) { out.appendChild(el('p', { text: 'No reading today.' })); out.appendChild(notToday()); }
+			else { out.appendChild(el('p', {}, ['No daily reading is set. ', el('button', { type: 'button', class: 'pr-primary', text: V.key ? 'Set it in My rule' : 'Set it in My portion and settings', on: { click: function () { openPanel(settings); } } })])); }
 			shown = { day: UI.day, service: 'reading', parts: [] };
 			return;
 		}
@@ -1054,6 +1207,7 @@
 			if (mine !== req) { return; }
 			out.innerHTML = data.day_html;
 			out.appendChild(el('h2', { class: 'pr-service-title', text: 'Scripture' }));
+			var note = notToday(); if (note) { out.appendChild(note); }
 			out.insertAdjacentHTML('beforeend', data.html);
 			shown = { day: UI.day, service: 'reading', parts: parts };
 			out.appendChild(el('div', { class: 'pr-done' }, readingControls()));
@@ -1076,7 +1230,7 @@
 			b.addEventListener('click', function () {
 				s.parts.forEach(function (pt) { rd[pt.sec.key].b = pt.next.b; rd[pt.sec.key].c = pt.next.c; });
 				saveSettings(); drawSettings();
-				b.replaceWith(el('p', { text: 'Next time: ' + readingSummary(readingParts(r).map(function (pt) { return { sec: pt.sec, list: [pt.list[0]] }; }), rd) + '.' }));
+				b.replaceWith(el('p', { text: 'Next time: ' + readingSummary(readingParts(r).map(function (pt) { return { sec: pt.sec, list: [pt.list[0]] }; }), rd) + '.' }));   // readingParts without a day: every section
 			});
 			return [el('p', {}, [b])];
 		}
