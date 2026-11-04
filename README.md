@@ -92,7 +92,8 @@ From the evening of Great Saturday to Bright Saturday, each service uses
 its own Pascha or Bright Week order (the "… (Home Ustav)" orders for Pascha and
 Bright Week on the Orders screen, from the Home Ustav fol. 184v-205); from
 Thomas Sunday to the leave-taking of Pascha, "Christ is risen" thrice is said
-in place of "O Heavenly King".
+in place of "O Heavenly King", and "Shine, shine" still takes the place of
+"It is truly meet".
 `tools/build_ustav.py` turns it into `data/ustav.json`. The plugin adds
 these as ordinary Prayers and Orders the first time an administrator opens
 the admin, and again whenever the file changes: missing ones are added,

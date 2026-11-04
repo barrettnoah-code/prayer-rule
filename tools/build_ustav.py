@@ -74,6 +74,13 @@ SEASONS = [
 # of Pascha: "Christ is risen" thrice in place of "O Heavenly King" (fol. 208v).
 SUBSTITUTIONS = [
     {'from': 7, 'to': 38, 'replace': 'heavenly-king', 'with': 'christ-is-risen-thrice'},
+    # "Shine, shine" in place of "It is truly meet" to the leave-taking as well: the
+    # rubric speaks only of the beginning of the services, and church practice
+    # keeps the paschal hymn until then.
+    {'from': 7, 'to': 38, 'replace': 'entrance-opening', 'with': 'entrance-opening-paschal'},
+    {'from': 7, 'to': 38, 'replace': 'departing-opening', 'with': 'departing-opening-paschal'},
+    {'from': 7, 'to': 38, 'replace': 'ending-truly-meet', 'with': 'ending-shine-shine'},
+    {'from': 7, 'to': 38, 'replace': 'it-is-truly-meet', 'with': 'shine-shine'},
 ]
 
 

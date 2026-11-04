@@ -411,7 +411,7 @@ God, be merciful to me, a sinner. [bow entrance]
 Thou who hast created me, O Lord, have mercy on me. [bow entrance]
 Without number have I sinned; O Lord, have mercy, and forgive me a sinner. [bow entrance]
 Shine, shine, O new Jerusalem, for the glory of the Lord hath arisen upon thee. Exult now and be glad, O Sion; and do thou, O pure God-bearer, rejoice in the arising of him whom thou didst bear. [bow great]
-! In place of It is truly meet, from Pascha to the end of Bright Week.
+! In place of It is truly meet, from Pascha to the leave-taking of Pascha.
 Glory to the Father, and to the Son, and to the Holy Ghost. [bow entrance]
 Both now and ever, and unto the ages of ages. Amen. [bow entrance]
 Lord, have mercy. Lord, have mercy. Lord, bless. [bow entrance]
@@ -424,12 +424,19 @@ God, be merciful to me, a sinner. [bow departing]
 Thou who hast created me, O Lord, have mercy on me. [bow departing]
 Without number have I sinned; O Lord, have mercy, and forgive me a sinner. [bow departing]
 Shine, shine, O new Jerusalem, for the glory of the Lord hath arisen upon thee. Exult now and be glad, O Sion; and do thou, O pure God-bearer, rejoice in the arising of him whom thou didst bear. [bow great]
-! In place of It is truly meet, from Pascha to the end of Bright Week.
+! In place of It is truly meet, from Pascha to the leave-taking of Pascha.
 Glory to the Father, and to the Son, and to the Holy Ghost. [bow departing]
 Both now and ever, and unto the ages of ages. Amen. [bow departing]
 Lord, have mercy. Lord, have mercy. Lord, bless. [bow departing]
 ! Then the dismissal:
 O Lord Jesus Christ, Son of God, for the sake of the prayers of thy most pure Mother, and of my holy guardian angel, and of all thy saints: O Lord Jesus Christ, Son of God, have mercy on me and save me, for thou art good and the lover of mankind.
+
+=== ending-shine-shine | Ending: Shine, shine, with bows (in place of It is truly meet)
+Shine, shine, O new Jerusalem, for the glory of the Lord hath arisen upon thee. Exult now and be glad, O Sion; and do thou, O pure God-bearer, rejoice in the arising of him whom thou didst bear. [bow great]
+! In place of It is truly meet, from Pascha to the leave-taking of Pascha.
+Glory to the Father, and to the Son, and to the Holy Ghost. [bow]
+Both now and ever, and unto the ages of ages. Amen. [bow]
+Lord, have mercy. Lord, have mercy. Lord, bless. [bow]
 
 === bright-zapevy-hours | Bright Week: the lestovkas at the Hours
 ! Then 100 or 200 bows with the refrain:

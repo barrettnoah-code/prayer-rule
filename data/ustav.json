@@ -504,12 +504,23 @@
   {
    "slug": "entrance-opening-paschal",
    "title": "The Entrance Opening, at Pascha",
-   "content": "<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">God, be merciful to me, a sinner. [bow entrance]</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">Thou who hast created me, O Lord, have mercy on me. [bow entrance]</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">Without number have I sinned; O Lord, have mercy, and forgive me a sinner. [bow entrance]</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">Shine, shine, O new Jerusalem, for the glory of the Lord hath arisen upon thee. Exult now and be glad, O Sion; and do thou, O pure God-bearer, rejoice in the arising of him whom thou didst bear. [bow great]</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-rubric\"} -->\n<p class=\"is-style-rubric\">In place of It is truly meet, from Pascha to the end of Bright Week.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">Glory to the Father, and to the Son, and to the Holy Ghost. [bow entrance]</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">Both now and ever, and unto the ages of ages. Amen. [bow entrance]</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">Lord, have mercy. Lord, have mercy. Lord, bless. [bow entrance]</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-rubric\"} -->\n<p class=\"is-style-rubric\">Then the dismissal:</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">O Lord Jesus Christ, Son of God, for the sake of the prayers of thy most pure Mother, and of my holy guardian angel, and of all thy saints: O Lord Jesus Christ, Son of God, have mercy on me and save me, for thou art good and the lover of mankind.</p>\n<!-- /wp:paragraph -->"
+   "content": "<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">God, be merciful to me, a sinner. [bow entrance]</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">Thou who hast created me, O Lord, have mercy on me. [bow entrance]</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">Without number have I sinned; O Lord, have mercy, and forgive me a sinner. [bow entrance]</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">Shine, shine, O new Jerusalem, for the glory of the Lord hath arisen upon thee. Exult now and be glad, O Sion; and do thou, O pure God-bearer, rejoice in the arising of him whom thou didst bear. [bow great]</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-rubric\"} -->\n<p class=\"is-style-rubric\">In place of It is truly meet, from Pascha to the leave-taking of Pascha.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">Glory to the Father, and to the Son, and to the Holy Ghost. [bow entrance]</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">Both now and ever, and unto the ages of ages. Amen. [bow entrance]</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">Lord, have mercy. Lord, have mercy. Lord, bless. [bow entrance]</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-rubric\"} -->\n<p class=\"is-style-rubric\">Then the dismissal:</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">O Lord Jesus Christ, Son of God, for the sake of the prayers of thy most pure Mother, and of my holy guardian angel, and of all thy saints: O Lord Jesus Christ, Son of God, have mercy on me and save me, for thou art good and the lover of mankind.</p>\n<!-- /wp:paragraph -->",
+   "previous": [
+    "37fbe9bf6486441c8431e447bc884295"
+   ]
   },
   {
    "slug": "departing-opening-paschal",
    "title": "The Departing Opening, at Pascha",
-   "content": "<!-- wp:paragraph {\"className\":\"is-style-rubric\"} -->\n<p class=\"is-style-rubric\">The departing opening, made in the same way as the entrance opening:</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">God, be merciful to me, a sinner. [bow departing]</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">Thou who hast created me, O Lord, have mercy on me. [bow departing]</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">Without number have I sinned; O Lord, have mercy, and forgive me a sinner. [bow departing]</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">Shine, shine, O new Jerusalem, for the glory of the Lord hath arisen upon thee. Exult now and be glad, O Sion; and do thou, O pure God-bearer, rejoice in the arising of him whom thou didst bear. [bow great]</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-rubric\"} -->\n<p class=\"is-style-rubric\">In place of It is truly meet, from Pascha to the end of Bright Week.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">Glory to the Father, and to the Son, and to the Holy Ghost. [bow departing]</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">Both now and ever, and unto the ages of ages. Amen. [bow departing]</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">Lord, have mercy. Lord, have mercy. Lord, bless. [bow departing]</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-rubric\"} -->\n<p class=\"is-style-rubric\">Then the dismissal:</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">O Lord Jesus Christ, Son of God, for the sake of the prayers of thy most pure Mother, and of my holy guardian angel, and of all thy saints: O Lord Jesus Christ, Son of God, have mercy on me and save me, for thou art good and the lover of mankind.</p>\n<!-- /wp:paragraph -->"
+   "content": "<!-- wp:paragraph {\"className\":\"is-style-rubric\"} -->\n<p class=\"is-style-rubric\">The departing opening, made in the same way as the entrance opening:</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">God, be merciful to me, a sinner. [bow departing]</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">Thou who hast created me, O Lord, have mercy on me. [bow departing]</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">Without number have I sinned; O Lord, have mercy, and forgive me a sinner. [bow departing]</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">Shine, shine, O new Jerusalem, for the glory of the Lord hath arisen upon thee. Exult now and be glad, O Sion; and do thou, O pure God-bearer, rejoice in the arising of him whom thou didst bear. [bow great]</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-rubric\"} -->\n<p class=\"is-style-rubric\">In place of It is truly meet, from Pascha to the leave-taking of Pascha.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">Glory to the Father, and to the Son, and to the Holy Ghost. [bow departing]</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">Both now and ever, and unto the ages of ages. Amen. [bow departing]</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">Lord, have mercy. Lord, have mercy. Lord, bless. [bow departing]</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-rubric\"} -->\n<p class=\"is-style-rubric\">Then the dismissal:</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">O Lord Jesus Christ, Son of God, for the sake of the prayers of thy most pure Mother, and of my holy guardian angel, and of all thy saints: O Lord Jesus Christ, Son of God, have mercy on me and save me, for thou art good and the lover of mankind.</p>\n<!-- /wp:paragraph -->",
+   "previous": [
+    "974f1767e279d11e69311a7612a727b5"
+   ]
+  },
+  {
+   "slug": "ending-shine-shine",
+   "title": "Ending: Shine, shine, with bows (in place of It is truly meet)",
+   "content": "<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">Shine, shine, O new Jerusalem, for the glory of the Lord hath arisen upon thee. Exult now and be glad, O Sion; and do thou, O pure God-bearer, rejoice in the arising of him whom thou didst bear. [bow great]</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-rubric\"} -->\n<p class=\"is-style-rubric\">In place of It is truly meet, from Pascha to the leave-taking of Pascha.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">Glory to the Father, and to the Son, and to the Holy Ghost. [bow]</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">Both now and ever, and unto the ages of ages. Amen. [bow]</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">Lord, have mercy. Lord, have mercy. Lord, bless. [bow]</p>\n<!-- /wp:paragraph -->"
   },
   {
    "slug": "bright-zapevy-hours",
@@ -3981,6 +3992,30 @@
    "to": 38,
    "replace": "heavenly-king",
    "with": "christ-is-risen-thrice"
+  },
+  {
+   "from": 7,
+   "to": 38,
+   "replace": "entrance-opening",
+   "with": "entrance-opening-paschal"
+  },
+  {
+   "from": 7,
+   "to": 38,
+   "replace": "departing-opening",
+   "with": "departing-opening-paschal"
+  },
+  {
+   "from": 7,
+   "to": 38,
+   "replace": "ending-truly-meet",
+   "with": "ending-shine-shine"
+  },
+  {
+   "from": 7,
+   "to": 38,
+   "replace": "it-is-truly-meet",
+   "with": "shine-shine"
   }
  ],
  "paschal_prefix": {
