@@ -11,10 +11,12 @@
 #   @ on-sunday other-short-name  on a Sunday, use that dismissal instead
 #   @ lordly                      a great feast of the Lord (on a Sunday: prayer to the feast, not the Resurrection)
 #   @ additions weekly            the daily additions stay as on an ordinary day (the Sundays of the fathers …)
-#   @ fast lord|god-bearer|icon|saint
+#   @ fast lord|god-bearer|forerunner|icon|saint
 #                                 what kind of feast it is for the Wednesday and Friday fast (fasting.txt
 #                                 "@ feast" lines): the Lord's and the God-bearer's feasts release it for fish;
-#                                 icons and relics, and the other feasts, for oil and wine
+#                                 the Forerunner's other feasts for oil and wine. Icons and relics, and
+#                                 the other feasts, also for oil and wine, without naming a category the
+#                                 Ustav does not name
 #   ! text                        rubric;  [saint] = the saint of the day
 # The book's "…" endings are written out in full.
 
@@ -46,7 +48,7 @@ O Thou who didst fulfill all thy dispensation for our sake, and wast well please
 O Lord Jesus Christ, Son of God, for the prayers of thy most pure Mother, by the power of the honorable and life-giving Cross, and of all the saints, have mercy on us and save us, for thou art good and the lover of mankind.
 
 === dismissal-sep-23 | Dismissal: Sep 23, the Conception of John the Baptist
-@ fast saint
+@ fast forerunner
 @ menaion 9-23
 @ menaion 6-24
 @ menaion 8-29
@@ -148,7 +150,7 @@ O Thou who according to the law didst receive circumcision on the eighth day: O 
 O Thou who wast baptized by John in the Jordan: O Lord Jesus Christ, Son of God, for the prayers of thy most pure Mother and of all the saints, have mercy on us and save us, for thou art good and the lover of mankind.
 
 === dismissal-jan-07 | Dismissal: Jan 7, the Synaxis of John the Baptist
-@ fast saint
+@ fast forerunner
 @ menaion 1-7
 O Thou who wast baptized by John in the Jordan: O Lord Jesus Christ, Son of God, for the prayers of thy most pure Mother, and of the honorable and glorious prophet, forerunner and baptist John, and of all the saints, have mercy on us and save us, for thou art good and the lover of mankind.
 

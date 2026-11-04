@@ -162,6 +162,7 @@ html.pr-modal-open{overflow:hidden}
 .prayer-rule-reader .pr-card:hover{border-color:rgba(146,26,10,.35)}
 .prayer-rule-reader .pr-card.is-off{background:rgba(127,127,127,.06)}
 .prayer-rule-reader .pr-card.is-off .pr-card-body,.prayer-rule-reader .pr-card.is-off .pr-card-name{opacity:.5}
+.prayer-rule-reader .pr-reading-panel .pr-card.is-off .pr-card-name{opacity:1}
 .prayer-rule-reader .pr-card-head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:.4em .8em;margin:0 0 .45em}
 .prayer-rule-reader .pr-card-name{font-weight:600}
 .prayer-rule-reader .pr-card-sub{font-size:.85em;color:#921a0a}

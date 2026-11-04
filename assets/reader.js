@@ -632,8 +632,15 @@
 				el('span', { class: 'pr-card-name', text: sec.name }),
 				el('span', { class: 'pr-card-sub', text: x.per > 0 ? freqText(x) : 'not read' })
 			]));
+			var chapters = fld('Chapters', select(per, x.per, function (v) { if (!(x.per > 0) && +v > 0) { x.since = defaultDay(); } x.per = +v; changed(); }));
+			if (!(x.per > 0)) {
+				// Not read yet: only the number of chapters, so it is clear where to begin.
+				card.appendChild(el('div', { class: 'pr-card-row' }, [chapters, el('span', { class: 'pr-note', text: 'Choose how many chapters to read, and the rest of the settings appear.' })]));
+				list.appendChild(card);
+				return;
+			}
 			var row = el('div', { class: 'pr-card-row' }, [
-				fld('Chapters', select(per, x.per, function (v) { if (!(x.per > 0) && +v > 0) { x.since = defaultDay(); } x.per = +v; changed(); })),
+				chapters,
 				fld('How often', select([['daily', 'every day'], ['alternate', 'every other day'], ['weekday', 'once a week, on a set day'], ['weekly', 'once a week, any day']], x.freq, function (v) {
 					x.freq = v; if (v === 'alternate') { x.anchor = UI.day; } changed();
 				}))

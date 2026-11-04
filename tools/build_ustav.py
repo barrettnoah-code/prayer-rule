@@ -84,7 +84,7 @@ SUBSTITUTIONS = [
 ]
 
 
-FAST_KINDS = ['lord', 'god-bearer', 'icon', 'saint']   # feasts.txt "@ fast"
+FAST_KINDS = ['lord', 'god-bearer', 'forerunner', 'icon', 'saint']   # feasts.txt "@ fast"
 
 
 def parse_feasts(slugs_out):

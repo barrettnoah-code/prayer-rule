@@ -196,7 +196,10 @@
   {
    "slug": "god-bearer-prayers",
    "title": "Prayers to the God-bearer",
-   "content": "<!-- wp:paragraph {\"className\":\"is-style-rubric\"} -->\n<p class=\"is-style-rubric\">Then make 100 waist bows with the prayer:</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">My most holy Lady, God-bearer, save me a sinner.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-rubric\"} -->\n<p class=\"is-style-rubric\">With the shorter forms of the rule: 100 prayers to the God-bearer with 200 prostrations, or 50 with 100.</p>\n<!-- /wp:paragraph -->"
+   "content": "<!-- wp:paragraph {\"className\":\"is-style-rubric\"} -->\n<p class=\"is-style-rubric\">Then make 100 waist bows with the prayer:</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">My most holy Lady, God-bearer, save me a sinner.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-rubric\"} -->\n<p class=\"is-style-rubric\">The book sets these 100 after the full rule of 300 prostrations to the ground and 600 Jesus Prayers. For anyone who cannot keep that, it gives shorter forms, each with fewer prayers to the God-bearer:</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-rubric\"} -->\n<p class=\"is-style-rubric\">200 prostrations and 400 Jesus Prayers, then 100 to the God-bearer;</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-rubric\"} -->\n<p class=\"is-style-rubric\">or 100 prostrations and 200 Jesus Prayers, then 50 to the God-bearer;</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-rubric\"} -->\n<p class=\"is-style-rubric\">or, at the least, 50 prostrations and 100 Jesus Prayers, with no number given for the God-bearer.</p>\n<!-- /wp:paragraph -->",
+   "previous": [
+    "b61ed6a144f4dea50abe4e91fd48cbf6"
+   ]
   },
   {
    "slug": "it-is-truly-meet",
@@ -1550,7 +1553,7 @@
    "on_sunday": "weekly",
    "lordly": false,
    "additions": "feast",
-   "fast": "saint"
+   "fast": "forerunner"
   },
   {
    "slug": "dismissal-sep-25",
@@ -1915,7 +1918,7 @@
    "on_sunday": "weekly",
    "lordly": false,
    "additions": "feast",
-   "fast": "saint"
+   "fast": "forerunner"
   },
   {
    "slug": "dismissal-feb-02",
@@ -2920,8 +2923,9 @@
     "by": {
      "lord": "A feast of the Lord: the fast is released for fish. See below.",
      "god-bearer": "A feast of the God-bearer: the fast is released for fish. See below.",
-     "icon": "A feast of a holy icon or relic: the fast is released for oil and wine only.",
-     "saint": "A feast: the fast is released for oil and wine only. See below."
+     "forerunner": "A feast of the Forerunner: the fast is released for oil and wine only. See below.",
+     "icon": "A feast: the fast is released for oil and wine only.",
+     "saint": "A feast: the fast is released for oil and wine only."
     }
    }
   }
