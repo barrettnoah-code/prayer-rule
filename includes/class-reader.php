@@ -138,9 +138,43 @@ html.pr-modal-open{overflow:hidden}
 .prayer-rule-reader .pr-chapter-title{font-style:italic;opacity:.8}
 .prayer-rule-reader .pr-tabs .pr-tab-reading{margin-left:.6em;border-style:dashed}
 .prayer-rule-reader .pr-tabs .pr-tab-reading[aria-pressed=true]{border-style:solid}
-.prayer-rule-reader .pr-reading-settings{border-top:1px solid var(--pr-line);margin-top:1.2em;padding-top:.4em}
-.prayer-rule-reader .pr-reading-settings p label{display:inline-block;margin:.2em 1.2em .2em 0}
-.prayer-rule-reader .pr-reading-settings th{text-align:left;padding-right:1em;white-space:nowrap}
+.prayer-rule-reader .pr-reading-part{margin:0 0 2.6em}
+.prayer-rule-reader .pr-reading-how{text-align:center;font-size:.9em;opacity:.7;margin:-.1em 0 1.4em}
+.prayer-rule-reader .pr-reading-part .pr-done{margin-top:1.4em}
+.prayer-rule-reader .pr-reading-none{text-align:center}
+.prayer-rule-reader .pr-reading-later{margin:2.4em 0 1em}
+.prayer-rule-reader .pr-reading-later-head{text-align:center;font-size:.78em;letter-spacing:.12em;text-transform:uppercase;color:#921a0a;margin:0 0 .6em}
+.prayer-rule-reader .pr-later-card{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:.6em 1em;border:1px dashed var(--pr-line);border-radius:8px;padding:.75em 1em;margin:.6em 0}
+.prayer-rule-reader .pr-later-text{display:flex;flex-direction:column;gap:.15em}
+.prayer-rule-reader .pr-later-text .pr-note{font-size:.85em}
+.prayer-rule-reader .pr-panel-intro{margin:0 0 .4em}
+.prayer-rule-reader .pr-set-head{font-size:.78em;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:#921a0a;margin:1.6em 0 .6em}
+.prayer-rule-reader .pr-cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(14.5em,100%),1fr));gap:.7em}
+.prayer-rule-reader .pr-cards.is-list{grid-template-columns:minmax(0,1fr)}
+.prayer-rule-reader .pr-card{border:1px solid var(--pr-line);border-radius:8px;padding:.75em 1em .8em;background:#fff;min-width:0;transition:background .15s,border-color .15s}
+.prayer-rule-reader .pr-card:hover{border-color:rgba(146,26,10,.35)}
+.prayer-rule-reader .pr-card.is-off{background:rgba(127,127,127,.06)}
+.prayer-rule-reader .pr-card.is-off .pr-card-body,.prayer-rule-reader .pr-card.is-off .pr-card-name{opacity:.5}
+.prayer-rule-reader .pr-card-head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:.4em .8em;margin:0 0 .45em}
+.prayer-rule-reader .pr-card-name{font-weight:600}
+.prayer-rule-reader .pr-card-sub{font-size:.85em;color:#921a0a}
+.prayer-rule-reader .pr-card.is-off .pr-card-sub{color:inherit;opacity:.6}
+.prayer-rule-reader .pr-card-row{display:flex;flex-wrap:wrap;gap:.6em 1em;align-items:flex-end;margin:.45em 0 0}
+.prayer-rule-reader .pr-card-row .pr-note{flex-basis:100%;margin:0;font-size:.85em}
+.prayer-rule-reader .pr-row-label{flex-basis:100%;font-size:.85em;opacity:.75;margin-bottom:-.3em}
+.prayer-rule-reader .pr-fld{display:flex;flex-direction:column;gap:.25em;min-width:0;max-width:100%}
+.prayer-rule-reader .pr-fld-label{font-size:.72em;letter-spacing:.07em;text-transform:uppercase;opacity:.6}
+.prayer-rule-reader .pr-dialog select{-webkit-appearance:none;appearance:none;border:1px solid var(--pr-line);border-radius:6px;background:#fff url("data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 10 6%27%3E%3Cpath d=%27M0 0l5 6 5-6z%27 fill=%27%23921a0a%27/%3E%3C/svg%3E") no-repeat right .6em center/.6em auto;padding:.38em 1.9em .38em .65em;color:inherit;min-width:4.6em;max-width:100%;line-height:1.3}
+.prayer-rule-reader .pr-dialog select:hover{border-color:#921a0a}
+.prayer-rule-reader .pr-dialog select:focus{outline:none}
+.prayer-rule-reader .pr-dialog select:focus-visible{outline:2px solid rgba(146,26,10,.45);outline-offset:1px}
+.prayer-rule-reader .pr-switch{display:inline-flex;align-items:center;gap:.55em;cursor:pointer;user-select:none;position:relative;min-height:2.3em}
+.prayer-rule-reader .pr-switch input{position:absolute;opacity:0;width:1px;height:1px;margin:0}
+.prayer-rule-reader .pr-switch-track{flex:none;width:2.4em;height:1.35em;border-radius:999px;background:rgba(127,127,127,.4);position:relative;transition:background .15s}
+.prayer-rule-reader .pr-switch-track::after{content:"";position:absolute;top:.175em;left:.175em;width:1em;height:1em;border-radius:50%;background:#fff;box-shadow:0 1px 2px rgba(0,0,0,.3);transition:transform .15s}
+.prayer-rule-reader .pr-switch input:checked+.pr-switch-track{background:#921a0a}
+.prayer-rule-reader .pr-switch input:checked+.pr-switch-track::after{transform:translateX(1.05em)}
+.prayer-rule-reader .pr-switch input:focus-visible+.pr-switch-track{outline:2px solid #921a0a;outline-offset:2px}
 .prayer-rule-reader .pr-service-title{text-align:center;color:#921a0a;font-weight:normal;letter-spacing:.04em;margin:1.4em 0 1em;display:flex;align-items:center;gap:.8em}
 .prayer-rule-reader .pr-service-title::before,.prayer-rule-reader .pr-service-title::after{content:"";flex:1;border-top:1px solid var(--pr-line)}
 .prayer-rule-reader .pr-settings table{border-collapse:collapse;margin:.6em 0}
@@ -205,8 +239,6 @@ html.pr-modal-open{overflow:hidden}
 .prayer-rule-reader .pr-month-read{display:block;font-size:.8em;color:#921a0a}
 .prayer-rule-reader .pr-grid .pr-grid-reading{border-left:2px solid var(--pr-line)}
 .prayer-rule-reader .pr-reading-summary{margin-top:.8em}
-.prayer-rule-reader .pr-reading-later{margin:1.2em 0;padding:.5em .8em;border:1px dashed var(--pr-line);font-size:.92em;opacity:.85}
-.prayer-rule-reader .pr-reading-later p{margin:.2em 0}
 @media print{.prayer-rule-reader .pr-dialog[open]{position:absolute;inset:0 auto auto 0;margin:0;padding:0;max-width:none;width:100%;max-height:none;overflow:visible;box-shadow:none}.prayer-rule-reader .pr-dialog::backdrop{background:none}body *{visibility:hidden}.prayer-rule-reader .pr-record,.prayer-rule-reader .pr-record *{visibility:visible}.prayer-rule-reader .pr-record{position:absolute;left:0;top:0;width:100%}.prayer-rule-reader .pr-record button{display:none}.prayer-rule-reader .pr-month td{-webkit-print-color-adjust:exact;print-color-adjust:exact}}';
 	}
 }

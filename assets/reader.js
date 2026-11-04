@@ -235,17 +235,26 @@
 		if (x.freq === 'weekday') { return parseIso(day).getDay() === x.wd; }
 		return true;
 	}
-	/** Read on another day of the same week (Sunday to Saturday)? */
-	function readInWeek(log, key, day) {
-		if (!log) { return false; }
-		var start = weekStart(day);
-		for (var i = 0; i < 7; i++) {
-			var d = addDays(start, i), e = d !== day && log.entries[entryKey(d, 'reading')];
-			if (e && e.kept && e.read && e.read[key]) { return true; }
-		}
-		return false;
-	}
 	function nextDue(x, day) { for (var i = 1; i <= 7; i++) { if (dueOn(x, addDays(day, i))) { return addDays(day, i); } } return addDays(day, 1); }
+	function readOn(log, key, day) { var e = log && log.entries[entryKey(day, 'reading')]; return !!(e && e.kept && e.read && e.read[key]); }
+	/**
+	 * A section read ahead counts for its next day due: the day before it was
+	 * read on, from the day after the one it was last due (every other day: the
+	 * day before; once a week on a set day: the six days before; once a week on
+	 * any day: the other days of the week). Returns that day, or ''.
+	 */
+	function readAhead(x, key, day, log) {
+		if (!log) { return ''; }
+		var from, i;
+		if (x.freq === 'weekly') { from = weekStart(day); } else {
+			for (i = 1; i <= 7 && !dueOn(x, addDays(day, -i)); i++) {}
+			from = addDays(day, -i + 1);
+		}
+		for (var d = from; d < day; d = addDays(d, 1)) { if (readOn(log, key, d)) { return d; } }
+		if (x.freq === 'weekly') { for (d = addDays(day, 1); d < addDays(weekStart(day), 7); d = addDays(d, 1)) { if (readOn(log, key, d)) { return d; } } }
+		return '';
+	}
+	function shortDay(d) { return parseIso(d).toLocaleDateString(undefined, { weekday: 'long', month: 'short', day: 'numeric' }); }
 	function bibles(testament) { return (C.bibles || []).filter(function (b) { return b.testaments.indexOf(testament) >= 0; }); }
 	function bible(id) { return (C.bibles || []).filter(function (b) { return b.id === id; })[0]; }
 	function readingOf(r) {
@@ -284,20 +293,31 @@
 		var after = all[(i + n) % all.length];
 		return { list: list, next: { b: after[0], c: after[1] } };
 	}
-	/** A day's reading: the sections due (chapters, and the bookmark after them), and the others with the reason. */
-	function readingParts(r, day, log) {
-		var rd = readingOf(r), parts = [], later = [];
+	/**
+	 * A day's reading, section by section in order: state 'read' (marked read
+	 * that day: the chapters read), 'due' (the next chapters from the bookmark),
+	 * or 'later' (not due that day, with why). Without a day: every section, due.
+	 */
+	function readingDay(r, day, log) {
+		var rd = readingOf(r), items = [], e = day && log && log.entries[entryKey(day, 'reading')];
 		SECTIONS.forEach(function (sec) {
 			var x = rd[sec.key];
+			if (e && e.kept && e.read && e.read[sec.key]) {
+				items.push({ sec: sec, state: 'read', t: e.read[sec.key].t, list: e.read[sec.key].list, next: null });
+				return;
+			}
 			if (!(x.per > 0) || !sectionBible(sec, rd)) { return; }
-			var got = sectionChapters(sec, rd, x.per), part = { sec: sec, t: sectionBible(sec, rd).id, list: got.list, next: got.next };
-			if (!day || (dueOn(x, day) && !(x.freq === 'weekly' && readInWeek(log, sec.key, day)))) { parts.push(part); return; }
-			part.why = x.freq === 'weekly' ? 'read this week' : 'next on ' + parseIso(nextDue(x, day)).toLocaleDateString(undefined, { weekday: 'long', month: 'short', day: 'numeric' });
-			later.push(part);
+			var got = sectionChapters(sec, rd, x.per), item = { sec: sec, state: 'due', t: sectionBible(sec, rd).id, list: got.list, next: got.next };
+			if (day) {
+				var ahead = readAhead(x, sec.key, day, log);
+				if (ahead) { item.state = 'later'; item.why = 'already read on ' + shortDay(ahead); }
+				else if (!dueOn(x, day)) { item.state = 'later'; item.why = 'next due on ' + shortDay(nextDue(x, day)); }
+			}
+			items.push(item);
 		});
-		parts.later = later;
-		return parts;
+		return items;
 	}
+	function readingParts(r, day, log) { return readingDay(r, day, log).filter(function (it) { return it.state === 'due'; }); }
 	function bookLabel(sec, rd, code) {
 		var b = sectionBible(sec, rd), bk = b && b.books.filter(function (x) { return x[0] === code; })[0];
 		return bk ? bk[1] : code;
@@ -352,6 +372,7 @@
 	function panelShown(body, yes) { body.btn.style.display = yes ? '' : 'none'; if (!yes && body.dlg.open) { body.dlg.close(); } }
 
 	var settings = panel('pr-settings');
+	var readingPanel = panel('pr-settings pr-reading-panel');
 	var record = panel('pr-record');
 	var note = el('p', { class: 'pr-status', role: 'status' });
 	var out = el('div', { class: 'pr-out', 'aria-live': 'polite' });
@@ -499,88 +520,115 @@
 			tabs.appendChild(b);
 		});
 		if ((C.bibles || []).length) {
-			var re = entry(UI.day, 'reading'), done = re && re.kept;
+			var ri = readingDay(R(), UI.day, V.key ? V.log : null), done = V.key && ri.some(function (it) { return it.state === 'read'; }) && !ri.some(function (it) { return it.state === 'due'; });
 			var rb = el('button', { type: 'button', 'aria-pressed': UI.service === 'reading' ? 'true' : 'false', class: 'pr-tab-reading' + (done ? ' is-kept' : ''), text: (done ? '✓ ' : '') + 'Scripture' });
 			rb.addEventListener('click', function () { UI.service = 'reading'; try { localStorage.setItem(LOCAL + '.service', 'reading'); } catch (x) {} drawTabs(); show(); });
 			tabs.appendChild(rb);
 		}
 	}
 
-	// ---- my rule (or this browser's settings)
+	// ---- my rule (or this browser's settings), and the Scripture reading
+
+	function fld(label, control) { return el('label', { class: 'pr-fld' }, [el('span', { class: 'pr-fld-label', text: label }), control]); }
+	function toggle(checked, onchange, text, title) {
+		var cb = el('input', { type: 'checkbox', role: 'switch' }); cb.checked = !!checked;
+		if (title) { cb.setAttribute('aria-label', title); }
+		cb.addEventListener('change', function () { onchange(cb.checked); });
+		return el('label', { class: 'pr-switch' }, [cb, el('span', { class: 'pr-switch-track', 'aria-hidden': 'true' }), text ? el('span', { text: text }) : null]);
+	}
+	function setHead(text) { return el('h3', { class: 'pr-set-head', text: text }); }
 
 	function drawSettings() {
-		var open = settings.open, r = R();
+		var r = R();
 		settings.innerHTML = '';
 		panelTitle(settings, V.key ? 'My rule' : 'My portion and settings');
-		var t = el('table');
+		settings.appendChild(el('p', { class: 'pr-note pr-panel-intro', text: V.key
+			? 'The services you keep, and the kathismas and ladders of the Psalter you read at each. A service switched off can still be read, but is left out of your record.'
+			: 'Your portion of the Psalter at each service. These settings are kept only in this browser.' }));
+		settings.appendChild(setHead('Services'));
+		var cards = el('div', { class: 'pr-cards' });
 		C.services.forEach(function (s) {
 			var svc = r.services[s.key] || (r.services[s.key] = { keep: true, portions: {} });
-			var head = [el('strong', { text: s.name })];
+			var card = el('div', { class: 'pr-card' + (V.key && svc.keep === false ? ' is-off' : '') });
+			var head = el('div', { class: 'pr-card-head' }, [el('span', { class: 'pr-card-name', text: s.name })]);
 			if (V.key) {
-				var cb = el('input', { type: 'checkbox' }); cb.checked = svc.keep !== false;
-				cb.addEventListener('change', function () { svc.keep = cb.checked; saveSettings(); drawTabs(); drawRecord(); });
-				head = [el('label', {}, [cb, ' ', el('strong', { text: s.name })])];
+				head.appendChild(toggle(svc.keep !== false, function (on) { svc.keep = on; card.classList.toggle('is-off', !on); saveSettings(); drawTabs(); drawRecord(); }, '', 'Keep ' + s.name));
 			}
-			t.appendChild(el('tr', {}, [el('th', { colspan: '3' }, head)]));
+			card.appendChild(head);
+			var body = el('div', { class: 'pr-card-body' });
 			s.portions.forEach(function (p) {
 				var v = portionOf(s.key, p.key);
 				var k = [[0, 'none']].concat(p.kathismas.map(function (n) { return [n, n]; }));
 				var l = [[0, 'none']].concat(p.ladders.map(function (n) { return [n, half(n)]; }));
-				t.appendChild(el('tr', {}, [
-					el('td', { text: s.portions.length > 1 ? p.name : '' }),
-					el('td', {}, ['kathismas ', select(k, v.kathismas, function (x) { v.kathismas = +x; saveSettings(); if (s.key === UI.service) { show(); } })]),
-					el('td', {}, ['ladders ', select(l, v.ladders, function (x) { v.ladders = +x; saveSettings(); if (s.key === UI.service) { show(); } })])
+				body.appendChild(el('div', { class: 'pr-card-row' }, [
+					s.portions.length > 1 ? el('span', { class: 'pr-row-label', text: p.name }) : null,
+					fld('Kathismas', select(k, v.kathismas, function (x) { v.kathismas = +x; saveSettings(); if (s.key === UI.service) { show(); } })),
+					fld('Ladders', select(l, v.ladders, function (x) { v.ladders = +x; saveSettings(); if (s.key === UI.service) { show(); } }))
 				]));
 			});
+			card.appendChild(body);
+			cards.appendChild(card);
 		});
-		settings.appendChild(t);
+		settings.appendChild(cards);
+
+		settings.appendChild(setHead('The Psalter'));
 		var nums = []; for (var i = 1; i <= 20; i++) { nums.push([i, i]); }
 		var tr = Object.keys(C.translations).map(function (k) { return [k, C.translations[k]]; });
-		var vb = el('input', { type: 'checkbox' }); vb.checked = !!r.verses;
-		vb.addEventListener('change', function () { r.verses = vb.checked; saveSettings(); show(); });
-		settings.appendChild(el('p', {}, [
-			el('label', {}, ['Next kathisma ', select(nums, r.next, function (x) { r.next = +x; saveSettings(); show(); })]), '   ',
-			el('label', {}, ['Psalter ', select(tr, r.translation, function (x) { r.translation = x; saveSettings(); show(); })]), '   ',
-			el('label', {}, [vb, ' verse numbers'])
-		]));
-		if ((C.bibles || []).length) { settings.appendChild(drawReadingSettings(r)); }
-		if (!V.key) { settings.appendChild(el('p', { class: 'pr-note', text: 'These settings are kept only in this browser.' })); }
-		settings.open = open;
+		settings.appendChild(el('div', { class: 'pr-card pr-card-wide' }, [el('div', { class: 'pr-card-row' }, [
+			fld('Next kathisma', select(nums, r.next, function (x) { r.next = +x; saveSettings(); show(); })),
+			fld('Translation', select(tr, r.translation, function (x) { r.translation = x; saveSettings(); show(); })),
+			el('div', { class: 'pr-fld' }, [el('span', { class: 'pr-fld-label', text: 'Verse numbers' }), toggle(r.verses, function (on) { r.verses = on; saveSettings(); show(); }, 'show', 'Show verse numbers')])
+		])]));
+		drawReadingPanel();
 	}
 
-	/** My rule: the daily Scripture reading, chapters a day and where each section has got to. */
-	function drawReadingSettings(r) {
-		var rd = readingOf(r), box = el('div', { class: 'pr-reading-settings' });
-		function changed() { saveSettings(); drawSettings(); if (UI.service === 'reading') { show(); } }
-		box.appendChild(el('h4', { text: 'Daily Scripture reading' }));
-		var trs = el('p', {});
-		if (bibles('nt').length) { trs.appendChild(el('label', {}, ['New Testament ', select(bibles('nt').map(function (b) { return [b.id, b.name]; }), rd.nt, function (x) { rd.nt = x; changed(); })])); trs.appendChild(document.createTextNode('   ')); }
-		if (bibles('ot').length) { trs.appendChild(el('label', {}, ['Old Testament ', select(bibles('ot').map(function (b) { return [b.id, b.name]; }), rd.ot, function (x) { rd.ot = x; changed(); })])); }
-		box.appendChild(trs);
-		var t = el('table', { class: 'pr-settings-table' });
+	/** Scripture reading: the translations, and for each section chapters, how often, and where it has got to. */
+	function drawReadingPanel() {
+		var has = (C.bibles || []).length > 0;
+		panelShown(readingPanel, has);
+		readingPanel.innerHTML = '';
+		panelTitle(readingPanel, 'Scripture reading');
+		if (!has) { return; }
+		var r = R(), rd = readingOf(r);
+		function changed() { saveSettings(); drawSettings(); drawTabs(); if (UI.service === 'reading') { show(); } }
+		readingPanel.appendChild(el('p', { class: 'pr-note pr-panel-intro', text: 'Read the Gospel, the Apostle and the Old Testament in order, as many chapters as you choose and as often as suits you. Each section goes on from where it stopped, and begins again at the end.' + (V.key ? '' : ' These settings are kept only in this browser.') }));
+		readingPanel.appendChild(setHead('Translations'));
+		var trow = el('div', { class: 'pr-card-row' });
+		if (bibles('nt').length) { trow.appendChild(fld('New Testament', select(bibles('nt').map(function (b) { return [b.id, b.name]; }), rd.nt, function (x) { rd.nt = x; changed(); }))); }
+		if (bibles('ot').length) { trow.appendChild(fld('Old Testament', select(bibles('ot').map(function (b) { return [b.id, b.name]; }), rd.ot, function (x) { rd.ot = x; changed(); }))); }
+		readingPanel.appendChild(el('div', { class: 'pr-card pr-card-wide' }, [trow]));
+		readingPanel.appendChild(setHead('Sections'));
 		var per = [[0, 'none']]; for (var n = 1; n <= 10; n++) { per.push([n, n]); }
+		var list = el('div', { class: 'pr-cards is-list' });
 		SECTIONS.forEach(function (sec) {
 			var x = rd[sec.key], books = sectionBooks(sec, rd);
 			if (!books.length) { return; }
 			var bk = books.filter(function (b) { return b[0] === x.b; })[0] || books[0];
-			var bookSel = select(books.map(function (b) { return [b[0], b[1]]; }), bk[0], function (code) { x.b = code; x.c = chaptersOf(books.filter(function (b) { return b[0] === code; })[0])[0]; changed(); });
-			var chSel = select(chaptersOf(bk).map(function (c) { return [c, c]; }), x.c, function (c) { x.b = bk[0]; x.c = +c; changed(); });
-			var freq = select([['daily', 'every day'], ['alternate', 'every other day'], ['weekday', 'once a week, on'], ['weekly', 'once a week, any day']], x.freq, function (v) {
-				x.freq = v; if (v === 'alternate') { x.anchor = UI.day; } changed();
-			});
-			var how = [select(per, x.per, function (v) { if (!(x.per > 0) && +v > 0) { x.since = defaultDay(); } x.per = +v; changed(); }), ' chapters ', freq];
-			if (x.freq === 'weekday') { how.push(' ', select(WEEKDAYS.map(function (n, i) { return [i, n]; }), x.wd, function (v) { x.wd = +v; changed(); })); }
-			t.appendChild(el('tr', {}, [el('th', { text: sec.name }), el('td', {}, how)]));
-			t.appendChild(el('tr', {}, [el('td', {}), el('td', {}, ['next: ', bookSel, ' ', chSel])]));
+			var card = el('div', { class: 'pr-card' + (x.per > 0 ? '' : ' is-off') });
+			card.appendChild(el('div', { class: 'pr-card-head' }, [
+				el('span', { class: 'pr-card-name', text: sec.name }),
+				el('span', { class: 'pr-card-sub', text: x.per > 0 ? freqText(x) : 'not read' })
+			]));
+			var row = el('div', { class: 'pr-card-row' }, [
+				fld('Chapters', select(per, x.per, function (v) { if (!(x.per > 0) && +v > 0) { x.since = defaultDay(); } x.per = +v; changed(); })),
+				fld('How often', select([['daily', 'every day'], ['alternate', 'every other day'], ['weekday', 'once a week, on a set day'], ['weekly', 'once a week, any day']], x.freq, function (v) {
+					x.freq = v; if (v === 'alternate') { x.anchor = UI.day; } changed();
+				}))
+			]);
+			if (x.freq === 'weekday') { row.appendChild(fld('On', select(WEEKDAYS.map(function (nm, i) { return [i, nm]; }), x.wd, function (v) { x.wd = +v; changed(); }))); }
+			var body = el('div', { class: 'pr-card-body' }, [row, el('div', { class: 'pr-card-row' }, [
+				fld('Next book', select(books.map(function (b) { return [b[0], b[1]]; }), bk[0], function (code) { x.b = code; x.c = chaptersOf(books.filter(function (b) { return b[0] === code; })[0])[0]; changed(); })),
+				fld('Chapter', select(chaptersOf(bk).map(function (c) { return [c, c]; }), x.c, function (c) { x.b = bk[0]; x.c = +c; changed(); }))
+			])]);
 			if (sec.key === 'old') {
-				var ps = el('input', { type: 'checkbox' }); ps.checked = x.psalms !== false;
-				ps.addEventListener('change', function () { x.psalms = ps.checked; changed(); });
-				t.appendChild(el('tr', {}, [el('td', {}), el('td', {}, [el('label', {}, [ps, ' include the Psalms (leave this off if you read them in the kathismas)'])])]));
+				body.appendChild(el('div', { class: 'pr-card-row' }, [toggle(x.psalms !== false, function (on) { x.psalms = on; changed(); }, 'Include the Psalms', 'Include the Psalms'),
+					el('span', { class: 'pr-note', text: 'Leave this off if you read them in the kathismas.' })]));
 			}
+			card.appendChild(body);
+			list.appendChild(card);
 		});
-		box.appendChild(t);
-		box.appendChild(el('p', { class: 'pr-note', text: 'Each section goes on from where it stopped, and starts again from the beginning at the end. "Every other day" counts from the day it is chosen; "once a week, any day" can be read on any day from Sunday to Saturday.' }));
-		return box;
+		readingPanel.appendChild(list);
+		readingPanel.appendChild(el('p', { class: 'pr-note', text: '"Every other day" counts from the day it is chosen. "Once a week, any day" can be read on any day from Sunday to Saturday. A section not due can still be read ahead from the Scripture page, and then counts for its next day.' }));
 	}
 
 	function drawKeys() {
@@ -682,7 +730,7 @@
 				for (d = from; d <= end && d <= today; d = addDays(d, 1)) {
 					if (!dueOn(x, d)) { continue; }
 					due++;
-					if (out.byDay[d] && out.byDay[d][sec.key]) { done++; }
+					if ((out.byDay[d] && out.byDay[d][sec.key]) || readAhead(x, sec.key, d, ctx.log)) { done++; }
 				}
 			}
 			out.sections.push({ sec: sec, x: x, due: due, done: done, since: since });
@@ -781,7 +829,7 @@
 			});
 			secs.forEach(function (x, i) {
 				var read = rs.byDay[day] && rs.byDay[day][x.sec.key], er = entryIn(ctx.log, day, 'reading');
-				var mark = day > today ? '' : read ? (er && er.corrected ? '✓*' : '✓') : (x.x.freq !== 'weekly' && day >= x.since && dueOn(x.x, day) ? '·' : '');
+				var mark = day > today ? '' : read ? (er && er.corrected ? '✓*' : '✓') : (x.x.freq !== 'weekly' && day >= x.since && dueOn(x.x, day) && !readAhead(x.x, x.sec.key, day, ctx.log) ? '·' : '');
 				row.push(el('td', { class: i === 0 ? 'pr-grid-reading' : '', text: mark }));
 			});
 			t.appendChild(el('tr', { class: day === today ? 'is-today' : '' }, row));
@@ -1105,7 +1153,7 @@
 		if ((C.bibles || []).length) {
 			rdraft = JSON.parse(JSON.stringify(readingOf(JSON.parse(JSON.stringify(rule)))));
 			var t3 = el('table');
-			t3.appendChild(el('tr', {}, [el('th', { colspan: '2', text: 'Daily Scripture reading' })]));
+			t3.appendChild(el('tr', {}, [el('th', { colspan: '2', text: 'Scripture reading' })]));
 			var per = [[0, 'none']]; for (var n = 1; n <= 10; n++) { per.push([n, n]); }
 			SECTIONS.forEach(function (sec) {
 				var x = rdraft[sec.key], wd = select(WEEKDAYS.map(function (nm, i) { return [i, nm]; }), x.wd, function (v) { x.wd = +v; });
@@ -1174,46 +1222,68 @@
 	// ---- the Scripture reading of the day
 
 	function showReading() {
-		var r = R(), mine = ++req, rd = readingOf(r), e = entry(UI.day, 'reading'), parts;
-		// A day already marked shows what was read then; otherwise the next chapters from the bookmarks.
-		if (e && e.kept && e.read) {
-			parts = SECTIONS.filter(function (sec) { return e.read[sec.key]; }).map(function (sec) { return { sec: sec, t: e.read[sec.key].t, list: e.read[sec.key].list, next: null }; });
-		} else {
-			parts = readingParts(r, UI.day, V.key ? V.log : null);
-		}
-		var later = parts.later || [];
-		function notToday() {
-			if (!later.length) { return null; }
-			return el('div', { class: 'pr-reading-later' }, later.map(function (pt) {
-				return el('p', {}, [el('strong', { text: pt.sec.name + ': ' }), freqText(rd[pt.sec.key]) + ', ' + pt.why + ' (' + readingSummary([pt], rd) + ').']);
-			}));
-		}
+		var r = R(), mine = ++req, rd = readingOf(r), day = UI.day;
+		var items = readingDay(r, day, V.key ? V.log : null);
+		var open = items.filter(function (it) { return it.state !== 'later'; }), later = items.filter(function (it) { return it.state === 'later'; });
+		shown = { day: day, service: 'reading' };
 		out.innerHTML = '';
-		if (!parts.length) {
-			out.appendChild(el('h2', { class: 'pr-service-title', text: 'Scripture' }));
-			if (later.length) { out.appendChild(el('p', { text: 'No reading today.' })); out.appendChild(notToday()); }
-			else { out.appendChild(el('p', {}, ['No daily reading is set. ', el('button', { type: 'button', class: 'pr-primary', text: V.key ? 'Set it in My rule' : 'Set it in My portion and settings', on: { click: function () { openPanel(settings); } } })])); }
-			shown = { day: UI.day, service: 'reading', parts: [] };
-			return;
-		}
 		out.appendChild(el('p', { class: 'pr-note', text: 'Loading…' }));
-		var items = [];
-		parts.forEach(function (pt) { pt.list.forEach(function (bc) { items.push({ s: pt.sec.key, t: pt.t, b: bc[0], c: bc[1] }); }); });
-		fetch(C.scripture, {
-			method: 'POST', credentials: 'same-origin',
-			headers: { 'Content-Type': 'application/json', 'X-WP-Nonce': C.nonce },
-			body: JSON.stringify({ date: UI.day, verses: r.verses ? 1 : 0, items: items })
-		}).then(function (res) { if (!res.ok) { throw res; } return res.json(); }).then(function (data) {
+		fetchSections(open, r).then(function (data) {
 			if (mine !== req) { return; }
 			out.innerHTML = data.day_html;
 			out.appendChild(el('h2', { class: 'pr-service-title', text: 'Scripture' }));
-			var note = notToday(); if (note) { out.appendChild(note); }
-			out.insertAdjacentHTML('beforeend', data.html);
-			shown = { day: UI.day, service: 'reading', parts: parts };
-			out.appendChild(el('div', { class: 'pr-done' }, readingControls()));
+			if (!items.length) {
+				out.appendChild(el('p', { class: 'pr-reading-none' }, ['No Scripture reading is set. ', el('button', { type: 'button', class: 'pr-primary', text: 'Set it in Scripture reading', on: { click: function () { openPanel(readingPanel); } } })]));
+				return;
+			}
+			if (!open.length) { out.appendChild(el('p', { class: 'pr-reading-none', text: 'No reading is due today.' })); }
+			open.forEach(function (it) { out.appendChild(readingPart(it, data.sections[it.sec.key] || '', day, rd)); });
+			if (later.length) {
+				var box = el('div', { class: 'pr-reading-later' }, [el('p', { class: 'pr-reading-later-head', text: open.length ? 'Not due today' : 'Coming next' })]);
+				later.forEach(function (it) { box.appendChild(laterCard(it, day, r, rd)); });
+				out.appendChild(box);
+			}
 		}).catch(function () { if (mine === req) { out.innerHTML = ''; out.appendChild(el('p', { text: 'The reading could not be loaded. Please try again.' })); } });
 	}
-
+	/** The chapters of some sections, and the day's heading, from the site. */
+	function fetchSections(items, r) {
+		var list = [];
+		items.forEach(function (it) { it.list.forEach(function (bc) { list.push({ s: it.sec.key, t: it.t, b: bc[0], c: bc[1] }); }); });
+		return fetch(C.scripture, {
+			method: 'POST', credentials: 'same-origin',
+			headers: { 'Content-Type': 'application/json', 'X-WP-Nonce': C.nonce },
+			body: JSON.stringify({ date: UI.day, verses: r.verses ? 1 : 0, items: list })
+		}).then(function (res) { if (!res.ok) { throw res; } return res.json(); });
+	}
+	/** One section of the day: its heading, its chapters, and its own button. */
+	function readingPart(it, html, day, rd) {
+		var x = rd[it.sec.key], box = el('div', { class: 'pr-reading-part' + (it.state === 'read' ? ' is-read' : '') });
+		box.appendChild(el('h3', { class: 'pr-reading-section', text: it.sec.name }));
+		box.appendChild(el('p', { class: 'pr-reading-how', text: readingSummary([it], rd) + (x && x.per > 0 ? ' · ' + freqText(x) : '') + (it.early ? ' · read ahead' : '') }));
+		var body = el('div', { class: 'prayer-rule-reading pr-scripture' }); body.innerHTML = html;
+		box.appendChild(body);
+		box.appendChild(el('div', { class: 'pr-done' }, readingControls(it, day, rd)));
+		return box;
+	}
+	/** A section not due today: when it comes, and a button to read it now. */
+	function laterCard(it, day, r, rd) {
+		var card = el('div', { class: 'pr-later-card' });
+		var go = el('button', { type: 'button', class: 'pr-tool', text: 'Read it now' });
+		go.addEventListener('click', function () {
+			go.disabled = true; go.textContent = 'Loading…';
+			fetchSections([it], r).then(function (data) {
+				it.state = 'due'; it.early = true;
+				card.replaceWith(readingPart(it, data.sections[it.sec.key] || '', day, rd));
+			}).catch(function () { go.disabled = false; go.textContent = 'Read it now'; });
+		});
+		card.appendChild(el('div', { class: 'pr-later-text' }, [
+			el('strong', { text: it.sec.name }),
+			el('span', { text: freqText(rd[it.sec.key]) + ' · ' + it.why }),
+			el('span', { class: 'pr-note', text: 'Next: ' + readingSummary([it], rd) })
+		]));
+		card.appendChild(go);
+		return card;
+	}
 	function readingSummary(parts, rd) {
 		return parts.map(function (pt) {
 			var first = pt.list[0], last = pt.list[pt.list.length - 1];
@@ -1222,50 +1292,44 @@
 			return a;
 		}).join('; ');
 	}
-
-	function readingControls() {
-		var s = shown, r = R(), rd = readingOf(r), late = daysAgo(s.day) > 7, e = entry(s.day, 'reading');
+	function readingControls(it, day, rd) {
+		var name = it.sec.name.replace(/^The /, 'the '), late = daysAgo(day) > 7;
 		if (!V.key) {
-			var b = el('button', { type: 'button', class: 'pr-primary', text: 'Finished: go on from here next time' });
+			var b = el('button', { type: 'button', class: 'pr-primary', text: 'Finished ' + name + ': go on from here next time' });
 			b.addEventListener('click', function () {
-				s.parts.forEach(function (pt) { rd[pt.sec.key].b = pt.next.b; rd[pt.sec.key].c = pt.next.c; });
+				var x = rd[it.sec.key]; x.b = it.next.b; x.c = it.next.c;
 				saveSettings(); drawSettings();
-				b.replaceWith(el('p', { text: 'Next time: ' + readingSummary(readingParts(r).map(function (pt) { return { sec: pt.sec, list: [pt.list[0]] }; }), rd) + '.' }));   // readingParts without a day: every section
+				b.replaceWith(el('p', { text: 'Next time: ' + readingSummary(readingParts(R()).filter(function (pt) { return pt.sec.key === it.sec.key; }).map(function (pt) { return { sec: pt.sec, list: [pt.list[0]] }; }), rd) + '.' }));
 			});
 			return [el('p', {}, [b])];
 		}
-		if (e && e.kept) {
+		var e = entry(day, 'reading');
+		if (it.state === 'read') {
 			var undo = el('button', { type: 'button', class: 'pr-link', text: 'Undo' });
-			undo.addEventListener('click', function () { setRead(false); });
-			return [el('p', { class: 'pr-kept' }, ['✓ Read: ' + readingSummary(s.parts, rd) + (e.corrected ? ' (corrected later)' : '') + '. ', undo])];
+			undo.addEventListener('click', function () { setRead(it, day, false); });
+			return [el('p', { class: 'pr-kept' }, ['✓ Read: ' + readingSummary([it], rd) + (e && e.corrected ? ' (corrected later)' : '') + '. ', undo])];
 		}
-		var mark = el('button', { type: 'button', class: 'pr-primary', text: 'Mark the reading as done' });
-		mark.addEventListener('click', function () { setRead(true); });
-		var kids = [el('p', {}, [mark]), el('p', { class: 'pr-note', text: readingSummary(s.parts, rd) + '.' })];
+		var mark = el('button', { type: 'button', class: 'pr-primary', text: 'Mark ' + name + ' as read' });
+		mark.addEventListener('click', function () { mark.disabled = true; setRead(it, day, true); });
+		var kids = [el('p', {}, [mark])];
 		if (late) { kids.push(el('p', { class: 'pr-note', text: 'This day is more than 7 days ago: it will be marked "corrected later".' })); }
 		return kids;
 	}
-
-	async function setRead(read) {
-		var s = shown, rd = readingOf(V.rule), key = entryKey(s.day, 'reading'), e = V.log.entries[key] || { first: now() }, late = daysAgo(s.day) > 7;
+	/** Mark one section of a day read (moving its bookmark on), or undo it. */
+	async function setRead(it, day, read) {
+		var rd = readingOf(V.rule), key = entryKey(day, 'reading'), e = V.log.entries[key] || { first: now() }, late = daysAgo(day) > 7, k = it.sec.key, x = rd[k];
+		e.read = e.read || {}; e.from = e.from || {}; e.to = e.to || {};
 		if (read) {
-			e.kept = true; e.read = {}; e.from = {}; e.to = {};
-			s.parts.forEach(function (pt) {
-				var x = rd[pt.sec.key];
-				e.read[pt.sec.key] = { t: pt.t, list: pt.list };
-				e.from[pt.sec.key] = { b: x.b, c: x.c };
-				e.to[pt.sec.key] = { b: pt.next.b, c: pt.next.c };
-				x.b = pt.next.b; x.c = pt.next.c;
-			});
+			e.read[k] = { t: it.t, list: it.list };
+			e.from[k] = { b: x.b, c: x.c };
+			e.to[k] = { b: it.next.b, c: it.next.c };
+			x.b = it.next.b; x.c = it.next.c;
 		} else {
-			e.kept = false;
-			// Put each bookmark back, unless it has moved on since.
-			Object.keys(e.to || {}).forEach(function (k) {
-				var x = rd[k];
-				if (x && x.b === e.to[k].b && x.c === e.to[k].c) { x.b = e.from[k].b; x.c = e.from[k].c; }
-			});
-			delete e.read; delete e.from; delete e.to;
+			// Put the bookmark back, unless it has moved on since.
+			if (e.to[k] && e.from[k] && x.b === e.to[k].b && x.c === e.to[k].c) { x.b = e.from[k].b; x.c = e.from[k].c; }
+			delete e.read[k]; delete e.from[k]; delete e.to[k];
 		}
+		e.kept = Object.keys(e.read).length > 0;
 		e.edited = now(); if (late) { e.corrected = true; }
 		V.log.entries[key] = e;
 		status('Saving…');

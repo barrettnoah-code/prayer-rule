@@ -115,15 +115,17 @@ administrator opens the admin after it changes (Prayer Rule → Scripture shows
 what is loaded and any chapter).
 
 On the members' page, "Scripture" beside the services shows the day's reading.
-Under My rule each member sets chapters a day for the Gospel, the Apostle
+In the Scripture reading window each member sets chapters for the Gospel, the Apostle
 (Acts, the Epistles, Revelation) and the Old Testament (with the deuterocanonical
 books; the Psalms optional), the translations, and where each section has got
 to. Marking the reading as done moves the bookmarks on; the reading starts
 again at the end.
 
 Each section can be read every day, every other day, once a week on a set day,
-or once a week on any day of the week (Sunday to Saturday). Sections not due
-are listed under the day's reading with when they come next.
+or once a week on any day of the week (Sunday to Saturday). Each section of the
+day has its own "Mark as read" button. Sections not due are listed under the
+day's reading with when they come next, and "Read it now" opens one to read
+ahead; a section read ahead counts for its next day due.
 
 My record counts the reading apart from the services: a Scripture table (read
 of due, per section), Scripture columns in the week, a mark in the month, and

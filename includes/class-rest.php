@@ -77,6 +77,7 @@ class Rest {
 		$loaded  = Bible::translations();
 		$html    = '';
 		$section = '';
+		$parts   = array();                 // section => its chapters, for the page to place one by one
 		foreach ( array_slice( (array) $request->get_param( 'items' ), 0, 60 ) as $item ) {
 			$t = sanitize_key( (string) ( $item['t'] ?? '' ) );
 			$b = strtoupper( preg_replace( '/[^A-Za-z0-9]/', '', (string) ( $item['b'] ?? '' ) ) );
@@ -95,10 +96,13 @@ class Rest {
 					$name = $book['name'];
 				}
 			}
-			$html .= '<section class="pr-chapter"><h4 class="pr-psalm">' . esc_html( $name . ' ' . $c ) . '</h4>' . Bible::chapter_html( $t, $b, $c, $numbers ) . '</section>';
+			$one          = '<section class="pr-chapter"><h4 class="pr-psalm">' . esc_html( $name . ' ' . $c ) . '</h4>' . Bible::chapter_html( $t, $b, $c, $numbers ) . '</section>';
+			$html        .= $one;
+			$parts[ $s ]  = ( $parts[ $s ] ?? '' ) . $one;
 		}
 		return array(
 			'html'     => '<div class="prayer-rule-reading pr-scripture">' . $html . '</div>',
+			'sections' => (object) $parts,
 			'day_html' => $request['date'] ? Reader::day_html( Calendar::day( (string) $request['date'] ), 'reading' ) : '',
 		);
 	}
