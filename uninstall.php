@@ -17,6 +17,7 @@ if ( ! defined( 'WP_UNINSTALL_PLUGIN' ) ) {
 
 global $wpdb;
 $wpdb->query( "DROP TABLE IF EXISTS {$wpdb->prefix}prayer_rule_verses" ); // phpcs:ignore WordPress.DB
+$wpdb->query( "DROP TABLE IF EXISTS {$wpdb->prefix}prayer_rule_bible" ); // phpcs:ignore WordPress.DB
 
 foreach ( array(
 	'prayer_rule_access',
@@ -32,6 +33,7 @@ foreach ( array(
 	'prayer_rule_ustav_hash',
 	'prayer_rule_saints',
 	'prayer_rule_zapevy',
+	'prayer_rule_bible_hashes',
 	'prayer_rule_additions',
 	'prayer_rule_fasting',
 	'prayer_rule_evening',

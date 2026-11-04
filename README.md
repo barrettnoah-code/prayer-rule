@@ -100,6 +100,20 @@ the admin, and again whenever the file changes: missing ones are added,
 and ones nobody has edited since an earlier version are brought up to
 date. Anything edited on the site is left alone.
 
+## Scripture
+
+Three whole Bibles for the Scripture reading, from eBible.org (public domain):
+the KJV with the Apocrypha, the Douay-Rheims (Challoner, 1899) and Brenton's
+Septuagint (Old Testament only). Each keeps its own book order, names and
+numbering.
+
+    python3 tools/fetch_bibles.py     # once: downloads into sources/bibles/
+    python3 tools/build_bibles.py     # writes data/bible-*.json.gz and data/bibles.json
+
+The site loads each translation into its own table the first time an
+administrator opens the admin after it changes (Prayer Rule → Scripture shows
+what is loaded and any chapter).
+
 ## In the admin (Prayer Rule menu)
 
 - **Prayers** – texts written on the site, each with a *short name*

@@ -36,6 +36,7 @@ class Admin {
 		add_submenu_page( self::SLUG, __( 'Fasting', 'prayer-rule' ), __( 'Fasting', 'prayer-rule' ), 'manage_options', 'prayer-rule-fasting', array( __CLASS__, 'page_fasting' ) );
 		add_submenu_page( self::SLUG, __( 'Saints', 'prayer-rule' ), __( 'Saints', 'prayer-rule' ), 'manage_options', 'prayer-rule-saints', array( __CLASS__, 'page_saints' ) );
 		add_submenu_page( self::SLUG, __( 'Kathismas', 'prayer-rule' ), __( 'Kathismas', 'prayer-rule' ), 'manage_options', 'prayer-rule-kathismas', array( __CLASS__, 'page_kathismas' ) );
+		add_submenu_page( self::SLUG, __( 'Scripture', 'prayer-rule' ), __( 'Scripture', 'prayer-rule' ), 'edit_pages', 'prayer-rule-scripture', array( __CLASS__, 'page_scripture' ) );
 		add_submenu_page( self::SLUG, __( 'Preview', 'prayer-rule' ), __( 'Preview', 'prayer-rule' ), 'edit_pages', 'prayer-rule-preview', array( __CLASS__, 'page_preview' ) );
 		add_submenu_page( self::SLUG, __( 'Settings', 'prayer-rule' ), __( 'Settings', 'prayer-rule' ), 'manage_options', 'prayer-rule-settings', array( __CLASS__, 'page_settings' ) );
 	}
@@ -46,7 +47,7 @@ class Admin {
 		if ( empty( $submenu[ self::SLUG ] ) ) {
 			return;
 		}
-		$want = array( self::SLUG, 'edit.php?post_type=' . Texts::TYPE, 'edit.php?post_type=' . Orders::TYPE, 'prayer-rule-services', 'prayer-rule-dismissals', 'prayer-rule-fasting', 'prayer-rule-saints', 'prayer-rule-kathismas', 'prayer-rule-preview', 'prayer-rule-settings' );
+		$want = array( self::SLUG, 'edit.php?post_type=' . Texts::TYPE, 'edit.php?post_type=' . Orders::TYPE, 'prayer-rule-services', 'prayer-rule-dismissals', 'prayer-rule-fasting', 'prayer-rule-saints', 'prayer-rule-kathismas', 'prayer-rule-scripture', 'prayer-rule-preview', 'prayer-rule-settings' );
 		usort(
 			$submenu[ self::SLUG ],
 			function ( $a, $b ) use ( $want ) {
@@ -746,6 +747,113 @@ class Admin {
 			self::day_box( $key, $info );
 			echo Render::html( $steps, true ); // phpcs:ignore WordPress.Security.EscapeOutput -- escaped in Render::html
 			?>
+		</div>
+		<?php
+	}
+
+	// ------------------------------------------------------------ Scripture
+
+	/** The Bibles: what is loaded, and any chapter to read (to check the text). */
+	public static function page_scripture() {
+		// phpcs:disable WordPress.Security.NonceVerification -- read-only choices
+		$index  = Bible::index();
+		$counts = Bible::counts();
+		$tid    = isset( $_GET['t'] ) ? sanitize_key( wp_unslash( $_GET['t'] ) ) : ( $index ? $index[0]['id'] : '' );
+		$t      = Bible::translation( $tid );
+		$books  = $t ? $t['books'] : array();
+		$code   = isset( $_GET['b'] ) ? strtoupper( sanitize_key( wp_unslash( $_GET['b'] ) ) ) : ( $books ? $books[0]['code'] : '' );
+		$book   = null;
+		foreach ( $books as $b ) {
+			if ( $b['code'] === $code ) {
+				$book = $b;
+			}
+		}
+		if ( ! $book && $books ) {
+			$book = $books[0];
+		}
+		$ch = isset( $_GET['c'] ) ? absint( $_GET['c'] ) : 0;
+		if ( $book && ! in_array( $ch, $book['chapters'], true ) ) {
+			$ch = $book['chapters'][0];
+		}
+		// phpcs:enable
+		$groups = array(
+			'ot'      => __( 'Old Testament', 'prayer-rule' ),
+			'deutero' => __( 'deuterocanonical', 'prayer-rule' ),
+			'gospel'  => __( 'Gospels', 'prayer-rule' ),
+			'apostle' => __( 'Apostle and Revelation', 'prayer-rule' ),
+		);
+		?>
+		<div class="wrap">
+			<h1><?php esc_html_e( 'Scripture', 'prayer-rule' ); ?></h1>
+			<?php if ( ! $index ) : ?>
+				<div class="notice notice-warning inline"><p><?php esc_html_e( 'The Bibles are not in this version of the plugin yet (data/bibles.json is missing).', 'prayer-rule' ); ?></p></div>
+			</div>
+				<?php
+				return;
+			endif;
+			?>
+			<p><?php esc_html_e( 'The whole Bibles used for the Scripture reading, each with its own book order, names and numbering. A translation is loaded into the database the first time an administrator opens the admin after it changes, one translation per page load.', 'prayer-rule' ); ?></p>
+			<table class="widefat striped" style="max-width:900px">
+				<thead><tr>
+					<th><?php esc_html_e( 'Translation', 'prayer-rule' ); ?></th>
+					<?php foreach ( $groups as $label ) : ?>
+						<th><?php echo esc_html( $label ); ?></th>
+					<?php endforeach; ?>
+					<th><?php esc_html_e( 'Loaded', 'prayer-rule' ); ?></th>
+				</tr></thead>
+				<tbody>
+				<?php foreach ( $index as $tr ) : ?>
+					<?php
+					$total = 0;
+					$by    = array_fill_keys( array_keys( $groups ), array( 0, 0 ) );
+					foreach ( $tr['books'] as $b ) {
+						++$by[ $b['group'] ][0];
+						$by[ $b['group'] ][1] += count( $b['chapters'] );
+						$total                += count( $b['chapters'] );
+					}
+					$have = $counts[ $tr['id'] ]['chapters'] ?? 0;
+					?>
+					<tr>
+						<td><strong><?php echo esc_html( $tr['name'] ); ?></strong></td>
+						<?php foreach ( $by as $g ) : ?>
+							<td><?php echo $g[0] ? esc_html( sprintf( /* translators: 1: books, 2: chapters */ __( '%1$d books, %2$d chapters', 'prayer-rule' ), $g[0], $g[1] ) ) : '—'; ?></td>
+						<?php endforeach; ?>
+						<td><?php echo $have === $total ? '✓ ' . esc_html( (string) $have ) : esc_html( sprintf( /* translators: 1: loaded, 2: total */ __( '%1$d of %2$d chapters (open the admin again to continue)', 'prayer-rule' ), $have, $total ) ); ?></td>
+					</tr>
+				<?php endforeach; ?>
+				</tbody>
+			</table>
+
+			<h2><?php esc_html_e( 'Read a chapter', 'prayer-rule' ); ?></h2>
+			<form method="get">
+				<input type="hidden" name="page" value="prayer-rule-scripture">
+				<select name="t" onchange="this.form.b.selectedIndex=0;this.form.submit()">
+					<?php foreach ( $index as $tr ) : ?>
+						<option value="<?php echo esc_attr( $tr['id'] ); ?>" <?php selected( $tid, $tr['id'] ); ?>><?php echo esc_html( $tr['name'] ); ?></option>
+					<?php endforeach; ?>
+				</select>
+				<select name="b" onchange="this.form.c.value='';this.form.submit()">
+					<?php foreach ( $books as $b ) : ?>
+						<option value="<?php echo esc_attr( $b['code'] ); ?>" <?php selected( $book ? $book['code'] : '', $b['code'] ); ?>><?php echo esc_html( $b['name'] ); ?></option>
+					<?php endforeach; ?>
+				</select>
+				<select name="c" onchange="this.form.submit()">
+					<?php foreach ( $book ? $book['chapters'] : array() as $n ) : ?>
+						<option value="<?php echo (int) $n; ?>" <?php selected( $ch, $n ); ?>><?php echo (int) $n; ?></option>
+					<?php endforeach; ?>
+				</select>
+				<noscript><?php submit_button( __( 'Show', 'prayer-rule' ), 'secondary', '', false ); ?></noscript>
+			</form>
+			<?php if ( $book ) : ?>
+				<style><?php echo Render::css(); // phpcs:ignore WordPress.Security.EscapeOutput -- fixed CSS ?>.prayer-rule-reading .pr-chapter-title{font-style:italic;opacity:.8}</style>
+				<div class="prayer-rule-reading" style="background:#fff;border:1px solid #dcdcde;padding:1em 2em;margin-top:1em">
+					<h3 class="pr-psalm"><?php echo esc_html( $book['name'] . ' ' . $ch ); ?></h3>
+					<?php
+					$html = Bible::chapter_html( $tid, $book['code'], $ch );
+					echo '' !== $html ? $html : '<p>' . esc_html__( 'This chapter is not loaded yet.', 'prayer-rule' ) . '</p>'; // phpcs:ignore WordPress.Security.EscapeOutput -- escaped in Bible::chapter_html
+					?>
+				</div>
+			<?php endif; ?>
 		</div>
 		<?php
 	}

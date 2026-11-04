@@ -2,7 +2,7 @@
 /**
  * Plugin Name:       Prayer Rule
  * Description:       A private prayer rule for members: the daily cycle kept by kathismas and Jesus Prayers, a built-in Psalter, and an encrypted record of what was kept.
- * Version:           0.17.2
+ * Version:           0.18.0
  * Requires at least: 6.0
  * Requires PHP:      7.4
  * Author:            The Old Believers
@@ -16,13 +16,14 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'PRAYER_RULE_VERSION', '0.17.2' );
+define( 'PRAYER_RULE_VERSION', '0.18.0' );
 define( 'PRAYER_RULE_FILE', __FILE__ );
 define( 'PRAYER_RULE_DIR', plugin_dir_path( __FILE__ ) );
 define( 'PRAYER_RULE_URL', plugin_dir_url( __FILE__ ) );
 
 require_once PRAYER_RULE_DIR . 'includes/class-access.php';
 require_once PRAYER_RULE_DIR . 'includes/class-psalter.php';
+require_once PRAYER_RULE_DIR . 'includes/class-bible.php';
 require_once PRAYER_RULE_DIR . 'includes/class-kathismas.php';
 require_once PRAYER_RULE_DIR . 'includes/class-texts.php';
 require_once PRAYER_RULE_DIR . 'includes/class-services.php';
@@ -54,6 +55,7 @@ add_action( 'admin_init', array( 'PrayerRule\\Vault', 'maybe_install' ) );
 // A deleted account takes its private rule with it.
 add_action( 'delete_user', array( 'PrayerRule\\Vault', 'delete_user' ) );
 add_action( 'admin_init', array( 'PrayerRule\\Psalter', 'maybe_update' ) );
+add_action( 'admin_init', array( 'PrayerRule\\Bible', 'maybe_update' ) );
 // The Home Ustav prayers and orders: added once, and again when the file changes.
 add_action( 'admin_init', array( 'PrayerRule\\Ustav', 'maybe_import' ) );
 // Every save (editor, REST, or code) gives a prayer its short name.

@@ -129,6 +129,8 @@ class Reader {
 .prayer-rule-reader .pr-dialog h4{margin:1.4em 0 .5em}
 html.pr-modal-open{overflow:hidden}
 @media (max-width:600px){.prayer-rule-reader .pr-dialog{padding:2.2em .9em 1.2em;width:calc(100% - .8em);max-height:92vh}.prayer-rule-reader .pr-controls{gap:.35em}.prayer-rule-reader .pr-head{padding:.8em .6em}}
+/* On the members page the theme content column sets the width (the 42em limit is for the admin Preview). */
+.prayer-rule-reader .prayer-rule-reading{max-width:none}
 .prayer-rule-reader .pr-service-title{text-align:center;color:#921a0a;font-weight:normal;letter-spacing:.04em;margin:1.4em 0 1em;display:flex;align-items:center;gap:.8em}
 .prayer-rule-reader .pr-service-title::before,.prayer-rule-reader .pr-service-title::after{content:"";flex:1;border-top:1px solid var(--pr-line)}
 .prayer-rule-reader .pr-settings table{border-collapse:collapse;margin:.6em 0}
