@@ -186,6 +186,8 @@ class Rest {
 				'portions'    => $portions,
 				'day'         => $request['day'],
 				'date'        => $request['date'] ? Calendar::civil( (string) $request['date'] ) : '',
+				'bedtime'     => (bool) $request['bedtime'],
+				'troparia'    => (bool) $request['troparia'],
 			)
 		);
 		// Members see only what exists; problems are for the admin preview.
@@ -193,7 +195,7 @@ class Rest {
 			array_filter(
 				$steps,
 				function ( $step ) {
-					return in_array( $step['type'], array( 'text', 'psalm', 'say', 'rubric', 'kathisma', 'stasis', 'ladders' ), true );
+					return in_array( $step['type'], array( 'text', 'psalm', 'say', 'rubric', 'heading', 'kathisma', 'stasis', 'ladders' ), true );
 				}
 			)
 		);

@@ -340,6 +340,297 @@ O Lord Jesus Christ, Son of God, for the prayers of thy most pure Mother, and of
 [zapev god-bearer]
 [zapev saint]
 
+# ---------------------------------------------------------------- after the kathismas
+# The penitential troparia and prayer after each kathisma (from the Psalter).
+# Shown after a kathisma in Great Lent, and all year for members who choose
+# it (My rule); the Trisagion through the Our Father comes before them, and
+# "O come, let us worship" after them when another kathisma follows.
+# Setting: Prayer Rule -> Services, rule texts, "troparia-after-kathisma-{n}".
+
+=== troparia-after-kathisma-1 | After the 1st kathisma: troparia and prayer
+! The penitential troparia.
+Of blessedness and of godliness have I been deprived, and into the way of ungodliness have I turned aside; in the nature of my mind have I gone astray, and of the fruit of faith, of well-planted understanding, have I been bereft. O Planter of good things, and Instructor of the foolish, by the power of thy Cross save me.
+{Glory:} From the mind that troubleth me, and from wrathful thought, deliver me, O Lord. Fearing the fury of thy threatening, with words of anguish I cry unto thee: snatch me from all the evils that have settled in me, and save me.
+{Both now:} O most pure God-bearer, blessed in heaven and glorified on earth: rejoice, O ever-virgin Bride.
+Lord, have mercy. {(forty times; in Great Lent, fifty)}
+Glory to the Father, and to the Son, and to the Holy Ghost, both now and ever, and unto the ages of ages. Amen.
+More honorable than the cherubim, and truly more glorious than the seraphim, without corruption, having borne God the Word; who art the God-bearer, thee do we magnify. [bow]
+! The first prayer.
+O God almighty, righteous and all-praised; O God great and mighty; O God before the ages: hear me, thy sinful servant, in this hour. Hear me, O God, and hearken ever unto my lowliness. Hear me, O Lord, as I pray unto thee, as once thou didst hear thy prophet Elias; and by his prayers burn up mine iniquities, and cleanse my sins, O God, Creator of the holy bodiless powers, who hast said: Ask, and ye shall receive. Disdain not to hear me, who am held fast by sins and offer prayer with unclean lips. Yea, O Lord, who hast promised to hear them that call upon thee in truth, direct my steps into the way of peace, and forgive me all my transgressions, voluntary and involuntary, O thou who hast said: Be ye harmless as doves. I have cried with my whole heart; hear me, O Lord, thou hope of all the ends of the earth, and of them that are afar off upon the sea. Rebuke the unclean spirits from before the face of mine infirmity. Take up weapon and shield, and stand up to help me; draw out the sword, and stop the way against them that persecute me. Say unto my soul: I am thy salvation. Let the spirit of pride depart from mine infirmity, and the spirit of hatred and of envy, the spirit of fear and of despair, of folly and of all malice. Let every burning and stirring be quenched in me that ariseth from the workings of the devil. Let my soul and body be enlightened by the Spirit unto understanding, by thy light and by the multitude of thy compassions. Let thy mercy dwell upon me, through the prayers of our most holy Lady the God-bearer, and of all thy saints; that I may glorify thy most holy name, of the Father, and of the Son, and of the Holy Ghost, now and ever, and unto the ages of ages. Amen.
+
+=== troparia-after-kathisma-2 | After the 2nd kathisma: troparia and prayer
+! The penitential troparia.
+Make haste to open unto me thy fatherly embrace, for riotously have I spent my life. But looking upon the unfailing riches of thy compassions, O Saviour, despise not now my heart made poor, O Lord; for unto thee I cry in repentance: Father, I have sinned against heaven and before thee.
+{Glory:} I have emulated the deeds of the prodigal, but have not gained his repentance. But as thou art most good, O Lord, bring me back, who have willingly gone astray, and cleanse me from the defilement of my transgressions, for the God-bearer's sake, as I cry unto thee: Father, I have sinned against heaven and before thee.
+{Both now:} Receive the prayer of thy servants, O Virgin God-bearer, and deliver us from every calamity; for thou hast borne Christ the Saviour, the Deliverer of our souls.
+Lord, have mercy. {(forty times; in Great Lent, fifty)}
+Glory to the Father, and to the Son, and to the Holy Ghost, both now and ever, and unto the ages of ages. Amen.
+More honorable than the cherubim, and truly more glorious than the seraphim, without corruption, having borne God the Word; who art the God-bearer, thee do we magnify. [bow]
+! The second prayer.
+O Lord Jesus Christ, our God and Saviour, Treasury of good things: grant me the perfection of repentance, and a heart that grieveth, that with all my soul I may go forth to seek thee, who art all good. For besides thee I shall fear none. And grant me, O Good One, thy grace that loveth mankind. May the Father, who before the ages brought thee forth from his bosom, timeless and co-eternal, renew in me the likeness of thine image. I have forsaken thee; forsake not thou me. I have gone out from thee; go out thou to seek me, and lead me into thy pasture, and number me with the sheep of thy chosen flock, and nourish me with them from the pasture of thy divine mysteries. Their dwelling is a pure heart, and in it the pure shining of thy revelations, which thou hast prepared for them that have laboured for thy sake in all afflictions. May we be vouchsafed to obtain them by thy grace and love for mankind; and unto thee we send up glory, with thy Father who is without beginning, and with thy most holy, good and life-giving Spirit, now and ever, and unto the ages of ages. Amen.
+
+=== troparia-after-kathisma-3 | After the 3rd kathisma: troparia and prayer
+! The penitential troparia.
+Visit my lowly soul, O Lord, which hath spent all its life in sins; but as thou didst the harlot, receive me, and save me.
+{Glory:} I am enfeebled by the sleep of despondency, and darkened by the sloth of sin. But shine upon me the light of repentance, O Christ God, enlightening the sight of my mind, O Enlightener of our souls.
+{Both now:} We have known the Word of the Father, Christ our God, incarnate of thee, O Virgin God-bearer: him do thou entreat to save our souls.
+Lord, have mercy. {(forty times; in Great Lent, fifty)}
+Glory to the Father, and to the Son, and to the Holy Ghost, both now and ever, and unto the ages of ages. Amen.
+More honorable than the cherubim, and truly more glorious than the seraphim, without corruption, having borne God the Word; who art the God-bearer, thee do we magnify. [bow]
+! The third prayer.
+O Master, God, Father of all compassions, and Lord of consolation: have compassion on me, thine unworthy servant. Let not the multitude of mine evils overcome thy love for mankind. O my God, thrust me not away from thy goodness, but assuage thine anger toward them that have sinned against thee, for thou art good. Be merciful unto me a sinner, who every day and hour provoke thy good and forbearing name. As thou didst save the harlot, and the publican, and the thief, and him who at the eleventh hour had done nothing worthy, so save me also, the unworthy, who have wrought all evil and every sin, and have never done any good before thee, but have ever followed my wicked and evil deeds. Yet nevertheless, O Master God, repenting I flee unto thy compassions. Let thy mercy go before me, O Lord, and let the almighty power of thy Holy Ghost strengthen me against the unseen demons that ever war with me, that upon me also thy sovereign right hand may be magnified, and thine unsearchable goodness. For the sake of faith, and not of works, save me, thine unworthy servant, and I will praise thee all the days of my life; for thee do all the powers of heaven hymn, the Father, and the Son, and the Holy Ghost, now and ever, and unto the ages of ages. Amen.
+
+=== troparia-after-kathisma-4 | After the 4th kathisma: troparia and prayer
+! The penitential troparia.
+I have loved earthly and temporal things, and am deprived of eternal good things. But do thou, who alone lovest mankind, direct the thought of my mind unto thyself, and save my poor soul from sins.
+{Glory:} Receive me as I repent before thee, as thou didst the thief and the harlot; and despise me not as I turn again, but forgive me all my sins, known and unknown, O thou who alone art plenteous in mercy.
+{Both now:} I weep every hour for the fall of my soul, and call upon thee, O spotless Virgin, to help me. O merciful Lady, Virgin God-bearer, deliver my lowly soul from eternal torment.
+Lord, have mercy. {(forty times; in Great Lent, fifty)}
+Glory to the Father, and to the Son, and to the Holy Ghost, both now and ever, and unto the ages of ages. Amen.
+More honorable than the cherubim, and truly more glorious than the seraphim, without corruption, having borne God the Word; who art the God-bearer, thee do we magnify. [bow]
+! The fourth prayer.
+O God and Father, who alone art good and the lover of mankind, who alone art true and righteous, who alone art compassionate and merciful, the Father of our Lord Jesus Christ, who was crucified under Pontius Pilate, suffered and was buried, and rose on the third day, and ascended into the heavens in his glory: let the power of thy majesty come upon me, thy sinful servant, and strengthen me by the good tidings of thy teaching. Do thou, O Master, enlighten mine inward parts and all my members by thy will, and cleanse me from all malice and sin. Keep me undefiled and blameless from every working of the devil, and grant me, according to thy goodness, to think the things that are thine, to understand the things that are thine, to live in thy will, to walk in thy fear, and to do the things well-pleasing unto thee, until my last day and hour and breath. And I call upon thee, O Lord Jesus Christ, I the sinful, unworthy and unclean, that according to thine unspeakable mercy thou wouldest keep my soul, and body, and mind from every snare of the devil. Yea, O holy Father, cover me with thy mercy, and forsake me not, lest mine enemies say: We have swallowed him up. And my song shall be of thee unto the ages. Amen.
+
+=== troparia-after-kathisma-5 | After the 5th kathisma: troparia and prayer
+! The penitential troparia.
+Grant me, O Lord, the watchfulness of the wise virgins, a bright lamp for my soul; and enlighten me with the light of thy compassions, that I may cry unto thee the angelic song: Alleluia.
+{Glory:} Have mercy upon me, said David; and I cry unto thee: I have sinned, O Saviour; cleanse my sins by repentance, and have mercy upon me.
+{Both now:} O spotless Bride, Mother of the Word, from thy seedless womb thou hast caused the light to shine upon us who were darkened; wherefore all we faithful magnify thee.
+Lord, have mercy. {(forty times; in Great Lent, fifty)}
+Glory to the Father, and to the Son, and to the Holy Ghost, both now and ever, and unto the ages of ages. Amen.
+More honorable than the cherubim, and truly more glorious than the seraphim, without corruption, having borne God the Word; who art the God-bearer, thee do we magnify. [bow]
+! The fifth prayer.
+O Lord our God, Father of the true Light, who hast adorned the day with heavenly light, and enlightenest the night with fiery rays; who hast prepared the rest of the age to come for them that love thee, unto life eternal: enlighten our hearts with unceasing light unto true understanding, and keep our life without stumbling, granting us to walk honestly, as in the day, and to glorify thy most honorable and majestic name, of the Father, and of the Son, and of the Holy Ghost, now and ever, and unto the ages of ages. Amen.
+
+=== troparia-after-kathisma-6 | After the 6th kathisma: troparia and prayer
+! The penitential troparia.
+I have not the sighing of the publican, nor the tears of repentance of the harlot; in despair I perish grievously. But I cry unto thee, O God: have compassion and have mercy upon me.
+{Glory:} For thou art a merciful God, and the Father of consolation: hearken unto me as I pray unto thee, O Giver of light to them that are in darkness. O Lord, glory to thee.
+{Both now:} Thou art, O God-bearer, a pillar of strength to the faithful; thou art a deep of mercy that cannot be drained. Wherefore save them that hymn thee, O all-glorious one.
+Lord, have mercy. {(forty times; in Great Lent, fifty)}
+Glory to the Father, and to the Son, and to the Holy Ghost, both now and ever, and unto the ages of ages. Amen.
+More honorable than the cherubim, and truly more glorious than the seraphim, without corruption, having borne God the Word; who art the God-bearer, thee do we magnify. [bow]
+! The sixth prayer.
+O God-bearer, Queen and Sovereign, Lady Virgin Mary, Mother of our God: thy Son, the God of all, despised not the sinners that fled unto him, but saved them all, and brought them to the knowledge of the truth. But I, the wretched, have defiled my baptism, and transgressed the vows that were laid upon me, and have not kept the commandments of thy Son and my God. But unto thee, O Lady, have I fled. Teach me to do the will of thy Son, my Lord, that he may save me, and bring me to the knowledge of the truth, and grant me the grace of the Holy Ghost, that I be not caught in the nets of the enemy. Other help have I found none from my youth, save thee, O Lady God-bearer. Oft have I angered thee, yet thou didst not abhor me. But I, the wretched, am insensible of thy mercy, and have fallen into the depth of folly, and have destroyed my understanding. Yet unto thee I cry without ceasing: have mercy on me, O Sovereign Lady, and raise me up from the abyss of sins. Stretch out thy hand to me that lie fallen; strengthen me, the infirm; cleanse me, the defiled; save me, who am perishing; that all sinners, seeing thy mercy upon me, the unworthy, may flee unto thy protection, and glorify thy Son, with the Father and with the Holy Ghost, now and ever, and unto the ages of ages. Amen.
+
+=== troparia-after-kathisma-7 | After the 7th kathisma: troparia and prayer
+! The penitential troparia.
+O my soul, why art thou slothful, and servest sin? Why, being sick, dost thou not run unto the Physician? Awake now from the evils that thou hast done, and cry unto the Saviour, saying: O Hope of the hopeless, Life of them that have despaired, O Physician, my Saviour, have mercy upon me.
+{Glory:} Thou shalt be brought, O my soul, to the judgment of all the world, and dragged away suddenly by the fiery angels. Whom then wilt thou call to thy help, having thine evil deeds to convict thee? Awake now, and repent, crying unto Christ God: O lover of mankind, save me.
+{Both now:} Heal me, O God-bearer, who am sick from evil deeds, and lighten my pains, granting me the medicine of repentance, O Mother of Christ God.
+Lord, have mercy. {(forty times; in Great Lent, fifty)}
+Glory to the Father, and to the Son, and to the Holy Ghost, both now and ever, and unto the ages of ages. Amen.
+More honorable than the cherubim, and truly more glorious than the seraphim, without corruption, having borne God the Word; who art the God-bearer, thee do we magnify. [bow]
+! The seventh prayer.
+I thank thee, O Lord our God, for all thy benefits, which have been upon us, the unworthy, from the first day until this present hour. And now, O Lord, unto thee I stretch forth my mind, and heart, and thought, and send up all my senses. Cleanse me, O Merciful One, cleanse me; for wholly condemned I come unto thee, and without an answer I flee unto thy mercy. Unto thee, as one ashamed and without an advocate, I bow the neck of my heart and body. I lift up defiled hands, and weep with sighing, and pray with compunction; from the depth of my soul I cry: Cleanse me, O Lord, cleanse me, and deliver me from the unquenchable fire. And give me not, the wretched, to be a rejoicing to the demon that shamelessly assaileth me. Therefore, O Lord, make haste to come quickly and help me, and vouchsafe me to stand without condemnation before thy dread judgment seat, and to obtain the eternal gifts with all thine elect, through the prayers of the God-bearer and of all thy saints. For thou art merciful and longsuffering, and unto thee we send up glory, to the Father, and to the Son, and to the Holy Ghost, now and ever, and unto the ages of ages. Amen.
+
+=== troparia-after-kathisma-8 | After the 8th kathisma: troparia and prayer
+! The penitential troparia.
+Terrible art thou, O Lord, and who shall stand against thy righteous wrath? Or who shall entreat thee, O Good One? Or who shall appease thee for a people that have sinned and are past hope? Only the heavenly ranks, angels and archangels, dominions, cherubim and seraphim, crying unto thee Hosanna: Holy, holy, holy art thou, O God; have mercy on us.
+{Glory:} O Lord, O Lord, all things fear thee, and tremble before the face of thy glory. Before thee we fall down, O Immortal One, and unto thee we pray, O Holy One: save our souls, through the prayers of thy saints.
+{Both now:} Thou who art the turning of the sorrowful and the change of the sick, O God-bearer most hymned, peace to them that have no peace, calm to the storm-tossed: save the city and the people, thou sole intercessor of the faithful.
+Lord, have mercy. {(forty times; in Great Lent, fifty)}
+Glory to the Father, and to the Son, and to the Holy Ghost, both now and ever, and unto the ages of ages. Amen.
+More honorable than the cherubim, and truly more glorious than the seraphim, without corruption, having borne God the Word; who art the God-bearer, thee do we magnify. [bow]
+! The eighth prayer.
+O holy God, Master, heavenly King, Jesus Christ: look down now from thy measureless height, and hear the weeping and the prayer of thy servant; and grant me a river of tears, that I may wash away my sins, which are multiplied exceedingly. For they are numbered with the stars of heaven and the drops of rain, yea, and above the sand of the sea: woe is me, my sins are multiplied. Yet nevertheless I know that thou art merciful, and awaitest the repentance of the sinner, and repentest thee of the evil. Thou didst receive the repentance of the thief, and didst save him for a single word, when he said: Remember me, O Saviour, when thou comest in thy kingdom. Remember me likewise, O Lord, who have not so great a faith; for I have lived his life and done his deeds, and in my mind I stand condemned. O Lord, who didst not despise the tears of the harlot, who made bold, and ran, and took ointment, and poured it upon thine honorable head, upon which the angels dare not look; and embracing thy feet, she kissed them, and wiped them with her hair, and thou didst send her away in peace: so also receive my sinful soul in peace, and give me rest in the bosom of Abraham, and number me in thy chosen flock, that I may see the light of thy countenance, and glorify thy holy name, with the Father and the Holy Ghost, now and ever, and unto the ages of ages. Amen.
+
+=== troparia-after-kathisma-9 | After the 9th kathisma: troparia and prayer
+! The penitential troparia.
+My deeds and thoughts, my sins and desires, thou wilt require by thine examining: grant me help unto repentance, and unto a good answer, O Christ God, as the lover of mankind.
+{Glory:} O Lord, who didst cleanse Peter's denial by tears, and didst forgive the publican his sins for his sighing: have mercy on me also, O lover of mankind.
+{Both now:} Rejoice, thou from whom the unchanging Word was made flesh, and dwelt among us. Rejoice, most pure one, the joy of the apostles and martyrs, and the salvation of the faithful, O Mother of Christ God.
+Lord, have mercy. {(forty times; in Great Lent, fifty)}
+Glory to the Father, and to the Son, and to the Holy Ghost, both now and ever, and unto the ages of ages. Amen.
+More honorable than the cherubim, and truly more glorious than the seraphim, without corruption, having borne God the Word; who art the God-bearer, thee do we magnify. [bow]
+! The ninth prayer.
+Thou, O Master, lover of mankind, hast made me, and hast honoured me with free will. But I was lifted up, and forgot thy lordship, and transgressed all thy commandments, and fell into the bitter bondage of the devil; and he taught me every sin and evil custom. Yet thou, O Lord my God, hast borne with me until now, awaiting my repentance, and hast not destroyed me while I lived in iniquity. And knowing thy compassion, I have made bold to bring thee prayer with defiled lips. Many sinners hast thou saved; save me also. For they are thy handiwork, and I am thy creature. Though my sins have overtaken me, yet I, the wretched, hope in thy mercy. I pray thee, O Lord, take away from me my will, for all my will is evildoing. For I know that of myself I can do nothing, unless thou give me the understanding of thy grace. The cattle, and the beasts, and the birds of the air have no free will, but as thou madest them, so they abide. But me thou didst make blameless, and I, taking mine own will, have defiled myself wholly. Thou hast given man a will, O Lord; but give it not unto me, for I am a man by nature, but in my ways worse than the beasts. Woe is me, I have shown myself worse than the beasts before thee, O Benefactor. Measure not unto me according to mine evil deeds, but give me time to rise again. Open unto me the doors of repentance; bring me back, the captive, from mine iniquities. Raise me up, who am cast down by the condemnation of sin; draw me out of the pit of defilement. O Jesus Christ, Light of them that are darkened, kindle again in me the light that is quenched. O Physician of the sick, heal my hidden wounds; pouring in oil and wine, bind up my sores. Blot out the handwriting of my sins with the sponge of thy compassion. Grant me, O Lord, to walk in thy fear, and to submit to thy will, that I may be cleansed from sins, and not be possessed by the enemy. And I will sing of thee rejoicing, the Father, and the Son, and the Holy Ghost, now and ever, and unto the ages of ages. Amen.
+
+=== troparia-after-kathisma-10 | After the 10th kathisma: troparia and prayer
+! The penitential troparia.
+Despise not, O righteous Judge, thy creature, the work of thine own hands, and forsake me not. Though I have sinned as man, more than every man, O Merciful One, yet thou as God hast all power to forgive sins.
+{Glory:} The end draweth nigh, O soul, and is close upon thee; yet thou carest not, neither makest thyself ready. The time is shortened: rise up, the Judge is near, even at the doors. As a shadow, and a flower, and a dream, life runneth on. Why, O soul, are we senselessly troubled?
+{Both now:} Seeing in myself at every hour the fall of my soul, and despising thy longsuffering, O Word, I have been deprived of all good things, and am become guilty of every torment. But raise me up, the despairing, for the God-bearer's sake, O thou who alone art plenteous in mercy.
+Lord, have mercy. {(forty times; in Great Lent, fifty)}
+Glory to the Father, and to the Son, and to the Holy Ghost, both now and ever, and unto the ages of ages. Amen.
+More honorable than the cherubim, and truly more glorious than the seraphim, without corruption, having borne God the Word; who art the God-bearer, thee do we magnify. [bow]
+! The tenth prayer.
+O Lord my God, forgive me all my sins, which I have sinned from my youth in all my life. For thou knowest that my will and my desire are toward thee. Oft have I promised thee to repent, and have turned aside into contrary ways. Yet from thee I have not departed, O lover of mankind, neither have I stretched out my hands to a strange god. For thee I know, the one true God, who formed me of the earth, and gavest me the breath of life. Leave me not, O Lord, to be separated from thy saints, and suffer me not to be subject to the passions for ever, nor to be ever like unto the dumb beasts. But raise up my mind from all voluptuousness, and nail my flesh to the fear of thee; and plant it in my heart, which is shaken by evil thoughts, and establish it. Set a door, O Lord, before all my senses. Let mine eyes see virtue alone, and uprightness; let my hearing be instructed by the sweet word of thy commandments; let my taste taste thy testaments, sweeter than honey; my hands, to do thy will; and let my smelling receive the savour of thine ointment, poured forth for our sake, which hath filled all things. Direct my feet into the way of thy will, and soften my soul with compunction, that, walking in the way of thy testimonies and doing what is pleasing unto thee, I may be vouchsafed to obtain the good things promised me, through the prayers of our most holy Lady the God-bearer, and of all thy saints, now and ever, and unto the ages of ages. Amen.
+
+=== troparia-after-kathisma-11 | After the 11th kathisma: troparia and prayer
+! The penitential troparia.
+As the harlot I fall down before thee, and in place of ointment I bring thee tears from my heart, as she also did. Cleanse me, O Saviour, and grant me forgiveness of sins; for as she, so I also cry unto thee: deliver me from the mire of my deeds, and save me.
+{Glory:} My days draw to their end, and the dread throne is made ready; my life floweth past. The judgment awaiteth, threatening me with fire and torment and burning flame. But give me, O Lord, a cloud of tears, that its power may be quenched; for thou willest all men to be saved.
+{Both now:} Thee we have as a city and a haven, and an acceptable intercessor with God who was born of thee, O unwedded God-bearer, the salvation of the faithful.
+Lord, have mercy. {(forty times; in Great Lent, fifty)}
+Glory to the Father, and to the Son, and to the Holy Ghost, both now and ever, and unto the ages of ages. Amen.
+More honorable than the cherubim, and truly more glorious than the seraphim, without corruption, having borne God the Word; who art the God-bearer, thee do we magnify. [bow]
+! The eleventh prayer.
+O God, cleanse me a sinner; take away the rottenness of my soul; scatter the burden laid upon me by the wiles of the evil one. Fence me about by the power of the honorable Cross; establish me by the Holy Ghost. Turn back in shame him that warreth against me, and make me a partaker of thy kingdom, O Christ, true God, through the prayers of our most holy Lady the God-bearer and ever-virgin Mary, and of all thy saints. For blessed art thou, with the Father and the most holy Spirit, now and ever, and unto the ages of ages. Amen.
+
+=== troparia-after-kathisma-12 | After the 12th kathisma: troparia and prayer
+! The penitential troparia.
+I have not emulated the repentance of the publican, nor have I the tears of the harlot; for through hardness of heart I am unworthy of such amendment. But by thy compassion save me.
+{Glory:} O Judge, who knowest secret things and judgest without partiality, deliver me from the torment of flame, for thou alone art compassionate, O Christ God.
+{Both now:} Thou hast surpassed the heavenly powers, and wast shown to be the church of God, O blessed God-bearer, who didst bear Christ the Saviour of our souls.
+Lord, have mercy. {(forty times; in Great Lent, fifty)}
+Glory to the Father, and to the Son, and to the Holy Ghost, both now and ever, and unto the ages of ages. Amen.
+More honorable than the cherubim, and truly more glorious than the seraphim, without corruption, having borne God the Word; who art the God-bearer, thee do we magnify. [bow]
+! The twelfth prayer.
+O Master, Lord almighty, Word of the Father, Jesus Christ, the fulfilment of all things, swift in thy compassions: never departing from thy servants, but ever resting in them, O good Shepherd of rational sheep, deliver me not over to the sedition of the serpent, neither leave me to the desire of Satan, for the seed of corruption is in me. Do thou, O Lord, most holy King, God worshipped, keep me who am slothful, unto the life of light, by thy Holy Ghost, wherewith thou didst sanctify thy disciples, delivering them from the evils of the serpent. Grant, O Lord, the joy of thy salvation upon my bed; and enlighten my mind with the light of thy Gospel, my soul with the love of thee, my Christ, my heart with the purity of thy word, my body with thy passionless Passion. Keep my thoughts in thy peace, and raise me up at a fitting time to glorify thee. For thou art worshipped and glorified, with the Father and the most holy Spirit, now and ever, and unto the ages of ages. Amen.
+
+=== troparia-after-kathisma-13 | After the 13th kathisma: troparia and prayer
+! The penitential troparia.
+With the voice of the prodigal cry unto the Lord, O my wretched soul: I have sinned against heaven, O Merciful One, and before thee, as no other. But look upon me with thy gentle eye as I cry: make me as one of thy hired servants, O God, and have mercy.
+{Glory:} Wash me with my tears, O Saviour, for I have defiled myself with many sins; therefore I fall down before thee: I have sinned, O God; have mercy on me.
+{Both now:} O most pure Sovereign Lady, pray earnestly unto Christ to deliver me from the snares that corrupt the soul, that I may magnify thee without ceasing.
+Lord, have mercy. {(forty times; in Great Lent, fifty)}
+Glory to the Father, and to the Son, and to the Holy Ghost, both now and ever, and unto the ages of ages. Amen.
+More honorable than the cherubim, and truly more glorious than the seraphim, without corruption, having borne God the Word; who art the God-bearer, thee do we magnify. [bow]
+! The thirteenth prayer.
+O heavenly Father, King of glory, who alone art sinless, who by the strength and providence of thy goodness willest not that any one man should perish, but that all should be saved and come unto knowledge: leave me not to perish, for I know that great is thy mercy toward me. Let not the sword of thy threatening devour mine inward parts, for the many ways and deeds in which I pass all the days of my life, and provoke thy holy name. And thou bearest with mine infirmity, nor bringest upon me the torment that is worthy of thy wrath. For who hath sinned against thee every day as I, despising thine endless longsuffering, and yet awaiting it? For who upon earth hath so sinned and turned away from thee? There is none other like me, full of passions. O Lord, rebuke me not in thy fury, neither chasten me in thy wrath; but as thou hast bowels of compassion, turn, and have compassion, and have mercy, and be my helper in the hour when I am overcome by the passions. O thou who alone art compassionate, alone the lover of mankind, alone merciful, have mercy on me. O Physician of souls and bodies, heal my soul, for I have sinned against thee, as the prodigal, and as the harlot, and as the thief, and as the publican; yet never have I condemned mine own evils. I cry unto thee: O Lord, snatch not away my wretched soul while I live in pleasures and iniquities, nor take me unready, and without an answer for my life. But overlook the depth of the multitude of my sins, and cut me not down as the barren fig tree; but as the building and creature of thy hands, be pleased that by the repentance of conversion I may turn unto thee from mine evils, and worship, and glorify, and give thanks unto thy most honorable and majestic name, of the Father, and of the Son, and of the Holy Ghost, now and ever, and unto the ages of ages. Amen.
+
+=== troparia-after-kathisma-14 | After the 14th kathisma: troparia and prayer
+! The penitential troparia.
+The enemy found me naked of good works, and wounded me with the arrow of sin. But do thou, O God, as the Physician of souls and bodies, heal the wounds of my soul, and have mercy on me.
+{Glory:} I have not gained repentance, nor yet tears. Therefore I pray thee, O Saviour: before the end turn me, and grant me forgiveness of sins, that I may be delivered from torment.
+{Both now:} No one who runneth unto thee goeth forth from thee ashamed, O most holy God-bearer; but he asketh grace, and receiveth the gift for the profit of his petition.
+Lord, have mercy. {(forty times; in Great Lent, fifty)}
+Glory to the Father, and to the Son, and to the Holy Ghost, both now and ever, and unto the ages of ages. Amen.
+More honorable than the cherubim, and truly more glorious than the seraphim, without corruption, having borne God the Word; who art the God-bearer, thee do we magnify. [bow]
+! The fourteenth prayer.
+O Lord Jesus Christ our God, by thy wonted compassions deliver my wretched soul from the defilement of my body, and from the passionate thoughts that every hour trouble my wretched soul. But do thou, O Lord, as Physician and Fountain of mercy, pour out upon me thy love for mankind, and cleanse my sin. Turn not thy face away from me, lest the fire of despair consume me. But as thou hast said: There is great joy in heaven over the repentance of a sinner; so let it be also over me, a sinner. Shut not the ears of thy loving-kindness to the prayer of my repentance; but hear, O Lord, and set it forth before thee as fragrant incense. For thou knowest the infirmity of my nature, and the weakness of my youth, O my Maker. Overlook my sins, O Lord, thou who awaitest the repentance of them that call upon thee in truth, O Merciful and Longsuffering One; and unto thee we send up glory, with the Father and the Holy Ghost, now and ever, and unto the ages of ages. Amen.
+
+=== troparia-after-kathisma-15 | After the 15th kathisma: troparia and prayer
+! The penitential troparia.
+My days draw to their end, and the dread throne is made ready, and the fiery river floweth, threatening me with torment and unquenchable flame. But send me, O Lord, a cloud of tears, and it shall quench all their power. O God, who willest all men to be saved, have mercy on me.
+{Glory:} I have defiled all my life with sin, and the whole law. Therefore I fall down before thee and cry: Create in me a clean heart, O God, and turn me before the end, and have mercy on me.
+{Both now:} O most pure Mother of God, wall of Christians, deliver thy people that call upon thee as is their wont, that they may withstand the enemies and proud thoughts; that we all may cry unto thee: Rejoice, thou who art full of joy.
+Lord, have mercy. {(forty times; in Great Lent, fifty)}
+Glory to the Father, and to the Son, and to the Holy Ghost, both now and ever, and unto the ages of ages. Amen.
+More honorable than the cherubim, and truly more glorious than the seraphim, without corruption, having borne God the Word; who art the God-bearer, thee do we magnify. [bow]
+! The fifteenth prayer.
+O Lord God, remember thy mercies and thy compassions, which thou hast had from of old toward sinners, and lookest down upon the transgressors, O Lord. O Lord, show forth thy marvellous mercy, that thy love for mankind may be glorified in me also. For if thou have mercy upon the righteous, by his works hath he obtained mercy; but if thou have mercy upon me a sinner, then, O Master, great is thy love for mankind and thy mercy, for thou hast had mercy upon me, and hast saved me who had gone astray. For thou knowest the infirmity of my lowly nature, thine own building. Let not my malice and craft overcome me and part me from thy dominion; let not my sloth destroy me and part me from thy matchless love for mankind. For thou art the God that doest wonders, and savest them that hope in thee, and turnest not away from sinners, but givest thy hand to him that lieth fallen. Remember me, O my God, the work of thy most pure hands, and put me not to shame through despair, lest mine enemy rejoice over me. But give me tears of compunction, and repentance that leadeth unto salvation; for unto thee have I lifted up mine eyes and my body. Wash me from the defilement of my sins, that with a cleansed mind I may hymn, and bless, and worship, and glorify, and give thanks unto thy most holy name, of the Father, and of the Son, and of the Holy Ghost, now and ever, and unto the ages of ages. Amen.
+
+=== troparia-after-kathisma-16 | After the 16th kathisma: troparia and prayer
+! The penitential troparia.
+I lie upon the bed of sin; I am robbed by many sins; I have no hope of salvation; I have weighed down my soul with the sleep of sloth. But do thou, O Lord, who wast born of the Virgin, raise me up to sing praise, and save me.
+{Glory:} Thou who willest all men to be saved, and to bring them to their first estate by thy great compassion: visit my poor soul, O Lord, for I have spent all my life riotously; and as the harlot receive me, and have mercy.
+{Both now:} My mind is entangled in defiled habits. I pray thee, the spotless Virgin, Mother of God: cleanse me from all defilement, and save me.
+Lord, have mercy. {(forty times; in Great Lent, fifty)}
+Glory to the Father, and to the Son, and to the Holy Ghost, both now and ever, and unto the ages of ages. Amen.
+More honorable than the cherubim, and truly more glorious than the seraphim, without corruption, having borne God the Word; who art the God-bearer, thee do we magnify. [bow]
+! The sixteenth prayer.
+O Lord our God, forsake me not; for the much-troubled surge of the sea of this life troubleth my mind, and the arrows of the evil robber, wicked thoughts, have smitten my soul. For lo, I am ensnared in mind and foolish, and following mine own will I have cast myself into the stinking mire of mine iniquities. But cleanse and save, forgive and have mercy on me, O lover of mankind, who am held fast by evil assaults, and stifled by the weight of despair; and, dead in soul as I am, take me upon thine own beast, and direct me into the way of salvation. Make firm my feet to stand before thee day and night, and to seek thy help, and to praise and glorify thee all the days of my life, always, now and ever, and unto the ages of ages. Amen.
+
+=== troparia-after-kathisma-17 | After the 17th kathisma: troparia and prayer
+! The penitential troparia.
+Shaking sleep from thine eyes, trim thy lamps with oil, O soul. At midnight there was a voice from the powers of heaven, proclaiming the coming of the Bridegroom, Christ the King. Run, O soul, and bring thy talent with much increase, that thou mayest be vouchsafed the bridechamber with the angels.
+{Verse:} Their souls shall dwell in good things.
+O Christ our God, thou hast adorned the heaven by night with the beauty of the stars, and hast enlightened the world with the multitude of the saints, apostles and prophets, martyrs and women martyrs, hierarchs, venerable ones and fasters. Through their prayers have mercy on me, O Merciful One, and save thy flock in this fold, for the God-bearer's sake.
+{Verse:} Give rest, O Lord, to the souls of thy servants.
+Where thy light shineth, where the choirs of the saints dwell, whence all sighing and sickness have fled away, there make thy servants to dwell who have departed from us, having left this life of much turmoil. Forgive them every transgression, voluntary and involuntary, in knowledge and in ignorance, O thou who art plenteous in mercy.
+{Glory:} With the saints give rest, O Christ, to the souls of thy servants, where there is neither pain, nor sorrow, nor sighing, but life everlasting.
+{Both now:} Thee we have as a city and a haven, and an acceptable intercessor with God who was born of thee, O unwedded God-bearer, the salvation of the faithful.
+Lord, have mercy. {(forty times; in Great Lent, fifty)}
+Glory to the Father, and to the Son, and to the Holy Ghost, both now and ever, and unto the ages of ages. Amen.
+More honorable than the cherubim, and truly more glorious than the seraphim, without corruption, having borne God the Word; who art the God-bearer, thee do we magnify. [bow]
+! The seventeenth prayer, for all Christians.
+O Lord, them that are faithful establish, that they may be yet more faithful; them that are without understanding, do thou, O Master, bring to understanding; them that are heathen, turn, O Lord, to the Christian faith, that they too may be our brethren; them that are in prisons, or in fetters, or in need, do thou, O Lord, deliver from every sorrow; our brethren that are in the deserts, and in seclusion, and on pillars, and in caves, do thou, O Lord, strengthen for the struggle.
+Save, O Lord, and have mercy on (our lord, the most holy Metropolitan *N.*, of Moscow and all Russia, and on the most holy metropolitans, archbishops and bishops, archimandrites and abbots, and all the priestly and monastic order, and) all Orthodox Christians, *N.*, and this city, and all the people that are in it, by thy mercy. Have mercy also on me, thy sinful servant *N.*; for though I am exceeding sinful, yet by the right faith I am thy servant, O Lord. Have mercy, O Lord, on them that are in want and oppressed by poverty, and grant them thy rich mercy:
+by the power of thy honorable and life-giving Cross, and of thy holy Resurrection on the third day; and for the sake of the entreaty of thy most pure Mother; and of the holy heavenly bodiless powers, Michael and Gabriel and the rest; and of the holy and glorious prophet, forerunner and baptist John, and of all the prophets, and apostles, and martyrs, and hierarchs; and of the venerable fathers, and women martyrs, and venerable women; and of the holy confessors and unmercenaries; and of the three hundred and eighteen holy fathers of the first council at Nicaea; and of the sureties of our repentance, Basil the Great, and Gregory the Theologian, and John Chrysostom, and Nicholas the Wonderworker; and of the most holy metropolitans of Kiev and all Russia, the wonderworkers Peter, and Alexis, and Jonah; and of our holy and venerable father Theodosius of all Russia, the founder of the common life, who promised to pray for us; and of all the saints from the ages.
+Remember, O Lord, the souls of thy servants, the right-believing and pious Orthodox tsars and tsaritsas, and the right-believing great princes and great princesses, and the most holy patriarchs, the most holy metropolitans, archbishops and bishops, *N.*, and all the priestly and monastic order, and all our kinsmen according to the flesh. And give rest, O Lord, to the souls of thy servants, all Orthodox Christians that have died in cities and in villages, in deserts and on journeys, on the sea and in every place; and make them to dwell in a place of light, in a place of green pasture, in a place of refreshment, in the choirs of the saints, in the fold of thanksgiving, in life without end, in the unspeakable and unfading light of thy countenance. For thou art the resurrection and the repose of thy servants that have fallen asleep, O Christ our God, and thee we glorify, with the Father and the Holy Ghost, always, now and ever, and unto the ages of ages. Amen.
+
+=== troparia-after-kathisma-18 | After the 18th kathisma: troparia and prayer
+! The penitential troparia.
+I have strayed from the way of repentance; I die in despair of mind. The arrows of the dark tempter fly against me. But do thou, O merciful Saviour, remove not thy help from me, but grant me tears of compunction, that with them I may wash away my sinful conscience; and save me.
+{Glory:} Remember, O Lord, as thou art good and the lover of mankind, me also, thy poor servant, for the forgiveness of my sins known and unknown. O merciful Saviour, stretch forth the goodness of thy hands upon me, through the prayers of the God-bearer and of all the saints.
+{Both now:} O God-bearer, despise not me, who need thy help; for in thee hath my soul hoped, and have mercy on me.
+Lord, have mercy. {(forty times; in Great Lent, fifty)}
+Glory to the Father, and to the Son, and to the Holy Ghost, both now and ever, and unto the ages of ages. Amen.
+More honorable than the cherubim, and truly more glorious than the seraphim, without corruption, having borne God the Word; who art the God-bearer, thee do we magnify. [bow]
+! The eighteenth prayer.
+O Hope of all the ends of the earth, thou most pure Virgin, Lady God-bearer, my consolation: abhor not me, the defiled, for I hope in thy mercy. Quench in me the flame of sin, and bedew with repentance my withered heart. Cleanse my mind from sinful thoughts. Receive the supplication that I bring thee with sighing from my soul and heart. Be my intercessor with thy Son and God, and assuage his wrath by thy motherly prayers. Heal the wounds of my soul and body. O Lady and Sovereign, lighten my pain; still the storms of evil assaults. Take away the burden of my sins, and leave me not to perish utterly. For thou art the raising up of the race of men, a swift helper in sorrow. O true Mother of Christ our God, help me, thy sinful servant *N.*, always, now and ever, and unto the ages of ages. Amen.
+
+=== troparia-after-kathisma-19 | After the 19th kathisma: troparia and prayer
+! The penitential troparia.
+O Lord plenteous in mercy, who knowest the secrets of my heart, and judgest without partiality: deliver me, the exceeding sinful, from the flame of Gehenna, and save me, O lover of mankind.
+{Glory:} From the sleep of sin awaken me, O Lord, lover of mankind, and establish me by the Holy Ghost; and teach me to do thy will, and save me by thy Cross, O thou who art plenteous in mercy.
+{Both now:} By fleshly love of pleasure I have defiled my soul. I pray thee, O all-spotless Lady, Virgin God-bearer: grant me the early and great mercy of thy Son and our God.
+Lord, have mercy. {(forty times; in Great Lent, fifty)}
+Glory to the Father, and to the Son, and to the Holy Ghost, both now and ever, and unto the ages of ages. Amen.
+More honorable than the cherubim, and truly more glorious than the seraphim, without corruption, having borne God the Word; who art the God-bearer, thee do we magnify. [bow]
+! The nineteenth prayer.
+O Lord Jesus Christ, only-begotten Son, who art in the bosom of the Father, true God, Fountain of life immortal, Light from the great Light, who didst come and wast pleased to be clothed in our poor flesh: O good Shepherd of thy rational sheep, give me not over, thy sinful servant who seek the right way of repentance, to be a joy and a mockery to mine enemies. Strengthen me, O Merciful One, with thy mighty right hand; for without thy help I can do nothing of myself. Keep me when I sleep; preserve me as I walk by the way; defend me from misfortune; fence me about from enemies; remove me far from fleshly lusts. Fill my heart with the joy of salvation; keep my flesh in purity; fence about my thoughts with thy compassion. Do thou, O Lord, guide and establish me as thy true servant, to serve thee all the days of my life; and grant me to glory in thy majesty and in thy mercy, and to rejoice. For thou art my God, and I am thy servant *N.*; for other God beside thee I know not. For thou art merciful and the lover of mankind, and unto thee we send up glory, with the Father and the Holy Ghost, now and ever, and unto the ages of ages. Amen.
+
+=== troparia-after-kathisma-20 | After the 20th kathisma: troparia and prayer
+! The penitential troparia.
+Thee, the King and Master, do the angels in heaven hymn unceasingly with songs; but I fall down before thee, crying as the publican: O God, cleanse me, and have mercy.
+{Glory:} Mine iniquities are added like the waves of the sea, and my thoughts, from the hostile spirits, are as a contrary wind. How shall I finish my life, and attain to the city on high, to see the kingdom, Jerusalem? O Lord, grant calm to my soul, and save me.
+{Both now:} Thou who art the fountain of compassion, vouchsafe us mercy, O God-bearer.
+Lord, have mercy. {(forty times; in Great Lent, fifty)}
+Glory to the Father, and to the Son, and to the Holy Ghost, both now and ever, and unto the ages of ages. Amen.
+More honorable than the cherubim, and truly more glorious than the seraphim, without corruption, having borne God the Word; who art the God-bearer, thee do we magnify. [bow]
+! The twentieth prayer, at the end of the Psalter.
+O most merciful and most compassionate Lord, who hast said: Ask, and ye shall receive: trusting in this word, I also have constrained myself to say this Psalter. Wherefore, if in any psalm I have been careless, or have spoken with another in idle talk, or have wandered in my thoughts, forgive me; and let it be ever well-pleasing to thy love for mankind, and save me thy servant according to thy mercy; that I may ever praise thee until my last breath, now and ever, and unto the ages of ages. Amen.
+
+# ---------------------------------------------------------------- prayers before sleep
+# Home Ustav, the bedtime prayers (fol. 175v-184): order "bedtime" below,
+# added after the Cell Rule when a member chooses it.
+
+=== bedtime-first | Before sleep: the first prayer
+! The first prayer.
+O eternal God and King of all creation, who hast vouchsafed me to attain even unto this hour: forgive me the sins which I have committed this day in word, and deed, and thought; and cleanse, O Lord, my humble soul from all defilement of flesh and spirit. And grant me, O Lord, to pass through the sleep of this night in peace; that rising from my lowly bed, I may be well-pleasing unto thy most holy name all the days of my life, and may trample down the enemies that war against me, both of the flesh and bodiless. Deliver me, O Lord, from vain thoughts that defile me, and from evil lusts. For thine is the kingdom, and the power, and the glory, of the Father, and of the Son, and of the Holy Ghost, now and ever, and unto the ages of ages. Amen.
+
+=== bedtime-second | Before sleep: the second prayer
+! The second prayer.
+O almighty Word of the Father, who art thyself perfect, Jesus Christ: for the sake of thy great mercy, depart never from thy servants, but abide in them always. O Jesus, good Shepherd of all thy rational sheep, deliver me not over to the sedition of the serpent, neither leave me to the will of Satan, for the seed of corruption is in me. Do thou therefore, O Lord God, worshipped and most holy Jesus Christ, keep me as I sleep by thine unwaning light, and sanctify me by thy Holy Ghost, wherewith thou didst sanctify thy disciples. And grant unto me, thine unworthy servant, the joy of thy salvation upon my bed. Enlighten my mind with the light of the understanding of thy holy Gospel; my soul with the love of thy Cross; my heart with the purity of thy words; my body with thy passionless Passion. Keep my thoughts in thy humility, and raise me up at a fitting time to glorify thee. For thou art most glorified, with the Father and with the Holy Ghost, unto the ages. Amen.
+
+=== bedtime-third | Before sleep: the third prayer
+! The third prayer, to the same.
+O Lord our God, wherein I have sinned this day, whether in word, or in deed, or in thought, forgive me, for thou art good and the lover of mankind. Grant me peaceful and undisturbed sleep, O God. Send thine angel to be my guardian, to cover and keep me from all evil. For thou art the guardian of our souls and bodies, and unto thee we send up glory, to the Father, and to the Son, and to the Holy Ghost, now and ever, and unto the ages of ages. Amen.
+
+=== bedtime-angel | Before sleep: prayer to one's own angel
+! A prayer to one's own angel.
+O angel of Christ, my holy guardian and protector of my soul and body, forgive me all wherein I have sinned against thee this day, and deliver me from every wile of the enemy that opposeth me, that in no sin I may anger my God. But pray for me, a sinful and unworthy servant, that thou mayest show me worthy of the goodness and mercy of the all-holy Trinity, and of the Mother of my God Jesus Christ, and of all the saints, always, now and ever, and unto the ages of ages. Amen.
+
+=== bedtime-every-hour | Before sleep: a prayer for every hour
+! A prayer for every hour.
+O Lord, receive me in repentance.
+O Lord, forsake me not.
+O Lord, lead me not into temptation.
+O Lord, grant me a good thought.
+O Lord, grant me tears, and the remembrance of death, and compunction.
+O Lord, grant me humility, and lowliness of mind, and obedience.
+O Lord, grant me patience, and long-suffering, and meekness.
+O Lord, implant in me the root of good, which is thy fear.
+O Lord, vouchsafe me to love thee with all my soul and mind, and to do thy will.
+O Lord, shelter me from certain men, and from demons and passions, and from every unprofitable thing.
+O Lord, as thou willest, and as thou knowest.
+O Lord, as thou desirest, let thy will be done in me.
+O Lord, thine, and not mine: through the prayers of thy most pure Mother, and of all the saints; for blessed art thou unto the ages. Amen.
+
+=== bedtime-cross | Before sleep: prayer to the Cross
+! A prayer to the Cross.
+Let God arise, and let his enemies be scattered, and let them that hate him flee from before his face. As smoke vanisheth, so let them vanish; as wax melteth before the fire, so let the demons perish from before the face of them that love God and sign themselves with the sign of the Cross; and let us rejoice, saying: Rejoice, Cross of the Lord, who drivest away the demons by the power of our Lord Jesus Christ who was crucified upon thee, who went down into hell and trampled down the power of the devil, and gave us his honorable Cross for the driving away of every adversary. O most honorable and life-giving Cross of the Lord, help me, together with the holy Lady God-bearer and all the holy heavenly powers, always, now and ever, and unto the ages of ages. Amen.
+
+=== bedtime-god-bearer | Before sleep: prayer to the God-bearer
+! A prayer to the most holy God-bearer.
+O good Mother of the good King, most pure and blessed God-bearer Mary, pour out the mercy of thy Son and our God upon my passionate soul, and by thy prayers preserve me; that I may pass the remaining time of my life without blemish, and through thee may find paradise, O Virgin God-bearer, who alone art pure and blessed.
+
+=== bedtime-compunction | Before sleep: prayer to Christ, with compunction
+! A prayer to our Lord Jesus Christ, said with compunction.
+O Lord Jesus Christ, Son of God, for the sake of thy most honorable Mother, and of thy bodiless angels, and of thy prophet and forerunner and baptizer, and of the God-proclaiming apostles, and of the radiant and gloriously victorious martyrs, and of the venerable and God-bearing fathers, and through the prayers of all the saints, deliver me from the present assault of the demons. Yea, my Lord and Creator, who willest not the death of a sinner, but rather that he should turn and live: grant conversion also unto me, wretched and unworthy. Take me from the mouth of the destroying serpent, which gapeth to devour me and to bring me down alive into hell. Yea, my Lord, my consolation, who for my wretched sake wast clothed in corruptible flesh: draw me out of my wretchedness, and grant consolation unto my wretched soul. Plant in my heart the doing of thy commandments, the forsaking of evil deeds, and the attaining of thy blessings. For in thee, O Lord, have I hoped: save me.
+
+=== bedtime-kontakion | Before sleep: kontakion and prayer to the God-bearer
+! The kontakion to the God-bearer.
+To the Champion Leader, songs of victory; as delivered from evils, songs of thanksgiving do we thy servants inscribe unto thee, O God-bearer. But as thou hast dominion invincible, set us free from all calamities, that we may cry unto thee: Rejoice, O Bride unwedded.
+O most glorious and ever-virgin God-bearer Mary, all my hope: O God-bearer and Virgin, despise not me, a sinner, who need thy help and thine intercession; for in thee hath my soul hoped, and have mercy on me.
+
+=== bedtime-my-hope | Before sleep: My hope is God
+! Say this with compunction:
+My hope is God, my refuge is Christ, and my protector is the Holy Ghost.
+
 # ---------------------------------------------------------------- Pascha and Bright Week
 # Home Ustav, prayer at home on Pascha and in Bright Week (fol. 184v-205): orders
 # "vespers-pascha-eve" … "cell-rule-bright" below, used from the evening of Great
@@ -602,6 +893,23 @@ it-is-truly-meet
 trisagion-our-father
 cell-troparia
 ending-cell-rule
+dismissal
+
+@@@ bedtime | Prayers before sleep (Home Ustav)
+! Some of the more ascetic monks may choose to keep this rule alone in the cell. When it is time to sleep, such a monk says the Trisagion through the Our Father. Then he says these prayers quietly, with compunction and attention.
+trisagion-our-father
+bedtime-first
+bedtime-second
+bedtime-third
+bedtime-angel
+bedtime-every-hour
+bedtime-cross
+bedtime-god-bearer
+bedtime-compunction
+bedtime-kontakion
+bedtime-my-hope
+glory-both-now
+> Lord, have mercy. Lord, have mercy. Lord, bless.
 dismissal
 
 # ---------------------------------------------------------------- Pascha and Bright Week

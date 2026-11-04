@@ -5,11 +5,12 @@ cycle of services kept by kathismas and Jesus Prayers, a built-in Psalter, and
 a record of what was kept, with reports and optional sharing with a chosen
 member (a nastavnik).
 
-**Status:** early development. The admin side works (Psalter, prayers,
-orders, dismissals, fasting, saints, kathismas, preview). Members read any
-service on the reading page, keep a private encrypted rule, and mark each
-service as kept, with weekly and monthly reports, and share their rule
-and record with a nastavnik.
+**Status:** 1.0. The daily cycle of services from the Home Ustav (1910),
+with the day's dismissals, zapevy, bows and fasting, Pascha and Bright Week,
+the Psalter in four translations, and an optional daily Scripture reading.
+Anyone can read on the reading page; members can keep a private encrypted
+rule, mark each service and reading as kept, see weekly and monthly reports,
+and share their rule and record with a nastavnik.
 
 ## The reading page
 
@@ -95,8 +96,17 @@ file changes).
 
 `tools/ustav/home-ustav.txt` holds the English translation of the Home
 Ustav (1910) chapter on prayer at home: the openings and endings of the six
-services, the cell rule, the dismissals for the week and the daily
-additions. `tools/ustav/feasts.txt` holds the dismissals for the feasts of
+services, the cell rule, the prayers before sleep, the dismissals for the
+week and the daily additions. The prayers before sleep (fol. 175v-184) are
+the order "bedtime": a member can add them after the Cell Rule under My
+rule; they are part of the Cell Rule and are not counted apart.
+
+The penitential troparia and prayer after each of the 20 kathismas (from the
+Psalter) are the prayers "troparia-after-kathisma-1" … "-20". After a
+kathisma they follow the Trisagion through the Our Father, and "O come, let
+us worship" follows them when another kathisma comes next. They are always
+said in Great Lent; a member can switch them on for the whole year under My
+rule (the Psalter). `tools/ustav/feasts.txt` holds the dismissals for the feasts of
 the year and of the Triodion and Pentecostarion, each with the dates it
 applies to. `tools/ustav/fasting.txt` holds chapter 1, on the fasts: for
 each period the general rule, the other typika, and a short line for each

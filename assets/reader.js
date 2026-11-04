@@ -579,6 +579,13 @@
 					fld('Ladders', select(l, v.ladders, function (x) { v.ladders = +x; saveSettings(); if (s.key === UI.service) { show(); } }))
 				]));
 			});
+			if (s.key === 'cell-rule') {
+				// The Home Ustav gives the prayers before sleep for the more ascetic; kept with the Cell Rule, never counted apart.
+				body.appendChild(el('div', { class: 'pr-card-row' }, [
+					toggle(svc.bedtime, function (on) { svc.bedtime = on; saveSettings(); if (UI.service === s.key) { show(); } }, 'Prayers before sleep', 'Add the prayers before sleep'),
+					el('span', { class: 'pr-note', text: 'Said after the Cell Rule, for those who wish to keep it more strictly. Part of the Cell Rule; your record is the same with or without them.' })
+				]));
+			}
 			card.appendChild(body);
 			cards.appendChild(card);
 		});
@@ -591,6 +598,9 @@
 			fld('Next kathisma', select(nums, r.next, function (x) { r.next = +x; saveSettings(); show(); })),
 			fld('Translation', select(tr, r.translation, function (x) { r.translation = x; saveSettings(); show(); })),
 			el('div', { class: 'pr-fld' }, [el('span', { class: 'pr-fld-label', text: 'Verse numbers' }), toggle(r.verses, function (on) { r.verses = on; saveSettings(); show(); }, 'show', 'Show verse numbers')])
+		]), el('div', { class: 'pr-card-row' }, [
+			toggle(r.troparia, function (on) { r.troparia = on; saveSettings(); show(); }, 'Troparia and prayer after each kathisma, all year', 'Troparia and prayer after each kathisma, all year'),
+			el('span', { class: 'pr-note', text: 'The penitential troparia and prayer of each kathisma are always said in Great Lent. Switch this on to say them after every kathisma through the year as well.' })
 		])]));
 		drawReadingPanel();
 	}
@@ -1221,7 +1231,7 @@
 		fetch(C.rest + svc.key + '/reading', {
 			method: 'POST', credentials: 'same-origin',
 			headers: jsonHeaders(),
-			body: JSON.stringify({ date: UI.day, translation: r.translation, verses: r.verses ? 1 : 0, p: p })
+			body: JSON.stringify({ date: UI.day, translation: r.translation, verses: r.verses ? 1 : 0, p: p, troparia: r.troparia ? 1 : 0, bedtime: svc.key === 'cell-rule' && r.services[svc.key] && r.services[svc.key].bedtime ? 1 : 0 })
 		}).then(function (res) { if (!res.ok) { throw res; } return res.json(); }).then(function (data) {
 			if (mine !== req) { return; }
 			out.innerHTML = data.day_html;

@@ -260,8 +260,8 @@ class Admin {
 						<td><input id="pr-as" type="text" class="regular-text code" name="rule_texts[after_stasis]" value="<?php echo esc_attr( $texts['after_stasis'] ); ?>"><p class="description"><?php esc_html_e( 'The prayer said at each "Glory" (the Alleluia). Leave empty for none.', 'prayer-rule' ); ?></p></td>
 					</tr>
 					<tr>
-						<th scope="row"><label for="pr-ak"><?php esc_html_e( 'After each kathisma, in Great Lent', 'prayer-rule' ); ?></label></th>
-						<td><input id="pr-ak" type="text" class="regular-text code" name="rule_texts[after_kathisma]" value="<?php echo esc_attr( $texts['after_kathisma'] ); ?>"><p class="description"><?php esc_html_e( 'The troparia and prayer of each kathisma; {n} becomes the kathisma number.', 'prayer-rule' ); ?></p></td>
+						<th scope="row"><label for="pr-ak"><?php esc_html_e( 'After each kathisma', 'prayer-rule' ); ?></label></th>
+						<td><input id="pr-ak" type="text" class="regular-text code" name="rule_texts[after_kathisma]" value="<?php echo esc_attr( $texts['after_kathisma'] ); ?>"><p class="description"><?php esc_html_e( 'The troparia and prayer after each kathisma; {n} becomes the kathisma number. Said in Great Lent, and all year by members who choose it; the Trisagion through the Our Father comes before, and "O come, let us worship" before the next kathisma.', 'prayer-rule' ); ?></p></td>
 					</tr>
 					<tr>
 						<th scope="row"><label for="pr-jp"><?php esc_html_e( 'With the ladders', 'prayer-rule' ); ?></label></th>

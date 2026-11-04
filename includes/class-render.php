@@ -69,6 +69,9 @@ class Render {
 	 *   'day'         => without a date: liturgical day, 0 (Sunday) … 6 or a day name
 	 *   'saint'       => the saint as named in the dismissal (overrides the date's)
 	 *   'lent'        => overrides the date's Great Lent
+	 *   'bedtime'     => true: the Cell Rule followed by the prayers before sleep
+	 *   'troparia'    => true: the troparia and prayer after each kathisma all year
+	 *                    (in Great Lent they are always said)
 	 *
 	 * Steps: text, psalm, say, rubric, kathisma (heading), stasis, ladders,
 	 * missing, unknown, empty-rule.
@@ -100,7 +103,23 @@ class Render {
 		$out               = array();
 		$bookmark          = null;   // next kathisma, carried from one portion to the next
 		$order_steps       = $info ? Ustav::seasonal_steps( $service_key, $info ) : null;
-		foreach ( ( null !== $order_steps ? $order_steps : Orders::steps( $service['order'] ) ) as $step ) {
+		$order_steps       = null !== $order_steps ? $order_steps : Orders::steps( $service['order'] );
+		if ( 'cell-rule' === $service_key && ! empty( $context['bedtime'] ) ) {
+			$bedtime = Ustav::extra_steps( 'bedtime' );
+			if ( $bedtime ) {
+				$order_steps = array_merge(
+					$order_steps,
+					array(
+						array(
+							'type'  => 'heading',
+							'title' => __( 'Prayers before sleep', 'prayer-rule' ),
+						),
+					),
+					$bedtime
+				);
+			}
+		}
+		foreach ( $order_steps as $step ) {
 			if ( 'rule' === $step['type'] ) {
 				$portion = $context['portions'][ $step['portion'] ] ?? array();
 				if ( empty( $portion['start'] ) && null !== $bookmark ) {
@@ -110,7 +129,7 @@ class Render {
 				$bookmark = ( ( $first - 1 + max( 0, (int) ( $portion['kathismas'] ?? 0 ) ) ) % 20 ) + 1;
 				$name    = $service['portions'][ $step['portion'] ]['name'] ?? $step['portion'];
 				self::$phase = 'rule';
-				$out     = array_merge( $out, self::rule_steps( $portion, $name, $translation, ! empty( $context['lent'] ) ) );
+				$out     = array_merge( $out, self::rule_steps( $portion, $name, $translation, ! empty( $context['lent'] ), ! empty( $context['lent'] ) || ! empty( $context['troparia'] ) ) );
 				self::$phase = 'after';
 			} elseif ( 'psalm' === $step['type'] ) {
 				$out[] = array(
@@ -146,8 +165,12 @@ class Render {
 		return $out;
 	}
 
-	/** The member's portion: kathismas from the bookmark, then ladders. */
-	private static function rule_steps( $portion, $name, $translation, $lent ) {
+	/**
+	 * The member's portion: kathismas from the bookmark, then ladders. With
+	 * $troparia, after each kathisma the Trisagion through the Our Father, the
+	 * kathisma's troparia and prayer, and, before the next kathisma, "O come".
+	 */
+	private static function rule_steps( $portion, $name, $translation, $lent, $troparia = false ) {
 		$kathismas = max( 0, (int) ( $portion['kathismas'] ?? 0 ) );
 		$start     = min( 20, max( 1, (int) ( $portion['start'] ?? 1 ) ) );
 		$ladders   = max( 0, round( (float) ( $portion['ladders'] ?? 0 ) * 2 ) / 2 );
@@ -172,8 +195,17 @@ class Render {
 					$steps[] = self::text_step( $texts['after_stasis'] );
 				}
 			}
-			if ( $lent && '' !== $texts['after_kathisma'] ) {
-				$steps[] = self::text_step( str_replace( '{n}', (string) $number, $texts['after_kathisma'] ) );
+			if ( $troparia && '' !== $texts['after_kathisma'] ) {
+				$after = self::text_step( str_replace( '{n}', (string) $number, $texts['after_kathisma'] ) );
+				if ( 'text' === $after['type'] ) {
+					$steps[] = self::text_step( 'trisagion-our-father' );
+					$steps[] = $after;
+					if ( $i < $kathismas - 1 ) {
+						$steps[] = self::text_step( 'o-come' );
+					}
+				} else {
+					$steps[] = $after;             // shown as missing in the admin preview
+				}
 			}
 		}
 		if ( $ladders > 0 ) {
@@ -330,6 +362,9 @@ class Render {
 					break;
 				case 'psalm':
 					$html .= '<section class="pr-psalms">' . self::psalms_html( $step['psalms'] ) . '</section>';
+					break;
+				case 'heading':
+					$html .= '<h2 class="pr-kathisma pr-section-head">' . esc_html( $step['title'] ) . '</h2>';
 					break;
 				case 'kathisma':
 					/* translators: %d: kathisma number */

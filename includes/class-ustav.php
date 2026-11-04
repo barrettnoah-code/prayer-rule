@@ -189,6 +189,24 @@ class Ustav {
 		return null;
 	}
 
+	/**
+	 * The steps of an order that belongs to no service (the prayers before
+	 * sleep, "bedtime"): the one on the site, or, until the import has made
+	 * it, the bundled one. Empty when there is neither.
+	 */
+	public static function extra_steps( $key ) {
+		$id = self::order_for( $key );
+		if ( $id && 'publish' === get_post_status( $id ) ) {
+			return Orders::steps( $id );
+		}
+		foreach ( self::data()['orders'] ?? array() as $order ) {
+			if ( $key === $order['service'] ) {
+				return Orders::parse_steps( (string) $order['items'] );
+			}
+		}
+		return array();
+	}
+
 	/** A bundled prayer's content by short name, or '' (for one not yet imported). */
 	public static function bundled_prayer( $slug ) {
 		foreach ( self::data()['prayers'] ?? array() as $prayer ) {
