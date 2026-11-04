@@ -67,6 +67,35 @@ class Bible {
 		return $out;
 	}
 
+	/**
+	 * The loaded translations for the reading page, compact:
+	 * array( id, name, testaments, books: array( array( code, name, group, first, last[, chapters] ) ) ).
+	 */
+	public static function for_reader() {
+		$out = array();
+		foreach ( self::index() as $t ) {
+			if ( ! isset( self::translations()[ $t['id'] ] ) ) {
+				continue;
+			}
+			$books = array();
+			foreach ( $t['books'] as $b ) {
+				$ch    = array_map( 'intval', $b['chapters'] );
+				$row   = array( $b['code'], $b['name'], $b['group'], $ch[0], end( $ch ) );
+				if ( range( $ch[0], end( $ch ) ) !== $ch ) {
+					$row[] = $ch;                         // a chapter missing in the middle (Brenton's Proverbs)
+				}
+				$books[] = $row;
+			}
+			$out[] = array(
+				'id'         => $t['id'],
+				'name'       => $t['name'],
+				'testaments' => $t['testaments'],
+				'books'      => $books,
+			);
+		}
+		return $out;
+	}
+
 	/** One translation's entry in the index, or null. */
 	public static function translation( $id ) {
 		foreach ( self::index() as $t ) {

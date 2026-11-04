@@ -114,6 +114,13 @@ The site loads each translation into its own table the first time an
 administrator opens the admin after it changes (Prayer Rule → Scripture shows
 what is loaded and any chapter).
 
+On the members' page, "Scripture" beside the services shows the day's reading.
+Under My rule each member sets chapters a day for the Gospel, the Apostle
+(Acts, the Epistles, Revelation) and the Old Testament (with the deuterocanonical
+books; the Psalms optional), the translations, and where each section has got
+to. Marking the reading as done moves the bookmarks on; the reading starts
+again at the end.
+
 ## In the admin (Prayer Rule menu)
 
 - **Prayers** – texts written on the site, each with a *short name*

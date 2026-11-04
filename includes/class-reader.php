@@ -69,6 +69,8 @@ class Reader {
 			'vault'        => esc_url_raw( rest_url( Rest::NS . '/vault' ) ),
 			'sharing'      => esc_url_raw( rest_url( Rest::NS . '/sharing/' ) ),
 			'mykey'        => (string) get_user_meta( get_current_user_id(), Sharing::META_KEY, true ),
+			'scripture'    => esc_url_raw( rest_url( Rest::NS . '/scripture' ) ),
+			'bibles'       => Bible::for_reader(),
 		);
 		wp_enqueue_script( 'prayer-rule-reader', PRAYER_RULE_URL . 'assets/reader.js', array(), PRAYER_RULE_VERSION, true );
 		wp_add_inline_script( 'prayer-rule-reader', 'window.prayerRuleReader = ' . wp_json_encode( $config ) . ';', 'before' );
@@ -131,6 +133,14 @@ html.pr-modal-open{overflow:hidden}
 @media (max-width:600px){.prayer-rule-reader .pr-dialog{padding:2.2em .9em 1.2em;width:calc(100% - .8em);max-height:92vh}.prayer-rule-reader .pr-controls{gap:.35em}.prayer-rule-reader .pr-head{padding:.8em .6em}}
 /* On the members page the theme content column sets the width (the 42em limit is for the admin Preview). */
 .prayer-rule-reader .prayer-rule-reading{max-width:none}
+.prayer-rule-reader .pr-reading-section{text-align:center;color:#921a0a;font-weight:normal;font-size:1.1em;letter-spacing:.06em;text-transform:uppercase;margin:2em 0 .4em}
+.prayer-rule-reader .pr-scripture .pr-chapter{margin:0 0 1.4em}
+.prayer-rule-reader .pr-chapter-title{font-style:italic;opacity:.8}
+.prayer-rule-reader .pr-tabs .pr-tab-reading{margin-left:.6em;border-style:dashed}
+.prayer-rule-reader .pr-tabs .pr-tab-reading[aria-pressed=true]{border-style:solid}
+.prayer-rule-reader .pr-reading-settings{border-top:1px solid var(--pr-line);margin-top:1.2em;padding-top:.4em}
+.prayer-rule-reader .pr-reading-settings p label{display:inline-block;margin:.2em 1.2em .2em 0}
+.prayer-rule-reader .pr-reading-settings th{text-align:left;padding-right:1em;white-space:nowrap}
 .prayer-rule-reader .pr-service-title{text-align:center;color:#921a0a;font-weight:normal;letter-spacing:.04em;margin:1.4em 0 1em;display:flex;align-items:center;gap:.8em}
 .prayer-rule-reader .pr-service-title::before,.prayer-rule-reader .pr-service-title::after{content:"";flex:1;border-top:1px solid var(--pr-line)}
 .prayer-rule-reader .pr-settings table{border-collapse:collapse;margin:.6em 0}

@@ -207,7 +207,64 @@
 		r.services[svcKey].portions[pKey] = r.services[svcKey].portions[pKey] || { kathismas: p.kathismas.length ? p.kathismas[0] : 0, ladders: 0 };
 		return r.services[svcKey].portions[pKey];
 	}
-	if (!UI.service || !serviceByKey(UI.service)) { UI.service = C.services.length ? C.services[0].key : ''; }
+	if (!UI.service || (!serviceByKey(UI.service) && !(UI.service === 'reading' && (C.bibles || []).length))) { UI.service = C.services.length ? C.services[0].key : ''; }
+
+	// ---- the daily Scripture reading: settings kept in the rule as rule.reading =
+	// { nt: translation, ot: translation, gospel|apostle|old: { per: chapters a day, b: book, c: chapter }, old.psalms }
+
+	var SECTIONS = [
+		{ key: 'gospel', name: 'The Gospel', groups: ['gospel'], testament: 'nt', start: 'MAT' },
+		{ key: 'apostle', name: 'The Apostle', groups: ['apostle'], testament: 'nt', start: 'ACT' },
+		{ key: 'old', name: 'The Old Testament', groups: ['ot', 'deutero'], testament: 'ot', start: 'GEN' }
+	];
+	function bibles(testament) { return (C.bibles || []).filter(function (b) { return b.testaments.indexOf(testament) >= 0; }); }
+	function bible(id) { return (C.bibles || []).filter(function (b) { return b.id === id; })[0]; }
+	function readingOf(r) {
+		var rd = r.reading || (r.reading = {});
+		if (!bible(rd.nt) && bibles('nt').length) { rd.nt = bibles('nt')[0].id; }
+		if (!bible(rd.ot) && bibles('ot').length) { rd.ot = bibles('ot')[0].id; }
+		SECTIONS.forEach(function (sec) {
+			var x = rd[sec.key] || (rd[sec.key] = {});
+			if (typeof x.per !== 'number') { x.per = 0; }
+			if (!x.b) { x.b = sec.start; x.c = 1; }
+			if (sec.key === 'old' && typeof x.psalms !== 'boolean') { x.psalms = true; }
+		});
+		return rd;
+	}
+	function sectionBible(sec, rd) { return bible(sec.testament === 'nt' ? rd.nt : rd.ot); }
+	/** A book's chapters: [code, name, group, first, last, list-if-not-continuous]. */
+	function chaptersOf(book) { if (book[5]) { return book[5]; } var a = []; for (var n = book[3]; n <= book[4]; n++) { a.push(n); } return a; }
+	/** The books a section reads, in the translation's order. */
+	function sectionBooks(sec, rd) {
+		var b = sectionBible(sec, rd);
+		if (!b) { return []; }
+		return b.books.filter(function (bk) { return sec.groups.indexOf(bk[2]) >= 0 && !(sec.key === 'old' && rd.old.psalms === false && bk[0] === 'PSA'); });
+	}
+	/** The next n chapters of a section from its bookmark, and the bookmark after them (the reading wraps round). */
+	function sectionChapters(sec, rd, n) {
+		var x = rd[sec.key], books = sectionBooks(sec, rd), list = [], all = [];
+		books.forEach(function (bk) { chaptersOf(bk).forEach(function (c) { all.push([bk[0], c]); }); });
+		if (!all.length || n <= 0) { return { list: [], next: { b: x.b, c: x.c } }; }
+		var i = -1, order = books.map(function (bk) { return bk[0]; }), at = order.indexOf(x.b), k;
+		for (k = 0; k < all.length && i < 0; k++) { if (all[k][0] === x.b && all[k][1] >= x.c) { i = k; } }
+		if (i < 0 && at >= 0) { for (k = 0; k < all.length && i < 0; k++) { if (order.indexOf(all[k][0]) > at) { i = k; } } }   // past the book's end: the next book
+		if (i < 0) { i = 0; }
+		for (k = 0; k < n; k++) { list.push(all[(i + k) % all.length]); }
+		var after = all[(i + n) % all.length];
+		return { list: list, next: { b: after[0], c: after[1] } };
+	}
+	/** Today's reading: for each section with chapters set, the chapters and the bookmark after them. */
+	function readingParts(r) {
+		var rd = readingOf(r), parts = [];
+		SECTIONS.forEach(function (sec) {
+			if (rd[sec.key].per > 0) { var got = sectionChapters(sec, rd, rd[sec.key].per); parts.push({ sec: sec, t: sectionBible(sec, rd).id, list: got.list, next: got.next }); }
+		});
+		return parts;
+	}
+	function bookLabel(sec, rd, code) {
+		var b = sectionBible(sec, rd), bk = b && b.books.filter(function (x) { return x[0] === code; })[0];
+		return bk ? bk[1] : code;
+	}
 	if (!C.translations[L.translation]) { L.translation = C.translation; }
 
 	// ------------------------------------------------------------ the page
@@ -404,6 +461,12 @@
 			b.addEventListener('click', function () { UI.service = s.key; try { localStorage.setItem(LOCAL + '.service', s.key); } catch (x) {} drawTabs(); drawSettings(); show(); });
 			tabs.appendChild(b);
 		});
+		if ((C.bibles || []).length) {
+			var re = entry(UI.day, 'reading'), done = re && re.kept;
+			var rb = el('button', { type: 'button', 'aria-pressed': UI.service === 'reading' ? 'true' : 'false', class: 'pr-tab-reading' + (done ? ' is-kept' : ''), text: (done ? '✓ ' : '') + 'Scripture' });
+			rb.addEventListener('click', function () { UI.service = 'reading'; try { localStorage.setItem(LOCAL + '.service', 'reading'); } catch (x) {} drawTabs(); show(); });
+			tabs.appendChild(rb);
+		}
 	}
 
 	// ---- my rule (or this browser's settings)
@@ -443,8 +506,43 @@
 			el('label', {}, ['Psalter ', select(tr, r.translation, function (x) { r.translation = x; saveSettings(); show(); })]), '   ',
 			el('label', {}, [vb, ' verse numbers'])
 		]));
+		if ((C.bibles || []).length) { settings.appendChild(drawReadingSettings(r)); }
 		if (!V.key) { settings.appendChild(el('p', { class: 'pr-note', text: 'These settings are kept only in this browser.' })); }
 		settings.open = open;
+	}
+
+	/** My rule: the daily Scripture reading, chapters a day and where each section has got to. */
+	function drawReadingSettings(r) {
+		var rd = readingOf(r), box = el('div', { class: 'pr-reading-settings' });
+		function changed() { saveSettings(); drawSettings(); if (UI.service === 'reading') { show(); } }
+		box.appendChild(el('h4', { text: 'Daily Scripture reading' }));
+		var trs = el('p', {});
+		if (bibles('nt').length) { trs.appendChild(el('label', {}, ['New Testament ', select(bibles('nt').map(function (b) { return [b.id, b.name]; }), rd.nt, function (x) { rd.nt = x; changed(); })])); trs.appendChild(document.createTextNode('   ')); }
+		if (bibles('ot').length) { trs.appendChild(el('label', {}, ['Old Testament ', select(bibles('ot').map(function (b) { return [b.id, b.name]; }), rd.ot, function (x) { rd.ot = x; changed(); })])); }
+		box.appendChild(trs);
+		var t = el('table', { class: 'pr-settings-table' });
+		var per = [[0, 'none']]; for (var n = 1; n <= 10; n++) { per.push([n, n]); }
+		SECTIONS.forEach(function (sec) {
+			var x = rd[sec.key], books = sectionBooks(sec, rd);
+			if (!books.length) { return; }
+			var bk = books.filter(function (b) { return b[0] === x.b; })[0] || books[0];
+			var bookSel = select(books.map(function (b) { return [b[0], b[1]]; }), bk[0], function (code) { x.b = code; x.c = chaptersOf(books.filter(function (b) { return b[0] === code; })[0])[0]; changed(); });
+			var chSel = select(chaptersOf(bk).map(function (c) { return [c, c]; }), x.c, function (c) { x.b = bk[0]; x.c = +c; changed(); });
+			var row = [
+				el('th', { text: sec.name }),
+				el('td', {}, ['chapters a day ', select(per, x.per, function (v) { x.per = +v; changed(); })]),
+				el('td', {}, ['next ', bookSel, ' ', chSel])
+			];
+			t.appendChild(el('tr', {}, row));
+			if (sec.key === 'old') {
+				var ps = el('input', { type: 'checkbox' }); ps.checked = x.psalms !== false;
+				ps.addEventListener('change', function () { x.psalms = ps.checked; changed(); });
+				t.appendChild(el('tr', {}, [el('td', {}), el('td', { colspan: '2' }, [el('label', {}, [ps, ' include the Psalms (leave this off if you read them in the kathismas)'])])]));
+			}
+		});
+		box.appendChild(t);
+		box.appendChild(el('p', { class: 'pr-note', text: 'The reading goes on from where it stopped each day, and starts again from the beginning at the end.' }));
+		return box;
 	}
 
 	function drawKeys() {
@@ -904,6 +1002,7 @@
 
 	var req = 0, shown = null;
 	function show() {
+		if (UI.service === 'reading') { showReading(); return; }
 		var svc = serviceByKey(UI.service); if (!svc) { return; }
 		var r = R(), mine = ++req, p = {}, start = r.next, total = 0, ladders = 0;
 		svc.portions.forEach(function (x, i) {
@@ -925,6 +1024,100 @@
 			shown = { day: UI.day, service: svc.key, start: start, total: total, ladders: ladders };
 			out.appendChild(el('div', { class: 'pr-done' }, finishControls()));
 		}).catch(function () { if (mine === req) { out.innerHTML = ''; out.appendChild(el('p', { text: 'The service could not be loaded. Please try again.' })); } });
+	}
+
+	// ---- the Scripture reading of the day
+
+	function showReading() {
+		var r = R(), mine = ++req, rd = readingOf(r), e = entry(UI.day, 'reading'), parts;
+		// A day already marked shows what was read then; otherwise the next chapters from the bookmarks.
+		if (e && e.kept && e.read) {
+			parts = SECTIONS.filter(function (sec) { return e.read[sec.key]; }).map(function (sec) { return { sec: sec, t: e.read[sec.key].t, list: e.read[sec.key].list, next: null }; });
+		} else {
+			parts = readingParts(r);
+		}
+		out.innerHTML = '';
+		if (!parts.length) {
+			out.appendChild(el('h2', { class: 'pr-service-title', text: 'Scripture' }));
+			out.appendChild(el('p', {}, ['No daily reading is set. ', el('button', { type: 'button', class: 'pr-primary', text: V.key ? 'Set it in My rule' : 'Set it in My portion and settings', on: { click: function () { openPanel(settings); } } })]));
+			shown = { day: UI.day, service: 'reading', parts: [] };
+			return;
+		}
+		out.appendChild(el('p', { class: 'pr-note', text: 'Loading…' }));
+		var items = [];
+		parts.forEach(function (pt) { pt.list.forEach(function (bc) { items.push({ s: pt.sec.key, t: pt.t, b: bc[0], c: bc[1] }); }); });
+		fetch(C.scripture, {
+			method: 'POST', credentials: 'same-origin',
+			headers: { 'Content-Type': 'application/json', 'X-WP-Nonce': C.nonce },
+			body: JSON.stringify({ date: UI.day, verses: r.verses ? 1 : 0, items: items })
+		}).then(function (res) { if (!res.ok) { throw res; } return res.json(); }).then(function (data) {
+			if (mine !== req) { return; }
+			out.innerHTML = data.day_html;
+			out.appendChild(el('h2', { class: 'pr-service-title', text: 'Scripture' }));
+			out.insertAdjacentHTML('beforeend', data.html);
+			shown = { day: UI.day, service: 'reading', parts: parts };
+			out.appendChild(el('div', { class: 'pr-done' }, readingControls()));
+		}).catch(function () { if (mine === req) { out.innerHTML = ''; out.appendChild(el('p', { text: 'The reading could not be loaded. Please try again.' })); } });
+	}
+
+	function readingSummary(parts, rd) {
+		return parts.map(function (pt) {
+			var first = pt.list[0], last = pt.list[pt.list.length - 1];
+			var a = bookLabel(pt.sec, rd, first[0]) + ' ' + first[1];
+			if (pt.list.length > 1) { a += ' – ' + (last[0] === first[0] ? '' : bookLabel(pt.sec, rd, last[0]) + ' ') + last[1]; }
+			return a;
+		}).join('; ');
+	}
+
+	function readingControls() {
+		var s = shown, r = R(), rd = readingOf(r), late = daysAgo(s.day) > 7, e = entry(s.day, 'reading');
+		if (!V.key) {
+			var b = el('button', { type: 'button', class: 'pr-primary', text: 'Finished: go on from here next time' });
+			b.addEventListener('click', function () {
+				s.parts.forEach(function (pt) { rd[pt.sec.key].b = pt.next.b; rd[pt.sec.key].c = pt.next.c; });
+				saveSettings(); drawSettings();
+				b.replaceWith(el('p', { text: 'Next time: ' + readingSummary(readingParts(r).map(function (pt) { return { sec: pt.sec, list: [pt.list[0]] }; }), rd) + '.' }));
+			});
+			return [el('p', {}, [b])];
+		}
+		if (e && e.kept) {
+			var undo = el('button', { type: 'button', class: 'pr-link', text: 'Undo' });
+			undo.addEventListener('click', function () { setRead(false); });
+			return [el('p', { class: 'pr-kept' }, ['✓ Read: ' + readingSummary(s.parts, rd) + (e.corrected ? ' (corrected later)' : '') + '. ', undo])];
+		}
+		var mark = el('button', { type: 'button', class: 'pr-primary', text: 'Mark the reading as done' });
+		mark.addEventListener('click', function () { setRead(true); });
+		var kids = [el('p', {}, [mark]), el('p', { class: 'pr-note', text: readingSummary(s.parts, rd) + '.' })];
+		if (late) { kids.push(el('p', { class: 'pr-note', text: 'This day is more than 7 days ago: it will be marked "corrected later".' })); }
+		return kids;
+	}
+
+	async function setRead(read) {
+		var s = shown, rd = readingOf(V.rule), key = entryKey(s.day, 'reading'), e = V.log.entries[key] || { first: now() }, late = daysAgo(s.day) > 7;
+		if (read) {
+			e.kept = true; e.read = {}; e.from = {}; e.to = {};
+			s.parts.forEach(function (pt) {
+				var x = rd[pt.sec.key];
+				e.read[pt.sec.key] = { t: pt.t, list: pt.list };
+				e.from[pt.sec.key] = { b: x.b, c: x.c };
+				e.to[pt.sec.key] = { b: pt.next.b, c: pt.next.c };
+				x.b = pt.next.b; x.c = pt.next.c;
+			});
+		} else {
+			e.kept = false;
+			// Put each bookmark back, unless it has moved on since.
+			Object.keys(e.to || {}).forEach(function (k) {
+				var x = rd[k];
+				if (x && x.b === e.to[k].b && x.c === e.to[k].c) { x.b = e.from[k].b; x.c = e.from[k].c; }
+			});
+			delete e.read; delete e.from; delete e.to;
+		}
+		e.edited = now(); if (late) { e.corrected = true; }
+		V.log.entries[key] = e;
+		status('Saving…');
+		await saveVault();
+		drawTabs(); drawSettings(); drawRecord();
+		show();
 	}
 
 	function kathismaList(start, total) { var a = []; for (var i = 0; i < total; i++) { a.push(((start - 1 + i) % 20) + 1); } return a; }

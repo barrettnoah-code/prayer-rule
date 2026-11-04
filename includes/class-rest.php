@@ -45,12 +45,61 @@ class Rest {
 		);
 		register_rest_route(
 			self::NS,
+			'/scripture',
+			array(
+				'methods'             => 'POST',
+				'callback'            => array( __CLASS__, 'scripture' ),
+				'permission_callback' => $member,
+			)
+		);
+		register_rest_route(
+			self::NS,
 			'/services/(?P<service>[a-z-]+)/reading',
 			array(
 				'methods'             => array( 'GET', 'POST' ),   // the reading page posts, so the portion stays out of URLs and logs
 				'callback'            => array( __CLASS__, 'reading' ),
 				'permission_callback' => $member,
 			)
+		);
+	}
+
+	/**
+	 * Chapters for the daily reading: items [{ s: section, t: translation, b: book, c: chapter }].
+	 * The member's bookmarks stay in their (encrypted) rule; only the chapters asked for come here.
+	 */
+	public static function scripture( \WP_REST_Request $request ) {
+		$labels  = array(
+			'gospel'  => __( 'The Gospel', 'prayer-rule' ),
+			'apostle' => __( 'The Apostle', 'prayer-rule' ),
+			'old'     => __( 'The Old Testament', 'prayer-rule' ),
+		);
+		$numbers = (bool) $request['verses'];
+		$loaded  = Bible::translations();
+		$html    = '';
+		$section = '';
+		foreach ( array_slice( (array) $request->get_param( 'items' ), 0, 60 ) as $item ) {
+			$t = sanitize_key( (string) ( $item['t'] ?? '' ) );
+			$b = strtoupper( preg_replace( '/[^A-Za-z0-9]/', '', (string) ( $item['b'] ?? '' ) ) );
+			$c = absint( $item['c'] ?? 0 );
+			$s = sanitize_key( (string) ( $item['s'] ?? '' ) );
+			if ( ! isset( $loaded[ $t ] ) || '' === $b || ! $c ) {
+				continue;
+			}
+			if ( $s !== $section && isset( $labels[ $s ] ) ) {
+				$html   .= '<h3 class="pr-reading-section">' . esc_html( $labels[ $s ] ) . '</h3>';
+				$section = $s;
+			}
+			$name = $b;
+			foreach ( Bible::translation( $t )['books'] as $book ) {
+				if ( $book['code'] === $b ) {
+					$name = $book['name'];
+				}
+			}
+			$html .= '<section class="pr-chapter"><h4 class="pr-psalm">' . esc_html( $name . ' ' . $c ) . '</h4>' . Bible::chapter_html( $t, $b, $c, $numbers ) . '</section>';
+		}
+		return array(
+			'html'     => '<div class="prayer-rule-reading pr-scripture">' . $html . '</div>',
+			'day_html' => $request['date'] ? Reader::day_html( Calendar::day( (string) $request['date'] ), 'reading' ) : '',
 		);
 	}
 
