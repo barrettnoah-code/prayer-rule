@@ -9,7 +9,10 @@
  *     (PBKDF2-SHA-256, many iterations).
  * Neither the passphrase, the recovery code nor the data key ever leaves
  * the browser. While unlocked, the data key is kept in this tab's
- * sessionStorage, and is gone when the tab closes or "Lock" is pressed.
+ * sessionStorage, and is gone when the tab closes or "Lock" is pressed;
+ * if the member chooses "keep it open on this device", it is kept in
+ * localStorage instead, for 30 days or until "Lock" (it still never
+ * leaves the browser).
  *
  * Sharing with a nastavnik: each member with a private rule also has an
  * ECDH (P-256) key pair; the public half is on the site, the private half
@@ -27,6 +30,17 @@
 	}
 
 	var ITER = 600000, LOCAL = 'prayerRule.reader', SESSION = 'prayerRule.key.' + C.user;
+	var KEEP = 'prayerRule.keep.' + C.user, KEEP_DAYS = 30;     // "keep it open on this device"
+	/** The data key kept on this device, if it was and has not expired: { k, until } or null. */
+	function kept() {
+		try {
+			var x = JSON.parse(localStorage.getItem(KEEP) || 'null');
+			if (x && x.k && x.until > Date.now()) { return x; }
+			localStorage.removeItem(KEEP);
+		} catch (e) {}
+		return null;
+	}
+	function keep(raw) { try { localStorage.setItem(KEEP, JSON.stringify({ k: b64(raw), until: Date.now() + KEEP_DAYS * 86400000 })); } catch (e) {} }
 	var enc = new TextEncoder(), dec = new TextDecoder();
 
 	// ------------------------------------------------------------ small helpers
@@ -96,9 +110,10 @@
 		if (!C.private) { return; }                // a visitor, or a reader who may not keep a private rule
 		var r = await api('GET');
 		V.exists = !!r.data.exists; V.version = r.data.version || 0; V.envelope = r.data.envelope || null;
-		if (!V.exists) { V.key = null; V.rule = null; V.log = null; try { sessionStorage.removeItem(SESSION); } catch (e) {} return; }
+		if (!V.exists) { V.key = null; V.rule = null; V.log = null; try { sessionStorage.removeItem(SESSION); localStorage.removeItem(KEEP); } catch (e) {} return; }
 		var saved = null; try { saved = sessionStorage.getItem(SESSION); } catch (e) {}
-		if (saved && !V.key) { try { await openWith(unb64(saved)); } catch (e) { lock(); } }
+		if (!saved && kept()) { saved = kept().k; }
+		if (saved && !V.key) { try { await openWith(unb64(saved)); } catch (e) { lock(); } }   // only a key that no longer opens the rule
 		else if (V.key) { await readEnvelope(V.envelope); }
 	}
 	async function readEnvelope(env) {
@@ -134,10 +149,10 @@
 	}
 	async function openWith(raw) {
 		V.raw = raw; V.key = await dataKey(raw);
-		await readEnvelope(V.envelope);
+		await readEnvelope(V.envelope);                         // throws when the key is wrong
 		try { sessionStorage.setItem(SESSION, b64(raw)); } catch (e) {}
-		if (await ensureKeys(V.envelope)) { await saveVault(); }
-		await publishKey();
+		// The sharing keys: a passing network fault must not lock the rule again; they are tried at the next opening.
+		try { if (await ensureKeys(V.envelope)) { await saveVault(); } await publishKey(); } catch (e) {}
 		loadShares().then(function () { pushShares(); drawSharing(); drawAccount(); });
 	}
 	async function unwrap(secret, which) {
@@ -148,7 +163,7 @@
 		var salt = rand(16), k = await derive(secret, salt, ITER);
 		env['salt_' + which] = b64(salt); env['key_' + which] = await seal(k, V.raw, 'key_' + which); env.iter = ITER;
 	}
-	function lock() { V.key = null; V.raw = null; V.rule = null; V.log = null; V.priv = null; V.pub = ''; SH.mine = []; SH.withMe = []; SH.open = null; try { sessionStorage.removeItem(SESSION); } catch (e) {} }
+	function lock() { V.key = null; V.raw = null; V.rule = null; V.log = null; V.priv = null; V.pub = ''; SH.mine = []; SH.withMe = []; SH.open = null; try { sessionStorage.removeItem(SESSION); localStorage.removeItem(KEEP); } catch (e) {} }
 
 	/** Merge two records: every entry, the most recently edited one winning. */
 	function mergeLog(a, b) {
@@ -442,7 +457,9 @@
 		d.open = open;
 		footer.appendChild(d);
 		footer.appendChild(el('p', { class: 'pr-lockline' }, [
-			'Your private rule is open in this browser tab, and closes by itself when the tab is closed. On a shared computer, ',
+			kept()
+				? 'Your private rule stays open on this device until ' + new Date(kept().until).toLocaleDateString(undefined, { month: 'long', day: 'numeric' }) + '. On a shared computer, '
+				: 'Your private rule is open in this browser tab, and closes by itself when the tab is closed. On a shared computer, ',
 			el('button', { type: 'button', class: 'pr-link', text: 'lock it now', on: { click: function () { lock(); redraw(); window.scrollTo(0, 0); } } }), '.'
 		]));
 	}
@@ -490,15 +507,23 @@
 	function drawUnlock() {
 		var p = field('Passphrase', { autocomplete: 'current-password' }), msg = el('p', { class: 'pr-status' });
 		var go = el('button', { type: 'button', class: 'pr-primary', text: 'Open my rule' });
+		var stay = el('input', { type: 'checkbox' });
+		try { stay.checked = localStorage.getItem(KEEP + '.choice') === '1'; } catch (e) {}
 		async function run() {
 			go.disabled = true; msg.textContent = 'Opening…';
-			try { await openWith(await unwrap(p[1].value, 'p')); UI.panel = ''; redraw(); }
+			try {
+				await openWith(await unwrap(p[1].value, 'p'));
+				if (stay.checked) { keep(V.raw); }
+				try { localStorage.setItem(KEEP + '.choice', stay.checked ? '1' : '0'); } catch (e) {}
+				UI.panel = ''; redraw();
+			}
 			catch (e) { go.disabled = false; msg.textContent = 'That passphrase did not open your rule.'; }
 		}
 		go.addEventListener('click', run);
 		p[1].addEventListener('keydown', function (e) { if (e.key === 'Enter') { run(); } });
 		account.appendChild(el('div', { class: 'pr-box' }, [
 			el('p', { text: 'Your private rule is locked.' }), p[0],
+			el('label', { class: 'pr-check' }, [stay, ' Keep it open on this device for ' + KEEP_DAYS + ' days (not on a shared computer)']),
 			el('p', {}, [go, ' ', el('button', { type: 'button', class: 'pr-link', text: 'Forgot your passphrase?', on: { click: function () { UI.panel = 'recover'; drawAccount(); } } })]), msg
 		]));
 	}

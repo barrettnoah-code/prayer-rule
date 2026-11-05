@@ -59,6 +59,10 @@ Each member's rule and record are encrypted in their own browser
 - that key is stored only wrapped, once under the member's passphrase and
   once under a one-time recovery code (PBKDF2-SHA-256, 600,000 iterations);
 - the passphrase, the recovery code and the key never leave the browser.
+- once opened, the key is kept in that browser tab until it is closed or
+  locked; a member can tick "Keep it open on this device", and it is then
+  kept in the browser's local storage for 30 days or until "lock it now"
+  (still never sent to the site).
 
 For sharing, each member also has an ECDH (P-256) key pair: the public
 half is stored on the site, the private half sealed with the member's key.
