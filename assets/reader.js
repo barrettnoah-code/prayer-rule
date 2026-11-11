@@ -69,6 +69,15 @@
 	function unb64(str) { var s = atob(str), b = new Uint8Array(s.length); for (var i = 0; i < s.length; i++) { b[i] = s.charCodeAt(i); } return b; }
 	function rand(n) { return crypto.getRandomValues(new Uint8Array(n)); }
 	function now() { return new Date().toISOString(); }
+	/**
+	 * Typographer's quotes for a member's own words, shown only (a message is
+	 * encrypted between members, so the site cannot do it as it does the rest).
+	 */
+	function curly(s) {
+		return String(s)
+			.replace(/(^|[\s(\[{\u2014\u2013-])"/g, '$1\u201c').replace(/"/g, '\u201d')
+			.replace(/(^|[\s(\[{\u2014\u2013-])'/g, '$1\u2018').replace(/'/g, '\u2019');
+	}
 	/** JSON headers for the site; the nonce only for a logged-in reader (a visitor needs none, and a cached one would be stale). */
 	function jsonHeaders() { var h = { 'Content-Type': 'application/json' }; if (C.nonce) { h['X-WP-Nonce'] = C.nonce; } return h; }
 	function serviceByKey(k) { return C.services.filter(function (s) { return s.key === k; })[0]; }
@@ -683,7 +692,7 @@
 			list.appendChild(card);
 		});
 		readingPanel.appendChild(list);
-		readingPanel.appendChild(el('p', { class: 'pr-note', text: '"Every other day" counts from the day it is chosen. "Once a week, any day" can be read on any day from Sunday to Saturday. A section not due can still be read ahead from the Scripture page, and then counts for its next day.' }));
+		readingPanel.appendChild(el('p', { class: 'pr-note', text: '“Every other day” counts from the day it is chosen. “Once a week, any day” can be read on any day from Sunday to Saturday. A section not due can still be read ahead from the Scripture page, and then counts for its next day.' }));
 	}
 
 	function drawKeys() {
@@ -860,7 +869,7 @@
 		if (rs.chapters) {
 			lines.push(rs.chapters + (rs.chapters === 1 ? ' chapter' : ' chapters') + ' of Scripture read (' + SECTIONS.filter(function (sec) { return rs.bySec[sec.key]; }).map(function (sec) { return sec.name.replace(/^The /, '') + ' ' + rs.bySec[sec.key]; }).join(', ') + ').');
 		}
-		if (st.corrected) { lines.push(st.corrected + ' marked "corrected later".'); }
+		if (st.corrected) { lines.push(st.corrected + ' marked “corrected later”.'); }
 		box.appendChild(el('ul', { class: 'pr-report-lines' }, lines.map(function (x) { return el('li', { text: x }); })));
 
 		box.appendChild(st8.mode === 'week' ? weekGrid(ctx, r, keep, rs) : monthGrid(ctx, r, st, keep, rs));
@@ -1091,7 +1100,7 @@
 		msgs.forEach(function (m) {
 			var who = m.author === C.user ? 'You' : other.name, when = new Date(m.at.replace(' ', 'T') + 'Z').toLocaleString();
 			var item = el('div', { class: 'pr-msg' + (m.author === C.user ? ' is-mine' : '') }, [el('p', { class: 'pr-msg-head', text: who + ' · ' + when })]);
-			if (m.body.text) { item.appendChild(el('p', { text: m.body.text })); }
+			if (m.body.text) { item.appendChild(el('p', { text: curly(m.body.text) })); }
 			if (m.body.type === 'suggest') {
 				item.appendChild(el('p', { class: 'pr-msg-head', text: 'Suggested changes to the rule:' }));
 				item.appendChild(el('ul', {}, describeChanges(m.body.changes, m.id in answered ? null : (o.mine ? V.rule : (theirs && theirs.rule))).map(function (x) { return el('li', { text: x }); })));
@@ -1367,7 +1376,7 @@
 		var mark = el('button', { type: 'button', class: 'pr-primary', text: 'Mark ' + name + ' as read' });
 		mark.addEventListener('click', function () { mark.disabled = true; setRead(it, day, true); });
 		var kids = [el('p', {}, [mark])];
-		if (late) { kids.push(el('p', { class: 'pr-note', text: 'This day is more than 7 days ago: it will be marked "corrected later".' })); }
+		if (late) { kids.push(el('p', { class: 'pr-note', text: 'This day is more than 7 days ago: it will be marked “corrected later”.' })); }
 		return kids;
 	}
 	/** Mark one section of a day read (moving its bookmark on), or undo it. */
@@ -1436,7 +1445,7 @@
 		mark.addEventListener('click', function () { setKept(true); });
 		var kids = [el('p', {}, after ? [mark, ' ', el('button', { type: 'button', text: 'Mark as kept and continue to ' + after.label + ' ›', on: { click: async function () { this.disabled = true; await setKept(true); goTo(after); } } })] : [mark])];
 		if (s.total) { kids.push(el('p', { class: 'pr-note', text: 'Your next kathisma will then be ' + next + '.' })); }
-		if (late) { kids.push(el('p', { class: 'pr-note', text: 'This day is more than 7 days ago: it will be marked "corrected later".' })); }
+		if (late) { kids.push(el('p', { class: 'pr-note', text: 'This day is more than 7 days ago: it will be marked “corrected later”.' })); }
 		return kids;
 	}
 

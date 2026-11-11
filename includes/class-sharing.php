@@ -97,7 +97,7 @@ class Sharing {
 		$user = get_userdata( (int) $user_id );
 		return array(
 			'id'   => (int) $user_id,
-			'name' => $user ? $user->display_name : __( '(deleted account)', 'prayer-rule' ),
+			'name' => $user ? Render::plain( $user->display_name ) : __( '(deleted account)', 'prayer-rule' ),   // shown only; the id is what is used
 			'key'  => (string) get_user_meta( (int) $user_id, self::META_KEY, true ),
 		);
 	}

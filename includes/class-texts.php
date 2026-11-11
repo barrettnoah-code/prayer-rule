@@ -141,7 +141,7 @@ class Texts {
 	/** Prayer content (blocks or plain) as HTML. */
 	public static function content_html( $content ) {
 		$html    = has_blocks( $content ) ? do_blocks( $content ) : wpautop( $content );
-		$html    = shortcode_unautop( wptexturize( $html ) );
+		$html    = shortcode_unautop( Render::curly( $html ) );     // before the shortcodes: the psalms keep their own punctuation
 		return Render::god_bearer( do_shortcode( $html ) );
 	}
 

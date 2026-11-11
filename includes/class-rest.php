@@ -98,7 +98,7 @@ class Rest {
 					$name = $book['name'];
 				}
 			}
-			$one          = '<section class="pr-chapter"><h4 class="pr-psalm">' . esc_html( $name . ' ' . $c ) . '</h4>' . Bible::chapter_html( $t, $b, $c, $numbers ) . '</section>';
+			$one          = '<section class="pr-chapter"><h4 class="pr-psalm">' . esc_html( $name . ' ' . $c ) . Commentary::chapter( $t, $b, $c ) . '</h4>' . Bible::chapter_html( $t, $b, $c, $numbers ) . '</section>';
 			$html        .= $one;
 			$parts[ $s ]  = ( $parts[ $s ] ?? '' ) . $one;
 			$used[ $s ]   = $t;
@@ -108,8 +108,8 @@ class Rest {
 		foreach ( $used as $s => $t ) {
 			$notice = Bible::notice( $t );
 			if ( '' !== $notice ) {
-				$parts[ $s ]  .= '<p class="pr-source-note">' . esc_html( $notice ) . '</p>';
-				$notes[ $t ]   = '<p class="pr-source-note">' . esc_html( $notice ) . '</p>';
+				$parts[ $s ]  .= '<p class="pr-source-note">' . Render::text( $notice ) . '</p>';
+				$notes[ $t ]   = '<p class="pr-source-note">' . Render::text( $notice ) . '</p>';
 			}
 		}
 		$html .= implode( '', $notes );
@@ -230,7 +230,7 @@ class Rest {
 		$notice      = '';
 		foreach ( $steps as $step ) {
 			if ( in_array( $step['type'], array( 'psalm', 'stasis' ), true ) && '' !== Psalter::notice( $translation ) ) {
-				$notice = '<p class="pr-source-note">' . esc_html( Psalter::notice( $translation ) ) . '</p>';
+				$notice = '<p class="pr-source-note">' . Render::text( Psalter::notice( $translation ) ) . '</p>';
 				break;
 			}
 		}

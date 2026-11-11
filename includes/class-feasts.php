@@ -121,7 +121,7 @@ class Feasts {
 		if ( '' === $prefix || false !== stripos( wp_strip_all_tags( $html ), trim( $prefix, ': ' ) ) ) {
 			return $html;
 		}
-		return preg_replace( '/(<p[^>]*>)(\s*)O Lord Jesus Christ/u', '$1$2' . esc_html( $prefix ) . 'O Lord Jesus Christ', $html, 1 );
+		return preg_replace( '/(<p[^>]*>)(\s*)O Lord Jesus Christ/u', '$1$2' . Render::text( $prefix ) . 'O Lord Jesus Christ', $html, 1 );
 	}
 
 	/** All rules as rows for the admin list: when, title, short name. */

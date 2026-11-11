@@ -161,6 +161,17 @@ of due, per section), Scripture columns in the week, a mark in the month, and
 the chapters in the CSV. A nastavnik sees the same in the shared record and can
 suggest chapters and how often for each section.
 
+## Commentary links
+
+With the Patristic Commentary plugin active, a psalm (in the services and the
+Psalter) or a chapter (in the Scripture reading) that has commentary gets a small
+"Commentary" link beside its heading; it opens the commentary in a pop-up
+(Ctrl-click: the full page). Without that plugin, or where there is none, nothing
+is shown. includes/class-commentary.php matches the Bibles' numbering to the
+commentary's (bibletr's): the KJV and Wycliffe Psalms are numbered as in the
+Hebrew, so their Psalm 51 links to the commentary on Psalm 50; Brenton's Esdras II
+11–23 is Nehemiah; Brenton's Jeremiah from 25 and Proverbs from 24 get no links.
+
 ## In the admin (Prayer Rule menu)
 
 - **Prayers** – texts written on the site, each with a *short name*

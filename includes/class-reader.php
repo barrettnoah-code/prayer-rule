@@ -47,14 +47,14 @@ class Reader {
 			foreach ( $service['portions'] as $pkey => $p ) {
 				$portions[] = array(
 					'key'       => $pkey,
-					'name'      => $p['name'],
+					'name'      => Render::plain( $p['name'] ),     // names are only shown; keys are what is saved
 					'kathismas' => $p['kathismas'],
 					'ladders'   => $p['ladders'],
 				);
 			}
 			$services[] = array(
 				'key'      => $key,
-				'name'     => $service['name'],
+				'name'     => Render::plain( $service['name'] ),
 				'portions' => $portions,
 			);
 		}
@@ -67,7 +67,7 @@ class Reader {
 			'register'     => is_user_logged_in() || ! get_option( 'users_can_register' ) ? '' : wp_registration_url(),
 			'join'         => $join,
 			'services'     => $services,
-			'translations' => Psalter::translations(),
+			'translations' => array_map( array( Render::class, 'plain' ), Psalter::translations() ),
 			'translation'  => Psalter::default_translation(),
 			'verses'       => Render::show_verse_numbers(),
 			'evening'      => self::evening_hour(),
@@ -76,13 +76,20 @@ class Reader {
 			'sharing'      => $private ? esc_url_raw( rest_url( Rest::NS . '/sharing/' ) ) : '',
 			'mykey'        => $private ? (string) get_user_meta( get_current_user_id(), Sharing::META_KEY, true ) : '',
 			'scripture'    => esc_url_raw( rest_url( Rest::NS . '/scripture' ) ),
-			'bibles'       => Bible::for_reader(),
+			'bibles'       => array_map(
+				function ( $t ) {
+					$t['name'] = Render::plain( $t['name'] );
+					return $t;
+				},
+				Bible::for_reader()
+			),
 		);
 		wp_enqueue_script( 'prayer-rule-reader', PRAYER_RULE_URL . 'assets/reader.js', array(), PRAYER_RULE_VERSION, true );
 		wp_add_inline_script( 'prayer-rule-reader', 'window.prayerRuleReader = ' . wp_json_encode( $config ) . ';', 'before' );
 		wp_register_style( 'prayer-rule-reader', false, array(), PRAYER_RULE_VERSION );
 		wp_enqueue_style( 'prayer-rule-reader' );
 		wp_add_inline_style( 'prayer-rule-reader', Render::css() . self::css() );
+		Commentary::enqueue();
 		return '<div class="prayer-rule-reader" id="prayer-rule-reader"><noscript>' . esc_html__( 'The prayer rule needs JavaScript.', 'prayer-rule' ) . '</noscript></div>';
 	}
 
@@ -94,15 +101,16 @@ class Reader {
 		if ( '' !== $info['label'] ) {
 			$parts[] = $info['label'];
 		}
-		$html = '<div class="pr-day"><p class="pr-day-date">' . esc_html( implode( ' · ', $parts ) ) . '</p>';
+		// Curled before escaping: the calendar's names, the bows and fasting lines.
+		$html = '<div class="pr-day"><p class="pr-day-date">' . Render::text( implode( ' · ', $parts ) ) . '</p>';
 		if ( $info['lines'] ) {
-			$html .= '<p class="pr-day-lines">' . Render::signs( esc_html( implode( ' · ', $info['lines'] ) ) ) . '</p>';
+			$html .= '<p class="pr-day-lines">' . Render::signs( Render::text( implode( ' · ', $info['lines'] ) ) ) . '</p>';
 		}
 		if ( in_array( $service, array( 'vespers', 'compline' ), true ) ) {
 			/* translators: %s: the evening before, e.g. Saturday, October 31 */
-			$html .= '<p class="pr-day-eve">' . esc_html( sprintf( __( 'Read on the evening before: %s.', 'prayer-rule' ), wp_date( 'l, F j', strtotime( Calendar::eve( $info['civil'] ) . ' 12:00' ) ) ) ) . '</p>';
+			$html .= '<p class="pr-day-eve">' . Render::text( sprintf( __( 'Read on the evening before: %s.', 'prayer-rule' ), wp_date( 'l, F j', strtotime( Calendar::eve( $info['civil'] ) . ' 12:00' ) ) ) ) . '</p>';
 		}
-		$html .= '<p class="pr-day-bows">' . esc_html( Bows::summary( $info ) ) . '</p>';
+		$html .= '<p class="pr-day-bows">' . Render::text( Bows::summary( $info ) ) . '</p>';
 		$html .= Fasting::html( Fasting::for_day( $info, Feasts::find( $info, 'matins' ) ) );
 		return $html . '</div>';
 	}

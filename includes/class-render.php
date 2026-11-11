@@ -270,7 +270,7 @@ class Render {
 	 * him, or "Saint N." until it is known.
 	 */
 	public static function saint_shortcode() {
-		return null !== self::$saint ? esc_html( self::$saint ) : esc_html__( 'Saint', 'prayer-rule' ) . ' <em>N.</em>';
+		return null !== self::$saint ? self::text( self::$saint ) : esc_html__( 'Saint', 'prayer-rule' ) . ' <em>N.</em>';
 	}
 
 	/** The day being assembled (Calendar::day()), or null without a date: for [zapev]. */
@@ -288,9 +288,77 @@ class Render {
 		return self::$phase;
 	}
 
+	/**
+	 * Typographer's quotes, apostrophes and dashes for display (WordPress's
+	 * wptexturize): "Morning Prayers" becomes “Morning Prayers”, saint's
+	 * becomes saint’s. HTML in, HTML out: tags, attributes, shortcodes and
+	 * <code>/<pre> are left alone. It runs even where the site has turned
+	 * texturizing off, since the theme's font draws a plain " as a closing
+	 * quote. Only for what is shown: never for form values, URLs or keys,
+	 * and never for the stored text, which stays as typed.
+	 */
+	public static function curly( $html ) {
+		$html = (string) $html;
+		if ( '' === $html ) {
+			return '';
+		}
+		static $site = null;
+		if ( null === $site ) {
+			$site = false !== apply_filters( 'run_wptexturize', true );
+		}
+		// Where a theme or plugin has turned wptexturize off, it cannot be turned back on
+		// for one call, so the quotes are curled here instead (dashes and the rest left as typed).
+		if ( ! $site ) {
+			return self::quotes( $html );
+		}
+		// wptexturize takes an apostrophe straight after an inline tag (<em>God</em>'s) for an opening quote.
+		return preg_replace( '#(</(?:em|i|strong|b|span|a|small)>)&\#8216;(?=\w)#u', '$1&#8217;', wptexturize( $html ) );
+	}
+
+	/** Curled quotes and apostrophes in the text of some HTML (not in tags, shortcodes, code or scripts). */
+	private static function quotes( $html ) {
+		$parts = preg_split( '/(<[^>]*>|\[[^\]]*\])/', $html, -1, PREG_SPLIT_DELIM_CAPTURE );
+		$out   = '';
+		$prev  = ' ';                                       // the character before: what opens a quote
+		$skip  = '';
+		foreach ( $parts as $i => $part ) {
+			if ( 1 === $i % 2 ) {                              // a tag or a shortcode
+				if ( preg_match( '#^<(/?)(code|pre|kbd|script|style|tt)\b#i', $part, $m ) ) {
+					$skip = '' === $m[1] ? strtolower( $m[2] ) : '';
+				}
+				if ( preg_match( '#^</?(p|br|div|h[1-6]|li|ul|ol|section|blockquote|td|th|tr)\b#i', $part ) ) {
+					$prev = ' ';
+				}
+				$out .= $part;
+				continue;
+			}
+			if ( '' === $part || '' !== $skip ) {
+				$out .= $part;
+				continue;
+			}
+			$text = preg_replace( '/(^|[\s(\[{\x{2014}\x{2013}-])"/u', '$1' . "\u{201C}", ( preg_match( '/[\s(\[{\x{2014}\x{2013}-]$/u', $prev ) ? ' ' : 'x' ) . $part );
+			$text = str_replace( '"', "\u{201D}", $text );
+			$text = preg_replace( '/(^|[\s(\[{\x{2014}\x{2013}-])\'/u', '$1' . "\u{2018}", $text );
+			$text = str_replace( "'", "\u{2019}", $text );
+			$out .= mb_substr( $text, 1 );
+			$prev  = mb_substr( $part, -1 );
+		}
+		return $out;
+	}
+
+	/** Plain text, curled and escaped for HTML. */
+	public static function text( $text ) {
+		return esc_html( self::curly( $text ) );
+	}
+
+	/** Plain text, curled, as plain characters (for text the page's script shows, never for values it saves). */
+	public static function plain( $text ) {
+		return html_entity_decode( self::curly( $text ), ENT_QUOTES | ENT_HTML5, 'UTF-8' );
+	}
+
 	/** A short line said as written; (parentheses) in red. */
 	public static function say_html( $line ) {
-		return preg_replace( '/\([^()]*\)/', '<span class="pr-red">$0</span>', esc_html( $line ) );
+		return preg_replace( '/\([^()]*\)/', '<span class="pr-red">$0</span>', self::text( $line ) );
 	}
 
 	/** Verses of the pieces: array( array( 'psalm' => 50, 'verses' => array( n => text ) ) ). */
@@ -324,7 +392,7 @@ class Render {
 		$html    = '';
 		foreach ( $psalms as $psalm ) {
 			/* translators: %d: psalm number */
-			$html .= '<h3 class="pr-psalm">' . esc_html( sprintf( __( 'Psalm %d', 'prayer-rule' ), $psalm['psalm'] ) ) . '</h3>';
+			$html .= '<h3 class="pr-psalm">' . esc_html( sprintf( __( 'Psalm %d', 'prayer-rule' ), $psalm['psalm'] ) ) . Commentary::psalm( $psalm['psalm'] ) . '</h3>';
 			$first = true;
 			foreach ( $psalm['verses'] as $number => $text ) {
 				$words = esc_html( $text );
@@ -358,13 +426,13 @@ class Render {
 					$html .= '<p class="pr-say">' . self::say_html( $step['line'] ) . '</p>';
 					break;
 				case 'rubric':
-					$html .= '<p class="pr-rubric">' . esc_html( $step['line'] ) . '</p>';
+					$html .= '<p class="pr-rubric">' . self::text( $step['line'] ) . '</p>';
 					break;
 				case 'psalm':
 					$html .= '<section class="pr-psalms">' . self::psalms_html( $step['psalms'] ) . '</section>';
 					break;
 				case 'heading':
-					$html .= '<h2 class="pr-kathisma pr-section-head">' . esc_html( $step['title'] ) . '</h2>';
+					$html .= '<h2 class="pr-kathisma pr-section-head">' . self::text( $step['title'] ) . '</h2>';
 					break;
 				case 'kathisma':
 					/* translators: %d: kathisma number */
@@ -375,7 +443,7 @@ class Render {
 					$html .= '<section class="pr-stasis"><p class="pr-stasis-label">' . esc_html( sprintf( __( 'Stasis %d', 'prayer-rule' ), $step['stasis'] ) ) . '</p>' . self::psalms_html( $step['psalms'] ) . '</section>';
 					break;
 				case 'ladders':
-					$html .= '<section class="pr-ladders"><p class="pr-rubric">' . esc_html( $step['label'] ) . '</p>' . $step['html'];
+					$html .= '<section class="pr-ladders"><p class="pr-rubric">' . self::text( $step['label'] ) . '</p>' . $step['html'];
 					if ( '' !== $step['after'] ) {
 						$html .= '<p class="pr-rubric">' . esc_html__( 'After each ladder:', 'prayer-rule' ) . '</p>' . $step['after'];
 					}
@@ -438,6 +506,9 @@ class Render {
 .prayer-rule-reading .pr-stasis-label{color:var(--pr-red);font-size:.8em;text-transform:uppercase;letter-spacing:.06em;margin:1.6em 0 0}
 .prayer-rule-reading .pr-psalm{color:var(--pr-red);font-size:1.05em;margin:1.2em 0 .4em}
 .prayer-rule-reading .pr-verse{margin:0 0 .35em}
+.prayer-rule-reading .pr-comm-links{font-size:.72em;font-weight:normal;margin-left:.7em;white-space:nowrap}
+.prayer-rule-reading .pr-comm{color:#8c8f94;font-style:italic;text-decoration:underline dotted;text-underline-offset:.2em}
+.prayer-rule-reading .pr-comm:hover{color:var(--pr-red)}
 .prayer-rule-reading .pr-say::first-letter{color:var(--pr-red)}
 .prayer-rule-reading .pr-vn{font-size:.7em;color:#8c8f94;vertical-align:super;margin-right:.2em}
 .pr-initial,.prayer-rule-reading .is-style-prayer::first-letter,.editor-styles-wrapper .is-style-prayer::first-letter{color:{$red}}

@@ -164,12 +164,12 @@ class Fasting {
 		$today    = '' !== $fast['today'] ? $fast['today'] : __( 'No fast today.', 'prayer-rule' );
 		$label    = $ordinary ? __( 'Fasting today', 'prayer-rule' ) : __( 'Fasting today', 'prayer-rule' ) . ' · ' . $fast['title'];
 		$html     = '<div class="pr-fasting' . ( '' === $fast['today'] ? ' is-free' : '' ) . '">';
-		$html    .= '<p class="pr-fasting-label">' . esc_html( $label ) . '</p>';
-		$html    .= '<p class="pr-fasting-today">' . esc_html( $today ) . '</p>';
+		$html    .= '<p class="pr-fasting-label">' . Render::text( $label ) . '</p>';
+		$html    .= '<p class="pr-fasting-today">' . Render::text( $today ) . '</p>';
 		if ( '' !== $fast['general'] && ! ( $ordinary && '' === $fast['today'] ) ) {
-			$html .= '<details class="pr-fasting-rule"><summary>' . esc_html__( 'The rule', 'prayer-rule' ) . '</summary>' . $fast['general'];
+			$html .= '<details class="pr-fasting-rule"><summary>' . esc_html__( 'The rule', 'prayer-rule' ) . '</summary>' . Render::curly( $fast['general'] );
 			if ( '' !== $fast['other'] ) {
-				$html .= '<details class="pr-fasting-other"><summary>' . esc_html__( 'Other typika', 'prayer-rule' ) . '</summary>' . $fast['other'] . '</details>';
+				$html .= '<details class="pr-fasting-other"><summary>' . esc_html__( 'Other typika', 'prayer-rule' ) . '</summary>' . Render::curly( $fast['other'] ) . '</details>';
 			}
 			$html .= '</details>';
 		}
