@@ -34,6 +34,8 @@ foreach ( array(
 	'prayer_rule_saints',
 	'prayer_rule_zapevy',
 	'prayer_rule_bible_hashes',
+	'prayer_rule_bible_page',          // the "Bible" page itself is kept, like any page
+	'prayer_rule_bible_rules_for',
 	'prayer_rule_additions',
 	'prayer_rule_fasting',
 	'prayer_rule_evening',

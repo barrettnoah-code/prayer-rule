@@ -1,8 +1,8 @@
 <?php
 /**
  * Plugin Name:       Prayer Rule
- * Description:       A private prayer rule for members: the daily cycle kept by kathismas and Jesus Prayers, a built-in Psalter, and an encrypted record of what was kept.
- * Version:           1.2.8
+ * Description:       A private prayer rule for members: the daily cycle kept by kathismas and Jesus Prayers, a built-in Psalter, an encrypted record of what was kept, and the whole Bible to read on the site.
+ * Version:           1.3.3
  * Requires at least: 6.0
  * Requires PHP:      7.4
  * Author:            The Old Believers
@@ -16,7 +16,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'PRAYER_RULE_VERSION', '1.2.8' );
+define( 'PRAYER_RULE_VERSION', '1.3.3' );
 define( 'PRAYER_RULE_FILE', __FILE__ );
 define( 'PRAYER_RULE_DIR', plugin_dir_path( __FILE__ ) );
 define( 'PRAYER_RULE_URL', plugin_dir_url( __FILE__ ) );
@@ -36,6 +36,9 @@ require_once PRAYER_RULE_DIR . 'includes/class-bows.php';
 require_once PRAYER_RULE_DIR . 'includes/class-ustav.php';
 require_once PRAYER_RULE_DIR . 'includes/class-orders.php';
 require_once PRAYER_RULE_DIR . 'includes/class-commentary.php';
+require_once PRAYER_RULE_DIR . 'includes/class-bible-map.php';
+require_once PRAYER_RULE_DIR . 'includes/class-bible-pages.php';
+require_once PRAYER_RULE_DIR . 'includes/class-bible-render.php';
 require_once PRAYER_RULE_DIR . 'includes/class-render.php';
 require_once PRAYER_RULE_DIR . 'includes/class-rest.php';
 require_once PRAYER_RULE_DIR . 'includes/class-reader.php';
@@ -46,6 +49,10 @@ require_once PRAYER_RULE_DIR . 'includes/class-editor.php';
 
 register_activation_hook( __FILE__, array( 'PrayerRule\\Psalter', 'install' ) );
 register_activation_hook( __FILE__, array( 'PrayerRule\\Vault', 'install' ) );
+register_activation_hook( __FILE__, array( 'PrayerRule\\BiblePages', 'page_id' ) );
+
+// The Bible pages: /bible/<translation>/<book>/<chapter>/ (includes/class-bible-pages.php).
+PrayerRule\BiblePages::boot();
 
 add_action( 'init', array( 'PrayerRule\\Texts', 'register' ) );
 add_action( 'init', array( 'PrayerRule\\Orders', 'register' ) );

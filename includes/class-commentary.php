@@ -112,8 +112,10 @@ class Commentary {
 				return array();                             // chapters in another order
 			}
 		}
-		if ( 'ESG' === $code ) {                            // the additions to Esther
-			return 'brenton' === $translation ? array( array( 'Esther', $c ) ) : array( array( 'Esther', $c + 9 ) );
+		if ( 'ESG' === $code ) {
+			// Brenton: the whole Greek Esther. The KJV's and Wycliffe's "Rest of Esther" is
+			// numbered 10:4–16:24 as in the Latin, which is where bibletr's Esther has it too.
+			return array( array( 'Esther', $c ) );
 		}
 		if ( 'DAN' === $code && 'dra' === $translation && $c >= 13 ) {
 			return array( array( 13 === $c ? 'Susanna' : 'Bel and the Dragon', 1 ) );
@@ -147,5 +149,137 @@ class Commentary {
 	public static function chapter( $translation, $code, $chapter ) {
 		$shown = array( self::BOOKS[ $code ] ?? '', (int) $chapter );
 		return self::links( self::places( $translation, $code, $chapter ), $shown );
+	}
+
+	/**
+	 * For the Bible pages: the commentary at these places, list of pcomm_chapter() results
+	 * (label, url, works with author, title, url), each place once.
+	 */
+	public static function at( array $places ) {
+		if ( ! self::available() ) {
+			return array();
+		}
+		$out  = array();
+		$seen = array();
+		foreach ( $places as $p ) {
+			$key = $p[0] . '|' . $p[1];
+			if ( isset( $seen[ $key ] ) ) {
+				continue;
+			}
+			$seen[ $key ] = true;
+			$info         = pcomm_chapter( $p[0], $p[1] );
+			if ( $info && ! empty( $info['works'] ) ) {
+				$out[] = $info;
+			}
+		}
+		return $out;
+	}
+
+	/**
+	 * The verses of a chapter that have commentary of their own: label => array( book,
+	 * chapter, verse, url ), for the verse numbers to open it (Bible pages and the Scripture
+	 * reading; never the services). bibletr numbers verses as the KJV does outside the Psalms,
+	 * so a chapter gets them when it is the KJV's, or numbered exactly like the KJV's at the
+	 * same place. The Psalms (bibletr follows the Slavonic verse division there) and chapters
+	 * that are two places at once keep the chapter link only.
+	 *
+	 * @param array $verses The chapter's verses as shown: list of array( label, text ).
+	 * @param array $places Where its commentary is kept (Commentary::places / BibleMap::places).
+	 */
+	public static function verse_links( $translation, $code, $chapter, array $verses, array $places ) {
+		if ( 'PSA' === $code || 1 !== count( $places ) || ! self::available() ) {
+			return array();
+		}
+		$info = pcomm_chapter( $places[0][0], $places[0][1] );
+		if ( ! $info || empty( $info['verses'] ) ) {          // none, or Patristic Commentary before 0.4.0
+			return array();
+		}
+		$labels = array_map(
+			function ( $v ) {
+				return (string) $v[0];
+			},
+			$verses
+		);
+		if ( 'kjv' !== $translation ) {
+			if ( BibleMap::has_chapter( 'kjv', $code, $chapter ) && self::places( 'kjv', $code, $chapter ) === $places ) {
+				$k = array( $code, (int) $chapter );
+			} else {
+				$k = BibleMap::locate( 'kjv', $places );
+			}
+			$kjv = $k ? Bible::chapter( 'kjv', $k[0], $k[1] ) : null;
+			if ( ! $kjv || array_map( 'strval', wp_list_pluck( $kjv['verses'], 0 ) ) !== $labels ) {
+				return array();
+			}
+		}
+		$has = array_flip( array_map( 'intval', $info['verses'] ) );
+		$out = array();
+		foreach ( $labels as $l ) {
+			if ( ctype_digit( $l ) && isset( $has[ (int) $l ] ) ) {
+				$out[ $l ] = array(
+					'book'    => $places[0][0],
+					'chapter' => (int) $places[0][1],
+					'verse'   => (int) $l,
+					'url'     => $info['url'],
+				);
+			}
+		}
+		return $out;
+	}
+
+	/** A verse number: a link that opens its commentary when it has some, else plain. */
+	public static function verse_number( $label, array $links ) {
+		$label = (string) $label;
+		if ( ! isset( $links[ $label ] ) ) {
+			return esc_html( $label );
+		}
+		$l = $links[ $label ];
+		return '<a class="pr-vn-comm" href="' . esc_url( $l['url'] ) . '" data-pcomm-book="' . esc_attr( $l['book'] ) . '" data-pcomm-chapter="' . (int) $l['chapter'] . '" data-pcomm-verse="' . (int) $l['verse'] . '" title="'
+			/* translators: %s: verse number */
+			. esc_attr( sprintf( __( 'Commentary on verse %s', 'prayer-rule' ), $label ) ) . '">' . esc_html( $label ) . '</a>';
+	}
+
+	/** For the Bible pages: the bibletr books a book is kept under (Brenton's Esdras II: Ezra and Nehemiah). */
+	public static function book_names( $translation, array $book ) {
+		$names = array();
+		foreach ( BibleMap::chapters( $translation, $book ) as $n ) {
+			foreach ( BibleMap::places( $translation, $book['code'], $n ) as $p ) {
+				$names[ $p[0] ] = true;
+			}
+		}
+		return array_keys( $names );
+	}
+
+	/** The introductions to a book in the commentary (chapter 0), as for at(). */
+	public static function intros( $translation, array $book ) {
+		$places = array();
+		foreach ( self::book_names( $translation, $book ) as $name ) {
+			$places[] = array( $name, 0 );
+		}
+		return self::at( $places );
+	}
+
+	/**
+	 * For the Bible pages: the chapters of a book (as shown) with commentary: chapter => true. Read from the Patristic
+	 * Commentary's own list in one query; empty if that plugin cannot give it.
+	 */
+	public static function chapters_with( $translation, array $book ) {
+		if ( ! self::available() || ! is_callable( array( '\\PatComm\\Store', 'places' ) ) || ! is_callable( array( '\\PatComm\\Store', 'book' ) ) ) {
+			return array();
+		}
+		$all  = \PatComm\Store::places();
+		$keys = array();
+		$out  = array();
+		foreach ( BibleMap::chapters( $translation, $book ) as $n ) {
+			foreach ( BibleMap::places( $translation, $book['code'], $n ) as $p ) {
+				if ( ! array_key_exists( $p[0], $keys ) ) {
+					$b             = \PatComm\Store::book( $p[0] );
+					$keys[ $p[0] ] = $b ? $b['key'] : null;
+				}
+				if ( $keys[ $p[0] ] && ! empty( $all[ $keys[ $p[0] ] ][ (int) $p[1] ] ) ) {
+					$out[ (int) $n ] = true;
+				}
+			}
+		}
+		return $out;
 	}
 }

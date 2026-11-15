@@ -203,14 +203,16 @@ class Bible {
 	}
 
 	/** A chapter as HTML: the title, then numbered verses. */
-	public static function chapter_html( $translation, $book, $chapter, $numbers = true ) {
+	public static function chapter_html( $translation, $book, $chapter, $numbers = true, $verse_links = false ) {
 		$c = self::chapter( $translation, $book, $chapter );
 		if ( ! $c ) {
 			return '';
 		}
-		$html = '' !== $c['title'] ? '<p class="pr-chapter-title">' . esc_html( $c['title'] ) . '</p>' : '';
+		// The Scripture reading: verse numbers with commentary open it (Commentary::verse_links).
+		$links = ( $numbers && $verse_links ) ? Commentary::verse_links( $translation, $book, $chapter, $c['verses'], Commentary::places( $translation, $book, $chapter ) ) : array();
+		$html  = '' !== $c['title'] ? '<p class="pr-chapter-title">' . esc_html( $c['title'] ) . '</p>' : '';
 		foreach ( $c['verses'] as $verse ) {
-			$html .= '<p class="pr-verse">' . ( $numbers ? '<span class="pr-vn">' . esc_html( $verse[0] ) . '</span> ' : '' ) . esc_html( $verse[1] ) . '</p>';
+			$html .= '<p class="pr-verse">' . ( $numbers ? '<span class="pr-vn">' . Commentary::verse_number( $verse[0], $links ) . '</span> ' : '' ) . esc_html( $verse[1] ) . '</p>';
 		}
 		return $html;
 	}

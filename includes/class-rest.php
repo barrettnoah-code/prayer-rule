@@ -98,7 +98,7 @@ class Rest {
 					$name = $book['name'];
 				}
 			}
-			$one          = '<section class="pr-chapter"><h4 class="pr-psalm">' . esc_html( $name . ' ' . $c ) . Commentary::chapter( $t, $b, $c ) . '</h4>' . Bible::chapter_html( $t, $b, $c, $numbers ) . '</section>';
+			$one          = '<section class="pr-chapter"><h4 class="pr-psalm">' . esc_html( $name . ' ' . $c ) . Commentary::chapter( $t, $b, $c ) . '</h4>' . Bible::chapter_html( $t, $b, $c, $numbers, true ) . '</section>';
 			$html        .= $one;
 			$parts[ $s ]  = ( $parts[ $s ] ?? '' ) . $one;
 			$used[ $s ]   = $t;

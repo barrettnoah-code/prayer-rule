@@ -796,6 +796,16 @@ class Admin {
 			endif;
 			?>
 			<p><?php esc_html_e( 'The whole Bibles used for the Scripture reading, each with its own book order, names and numbering. A translation is loaded into the database the first time an administrator opens the admin after it changes, one translation per page load.', 'prayer-rule' ); ?></p>
+			<?php $bible_page = (int) get_option( BiblePages::OPT_PAGE ); ?>
+			<p>
+				<?php if ( $bible_page ) : ?>
+					<?php esc_html_e( 'On the site:', 'prayer-rule' ); ?>
+					<a href="<?php echo esc_url( BiblePages::url() ); ?>"><?php echo esc_html( BiblePages::url() ); ?></a>
+					(<?php esc_html_e( 'the page', 'prayer-rule' ); ?> <a href="<?php echo esc_url( (string) get_edit_post_link( $bible_page ) ); ?>"><?php echo esc_html( get_the_title( $bible_page ) ); ?></a>, <?php esc_html_e( 'holding [prayer_rule_bible]; move or rename it and the addresses follow. Who may read it: Settings → Who may read.', 'prayer-rule' ); ?>)
+				<?php else : ?>
+					<?php esc_html_e( 'The Bible page is made when an administrator with the right to publish pages opens the admin.', 'prayer-rule' ); ?>
+				<?php endif; ?>
+			</p>
 			<table class="widefat striped" style="max-width:900px">
 				<thead><tr>
 					<th><?php esc_html_e( 'Translation', 'prayer-rule' ); ?></th>

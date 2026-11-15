@@ -170,7 +170,60 @@ reading that has commentary gets a small "Commentary" link beside its heading
 is shown. includes/class-commentary.php matches the Bibles' numbering to the
 commentary's (bibletr's): the KJV and Wycliffe Psalms are numbered as in the
 Hebrew, so their Psalm 51 links to the commentary on Psalm 50; Brenton's Esdras II
-11–23 is Nehemiah; Brenton's Jeremiah from 25 and Proverbs from 24 get no links.
+11–23 is Nehemiah; Brenton's Jeremiah from 25 and Proverbs from 24 get no links. The KJV's and Wycliffe's
+"Rest of Esther" (10:4–16:24, numbered as in the Latin) is Esther 10–16, as in bibletr.
+
+### Verse by verse (1.3.2, with Patristic Commentary 0.4.0)
+
+In the Scripture reading and on the Bible pages (never in the services or the Psalter),
+the number of a verse that has commentary of its own is tinted; clicking it opens only
+what the Fathers say on that verse, with "Read on in …" and "All the commentary on
+Romans 8" to read it in its place. bibletr numbers verses as the KJV does outside the
+Psalms (checked: 1,204 of 1,205 chapters alike), so the KJV gets them, and the Douay-Rheims,
+Wycliffe and Brenton wherever a chapter is numbered exactly like the KJV's. Not in the
+Psalms for now (bibletr follows the Slavonic verse division there), nor in a chapter that
+is two places at once (Brenton's Malachi 3), nor when the member has turned verse numbers
+off. Note: the Douay-Rheims (after the Latin) has Matthew 5:4 and 5:5 the other way round;
+the lemma at the head of each entry shows which verse it means.
+
+## The Bible pages (1.3.0; Psalms in the Greek numbering from 1.3.1)
+
+The four Bibles, to read on the site, on one page "Bible" holding
+`[prayer_rule_bible]` (made when an administrator first opens the admin; move or
+rename it and the addresses follow):
+
+    /bible/                          the translations
+    /bible/kjv/                      the books, by testament (the KJV's Apocrypha apart)
+    /bible/kjv/psalms/               the chapters; a dot marks those with commentary,
+                                     and any introductions in the commentary are listed
+    /bible/kjv/romans/8/             the chapter
+    /bible/kjv/romans/8/?with=dra    … with the Douay-Rheims beside it
+
+Every Psalter is numbered as in the Septuagint, as the Church reads it. The KJV and
+Wycliffe (whose files number the Psalms as in the Hebrew) are put together into the
+Greek psalms the way the Psalter here does it: Psalm 9 = 9 + 10, 113 = 114 + 115, 114 and
+115 = 116:1–9 and 10–19, 116–145 = 117–146, 146 and 147 = 147:1–11 and 12–20; the verses
+are counted from 1 within each Greek psalm (the KJV's psalm titles stay, unnumbered), and a
+line marks where a second Hebrew psalm begins. A note under the heading says what the
+psalm is in their own numbering, with a link to it (`?numbering=hebrew`, kept while
+reading the Psalms).
+
+A book has one address whatever the translation (`/bible/dra/1-samuel/` is the
+Douay's "1 Kings"), so the translation switch keeps your place; chapters numbered
+differently are matched through the commentary mapping (Brenton's Esdras II 15 ↔
+Nehemiah 5; the KJV's own Psalm 51 ↔ Psalm 50). Side by side, two chapters numbered alike are shown verse
+beside verse (Brenton's extra verses such as 3 Kings 2:35a get a row of their own);
+where the numbering differs (the Psalms between the Hebrew and Greek numbering,
+Daniel 3 with and without the Song of the Three) each runs on in its own column.
+
+Under the text: the works with commentary on the chapter, each to its page; beside the
+heading, "Commentary" opens it in the pop-up (Patristic Commentary plugin, as on the
+Daily Rule). Who may read: Settings → Who may read, as for the reading page.
+
+The addresses work even when the site's stored rewrite rules lack them: a request
+under the page is read on the `request` filter (as Patristic Commentary 0.1.1 does).
+Files: includes/class-bible-map.php (addresses, matching places), class-bible-pages.php
+(routing, titles), class-bible-render.php (HTML and CSS).
 
 ## In the admin (Prayer Rule menu)
 

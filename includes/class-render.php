@@ -520,6 +520,8 @@ class Render {
 .prayer-rule-reading .pr-comm:hover{color:var(--pr-red)}
 .prayer-rule-reading .pr-say::first-letter{color:var(--pr-red)}
 .prayer-rule-reading .pr-vn{font-size:.7em;color:#8c8f94;vertical-align:super;margin-right:.2em}
+.prayer-rule-reading .pr-vn a.pr-vn-comm{color:#921a0a;font-weight:600;background:rgba(146,26,10,.12);border-radius:3px;padding:.05em .3em;text-decoration:none}
+.prayer-rule-reading .pr-vn a.pr-vn-comm:hover{background:#921a0a;color:#fff}
 .pr-initial,.prayer-rule-reading .is-style-prayer::first-letter,.editor-styles-wrapper .is-style-prayer::first-letter{color:{$red}}
 .pr-red,.pr-rubric,.is-style-rubric{color:{$red}}
 .pr-fasting{border-left:4px solid var(--pr-red,#921a0a);background:rgba(146,26,10,.06);padding:.6em 1em;margin:.8em 0 1.4em}
