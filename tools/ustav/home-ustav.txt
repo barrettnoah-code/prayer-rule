@@ -249,66 +249,83 @@ O Lord Jesus Christ, Son of God, for the prayers of thy most pure Mother, and of
 # "additions" line in an order, chosen by service and day (Dismissals screen).
 
 === additions-vespers | Daily additions: Vespers
-! After finishing the kathismas or the lestovkas of Jesus Prayers, pray to the most holy God-bearer as much as you are able and wish: a lestovka, or 50 prostrations, or 12. Do the same for the saints who fall on that date.
+! After finishing the kathismas or the lestovkas of Jesus Prayers, pray to the most holy God-bearer as much as you are able and wish: a lestovka, or 50 bows, or 12. Do the same for the saints who fall on that date.
+! This is done with bows, to the ground or from the waist as the day requires: say each zapev given below with every bow, or once for each step of the lestovka.
 [zapev god-bearer]
 [zapev saint]
 
 === additions-vespers-sunday | Daily additions: Vespers on Saturday evening
-! After finishing the kathismas or the lestovkas of Jesus Prayers, pray to the most holy God-bearer as much as you are able and wish: a lestovka, or 50 prostrations, or 12. Do the same for the saints who fall on that date. On Saturday, pray to the Cross and the Resurrection.
+! After finishing the kathismas or the lestovkas of Jesus Prayers, pray to the most holy God-bearer as much as you are able and wish: a lestovka, or 50 bows, or 12. Do the same for the saints who fall on that date. On Saturday, pray to the Cross and the Resurrection.
+! This is done with bows, to the ground or from the waist as the day requires: say each zapev given below with every bow, or once for each step of the lestovka.
 [zapev god-bearer]
 [zapev saint]
 [zapev cross-resurrection]
 
 === additions-vespers-feast | Daily additions: Vespers of a feast
-! After finishing the kathismas or the lestovkas of Jesus Prayers, pray to the most holy God-bearer as much as you are able and wish: a lestovka, or 50 prostrations, or 12. Do the same for the saints who fall on that date. On a feast, pray to the feast.
+! After finishing the kathismas or the lestovkas of Jesus Prayers, pray to the most holy God-bearer as much as you are able and wish: a lestovka, or 50 bows, or 12. Do the same for the saints who fall on that date. On a feast, pray to the feast.
+! This is done with bows, to the ground or from the waist as the day requires: say each zapev given below with every bow, or once for each step of the lestovka.
 [zapev god-bearer]
 [zapev saint]
 [zapev feast]
 
 === additions-compline | Daily additions: Compline
-! After the kathisma or the lestovkas, pray to the God-bearer as your strength allows, in place of her canon. Laypeople who do not always pray the rule should pray to the guardian angel after the prostrations to the God-bearer.
+! After the kathisma or the lestovkas, pray to the God-bearer as your strength allows, in place of her canon. Laypeople who do not always pray the cell rule should pray to the guardian angel after the bows to the God-bearer.
+! This is done with bows, to the ground or from the waist as the day requires: say each zapev given below with every bow, or once for each step of the lestovka.
+! To the God-bearer, a lestovka of 100, or as many as you can. (At vespers the book gives the measure: a lestovka, or 50 bows, or 12.)
 [zapev god-bearer]
+! Then, for those who do not always pray the cell rule, the same to the guardian angel: a lestovka of 100, or as many as you can. The book's zapevy have none for him; this is his petition from the twelve bows that open the cell rule:
+O angel of Christ, my holy guardian, have mercy on me, and pray for me a sinner unto the Lord God, and help me now in this life, and at the departure of my soul, and in the age to come. [bow rule]
 
 === additions-compline-friday | Daily additions: Compline on Friday evening
-! On Friday evening, when it is not a feast, make as many prostrations as you wish in place of the canon for the departed, before the prostrations to the God-bearer.
-! After the kathisma or the lestovkas, pray to the God-bearer as your strength allows, in place of her canon. Laypeople who do not always pray the rule should pray to the guardian angel after the prostrations to the God-bearer.
+! On Friday evening, when it is not a feast, make as many bows as you wish in place of the canon for the departed, before the bows to the God-bearer.
+! After the kathisma or the lestovkas, pray to the God-bearer as your strength allows, in place of her canon. Laypeople who do not always pray the cell rule should pray to the guardian angel after the bows to the God-bearer.
+! This is done with bows, to the ground or from the waist as the day requires: say each zapev given below with every bow, or once for each step of the lestovka.
+! To the God-bearer, a lestovka of 100, or as many as you can. (At vespers the book gives the measure: a lestovka, or 50 bows, or 12.)
 [zapev departed]
 [zapev god-bearer]
+! Then, for those who do not always pray the cell rule, the same to the guardian angel: a lestovka of 100, or as many as you can. The book's zapevy have none for him; this is his petition from the twelve bows that open the cell rule:
+O angel of Christ, my holy guardian, have mercy on me, and pray for me a sinner unto the Lord God, and help me now in this life, and at the departure of my soul, and in the age to come. [bow rule]
 
 === additions-midnight | Daily additions: Midnight Office
-! Make some prostrations for the reposed: 12, or fewer, or more.
+! Make some bows for the reposed: 12, or fewer, or more.
 [zapev departed]
 
 === additions-midnight-sunday | Daily additions: Midnight Office on Sunday
 ! On Sunday, pray to the most holy Trinity.
+! This is done with bows, to the ground or from the waist as the day requires: say each zapev given below with every bow, or once for each step of the lestovka.
 [zapev trinity]
 
 === additions-matins-sunday | Daily additions: Matins on Sunday
 ! After the kathismas or lestovkas, pray first to the Cross and the Resurrection, and after that to the God-bearer. Pray also to the saint who falls on that date.
+! This is done with bows, to the ground or from the waist as the day requires: say each zapev given below with every bow, or once for each step of the lestovka.
 [zapev cross-resurrection]
 [zapev god-bearer]
 [zapev saint]
 
 === additions-matins-monday | Daily additions: Matins on Monday
 ! After the kathismas or lestovkas, pray to the God-bearer and to the archangels. Pray also to the saint who falls on that date.
+! This is done with bows, to the ground or from the waist as the day requires: say each zapev given below with every bow, or once for each step of the lestovka.
 [zapev god-bearer]
 [zapev angels]
 [zapev saint]
 
 === additions-matins-tuesday | Daily additions: Matins on Tuesday
 ! After the kathismas or lestovkas, pray to the God-bearer and to the Forerunner. Pray also to the saint who falls on that date.
+! This is done with bows, to the ground or from the waist as the day requires: say each zapev given below with every bow, or once for each step of the lestovka.
 [zapev god-bearer]
 [zapev forerunner]
 [zapev saint]
 
 === additions-matins-cross | Daily additions: Matins on Wednesday and Friday
 ! After the kathismas or lestovkas, pray first to the honorable Cross, and after that to the God-bearer. Pray also to the saint who falls on that date.
+! This is done with bows, to the ground or from the waist as the day requires: say each zapev given below with every bow, or once for each step of the lestovka.
 [zapev cross]
 [zapev god-bearer]
 [zapev saint]
 
 === additions-matins-thursday | Daily additions: Matins on Thursday
 ! After the kathismas or lestovkas, pray to the God-bearer and to the apostles and Nicholas. Pray also to the saint who falls on that date.
+! This is done with bows, to the ground or from the waist as the day requires: say each zapev given below with every bow, or once for each step of the lestovka.
 [zapev god-bearer]
 [zapev apostles]
 [zapev nicholas]
@@ -316,29 +333,34 @@ O Lord Jesus Christ, Son of God, for the prayers of thy most pure Mother, and of
 
 === additions-matins-saturday | Daily additions: Matins on Saturday
 ! After the kathismas or lestovkas, pray to the God-bearer and to all the saints. Pray also to the saint who falls on that date.
+! This is done with bows, to the ground or from the waist as the day requires: say each zapev given below with every bow, or once for each step of the lestovka.
 [zapev god-bearer]
 [zapev all-saints]
 [zapev saint]
 
 === additions-matins-feast | Daily additions: Matins of a great feast of the Lord on a Sunday
 ! When a great feast of the Lord falls on a Sunday, do not pray to the Resurrection; pray to the feast. After that, pray to the God-bearer, and to the saint who falls on that date.
+! This is done with bows, to the ground or from the waist as the day requires: say each zapev given below with every bow, or once for each step of the lestovka.
 [zapev feast]
 [zapev god-bearer]
 [zapev saint]
 
 === additions-hours | Daily additions: the Hours
-! After the kathismas or lestovkas, make as many prostrations to the God-bearer as you wish, and pray to the saint who falls on that date.
+! After the kathismas or lestovkas, make as many bows to the God-bearer as you wish, and pray to the saint who falls on that date.
+! This is done with bows, to the ground or from the waist as the day requires: say each zapev given below with every bow, or once for each step of the lestovka.
 [zapev god-bearer]
 [zapev saint]
 
 === additions-hours-sunday | Daily additions: the Hours on Sunday
 ! On Sunday, the day of the Resurrection, after the kathismas or lestovkas, pray first to the Resurrection, and then to the God-bearer and to the saint who falls on that date.
+! This is done with bows, to the ground or from the waist as the day requires: say each zapev given below with every bow, or once for each step of the lestovka.
 [zapev resurrection]
 [zapev god-bearer]
 [zapev saint]
 
 === additions-hours-feast | Daily additions: the Hours of a great feast of the Lord on a Sunday
 ! When a great feast of the Lord falls on a Sunday, do not pray to the Resurrection; after the kathismas or lestovkas, pray first to the feast, and then to the God-bearer and to the saint who falls on that date.
+! This is done with bows, to the ground or from the waist as the day requires: say each zapev given below with every bow, or once for each step of the lestovka.
 [zapev feast]
 [zapev god-bearer]
 [zapev saint]

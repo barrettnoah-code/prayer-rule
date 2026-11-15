@@ -204,6 +204,10 @@ html.pr-modal-open{overflow:hidden}
 .prayer-rule-reader .pr-day-eve,.prayer-rule-reader .pr-note{opacity:.75;font-size:.9em}
 .prayer-rule-reader .pr-done{margin:2.4em 0 1em;padding:1em;border:1px solid var(--pr-line);border-radius:8px;background:var(--pr-tint);text-align:center}
 .prayer-rule-reader .pr-done p{margin:.3em 0}
+.prayer-rule-reader .pr-go-on{margin:1.6em 0;padding:.8em 1em;border:1px solid var(--pr-line);border-radius:8px;background:var(--pr-tint);text-align:center}
+.prayer-rule-reader .pr-go-on p{margin:.3em 0}
+.prayer-rule-reader .pr-go-on button{cursor:pointer;padding:.45em 1em;font:inherit}
+.prayer-rule-reader .pr-skipped{font-style:italic;opacity:.85;margin:1em 0}
 .prayer-rule-reader .pr-done button{cursor:pointer;padding:.45em 1em;font:inherit;margin:.25em 0}
 .prayer-rule-reader .pr-tabs button.is-not-kept{opacity:.55}
 .prayer-rule-reader .pr-box{border:1px solid currentColor;border-radius:4px;padding:.8em 1em;margin:0 0 1.2em}

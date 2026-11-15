@@ -30,11 +30,16 @@ class BiblePages {
 	const OPT_RULES = 'prayer_rule_bible_rules_for';
 	const SHORTCODE = 'prayer_rule_bible';
 
-	private static $view = null;
+	/** Where /bible/ opens on a first visit (after that, where the reader last was). */
+	const START = array( 'kjv', 'MAT', 1 );
+
+	private static $view     = null;
+	private static $go_error = null;
 
 	public static function boot() {
 		add_action( 'init', array( __CLASS__, 'init' ) );
 		add_action( 'admin_init', array( __CLASS__, 'page_id' ) );     // makes the page once, after an update too
+		add_action( 'rest_api_init', array( __CLASS__, 'rest_routes' ) );
 	}
 
 	/** The page that shows the Bible (made if missing, by an administrator). */
@@ -88,8 +93,8 @@ class BiblePages {
 		}
 		add_filter( 'request', array( __CLASS__, 'route' ) );
 		add_filter( 'redirect_canonical', array( __CLASS__, 'no_redirect' ) );
+		add_action( 'template_redirect', array( __CLASS__, 'go' ), 5 );
 		add_action( 'template_redirect', array( __CLASS__, 'not_found' ) );
-		add_filter( 'the_title', array( __CLASS__, 'title' ), 10, 2 );
 		add_filter( 'document_title_parts', array( __CLASS__, 'document_title' ) );
 		add_filter( 'get_canonical_url', array( __CLASS__, 'canonical' ) );
 		add_filter( 'wpseo_title', array( __CLASS__, 'seo_title' ) );
@@ -210,69 +215,208 @@ class BiblePages {
 		return $id && is_page( $id );
 	}
 
-	/**
-	 * What this request shows: array( 'type' => index | translation | book | chapter | missing,
-	 * 'title', 'doc_title', 'description', 'url', and the data the page needs ).
-	 */
+	/** What this request shows (see view_for). */
 	public static function view() {
-		if ( null !== self::$view ) {
-			return self::$view;
+		if ( null === self::$view ) {
+			$with       = isset( $_GET['with'] ) ? sanitize_key( wp_unslash( $_GET['with'] ) ) : '';  // phpcs:ignore WordPress.Security.NonceVerification
+			self::$view = self::view_for( (string) get_query_var( 'prb_t' ), (string) get_query_var( 'prb_b' ), (string) get_query_var( 'prb_c' ), $with );
 		}
-		$t    = sanitize_key( (string) get_query_var( 'prb_t' ) );
-		$slug = sanitize_title( (string) get_query_var( 'prb_b' ) );
-		$c    = (string) get_query_var( 'prb_c' );
-		$with = isset( $_GET['with'] ) ? sanitize_key( wp_unslash( $_GET['with'] ) ) : '';  // phpcs:ignore WordPress.Security.NonceVerification
-		$v    = array( 'type' => 'missing' );
+		return self::$view;
+	}
 
-		if ( '' === $t ) {
-			$v = array(
-				'type'        => 'index',
-				'title'       => __( 'The Holy Bible', 'prayer-rule' ),
-				'doc_title'   => __( 'The Holy Bible', 'prayer-rule' ),
-				'description' => __( 'The Holy Scriptures to read: the King James Version with the Apocrypha, the Douay-Rheims, Wycliffe\'s Bible and Brenton\'s Septuagint, with the Fathers\' commentary.', 'prayer-rule' ),
-				'url'         => self::url(),
-			);
-		} elseif ( BibleMap::translation( $t ) ) {
-			$tr = BibleMap::translation( $t );
-			if ( '' === $slug ) {
-				$v = array(
-					'type'        => 'translation',
-					't'           => $t,
-					'title'       => $tr['name'],
-					'doc_title'   => $tr['name'],
-					'description' => sprintf( /* translators: %s: translation */ __( 'The books of the %s.', 'prayer-rule' ), $tr['name'] ),
-					'url'         => self::url( $t ),
-				);
-			} else {
-				$book = BibleMap::book_by_slug( $t, $slug );
-				if ( $book && '' === $c ) {
-					$v = array(
-						'type'        => 'book',
-						't'           => $t,
-						'book'        => $book,
-						'title'       => $book['name'],
-						'doc_title'   => $book['name'] . ' (' . BibleMap::short( $t ) . ')',
-						'description' => sprintf( /* translators: 1: book, 2: translation */ __( '%1$s in the %2$s, chapter by chapter.', 'prayer-rule' ), $book['name'], $tr['name'] ),
-						'url'         => self::url( $t, $book['code'] ),
-					);
-				} elseif ( $book && ctype_digit( $c ) && BibleMap::has_chapter( $t, $book['code'], (int) $c ) ) {
-					$label = BibleMap::label( $book, (int) $c );
-					$v     = array(
-						'type'        => 'chapter',
-						't'           => $t,
-						'book'        => $book,
-						'c'           => (int) $c,
-						'with'        => ( $with !== $t && BibleMap::translation( $with ) ) ? $with : '',
-						'title'       => $label,
-						'doc_title'   => $label . ' (' . BibleMap::short( $t ) . ')',
-						'description' => sprintf( /* translators: 1: e.g. Romans 8, 2: translation */ __( '%1$s in the %2$s.', 'prayer-rule' ), $label, $tr['name'] ),
-						'url'         => self::url( $t, $book['code'], (int) $c ),      // the side-by-side view has the single one as canonical
-					);
-				}
+	/** The chapter /bible/ opens on: array( t, code, c ) of a loaded Bible. */
+	public static function start() {
+		list( $t, $code, $c ) = self::START;
+		if ( ! BibleMap::has_chapter( $t, $code, $c ) ) {
+			$first = BibleMap::translations()[0] ?? null;
+			if ( ! $first ) {
+				return null;
 			}
+			$t    = $first['id'];
+			$b    = $first['books'][0];
+			$code = $b['code'];
+			$c    = BibleMap::chapters( $t, $b )[0];
 		}
-		self::$view = $v;
-		return $v;
+		return array( $t, $code, $c );
+	}
+
+	/**
+	 * What an address shows: array( 'type' => translation | book | chapter | missing,
+	 * 't', 'book', 'c', 'with', 'landing', 'doc_title', 'description', 'url' ).
+	 * /bible/ itself is the start chapter, as a "landing" view with its own address.
+	 */
+	public static function view_for( $t, $slug, $c, $with = '' ) {
+		$t       = sanitize_key( $t );
+		$slug    = sanitize_title( $slug );
+		$c       = (string) $c;
+		$landing = false;
+		if ( '' === $t ) {
+			$start = self::start();
+			if ( ! $start ) {
+				return array( 'type' => 'missing' );
+			}
+			$landing = true;
+			list( $t, $code, $c ) = $start;
+			$c    = (string) $c;
+			$slug = BibleMap::slug( $t, $code );
+			$with = '';
+		}
+		$tr = BibleMap::translation( $t );
+		if ( ! $tr ) {
+			return array( 'type' => 'missing' );
+		}
+		if ( '' === $slug ) {
+			return array(
+				'type'        => 'translation',
+				't'           => $t,
+				'doc_title'   => $tr['name'],
+				'description' => sprintf( /* translators: %s: translation */ __( 'The books of the %s.', 'prayer-rule' ), $tr['name'] ),
+				'url'         => self::url( $t ),
+			);
+		}
+		$book = BibleMap::book_by_slug( $t, $slug );
+		if ( $book && '' === $c ) {
+			return array(
+				'type'        => 'book',
+				't'           => $t,
+				'book'        => $book,
+				'doc_title'   => $book['name'] . ' (' . BibleMap::short( $t ) . ')',
+				'description' => sprintf( /* translators: 1: book, 2: translation */ __( '%1$s in the %2$s, chapter by chapter.', 'prayer-rule' ), $book['name'], $tr['name'] ),
+				'url'         => self::url( $t, $book['code'] ),
+			);
+		}
+		if ( $book && ctype_digit( $c ) && BibleMap::has_chapter( $t, $book['code'], (int) $c ) ) {
+			$label = BibleMap::label( $book, (int) $c );
+			return array(
+				'type'        => 'chapter',
+				't'           => $t,
+				'book'        => $book,
+				'c'           => (int) $c,
+				'with'        => ( $with !== $t && BibleMap::translation( $with ) ) ? $with : '',
+				'landing'     => $landing,
+				'doc_title'   => $landing ? __( 'The Holy Bible', 'prayer-rule' ) : $label . ' (' . BibleMap::short( $t ) . ')',
+				'description' => $landing
+					? __( 'The Holy Scriptures to read: the King James Version with the Apocrypha, the Douay-Rheims, Wycliffe\'s Bible and Brenton\'s Septuagint, with the Fathers\' commentary.', 'prayer-rule' )
+					: sprintf( /* translators: 1: e.g. Romans 8, 2: translation */ __( '%1$s in the %2$s.', 'prayer-rule' ), $label, $tr['name'] ),
+				'url'         => $landing ? self::url() : self::url( $t, $book['code'], (int) $c ),   // the side-by-side view has the single one as canonical
+			);
+		}
+		return array( 'type' => 'missing' );
+	}
+
+	// ---------------------------------------------------------------- "Go to"
+
+	/**
+	 * Read a "Go to" box: array( ok, url, v1, v2, label, note ) or array( ok false, error,
+	 * other => url of the book in another Bible ). $t: the Bible being read; $at: "ROM 8".
+	 */
+	public static function go_to( $q, $t, $at = '', $with = '' ) {
+		if ( ! BibleMap::translation( $t ) ) {
+			$t = self::start() ? self::start()[0] : '';
+		}
+		$cur = preg_split( '/\s+/', trim( (string) $at ) );
+		$r   = BibleMap::parse_ref( $q, $t, sanitize_text_field( $cur[0] ?? '' ), (int) ( $cur[1] ?? 0 ) );
+		if ( isset( $r['error'] ) ) {
+			$out = array( 'ok' => false, 'error' => $r['error'] );
+			if ( ! empty( $r['t_other'] ) ) {
+				$o            = BibleMap::parse_ref( $q, $r['t_other'] );
+				$out['other'] = isset( $o['code'] ) ? self::url( $r['t_other'], $o['code'], $o['c'] ) . ( $o['v1'] ? '#v' . $o['v1'] : '' ) : self::url( $r['t_other'] );
+			}
+			return $out;
+		}
+		$with = ( $with !== $t && BibleMap::translation( $with ) && BibleMap::find( $t, $r['code'], $r['c'], $with ) ) ? $with : '';
+		return array(
+			'ok'    => true,
+			'url'   => self::url( $t, $r['code'], $r['c'], $with ),
+			'v1'    => $r['v1'],
+			'v2'    => $r['v2'],
+			'label' => $r['label'],
+			'note'  => $r['note'] ?? '',
+		);
+	}
+
+	/** Without the script, the "Go to" form arrives as ?go=…: go there, or keep the error for the box. */
+	public static function go() {
+		if ( ! self::is_ours() || ! isset( $_GET['go'] ) ) {  // phpcs:ignore WordPress.Security.NonceVerification
+			return;
+		}
+		$get = wp_unslash( $_GET );                         // phpcs:ignore WordPress.Security.NonceVerification
+		$q   = sanitize_text_field( (string) $get['go'] );
+		$r   = self::go_to( $q, sanitize_key( (string) ( $get['t'] ?? '' ) ), (string) ( $get['at'] ?? '' ), sanitize_key( (string) ( $get['with'] ?? '' ) ) );
+		if ( $r['ok'] ) {
+			wp_safe_redirect( $r['url'] . ( $r['v1'] ? '#v' . $r['v1'] : '' ) );
+			exit;
+		}
+		self::$go_error = array( $q, $r['error'] );
+	}
+
+	/** What the box should show after a failed ?go=: array( typed, message ) or null. */
+	public static function go_error() {
+		return self::$go_error;
+	}
+
+	// ---------------------------------------------------------------- REST (for assets/bible.js)
+
+	public static function rest_routes() {
+		register_rest_route(
+			'prayer-rule/v1',
+			'/bible/view',
+			array(
+				'methods'             => 'GET',
+				'callback'            => array( __CLASS__, 'rest_view' ),
+				'permission_callback' => '__return_true',
+				'args'                => array( 'path' => array( 'type' => 'string', 'required' => true ) ),
+			)
+		);
+		register_rest_route(
+			'prayer-rule/v1',
+			'/bible/goto',
+			array(
+				'methods'             => 'GET',
+				'callback'            => array( __CLASS__, 'rest_goto' ),
+				'permission_callback' => '__return_true',
+			)
+		);
+	}
+
+	/** A Bible address as the reader's toolbar and content, so the script can swap them in place. */
+	public static function rest_view( \WP_REST_Request $req ) {
+		if ( ! Access::can_read() ) {
+			return array( 'locked' => true );               // the script then loads the page itself
+		}
+		$parts = wp_parse_url( (string) $req['path'] );
+		$path  = trim( (string) ( $parts['path'] ?? '' ), '/' );
+		$home  = trim( (string) wp_parse_url( home_url( '/' ), PHP_URL_PATH ), '/' );
+		if ( '' !== $home && 0 === strpos( $path . '/', $home . '/' ) ) {
+			$path = trim( substr( $path, strlen( $home ) ), '/' );
+		}
+		parse_str( (string) ( $parts['query'] ?? '' ), $q );
+		BibleMap::$hebrew = 'hebrew' === ( $q['numbering'] ?? '' );
+		$base = self::base();
+		if ( ! empty( $q['prb_t'] ) ) {                     // plain addresses
+			$seg = array( (string) $q['prb_t'], (string) ( $q['prb_b'] ?? '' ), (string) ( $q['prb_c'] ?? '' ) );
+		} elseif ( $path === $base || ( isset( $q['page_id'] ) && ! isset( $q['prb_t'] ) ) ) {
+			$seg = array( '', '', '' );
+		} elseif ( 0 === strpos( $path, $base . '/' ) ) {
+			$seg = array_pad( explode( '/', substr( $path, strlen( $base ) + 1 ) ), 3, '' );
+		} else {
+			return new \WP_Error( 'prb_not_bible', 'Not a Bible address.', array( 'status' => 404 ) );
+		}
+		$v = self::view_for( $seg[0], $seg[1], $seg[2], sanitize_key( (string) ( $q['with'] ?? '' ) ) );
+		return array(
+			'type'      => $v['type'],
+			'url'       => $v['url'] ?? '',
+			'landing'   => ! empty( $v['landing'] ),
+			'doc_title' => ( $v['doc_title'] ?? __( 'Not found', 'prayer-rule' ) ) . ' – ' . get_bloginfo( 'name' ),
+			'two'       => ! empty( $v['with'] ),
+			'toolbar'   => BibleRender::toolbar( $v ),
+			'content'   => BibleRender::content( $v ),
+		);
+	}
+
+	public static function rest_goto( \WP_REST_Request $req ) {
+		BibleMap::$hebrew = 'hebrew' === $req['numbering'];
+		return self::go_to( (string) $req['q'], sanitize_key( (string) $req['t'] ), (string) $req['at'], sanitize_key( (string) $req['with'] ) );
 	}
 
 	public static function not_found() {
@@ -286,16 +430,6 @@ class BiblePages {
 
 	public static function no_redirect( $redirect ) {
 		return get_query_var( 'prb_t' ) ? false : $redirect;
-	}
-
-	public static function title( $title, $post_id = 0 ) {
-		if ( (int) $post_id === (int) get_option( self::OPT_PAGE ) && ! is_admin() && self::is_ours() ) {
-			$v = self::view();
-			if ( ! empty( $v['title'] ) ) {
-				return esc_html( $v['title'] );
-			}
-		}
-		return $title;
 	}
 
 	public static function document_title( $parts ) {
@@ -344,9 +478,18 @@ class BiblePages {
 		wp_register_style( 'prayer-rule-bible', false, array(), PRAYER_RULE_VERSION );
 		wp_enqueue_style( 'prayer-rule-bible' );
 		wp_add_inline_style( 'prayer-rule-bible', BibleRender::css() );
-		if ( 'chapter' === self::view()['type'] ) {
-			Commentary::enqueue();
-		}
+		Commentary::enqueue();                          // the pop-up, on any page the reader may turn to
+		wp_enqueue_script( 'prayer-rule-bible', PRAYER_RULE_URL . 'assets/bible.js', array(), PRAYER_RULE_VERSION, true );
+		wp_localize_script(
+			'prayer-rule-bible',
+			'prbBible',
+			array(
+				'rest'  => esc_url_raw( rest_url( 'prayer-rule/v1/bible/' ) ),
+				'nonce' => wp_create_nonce( 'wp_rest' ),
+				'base'  => wp_parse_url( self::url(), PHP_URL_PATH ),
+				'home'  => self::url(),
+			)
+		);
 	}
 
 	public static function shortcode() {

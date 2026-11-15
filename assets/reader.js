@@ -191,7 +191,7 @@
 			if (r.status === 409 && r.data.envelope) {
 				var theirs = { rule: JSON.parse(dec.decode(await unseal(V.key, r.data.envelope.rule, 'rule'))), log: JSON.parse(dec.decode(await unseal(V.key, r.data.envelope.log, 'log'))) };
 				V.log = mergeLog(theirs.log, V.log);
-				if ((theirs.rule.updated || '') > (V.rule.updated || '')) { V.rule.services = theirs.rule.services; V.rule.translation = theirs.rule.translation; V.rule.verses = theirs.rule.verses; }
+				if ((theirs.rule.updated || '') > (V.rule.updated || '')) { V.rule.services = theirs.rule.services; V.rule.translation = theirs.rule.translation; V.rule.verses = theirs.rule.verses; V.rule.lines = theirs.rule.lines; }
 				V.version = r.data.version; V.envelope = r.data.envelope;
 				continue;
 			}
@@ -631,7 +631,8 @@
 		settings.appendChild(el('div', { class: 'pr-card pr-card-wide' }, [el('div', { class: 'pr-card-row' }, [
 			fld('Next kathisma', select(nums, r.next, function (x) { r.next = +x; saveSettings(); show(); })),
 			fld('Translation', select(tr, r.translation, function (x) { r.translation = x; saveSettings(); show(); })),
-			el('div', { class: 'pr-fld' }, [el('span', { class: 'pr-fld-label', text: 'Verse numbers' }), toggle(r.verses, function (on) { r.verses = on; saveSettings(); show(); }, 'show', 'Show verse numbers')])
+			el('div', { class: 'pr-fld' }, [el('span', { class: 'pr-fld-label', text: 'Verse numbers' }), toggle(r.verses, function (on) { r.verses = on; saveSettings(); show(); }, 'show', 'Show verse numbers')]),
+			el('div', { class: 'pr-fld' }, [el('span', { class: 'pr-fld-label', text: 'Verses' }), toggle(!!r.lines, function (on) { r.lines = on; saveSettings(); show(); }, 'each on its own line', 'Each verse on its own line (otherwise each psalm is one block of text)')])
 		]), el('div', { class: 'pr-card-row' }, [
 			toggle(r.troparia, function (on) { r.troparia = on; saveSettings(); show(); }, 'Troparia and prayer after each kathisma, all year', 'Troparia and prayer after each kathisma, all year'),
 			el('span', { class: 'pr-note', text: 'The penitential troparia and prayer of each kathisma are always said in Great Lent. Switch this on to say them after every kathisma through the year as well.' })
@@ -1259,6 +1260,8 @@
 
 	var req = 0, shown = null;
 	function show() {
+		// Gone on from the service before: only while this same service and day are shown.
+		if (UI.from && (UI.from.to !== UI.service || UI.from.day !== UI.day)) { UI.from = null; }
 		if (UI.service === 'reading') { showReading(); return; }
 		var svc = serviceByKey(UI.service); if (!svc) { return; }
 		var r = R(), mine = ++req, p = {}, start = r.next, total = 0, ladders = 0;
@@ -1272,13 +1275,14 @@
 		fetch(C.rest + svc.key + '/reading', {
 			method: 'POST', credentials: 'same-origin',
 			headers: jsonHeaders(),
-			body: JSON.stringify({ date: UI.day, translation: r.translation, verses: r.verses ? 1 : 0, p: p, troparia: r.troparia ? 1 : 0, bedtime: svc.key === 'cell-rule' && r.services[svc.key] && r.services[svc.key].bedtime ? 1 : 0 })
+			body: JSON.stringify({ date: UI.day, translation: r.translation, verses: r.verses ? 1 : 0, lines: r.lines ? 1 : 0, p: p, troparia: r.troparia ? 1 : 0, bedtime: svc.key === 'cell-rule' && r.services[svc.key] && r.services[svc.key].bedtime ? 1 : 0 })
 		}).then(function (res) { if (!res.ok) { throw res; } return res.json(); }).then(function (data) {
 			if (mine !== req) { return; }
 			out.innerHTML = data.day_html;
 			out.appendChild(el('h2', { class: 'pr-service-title', text: svc.name }));
 			out.insertAdjacentHTML('beforeend', data.html);
 			shown = { day: UI.day, service: svc.key, start: start, total: total, ladders: ladders };
+			openings(UI.from);
 			out.appendChild(el('div', { class: 'pr-done' }, finishControls()));
 		}).catch(function () { if (mine === req) { out.innerHTML = ''; out.appendChild(el('p', { text: 'The service could not be loaded. Please try again.' })); } });
 	}
@@ -1444,8 +1448,47 @@
 		tabs.scrollIntoView({ behavior: 'smooth', block: 'start' });
 	}
 
+	/**
+	 * The entrance and departing bows. Coming straight on from the service
+	 * before, the entrance bows are left out (with a button to show them).
+	 * Before the departing bows: the button to go straight on to the next
+	 * service, leaving them out.
+	 */
+	function openings(from) {
+		if (from) {
+			out.querySelectorAll('.pr-entrance').forEach(function (sec) {
+				sec.style.display = 'none';
+				var more = el('button', { type: 'button', class: 'pr-link', text: 'Show them' });
+				var p = el('p', { class: 'pr-skipped' }, ['The entrance bows are left out: you have come straight on from ' + from.name + '. ', more]);
+				more.addEventListener('click', function () { sec.style.display = ''; p.remove(); });
+				sec.parentNode.insertBefore(p, sec);
+			});
+		}
+		var dep = out.querySelector('.pr-departing');
+		if (dep) { var box = el('div', { class: 'pr-go-on' }); dep.parentNode.insertBefore(box, dep); drawGoOn(box); }
+	}
+	function drawGoOn(box) {
+		var s = shown, name = serviceByKey(s.service).name, next = ((s.start - 1 + s.total) % 20) + 1, after = nextService(s.day, s.service);
+		box.innerHTML = '';
+		if (!after) { box.style.display = 'none'; return; }
+		var e = V.key ? entry(s.day, s.service) : null, b;
+		if (V.key && !(e && e.kept)) {
+			b = el('button', { type: 'button', class: 'pr-primary', text: 'Mark ' + name + ' as kept and go straight on to ' + after.label + ' ›' });
+			b.addEventListener('click', async function () { b.disabled = true; await setKept(true); goOn(after, name); });
+		} else {
+			b = el('button', { type: 'button', class: 'pr-primary', text: 'Go straight on to ' + after.label + ' ›' });
+			b.addEventListener('click', function () { if (!V.key && s.total && L.next === s.start) { L.next = next; saveSettings(); } goOn(after, name); });
+		}
+		box.appendChild(el('p', {}, [b]));
+		box.appendChild(el('p', { class: 'pr-note', text: 'Going straight on, leave out the departing bows below; ' + after.service.name + ' then begins without the entrance bows.' }));
+	}
+	function goOn(after, name) { UI.from = { to: after.service.key, day: after.day, name: name }; goTo(after); }
+
 	function finishControls() {
 		var s = shown, name = serviceByKey(s.service).name, next = ((s.start - 1 + s.total) % 20) + 1, after = nextService(s.day, s.service);
+		// With the departing bows on the page, going straight on is offered above them;
+		// here, after them, the next service is only a link (it begins with the entrance bows).
+		if (after && out.querySelector('.pr-go-on')) { return endControls(s, name, next, after); }
 		if (!V.key) {
 			var kids0 = [];
 			if (s.total) {
@@ -1474,6 +1517,32 @@
 		return kids;
 	}
 
+	function endControls(s, name, next, after) {
+		var later = el('button', { type: 'button', class: 'pr-link', text: 'Next: ' + after.label + ' ›', on: { click: function () { goTo(after); } } });
+		if (!V.key) {
+			var kids0 = [];
+			if (s.total) {
+				var b = el('button', { type: 'button', class: 'pr-primary', text: 'Finished: next time begin with kathisma ' + next });
+				b.addEventListener('click', function () { L.next = next; saveSettings(); drawSettings(); b.replaceWith(el('span', { text: 'The next kathisma is now ' + next + '. ' })); });
+				kids0.push(b, ' ');
+			}
+			kids0.push(later);
+			return [el('p', {}, kids0)];
+		}
+		var e = entry(s.day, s.service), late = daysAgo(s.day) > 7;
+		if (e && e.kept) {
+			var undo = el('button', { type: 'button', class: 'pr-link', text: 'Undo' });
+			undo.addEventListener('click', function () { setKept(false); });
+			return [el('p', { class: 'pr-kept' }, ['✓ ' + name + ' kept' + (e.k && e.k.length ? ' (kathismas ' + e.k.join(', ') + ')' : '') + (e.ladders ? (e.k && e.k.length ? ' and ' : ' (') + half(e.ladders) + ' ladders' + (e.k && e.k.length ? '' : ')') : '') + (e.corrected ? ', corrected later' : '') + '. ', undo]), el('p', {}, [later])];
+		}
+		var mark = el('button', { type: 'button', class: 'pr-primary', text: 'Mark ' + name + ' as kept' });
+		mark.addEventListener('click', function () { setKept(true); });
+		var kids = [el('p', {}, [mark, ' ', later])];
+		if (s.total) { kids.push(el('p', { class: 'pr-note', text: 'Your next kathisma will then be ' + next + '.' })); }
+		if (late) { kids.push(el('p', { class: 'pr-note', text: 'This day is more than 7 days ago: it will be marked “corrected later”.' })); }
+		return kids;
+	}
+
 	async function setKept(kept) {
 		var s = shown, key = entryKey(s.day, s.service), e = V.log.entries[key] || { first: now() }, late = daysAgo(s.day) > 7;
 		if (kept) {
@@ -1490,6 +1559,7 @@
 		status('Saving…');
 		await saveVault();
 		drawTabs(); drawSettings(); drawRecord();
+		var go = out.querySelector('.pr-go-on'); if (go) { drawGoOn(go); }
 		var done = out.querySelector('.pr-done'); if (done) { done.innerHTML = ''; finishControls().forEach(function (k) { done.appendChild(k); }); }
 		if (at) { putBack(at.node, at.top); }
 	}

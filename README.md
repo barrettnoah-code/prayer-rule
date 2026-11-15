@@ -29,6 +29,18 @@ calendar. They can print a report or download their whole record as a CSV
 file. All of this is worked out in their browser from the decrypted record.
 Without a private rule, the settings are kept only in that browser.
 
+Every service begins with the entrance bows and ends with the departing
+bows, whatever its order says (they are added where an order lacks them;
+the paschal form at Pascha and in Bright Week). Just before the departing
+bows the page offers "go straight on" to the next service: the departing
+bows are then left out, and the next service opens without its entrance
+bows (with a button to show them). A service chosen any other way begins
+with them.
+
+The psalms show as continuous text, each psalm (or its part in a stasis)
+one paragraph; a member can switch to one verse per line in the Psalter
+settings.
+
 Under "Nastavnik" a member can share their rule and record with any
 number of people (each must have set up a private rule of their own). The
 nastavnik sees the rule, the reports and the record, and can send messages
@@ -186,13 +198,13 @@ is two places at once (Brenton's Malachi 3), nor when the member has turned vers
 off. Note: the Douay-Rheims (after the Latin) has Matthew 5:4 and 5:5 the other way round;
 the lemma at the head of each entry shows which verse it means.
 
-## The Bible pages (1.3.0; Psalms in the Greek numbering from 1.3.1)
+## The Bible pages (1.3.0; Psalms in the Greek numbering from 1.3.1; the reader from 1.4.0)
 
 The four Bibles, to read on the site, on one page "Bible" holding
 `[prayer_rule_bible]` (made when an administrator first opens the admin; move or
 rename it and the addresses follow):
 
-    /bible/                          the translations
+    /bible/                          the reader (where the reader last was, else Matthew 1)
     /bible/kjv/                      the books, by testament (the KJV's Apocrypha apart)
     /bible/kjv/psalms/               the chapters; a dot marks those with commentary,
                                      and any introductions in the commentary are listed
@@ -207,6 +219,25 @@ are counted from 1 within each Greek psalm (the KJV's psalm titles stay, unnumbe
 line marks where a second Hebrew psalm begins. A note under the heading says what the
 psalm is in their own numbering, with a link to it (`?numbering=hebrew`, kept while
 reading the Psalms).
+
+### The reader (1.4.0)
+
+The Bible page is a reader: a toolbar that stays at the top while reading, over the text.
+
+- **‹ Romans 8 ›**: the previous and next chapter (also the ← and → keys), and between
+  them the picker: the books by section; a book opens its chapter numbers in place.
+- **Bible** (translation) and **Compare** (a second translation beside it), keeping the place.
+- **Go to**: type a reference — `Rom 8:28`, `1 Cor 13:4-7`, `jn 3`, `Ps 50`, `3 Kings 3`,
+  `Neh 5` (in Brenton: Esdras II 15), or `8:28` in the book being read — and press Enter:
+  the chapter opens with the verses highlighted. It reads each Bible's own book names
+  first ("1 Kings" is 1 Samuel in the Douay-Rheims), then the standard names and the usual
+  abbreviations, and says what it will open as you type. `/` puts the cursor there.
+- Chapters load in place (assets/bible.js, REST `prayer-rule/v1/bible/view` and
+  `bible/goto`); every chapter keeps its own address, so links, bookmarks, the Back button
+  and search engines work as before. Without JavaScript every control is a plain link and
+  Go to works through `/bible/?go=Rom+8:28`.
+- `/bible/` opens on Matthew 1 in the KJV the first time (BiblePages::START), and after that
+  where the reader last was (remembered in their browser).
 
 A book has one address whatever the translation (`/bible/dra/1-samuel/` is the
 Douay's "1 Kings"), so the translation switch keeps your place; chapters numbered

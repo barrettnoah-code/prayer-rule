@@ -65,6 +65,13 @@ class Render {
 	}
 
 	/** Show verse numbers in psalms? Default no. */
+	/** Psalms as one block of text (default), or one verse to a line; per request. */
+	private static $lines = false;
+
+	public static function set_verse_lines( $lines ) {
+		self::$lines = (bool) $lines;
+	}
+
 	public static function show_verse_numbers() {
 		if ( null !== self::$verses ) {
 			return self::$verses;
@@ -118,6 +125,8 @@ class Render {
 		$bookmark          = null;   // next kathisma, carried from one portion to the next
 		$order_steps       = $info ? Ustav::seasonal_steps( $service_key, $info ) : null;
 		$order_steps       = null !== $order_steps ? $order_steps : Orders::steps( $service['order'] );
+		$season            = $info ? Ustav::seasonal_key( $service_key, $info ) : '';
+		$order_steps       = self::with_openings( $order_steps, '' !== $season && false === strpos( $season, 'pascha-eve' ) );
 		if ( 'cell-rule' === $service_key && ! empty( $context['bedtime'] ) ) {
 			$bedtime = Ustav::extra_steps( 'bedtime' );
 			if ( $bedtime ) {
@@ -151,7 +160,11 @@ class Render {
 					'psalms' => self::psalms( $step['pieces'], $translation ),
 				);
 			} elseif ( 'text' === $step['type'] ) {
-				$out[] = self::text_step( $info ? Ustav::substitute( $step['slug'], $info ) : $step['slug'] );
+				$text = self::text_step( $info ? Ustav::substitute( $step['slug'], $info ) : $step['slug'] );
+				if ( ! empty( $step['opening'] ) ) {
+					$text['opening'] = $step['opening'];
+				}
+				$out[] = $text;
 			} elseif ( 'dismissal' === $step['type'] ) {
 				$slug = $feast ? $feast['slug'] : Dismissals::slug( $service_key, $day );
 				if ( '' === $slug ) {
@@ -177,6 +190,53 @@ class Render {
 		}
 		list( self::$translation, self::$saint, self::$info, self::$service, self::$phase ) = $previous;
 		return $out;
+	}
+
+	const ENTRANCE  = array( 'entrance-opening', 'entrance-opening-paschal' );
+	const DEPARTING = array( 'departing-opening', 'departing-opening-paschal' );
+
+	/**
+	 * Every service begins with the entrance bows and ends with the departing
+	 * bows, whatever its order says: the ones in the order are marked, and
+	 * any that are missing are added (the first step, and the last). The
+	 * reader leaves out the entrance bows when one goes straight on from the
+	 * service before, and offers to go straight on before the departing bows.
+	 * $paschal: Pascha and Bright Week (the paschal form of the bows).
+	 */
+	private static function with_openings( $steps, $paschal ) {
+		$found = array();
+		foreach ( $steps as $i => $step ) {
+			if ( 'text' !== $step['type'] ) {
+				continue;
+			}
+			foreach ( array( 'entrance' => self::ENTRANCE, 'departing' => self::DEPARTING ) as $kind => $slugs ) {
+				if ( in_array( $step['slug'], $slugs, true ) ) {
+					$steps[ $i ]['opening'] = $kind;
+					$found[ $kind ]         = true;
+					if ( $step['slug'] === $slugs[1] ) {
+						$paschal = true;
+					}
+				}
+			}
+		}
+		if ( empty( $found['entrance'] ) ) {
+			array_unshift(
+				$steps,
+				array(
+					'type'    => 'text',
+					'slug'    => self::ENTRANCE[ $paschal ? 1 : 0 ],
+					'opening' => 'entrance',
+				)
+			);
+		}
+		if ( empty( $found['departing'] ) ) {
+			$steps[] = array(
+				'type'    => 'text',
+				'slug'    => self::DEPARTING[ $paschal ? 1 : 0 ],
+				'opening' => 'departing',
+			);
+		}
+		return $steps;
 	}
 
 	/**
@@ -403,13 +463,22 @@ class Render {
 			/* translators: %d: psalm number */
 			$html .= '<h3 class="pr-psalm">' . esc_html( sprintf( __( 'Psalm %d', 'prayer-rule' ), $psalm['psalm'] ) ) . '</h3>';
 			$first = true;
+			$flow  = array();
 			foreach ( $psalm['verses'] as $number => $text ) {
 				$words = esc_html( $text );
 				if ( $first && $psalm['whole'] ) {
 					$words = self::initial( $text );
 				}
 				$first = false;
-				$html .= '<p class="pr-verse">' . ( $numbers ? '<span class="pr-vn">' . (int) $number . '</span> ' : '' ) . $words . '</p>';
+				$verse = ( $numbers ? '<span class="pr-vn">' . (int) $number . '</span> ' : '' ) . $words;
+				if ( self::$lines ) {
+					$html .= '<p class="pr-verse">' . $verse . '</p>';
+				} else {
+					$flow[] = $verse;
+				}
+			}
+			if ( $flow ) {   // the whole psalm, or the part of it in this stasis, as one paragraph
+				$html .= '<p class="pr-verse pr-flow">' . implode( ' ', $flow ) . '</p>';
 			}
 		}
 		return $html;
@@ -429,7 +498,13 @@ class Render {
 		foreach ( $steps as $step ) {
 			switch ( $step['type'] ) {
 				case 'text':
-					$html .= '<section class="pr-text">' . $step['html'] . '</section>';
+					if ( 'entrance' === ( $step['opening'] ?? '' ) ) {
+						$html .= '<section class="pr-text pr-opening pr-entrance">' . $step['html'] . '</section>';
+					} elseif ( 'departing' === ( $step['opening'] ?? '' ) ) {
+						$html .= '<section class="pr-text pr-opening pr-departing"><p class="pr-rubric">' . esc_html__( 'If this is the last service you pray now, end with the departing bows. If you go straight on to the next service, leave them out.', 'prayer-rule' ) . '</p>' . $step['html'] . '</section>';
+					} else {
+						$html .= '<section class="pr-text">' . $step['html'] . '</section>';
+					}
 					break;
 				case 'say':
 					$html .= '<p class="pr-say">' . self::say_html( $step['line'] ) . '</p>';
@@ -515,6 +590,8 @@ class Render {
 .prayer-rule-reading .pr-stasis-label{color:var(--pr-red);font-size:.8em;text-transform:uppercase;letter-spacing:.06em;margin:1.6em 0 0}
 .prayer-rule-reading .pr-psalm{color:var(--pr-red);font-size:1.05em;margin:1.2em 0 .4em}
 .prayer-rule-reading .pr-verse{margin:0 0 .35em}
+.prayer-rule-reading .pr-flow{margin:0 0 .6em}
+.prayer-rule-reading .pr-flow .pr-vn{margin-left:.15em}
 .prayer-rule-reading .pr-comm-links{font-size:.72em;font-weight:normal;margin-left:.7em;white-space:nowrap}
 .prayer-rule-reading .pr-comm{color:#8c8f94;font-style:italic;text-decoration:underline dotted;text-underline-offset:.2em}
 .prayer-rule-reading .pr-comm:hover{color:var(--pr-red)}

@@ -304,134 +304,169 @@
   {
    "slug": "additions-vespers",
    "title": "Daily additions: Vespers",
-   "content": "<!-- wp:paragraph {\"className\":\"is-style-rubric\"} -->\n<p class=\"is-style-rubric\">After finishing the kathismas or the lestovkas of Jesus Prayers, pray to the most holy God-bearer as much as you are able and wish: a lestovka, or 50 prostrations, or 12. Do the same for the saints who fall on that date.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:shortcode -->\n[zapev god-bearer]\n<!-- /wp:shortcode -->\n\n<!-- wp:shortcode -->\n[zapev saint]\n<!-- /wp:shortcode -->",
+   "content": "<!-- wp:paragraph {\"className\":\"is-style-rubric\"} -->\n<p class=\"is-style-rubric\">After finishing the kathismas or the lestovkas of Jesus Prayers, pray to the most holy God-bearer as much as you are able and wish: a lestovka, or 50 bows, or 12. Do the same for the saints who fall on that date.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-rubric\"} -->\n<p class=\"is-style-rubric\">This is done with bows, to the ground or from the waist as the day requires: say each zapev given below with every bow, or once for each step of the lestovka.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:shortcode -->\n[zapev god-bearer]\n<!-- /wp:shortcode -->\n\n<!-- wp:shortcode -->\n[zapev saint]\n<!-- /wp:shortcode -->",
    "previous": [
-    "3a9f13ce148c1a6ce2cd767d870ac6e3"
+    "18ec6f03b92cdeaa85ff6c0755a8a33d",
+    "3a9f13ce148c1a6ce2cd767d870ac6e3",
+    "dff007243f9209f1e50ff1d65e68bc97"
    ]
   },
   {
    "slug": "additions-vespers-sunday",
    "title": "Daily additions: Vespers on Saturday evening",
-   "content": "<!-- wp:paragraph {\"className\":\"is-style-rubric\"} -->\n<p class=\"is-style-rubric\">After finishing the kathismas or the lestovkas of Jesus Prayers, pray to the most holy God-bearer as much as you are able and wish: a lestovka, or 50 prostrations, or 12. Do the same for the saints who fall on that date. On Saturday, pray to the Cross and the Resurrection.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:shortcode -->\n[zapev god-bearer]\n<!-- /wp:shortcode -->\n\n<!-- wp:shortcode -->\n[zapev saint]\n<!-- /wp:shortcode -->\n\n<!-- wp:shortcode -->\n[zapev cross-resurrection]\n<!-- /wp:shortcode -->",
+   "content": "<!-- wp:paragraph {\"className\":\"is-style-rubric\"} -->\n<p class=\"is-style-rubric\">After finishing the kathismas or the lestovkas of Jesus Prayers, pray to the most holy God-bearer as much as you are able and wish: a lestovka, or 50 bows, or 12. Do the same for the saints who fall on that date. On Saturday, pray to the Cross and the Resurrection.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-rubric\"} -->\n<p class=\"is-style-rubric\">This is done with bows, to the ground or from the waist as the day requires: say each zapev given below with every bow, or once for each step of the lestovka.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:shortcode -->\n[zapev god-bearer]\n<!-- /wp:shortcode -->\n\n<!-- wp:shortcode -->\n[zapev saint]\n<!-- /wp:shortcode -->\n\n<!-- wp:shortcode -->\n[zapev cross-resurrection]\n<!-- /wp:shortcode -->",
    "previous": [
+    "305f35de8b15dfc7ee72b7320b6725bb",
+    "9420a4f822f416100f75d48ed4dbcbad",
     "968d70d8ce5508842dd9a6152e73e649"
    ]
   },
   {
    "slug": "additions-vespers-feast",
    "title": "Daily additions: Vespers of a feast",
-   "content": "<!-- wp:paragraph {\"className\":\"is-style-rubric\"} -->\n<p class=\"is-style-rubric\">After finishing the kathismas or the lestovkas of Jesus Prayers, pray to the most holy God-bearer as much as you are able and wish: a lestovka, or 50 prostrations, or 12. Do the same for the saints who fall on that date. On a feast, pray to the feast.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:shortcode -->\n[zapev god-bearer]\n<!-- /wp:shortcode -->\n\n<!-- wp:shortcode -->\n[zapev saint]\n<!-- /wp:shortcode -->\n\n<!-- wp:shortcode -->\n[zapev feast]\n<!-- /wp:shortcode -->",
+   "content": "<!-- wp:paragraph {\"className\":\"is-style-rubric\"} -->\n<p class=\"is-style-rubric\">After finishing the kathismas or the lestovkas of Jesus Prayers, pray to the most holy God-bearer as much as you are able and wish: a lestovka, or 50 bows, or 12. Do the same for the saints who fall on that date. On a feast, pray to the feast.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-rubric\"} -->\n<p class=\"is-style-rubric\">This is done with bows, to the ground or from the waist as the day requires: say each zapev given below with every bow, or once for each step of the lestovka.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:shortcode -->\n[zapev god-bearer]\n<!-- /wp:shortcode -->\n\n<!-- wp:shortcode -->\n[zapev saint]\n<!-- /wp:shortcode -->\n\n<!-- wp:shortcode -->\n[zapev feast]\n<!-- /wp:shortcode -->",
    "previous": [
+    "06ff67b5c9b61737e6fcec008afc44df",
+    "462bb8e466e037519bd63c7237200e09",
     "9ef26b89ef9d4664feee3e9b4d26898a"
    ]
   },
   {
    "slug": "additions-compline",
    "title": "Daily additions: Compline",
-   "content": "<!-- wp:paragraph {\"className\":\"is-style-rubric\"} -->\n<p class=\"is-style-rubric\">After the kathisma or the lestovkas, pray to the God-bearer as your strength allows, in place of her canon. Laypeople who do not always pray the rule should pray to the guardian angel after the prostrations to the God-bearer.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:shortcode -->\n[zapev god-bearer]\n<!-- /wp:shortcode -->",
+   "content": "<!-- wp:paragraph {\"className\":\"is-style-rubric\"} -->\n<p class=\"is-style-rubric\">After the kathisma or the lestovkas, pray to the God-bearer as your strength allows, in place of her canon. Laypeople who do not always pray the cell rule should pray to the guardian angel after the bows to the God-bearer.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-rubric\"} -->\n<p class=\"is-style-rubric\">This is done with bows, to the ground or from the waist as the day requires: say each zapev given below with every bow, or once for each step of the lestovka.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-rubric\"} -->\n<p class=\"is-style-rubric\">To the God-bearer, a lestovka of 100, or as many as you can. (At vespers the book gives the measure: a lestovka, or 50 bows, or 12.)</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:shortcode -->\n[zapev god-bearer]\n<!-- /wp:shortcode -->\n\n<!-- wp:paragraph {\"className\":\"is-style-rubric\"} -->\n<p class=\"is-style-rubric\">Then, for those who do not always pray the cell rule, the same to the guardian angel: a lestovka of 100, or as many as you can. The book's zapevy have none for him; this is his petition from the twelve bows that open the cell rule:</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">O angel of Christ, my holy guardian, have mercy on me, and pray for me a sinner unto the Lord God, and help me now in this life, and at the departure of my soul, and in the age to come. [bow rule]</p>\n<!-- /wp:paragraph -->",
    "previous": [
-    "455fb1290b73efec7e2515f7750fc47a"
+    "0320125a9cbfcb7fcae539a73eb298f5",
+    "455fb1290b73efec7e2515f7750fc47a",
+    "52cdac583ac7efc874306e848eeade86"
    ]
   },
   {
    "slug": "additions-compline-friday",
    "title": "Daily additions: Compline on Friday evening",
-   "content": "<!-- wp:paragraph {\"className\":\"is-style-rubric\"} -->\n<p class=\"is-style-rubric\">On Friday evening, when it is not a feast, make as many prostrations as you wish in place of the canon for the departed, before the prostrations to the God-bearer.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-rubric\"} -->\n<p class=\"is-style-rubric\">After the kathisma or the lestovkas, pray to the God-bearer as your strength allows, in place of her canon. Laypeople who do not always pray the rule should pray to the guardian angel after the prostrations to the God-bearer.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:shortcode -->\n[zapev departed]\n<!-- /wp:shortcode -->\n\n<!-- wp:shortcode -->\n[zapev god-bearer]\n<!-- /wp:shortcode -->",
+   "content": "<!-- wp:paragraph {\"className\":\"is-style-rubric\"} -->\n<p class=\"is-style-rubric\">On Friday evening, when it is not a feast, make as many bows as you wish in place of the canon for the departed, before the bows to the God-bearer.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-rubric\"} -->\n<p class=\"is-style-rubric\">After the kathisma or the lestovkas, pray to the God-bearer as your strength allows, in place of her canon. Laypeople who do not always pray the cell rule should pray to the guardian angel after the bows to the God-bearer.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-rubric\"} -->\n<p class=\"is-style-rubric\">This is done with bows, to the ground or from the waist as the day requires: say each zapev given below with every bow, or once for each step of the lestovka.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-rubric\"} -->\n<p class=\"is-style-rubric\">To the God-bearer, a lestovka of 100, or as many as you can. (At vespers the book gives the measure: a lestovka, or 50 bows, or 12.)</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:shortcode -->\n[zapev departed]\n<!-- /wp:shortcode -->\n\n<!-- wp:shortcode -->\n[zapev god-bearer]\n<!-- /wp:shortcode -->\n\n<!-- wp:paragraph {\"className\":\"is-style-rubric\"} -->\n<p class=\"is-style-rubric\">Then, for those who do not always pray the cell rule, the same to the guardian angel: a lestovka of 100, or as many as you can. The book's zapevy have none for him; this is his petition from the twelve bows that open the cell rule:</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-prayer\"} -->\n<p class=\"is-style-prayer\">O angel of Christ, my holy guardian, have mercy on me, and pray for me a sinner unto the Lord God, and help me now in this life, and at the departure of my soul, and in the age to come. [bow rule]</p>\n<!-- /wp:paragraph -->",
    "previous": [
-    "33d1e6193cb6e0acfe6ed04a1f9e9a00"
+    "001f23a80a2cbbf0bb8808553c1af39c",
+    "33d1e6193cb6e0acfe6ed04a1f9e9a00",
+    "8592291b6222928dd3abe15b7b9269eb"
    ]
   },
   {
    "slug": "additions-midnight",
    "title": "Daily additions: Midnight Office",
-   "content": "<!-- wp:paragraph {\"className\":\"is-style-rubric\"} -->\n<p class=\"is-style-rubric\">Make some prostrations for the reposed: 12, or fewer, or more.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:shortcode -->\n[zapev departed]\n<!-- /wp:shortcode -->",
+   "content": "<!-- wp:paragraph {\"className\":\"is-style-rubric\"} -->\n<p class=\"is-style-rubric\">Make some bows for the reposed: 12, or fewer, or more.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:shortcode -->\n[zapev departed]\n<!-- /wp:shortcode -->",
    "previous": [
+    "15380ef05cab524cd01ca6510cd86b92",
     "ed431227dbb9969ee162f9827a62b4db"
    ]
   },
   {
    "slug": "additions-midnight-sunday",
    "title": "Daily additions: Midnight Office on Sunday",
-   "content": "<!-- wp:paragraph {\"className\":\"is-style-rubric\"} -->\n<p class=\"is-style-rubric\">On Sunday, pray to the most holy Trinity.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:shortcode -->\n[zapev trinity]\n<!-- /wp:shortcode -->"
+   "content": "<!-- wp:paragraph {\"className\":\"is-style-rubric\"} -->\n<p class=\"is-style-rubric\">On Sunday, pray to the most holy Trinity.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-rubric\"} -->\n<p class=\"is-style-rubric\">This is done with bows, to the ground or from the waist as the day requires: say each zapev given below with every bow, or once for each step of the lestovka.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:shortcode -->\n[zapev trinity]\n<!-- /wp:shortcode -->",
+   "previous": [
+    "64f2992bc44113bae77be5f473254061",
+    "e8a15de8046778b738f612ff727191f5"
+   ]
   },
   {
    "slug": "additions-matins-sunday",
    "title": "Daily additions: Matins on Sunday",
-   "content": "<!-- wp:paragraph {\"className\":\"is-style-rubric\"} -->\n<p class=\"is-style-rubric\">After the kathismas or lestovkas, pray first to the Cross and the Resurrection, and after that to the God-bearer. Pray also to the saint who falls on that date.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:shortcode -->\n[zapev cross-resurrection]\n<!-- /wp:shortcode -->\n\n<!-- wp:shortcode -->\n[zapev god-bearer]\n<!-- /wp:shortcode -->\n\n<!-- wp:shortcode -->\n[zapev saint]\n<!-- /wp:shortcode -->",
+   "content": "<!-- wp:paragraph {\"className\":\"is-style-rubric\"} -->\n<p class=\"is-style-rubric\">After the kathismas or lestovkas, pray first to the Cross and the Resurrection, and after that to the God-bearer. Pray also to the saint who falls on that date.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-rubric\"} -->\n<p class=\"is-style-rubric\">This is done with bows, to the ground or from the waist as the day requires: say each zapev given below with every bow, or once for each step of the lestovka.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:shortcode -->\n[zapev cross-resurrection]\n<!-- /wp:shortcode -->\n\n<!-- wp:shortcode -->\n[zapev god-bearer]\n<!-- /wp:shortcode -->\n\n<!-- wp:shortcode -->\n[zapev saint]\n<!-- /wp:shortcode -->",
    "previous": [
-    "7575e94c15ce2922a87cb165e68136aa"
+    "7575e94c15ce2922a87cb165e68136aa",
+    "cb74b830e16e769a49d97c2558cc04b4",
+    "f2813b401097932ab28c6ef52c7d67ec"
    ]
   },
   {
    "slug": "additions-matins-monday",
    "title": "Daily additions: Matins on Monday",
-   "content": "<!-- wp:paragraph {\"className\":\"is-style-rubric\"} -->\n<p class=\"is-style-rubric\">After the kathismas or lestovkas, pray to the God-bearer and to the archangels. Pray also to the saint who falls on that date.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:shortcode -->\n[zapev god-bearer]\n<!-- /wp:shortcode -->\n\n<!-- wp:shortcode -->\n[zapev angels]\n<!-- /wp:shortcode -->\n\n<!-- wp:shortcode -->\n[zapev saint]\n<!-- /wp:shortcode -->",
+   "content": "<!-- wp:paragraph {\"className\":\"is-style-rubric\"} -->\n<p class=\"is-style-rubric\">After the kathismas or lestovkas, pray to the God-bearer and to the archangels. Pray also to the saint who falls on that date.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-rubric\"} -->\n<p class=\"is-style-rubric\">This is done with bows, to the ground or from the waist as the day requires: say each zapev given below with every bow, or once for each step of the lestovka.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:shortcode -->\n[zapev god-bearer]\n<!-- /wp:shortcode -->\n\n<!-- wp:shortcode -->\n[zapev angels]\n<!-- /wp:shortcode -->\n\n<!-- wp:shortcode -->\n[zapev saint]\n<!-- /wp:shortcode -->",
    "previous": [
-    "7908e17a549d07587283089543bbc46b"
+    "7908e17a549d07587283089543bbc46b",
+    "e23d42d01f4bf523b8053a64a08587c7",
+    "f3a91e9804373cf8ede643adfb51d042"
    ]
   },
   {
    "slug": "additions-matins-tuesday",
    "title": "Daily additions: Matins on Tuesday",
-   "content": "<!-- wp:paragraph {\"className\":\"is-style-rubric\"} -->\n<p class=\"is-style-rubric\">After the kathismas or lestovkas, pray to the God-bearer and to the Forerunner. Pray also to the saint who falls on that date.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:shortcode -->\n[zapev god-bearer]\n<!-- /wp:shortcode -->\n\n<!-- wp:shortcode -->\n[zapev forerunner]\n<!-- /wp:shortcode -->\n\n<!-- wp:shortcode -->\n[zapev saint]\n<!-- /wp:shortcode -->",
+   "content": "<!-- wp:paragraph {\"className\":\"is-style-rubric\"} -->\n<p class=\"is-style-rubric\">After the kathismas or lestovkas, pray to the God-bearer and to the Forerunner. Pray also to the saint who falls on that date.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-rubric\"} -->\n<p class=\"is-style-rubric\">This is done with bows, to the ground or from the waist as the day requires: say each zapev given below with every bow, or once for each step of the lestovka.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:shortcode -->\n[zapev god-bearer]\n<!-- /wp:shortcode -->\n\n<!-- wp:shortcode -->\n[zapev forerunner]\n<!-- /wp:shortcode -->\n\n<!-- wp:shortcode -->\n[zapev saint]\n<!-- /wp:shortcode -->",
    "previous": [
-    "7814c22892a84330e540c1a81e0a29c5"
+    "716e170c46ba32c4d1306f7484c1863f",
+    "7814c22892a84330e540c1a81e0a29c5",
+    "a7ef98bc8f78294b08ae952e3aeaab9b"
    ]
   },
   {
    "slug": "additions-matins-cross",
    "title": "Daily additions: Matins on Wednesday and Friday",
-   "content": "<!-- wp:paragraph {\"className\":\"is-style-rubric\"} -->\n<p class=\"is-style-rubric\">After the kathismas or lestovkas, pray first to the honorable Cross, and after that to the God-bearer. Pray also to the saint who falls on that date.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:shortcode -->\n[zapev cross]\n<!-- /wp:shortcode -->\n\n<!-- wp:shortcode -->\n[zapev god-bearer]\n<!-- /wp:shortcode -->\n\n<!-- wp:shortcode -->\n[zapev saint]\n<!-- /wp:shortcode -->",
+   "content": "<!-- wp:paragraph {\"className\":\"is-style-rubric\"} -->\n<p class=\"is-style-rubric\">After the kathismas or lestovkas, pray first to the honorable Cross, and after that to the God-bearer. Pray also to the saint who falls on that date.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-rubric\"} -->\n<p class=\"is-style-rubric\">This is done with bows, to the ground or from the waist as the day requires: say each zapev given below with every bow, or once for each step of the lestovka.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:shortcode -->\n[zapev cross]\n<!-- /wp:shortcode -->\n\n<!-- wp:shortcode -->\n[zapev god-bearer]\n<!-- /wp:shortcode -->\n\n<!-- wp:shortcode -->\n[zapev saint]\n<!-- /wp:shortcode -->",
    "previous": [
-    "307c36be4fa3af8eebd19d9e960b4189"
+    "307c36be4fa3af8eebd19d9e960b4189",
+    "723c791527959710d856f0df4183cdc9",
+    "b2183525922347b8d2ce53fa5874b3fb"
    ]
   },
   {
    "slug": "additions-matins-thursday",
    "title": "Daily additions: Matins on Thursday",
-   "content": "<!-- wp:paragraph {\"className\":\"is-style-rubric\"} -->\n<p class=\"is-style-rubric\">After the kathismas or lestovkas, pray to the God-bearer and to the apostles and Nicholas. Pray also to the saint who falls on that date.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:shortcode -->\n[zapev god-bearer]\n<!-- /wp:shortcode -->\n\n<!-- wp:shortcode -->\n[zapev apostles]\n<!-- /wp:shortcode -->\n\n<!-- wp:shortcode -->\n[zapev nicholas]\n<!-- /wp:shortcode -->\n\n<!-- wp:shortcode -->\n[zapev saint]\n<!-- /wp:shortcode -->",
+   "content": "<!-- wp:paragraph {\"className\":\"is-style-rubric\"} -->\n<p class=\"is-style-rubric\">After the kathismas or lestovkas, pray to the God-bearer and to the apostles and Nicholas. Pray also to the saint who falls on that date.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-rubric\"} -->\n<p class=\"is-style-rubric\">This is done with bows, to the ground or from the waist as the day requires: say each zapev given below with every bow, or once for each step of the lestovka.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:shortcode -->\n[zapev god-bearer]\n<!-- /wp:shortcode -->\n\n<!-- wp:shortcode -->\n[zapev apostles]\n<!-- /wp:shortcode -->\n\n<!-- wp:shortcode -->\n[zapev nicholas]\n<!-- /wp:shortcode -->\n\n<!-- wp:shortcode -->\n[zapev saint]\n<!-- /wp:shortcode -->",
    "previous": [
-    "16112a75f5432ec3c21b8e137bb1c29b"
+    "16112a75f5432ec3c21b8e137bb1c29b",
+    "4576d60cf8580aa8dedb7b33a7b1c268",
+    "9f43179ae7bf3e38cabb68b58d5e2f5a"
    ]
   },
   {
    "slug": "additions-matins-saturday",
    "title": "Daily additions: Matins on Saturday",
-   "content": "<!-- wp:paragraph {\"className\":\"is-style-rubric\"} -->\n<p class=\"is-style-rubric\">After the kathismas or lestovkas, pray to the God-bearer and to all the saints. Pray also to the saint who falls on that date.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:shortcode -->\n[zapev god-bearer]\n<!-- /wp:shortcode -->\n\n<!-- wp:shortcode -->\n[zapev all-saints]\n<!-- /wp:shortcode -->\n\n<!-- wp:shortcode -->\n[zapev saint]\n<!-- /wp:shortcode -->",
+   "content": "<!-- wp:paragraph {\"className\":\"is-style-rubric\"} -->\n<p class=\"is-style-rubric\">After the kathismas or lestovkas, pray to the God-bearer and to all the saints. Pray also to the saint who falls on that date.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-rubric\"} -->\n<p class=\"is-style-rubric\">This is done with bows, to the ground or from the waist as the day requires: say each zapev given below with every bow, or once for each step of the lestovka.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:shortcode -->\n[zapev god-bearer]\n<!-- /wp:shortcode -->\n\n<!-- wp:shortcode -->\n[zapev all-saints]\n<!-- /wp:shortcode -->\n\n<!-- wp:shortcode -->\n[zapev saint]\n<!-- /wp:shortcode -->",
    "previous": [
-    "7330276fd53fadcc50cb88550fd6399d"
+    "0934e795b99f56989a3407970f667632",
+    "7330276fd53fadcc50cb88550fd6399d",
+    "ea44d77d9ea1c84934e64da3b8396248"
    ]
   },
   {
    "slug": "additions-matins-feast",
    "title": "Daily additions: Matins of a great feast of the Lord on a Sunday",
-   "content": "<!-- wp:paragraph {\"className\":\"is-style-rubric\"} -->\n<p class=\"is-style-rubric\">When a great feast of the Lord falls on a Sunday, do not pray to the Resurrection; pray to the feast. After that, pray to the God-bearer, and to the saint who falls on that date.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:shortcode -->\n[zapev feast]\n<!-- /wp:shortcode -->\n\n<!-- wp:shortcode -->\n[zapev god-bearer]\n<!-- /wp:shortcode -->\n\n<!-- wp:shortcode -->\n[zapev saint]\n<!-- /wp:shortcode -->",
+   "content": "<!-- wp:paragraph {\"className\":\"is-style-rubric\"} -->\n<p class=\"is-style-rubric\">When a great feast of the Lord falls on a Sunday, do not pray to the Resurrection; pray to the feast. After that, pray to the God-bearer, and to the saint who falls on that date.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-rubric\"} -->\n<p class=\"is-style-rubric\">This is done with bows, to the ground or from the waist as the day requires: say each zapev given below with every bow, or once for each step of the lestovka.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:shortcode -->\n[zapev feast]\n<!-- /wp:shortcode -->\n\n<!-- wp:shortcode -->\n[zapev god-bearer]\n<!-- /wp:shortcode -->\n\n<!-- wp:shortcode -->\n[zapev saint]\n<!-- /wp:shortcode -->",
    "previous": [
-    "7618a304f3c2708ad666148f87c504ca"
+    "0c238849b0da5ab7c4f9b2bbdd1c816e",
+    "7618a304f3c2708ad666148f87c504ca",
+    "8bce763f20efe1c83209452baed1248b"
    ]
   },
   {
    "slug": "additions-hours",
    "title": "Daily additions: the Hours",
-   "content": "<!-- wp:paragraph {\"className\":\"is-style-rubric\"} -->\n<p class=\"is-style-rubric\">After the kathismas or lestovkas, make as many prostrations to the God-bearer as you wish, and pray to the saint who falls on that date.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:shortcode -->\n[zapev god-bearer]\n<!-- /wp:shortcode -->\n\n<!-- wp:shortcode -->\n[zapev saint]\n<!-- /wp:shortcode -->",
+   "content": "<!-- wp:paragraph {\"className\":\"is-style-rubric\"} -->\n<p class=\"is-style-rubric\">After the kathismas or lestovkas, make as many bows to the God-bearer as you wish, and pray to the saint who falls on that date.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-rubric\"} -->\n<p class=\"is-style-rubric\">This is done with bows, to the ground or from the waist as the day requires: say each zapev given below with every bow, or once for each step of the lestovka.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:shortcode -->\n[zapev god-bearer]\n<!-- /wp:shortcode -->\n\n<!-- wp:shortcode -->\n[zapev saint]\n<!-- /wp:shortcode -->",
    "previous": [
-    "24c4e7854dd19d11a54b1d702df36d2d"
+    "24c4e7854dd19d11a54b1d702df36d2d",
+    "8a404b861ea373ea82f2c44a2f803d81",
+    "f04e279084f4f7d5fb53aa8e888670de"
    ]
   },
   {
    "slug": "additions-hours-sunday",
    "title": "Daily additions: the Hours on Sunday",
-   "content": "<!-- wp:paragraph {\"className\":\"is-style-rubric\"} -->\n<p class=\"is-style-rubric\">On Sunday, the day of the Resurrection, after the kathismas or lestovkas, pray first to the Resurrection, and then to the God-bearer and to the saint who falls on that date.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:shortcode -->\n[zapev resurrection]\n<!-- /wp:shortcode -->\n\n<!-- wp:shortcode -->\n[zapev god-bearer]\n<!-- /wp:shortcode -->\n\n<!-- wp:shortcode -->\n[zapev saint]\n<!-- /wp:shortcode -->",
+   "content": "<!-- wp:paragraph {\"className\":\"is-style-rubric\"} -->\n<p class=\"is-style-rubric\">On Sunday, the day of the Resurrection, after the kathismas or lestovkas, pray first to the Resurrection, and then to the God-bearer and to the saint who falls on that date.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-rubric\"} -->\n<p class=\"is-style-rubric\">This is done with bows, to the ground or from the waist as the day requires: say each zapev given below with every bow, or once for each step of the lestovka.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:shortcode -->\n[zapev resurrection]\n<!-- /wp:shortcode -->\n\n<!-- wp:shortcode -->\n[zapev god-bearer]\n<!-- /wp:shortcode -->\n\n<!-- wp:shortcode -->\n[zapev saint]\n<!-- /wp:shortcode -->",
    "previous": [
-    "89a1ec7f79f733cbdcb4fa78cc4b1428"
+    "61e6134d43cacbe1476534f9ebc033cd",
+    "89a1ec7f79f733cbdcb4fa78cc4b1428",
+    "8cdfea2dc1a3b56c2371ceae3c5638a8"
    ]
   },
   {
    "slug": "additions-hours-feast",
    "title": "Daily additions: the Hours of a great feast of the Lord on a Sunday",
-   "content": "<!-- wp:paragraph {\"className\":\"is-style-rubric\"} -->\n<p class=\"is-style-rubric\">When a great feast of the Lord falls on a Sunday, do not pray to the Resurrection; after the kathismas or lestovkas, pray first to the feast, and then to the God-bearer and to the saint who falls on that date.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:shortcode -->\n[zapev feast]\n<!-- /wp:shortcode -->\n\n<!-- wp:shortcode -->\n[zapev god-bearer]\n<!-- /wp:shortcode -->\n\n<!-- wp:shortcode -->\n[zapev saint]\n<!-- /wp:shortcode -->",
+   "content": "<!-- wp:paragraph {\"className\":\"is-style-rubric\"} -->\n<p class=\"is-style-rubric\">When a great feast of the Lord falls on a Sunday, do not pray to the Resurrection; after the kathismas or lestovkas, pray first to the feast, and then to the God-bearer and to the saint who falls on that date.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:paragraph {\"className\":\"is-style-rubric\"} -->\n<p class=\"is-style-rubric\">This is done with bows, to the ground or from the waist as the day requires: say each zapev given below with every bow, or once for each step of the lestovka.</p>\n<!-- /wp:paragraph -->\n\n<!-- wp:shortcode -->\n[zapev feast]\n<!-- /wp:shortcode -->\n\n<!-- wp:shortcode -->\n[zapev god-bearer]\n<!-- /wp:shortcode -->\n\n<!-- wp:shortcode -->\n[zapev saint]\n<!-- /wp:shortcode -->",
    "previous": [
-    "491b46578b05d116e0cdd0b9a04302fb"
+    "491b46578b05d116e0cdd0b9a04302fb",
+    "602bdabc4842fa4e2ad64211714ba557",
+    "8533bce4a5b4d60bedf099160cf0725d"
    ]
   },
   {

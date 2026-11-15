@@ -54,6 +54,200 @@ class BibleMap {
 
 	private static $reverse = array();
 
+	/** Short forms for "Go to", besides each Bible's own book names and the standard names. */
+	const ABBR = array(
+		'GEN' => 'gen ge gn',            'EXO' => 'ex exo exod',          'LEV' => 'lev le lv',
+		'NUM' => 'num nu nm nb',         'DEU' => 'deut deu de dt',       'JOS' => 'josh jos jsh',
+		'JDG' => 'judg jdg jg',          'RUT' => 'ruth ru rt',
+		'1SA' => '1sam 1sa 1sm 1kingdoms 1kgdms 1reigns',                  '2SA' => '2sam 2sa 2sm 2kingdoms 2kgdms 2reigns',
+		'1KI' => '1kgs 1ki 3kings 3kgs 3kingdoms 3kgdms 3reigns',          '2KI' => '2kgs 2ki 4kings 4kgs 4kingdoms 4kgdms 4reigns',
+		'1CH' => '1chr 1ch 1chron 1par 1paralipomenon',                    '2CH' => '2chr 2ch 2chron 2par 2paralipomenon',
+		'EZR' => 'ezra ezr',             'NEH' => 'neh ne nehemias',      'EST' => 'esth est es',
+		'JOB' => 'job jb',               'PSA' => 'ps psa pss psalm',     'PRO' => 'prov pro pr prv',
+		'ECC' => 'eccl ecc eccles qoh qoheleth', 'SNG' => 'song sng sos canticles cant songofsongs canticleofcanticles',
+		'ISA' => 'isa is',               'JER' => 'jer je jr',            'LAM' => 'lam la',
+		'EZK' => 'ezek eze ezk',         'DAN' => 'dan da dn',            'DAG' => 'dan da dn daniel',
+		'HOS' => 'hos ho osee',          'JOL' => 'joel jl',              'AMO' => 'amos am',
+		'OBA' => 'obad ob abdias',       'JON' => 'jonah jon jonas',      'MIC' => 'mic mi micheas',
+		'NAM' => 'nah na',               'HAB' => 'hab hb',               'ZEP' => 'zeph zep sophonias',
+		'HAG' => 'hag hg aggeus',        'ZEC' => 'zech zec zacharias',   'MAL' => 'mal ml malachias',
+		'1ES' => '1esd 1es 3ezra 3esdras',                                  '2ES' => '2esd 2es 4ezra 4esdras',
+		'TOB' => 'tob tb tobias',        'JDT' => 'jdt jth',              'ESG' => 'addesth gkesth',
+		'WIS' => 'wis ws',               'SIR' => 'sir ecclus ecclesiasticus', 'BAR' => 'bar',
+		'LJE' => 'epjer letjer lje',     'S3Y' => 'songofthree azariah prazar', 'SUS' => 'sus',
+		'BEL' => 'bel',                  'MAN' => 'prman man manasseh manasses',
+		'1MA' => '1macc 1ma 1mac',       '2MA' => '2macc 2ma 2mac',       '3MA' => '3macc 3ma',      '4MA' => '4macc 4ma',
+		'MAT' => 'matt mat mt',          'MRK' => 'mark mrk mk mr',       'LUK' => 'luke luk lk lu', 'JHN' => 'john jhn jn joh',
+		'ACT' => 'acts act ac',          'ROM' => 'rom ro rm',            '1CO' => '1cor 1co',       '2CO' => '2cor 2co',
+		'GAL' => 'gal ga',               'EPH' => 'eph',                  'PHP' => 'phil php pp',    'COL' => 'col',
+		'1TH' => '1thess 1th',           '2TH' => '2thess 2th',           '1TI' => '1tim 1ti',       '2TI' => '2tim 2ti',
+		'TIT' => 'titus tit',            'PHM' => 'philem phlm phm',      'HEB' => 'heb',            'JAS' => 'jas jm james',
+		'1PE' => '1pet 1pe 1pt',         '2PE' => '2pet 2pe 2pt',         '1JN' => '1john 1jn 1jo',  '2JN' => '2john 2jn 2jo',
+		'3JN' => '3john 3jn 3jo',        'JUD' => 'jude jud',             'REV' => 'rev re rv apoc apocalypse revelation revelations',
+	);
+
+	/** A name or what someone typed, made comparable: "1st Kings", "I Kings", "Kings I" → "1kings". */
+	public static function name_key( $s ) {
+		$s = strtolower( remove_accents( trim( (string) $s ) ) );
+		$s = str_replace( array( '.', '&', ',' ), array( '', ' and ', ' ' ), $s );
+		$s = preg_replace( '/\s+/', ' ', $s );
+		$s = preg_replace( '/^(\d)(st|nd|rd|th)\b/', '$1', $s );
+		$s = preg_replace_callback( '/^(first|second|third|fourth) /', function ( $m ) {
+			return array_search( $m[1], array( 1 => 'first', 2 => 'second', 3 => 'third', 4 => 'fourth' ), true ) . ' ';
+		}, $s );
+		$s = preg_replace_callback( '/^(iv|iii|ii|i) (?=[a-z])/', function ( $m ) {
+			return array( 'i' => '1', 'ii' => '2', 'iii' => '3', 'iv' => '4' )[ $m[1] ] . ' ';
+		}, $s );
+		$s = preg_replace_callback( '/^([a-z].*?) (iv|iii|ii|i)$/', function ( $m ) {
+			return array( 'i' => '1', 'ii' => '2', 'iii' => '3', 'iv' => '4' )[ $m[2] ] . $m[1];
+		}, $s );
+		$s = preg_replace( '/^(the|book of|the book of|the gospel according to|gospel of|st|saint) /', '', $s );
+		return str_replace( ' ', '', $s );
+	}
+
+	/** Every name a book of translation $t answers to: list of array( key, code, rank ) (lower rank = preferred). */
+	private static function names( $t ) {
+		static $cache = array();
+		if ( isset( $cache[ $t ] ) ) {
+			return $cache[ $t ];
+		}
+		$out = array();
+		$add = function ( $name, $code, $rank ) use ( &$out ) {
+			$name = (string) $name;
+			$keys = array( $name, preg_replace( '/\s*\(.*?\)\s*/', ' ', $name ) );
+			if ( preg_match( '/\((.*?)\)/', $name, $m ) ) {
+				$keys[] = $m[1];
+			}
+			foreach ( $keys as $k ) {
+				$k = self::name_key( $k );
+				if ( '' !== $k ) {
+					$out[] = array( $k, $code, $rank );
+				}
+			}
+		};
+		$here = self::translation( $t );
+		foreach ( $here ? $here['books'] : array() as $b ) {
+			$add( $b['name'], $b['code'], 0 );                                  // this Bible's own names first
+		}
+		foreach ( self::translations() as $tr ) {
+			foreach ( $tr['books'] as $b ) {
+				$add( $b['name'], $b['code'], 2 );                              // then the other Bibles' names
+			}
+		}
+		foreach ( Commentary::BOOKS as $code => $name ) {
+			$add( $name, $code, 1 );
+		}
+		foreach ( self::ABBR as $code => $list ) {
+			foreach ( explode( ' ', $list ) as $a ) {
+				$out[] = array( $a, $code, 1 );
+			}
+		}
+		$cache[ $t ] = $out;
+		return $out;
+	}
+
+	/**
+	 * Read a reference typed into "Go to" ("Rom 8:28", "1 Cor 13:4-7", "Ps 50", "jn 3", or just
+	 * "8:28" / "12" in the book being read) for translation $t.
+	 *
+	 * @return array ok: code, c, v1, v2 (0 when none), label; else: error (and code/t_other when
+	 *               the book is only in another Bible).
+	 */
+	public static function parse_ref( $q, $t, $cur_code = '', $cur_c = 0 ) {
+		$q = trim( preg_replace( '/\s+/u', ' ', (string) $q ) );
+		if ( '' === $q ) {
+			return array( 'error' => __( 'Type a book and chapter, e.g. Rom 8 or Rom 8:28.', 'prayer-rule' ) );
+		}
+		if ( ! preg_match( '/^((?:[1-4]|i{1,3}|iv)?\s*[^\d\s:.,–-][^\d:]*?)?\s*(\d+)?\s*(?:[:.,]\s*(\d+)\s*(?:[-–]\s*(\d+))?)?\s*$/iu', $q, $m ) ) {
+			return array( 'error' => __( 'That is not a reference I can read; try e.g. Rom 8:28.', 'prayer-rule' ) );
+		}
+		$book_q = trim( $m[1] ?? '' );
+		$c      = isset( $m[2] ) && '' !== $m[2] ? (int) $m[2] : 0;
+		$v1     = isset( $m[3] ) && '' !== $m[3] ? (int) $m[3] : 0;
+		$v2     = isset( $m[4] ) && '' !== $m[4] ? (int) $m[4] : 0;
+		if ( '' === $book_q ) {                              // "8:28": the book being read
+			if ( ! $cur_code || ! $c ) {
+				return array( 'error' => __( 'Type a book too, e.g. Rom 8:28.', 'prayer-rule' ) );
+			}
+			$code = $cur_code;
+		} else {
+			$key   = self::name_key( $book_q );
+			$best  = null;
+			$order = array_flip( array_map( function ( $b ) {
+				return $b['code'];
+			}, self::translation( $t )['books'] ?? array() ) );
+			foreach ( self::names( $t ) as $n ) {
+				$exact = $n[0] === $key;
+				if ( ! $exact && 0 !== strpos( $n[0], $key ) ) {
+					continue;
+				}
+				$here  = isset( $order[ $n[1] ] );
+				$score = array( $here ? 0 : 1, $exact ? 0 : 1, $n[2], $order[ $n[1] ] ?? 999 );
+				if ( null === $best || $score < $best[0] ) {
+					$best = array( $score, $n[1] );
+				}
+			}
+			if ( ! $best || strlen( $key ) < 2 && ! ctype_digit( substr( $key, 0, 1 ) ) ) {
+				/* translators: %s: what was typed */
+				return array( 'error' => sprintf( __( 'No book called “%s”.', 'prayer-rule' ), $book_q ) );
+			}
+			$code = $best[1];
+			if ( ! self::book( $t, $code ) ) {
+				$same = self::SAME_BOOK[ $code ] ?? '';
+				if ( $same && self::book( $t, $same ) ) {
+					$code = $same;
+				} else {
+					foreach ( self::translations() as $tr ) {
+						if ( self::book( $tr['id'], $code ) ) {
+							$b = self::book( $tr['id'], $code );
+							// Kept elsewhere in this Bible (Brenton's Esdras II holds Nehemiah)?
+							$f = self::find( $tr['id'], $code, $c ? $c : self::chapters( $tr['id'], $b )[0], $t );
+							if ( isset( $f['c'] ) && $f['code'] !== $code ) {
+								$here = self::book( $t, $f['code'] );
+								return array(
+									'code'  => $f['code'],
+									'c'     => $f['c'],
+									'v1'    => $v1,
+									'v2'    => $v2 >= $v1 ? $v2 : 0,
+									'label' => self::label( $here, $f['c'] ) . ( $v1 ? ':' . $v1 . ( $v2 ? '–' . $v2 : '' ) : '' ),
+									/* translators: 1: e.g. Nehemiah, 2: e.g. Esdras II 15 */
+									'note'  => sprintf( __( '%1$s is in %2$s here.', 'prayer-rule' ), $b['name'], self::label( $here, $f['c'] ) ),
+								);
+							}
+							return array(
+								/* translators: 1: book, 2: translation, 3: another translation */
+								'error'   => sprintf( __( '%1$s is not in the %2$s; it is in the %3$s.', 'prayer-rule' ), $b['name'], self::translation( $t )['name'], $tr['name'] ),
+								'code'    => $code,
+								't_other' => $tr['id'],
+							);
+						}
+					}
+					return array( 'error' => __( 'That book is not in these Bibles.', 'prayer-rule' ) );
+				}
+			}
+		}
+		$book = self::book( $t, $code );
+		$chs  = self::chapters( $t, $book );
+		if ( ! $c ) {
+			$c = $chs[0];
+		}
+		$same = self::SAME_BOOK[ $code ] ?? '';
+		if ( ! in_array( $c, $chs, true ) && $same && self::has_chapter( $t, $same, $c ) ) {
+			$code = $same;                                   // "Esther 11" in the KJV: the Rest of Esther
+			$book = self::book( $t, $code );
+			$chs  = self::chapters( $t, $book );
+		}
+		if ( ! in_array( $c, $chs, true ) ) {
+			/* translators: 1: book, 2: number of chapters */
+			return array( 'error' => sprintf( _n( '%1$s has %2$d chapter.', '%1$s has %2$d chapters.', count( $chs ), 'prayer-rule' ), $book['name'], count( $chs ) ) );
+		}
+		if ( $v2 && $v2 < $v1 ) {
+			$v2 = 0;
+		}
+		$label = self::label( $book, $c ) . ( $v1 ? ':' . $v1 . ( $v2 ? '–' . $v2 : '' ) : '' );
+		return array( 'code' => $code, 'c' => $c, 'v1' => $v1, 'v2' => $v2, 'label' => $label );
+	}
+
 	/**
 	 * Show the KJV's and Wycliffe's Psalms in their own (Hebrew) numbering? Off by default:
 	 * the Bible pages number every Psalter as in the Septuagint, as the Church reads it

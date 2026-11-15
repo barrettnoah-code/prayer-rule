@@ -190,6 +190,7 @@ class Rest {
 		if ( null !== $request['verses'] ) {
 			Render::set_verse_numbers( (bool) $request['verses'] );
 		}
+		Render::set_verse_lines( ! empty( $request['lines'] ) );
 		$steps = Render::assemble_service(
 			$key,
 			array(
