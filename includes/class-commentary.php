@@ -1,7 +1,8 @@
 <?php
 /**
- * Links to the Fathers' commentary (the Patristic Commentary plugin), beside a psalm's or a
- * chapter's heading. Without that plugin, or where there is no commentary, nothing is shown.
+ * Links to the Fathers' commentary (the Patristic Commentary plugin), beside a chapter's or a
+ * psalm's heading in the Scripture reading only: never in the services, so nothing distracts
+ * at prayer. Without that plugin, or where there is no commentary, nothing is shown.
  *
  * The commentary is kept by bibletr's books and numbering: the Psalms numbered as in the
  * Greek and Slavonic, the other books chapter for chapter as in the KJV. The Psalter here is
@@ -140,12 +141,6 @@ class Commentary {
 			$out[] = '<a class="pr-comm" href="' . esc_url( $info['url'] ) . '" data-pcomm-book="' . esc_attr( $info['book'] ) . '" data-pcomm-chapter="' . (int) $info['chapter'] . '" title="' . esc_attr( $title ) . '">' . esc_html( $text ) . '</a>';
 		}
 		return $out ? ' <span class="pr-comm-links">' . implode( ' ', $out ) . '</span>' : '';
-	}
-
-	/** For a psalm of the Psalter (numbered as in the Greek). */
-	public static function psalm( $n ) {
-		$place = array( 'Psalms', (int) $n );
-		return self::links( array( $place ), $place );
 	}
 
 	/** For a chapter of the Scripture reading. */

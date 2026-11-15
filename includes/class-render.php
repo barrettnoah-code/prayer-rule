@@ -38,6 +38,20 @@ class Render {
 		return preg_replace( '/\btheotokos\b/iu', 'God-bearer', (string) $text );
 	}
 
+	/**
+	 * A Coverdale verse as shown. The stored text stays as printed in the 1662 Prayer Book.
+	 * - "Name" is printed with a small letter, like every other noun.
+	 * - With the pointing hidden, the half-verse colon becomes a comma: the mark the
+	 *   Great Bible itself mostly has at that place (Ps 1:1, 23:1, 51:2, 91:1).
+	 */
+	public static function coverdale( $verse ) {
+		$verse = preg_replace( '/\bName\b/', 'name', (string) $verse );
+		if ( ! self::show_colons() ) {
+			$verse = str_replace( ' : ', ', ', $verse );
+		}
+		return $verse;
+	}
+
 	/** Show Coverdale's half-verse colons ( : )? Default yes. */
 	public static function show_colons() {
 		return '0' !== (string) get_option( self::OPT_COLONS, '1' );
@@ -367,13 +381,8 @@ class Render {
 		foreach ( $pieces as $piece ) {
 			list( $psalm, $from, $to ) = $piece;
 			$verses = Psalter::psalm( $translation, $psalm, $from ? $from : 1, $to );
-			if ( ! self::show_colons() && 'coverdale' === $translation ) {   // Coverdale's half-verse colons only
-				$verses = array_map(
-					function ( $verse ) {
-						return str_replace( ' : ', ' ', $verse );
-					},
-					$verses
-				);
+			if ( 'coverdale' === $translation ) {
+				$verses = array_map( array( self::class, 'coverdale' ), $verses );
 			}
 			if ( $verses ) {
 				$psalms[] = array(
@@ -392,7 +401,7 @@ class Render {
 		$html    = '';
 		foreach ( $psalms as $psalm ) {
 			/* translators: %d: psalm number */
-			$html .= '<h3 class="pr-psalm">' . esc_html( sprintf( __( 'Psalm %d', 'prayer-rule' ), $psalm['psalm'] ) ) . Commentary::psalm( $psalm['psalm'] ) . '</h3>';
+			$html .= '<h3 class="pr-psalm">' . esc_html( sprintf( __( 'Psalm %d', 'prayer-rule' ), $psalm['psalm'] ) ) . '</h3>';
 			$first = true;
 			foreach ( $psalm['verses'] as $number => $text ) {
 				$words = esc_html( $text );

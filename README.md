@@ -163,9 +163,9 @@ suggest chapters and how often for each section.
 
 ## Commentary links
 
-With the Patristic Commentary plugin active, a psalm (in the services and the
-Psalter) or a chapter (in the Scripture reading) that has commentary gets a small
-"Commentary" link beside its heading; it opens the commentary in a pop-up
+With the Patristic Commentary plugin active, a chapter or psalm of the Scripture
+reading that has commentary gets a small "Commentary" link beside its heading
+(never in the services, so nothing distracts at prayer); it opens the commentary in a pop-up
 (Ctrl-click: the full page). Without that plugin, or where there is none, nothing
 is shown. includes/class-commentary.php matches the Bibles' numbering to the
 commentary's (bibletr's): the KJV and Wycliffe Psalms are numbered as in the

@@ -912,7 +912,8 @@ class Admin {
 					</tr>
 					<tr>
 						<th scope="row"><?php esc_html_e( 'Coverdale', 'prayer-rule' ); ?></th>
-						<td><label><input type="checkbox" name="show_colons" value="1" <?php checked( Render::show_colons() ); ?>> <?php esc_html_e( 'Show the colon that marks each half-verse ( : )', 'prayer-rule' ); ?></label></td>
+						<td><label><input type="checkbox" name="show_colons" value="1" <?php checked( Render::show_colons() ); ?>> <?php esc_html_e( 'Show the colon that marks each half-verse ( : )', 'prayer-rule' ); ?></label>
+							<p class="description"><?php esc_html_e( 'When it is not shown, a comma stands in its place.', 'prayer-rule' ); ?></p></td>
 					</tr>
 					<tr>
 						<th scope="row"><?php esc_html_e( 'Psalms', 'prayer-rule' ); ?></th>

@@ -1285,13 +1285,32 @@
 
 	// ---- the Scripture reading of the day
 
-	function showReading() {
+	/**
+	 * Where a block sits in the window, so it can be put back there after the
+	 * page is redrawn (marking a reading read must not move the page).
+	 */
+	function placeOf(node) { return node ? { node: node, top: node.getBoundingClientRect().top } : null; }
+	function putBack(node, top) {
+		if (!node || typeof top !== 'number') { return; }
+		var d = node.getBoundingClientRect().top - top;
+		if (Math.abs(d) < 1) { return; }
+		try { window.scrollBy({ top: d, left: 0, behavior: 'instant' }); } catch (x) { window.scrollBy(0, d); }
+	}
+	function partDone(sec) { return out.querySelector('.pr-reading-part[data-sec="' + sec + '"] .pr-done'); }
+
+	/** keep: { sec, top } to redraw in place, keeping that section's buttons where they were. */
+	function showReading(keep) {
 		var r = R(), mine = ++req, rd = readingOf(r), day = UI.day;
 		var items = readingDay(r, day, V.key ? V.log : null);
 		var open = items.filter(function (it) { return it.state !== 'later'; }), later = items.filter(function (it) { return it.state === 'later'; });
+		var same = keep && shown && shown.day === day && shown.service === 'reading';
 		shown = { day: day, service: 'reading' };
-		out.innerHTML = '';
-		out.appendChild(el('p', { class: 'pr-note', text: 'Loading…' }));
+		// Redrawing the same day: leave the old text in place until the new is ready,
+		// so the page never shrinks to "Loading…" and loses its place.
+		if (!same) {
+			out.innerHTML = '';
+			out.appendChild(el('p', { class: 'pr-note', text: 'Loading…' }));
+		}
 		fetchSections(open, r).then(function (data) {
 			if (mine !== req) { return; }
 			out.innerHTML = data.day_html;
@@ -1307,7 +1326,12 @@
 				later.forEach(function (it) { box.appendChild(laterCard(it, day, r, rd)); });
 				out.appendChild(box);
 			}
-		}).catch(function () { if (mine === req) { out.innerHTML = ''; out.appendChild(el('p', { text: 'The reading could not be loaded. Please try again.' })); } });
+			if (same) { putBack(partDone(keep.sec), keep.top); }
+		}).catch(function () {
+			if (mine !== req) { return; }
+			if (same) { status('The reading could not be refreshed. Please reload the page.', true); return; }
+			out.innerHTML = ''; out.appendChild(el('p', { text: 'The reading could not be loaded. Please try again.' }));
+		});
 	}
 	/** The chapters of some sections, and the day's heading, from the site. */
 	function fetchSections(items, r) {
@@ -1321,7 +1345,7 @@
 	}
 	/** One section of the day: its heading, its chapters, and its own button. */
 	function readingPart(it, html, day, rd) {
-		var x = rd[it.sec.key], box = el('div', { class: 'pr-reading-part' + (it.state === 'read' ? ' is-read' : '') });
+		var x = rd[it.sec.key], box = el('div', { class: 'pr-reading-part' + (it.state === 'read' ? ' is-read' : ''), 'data-sec': it.sec.key });
 		box.appendChild(el('h3', { class: 'pr-reading-section', text: it.sec.name }));
 		box.appendChild(el('p', { class: 'pr-reading-how', text: readingSummary([it], rd) + (x && x.per > 0 ? ' · ' + freqText(x) : '') + (it.early ? ' · read ahead' : '') }));
 		var body = el('div', { class: 'prayer-rule-reading pr-scripture' }); body.innerHTML = html;
@@ -1382,6 +1406,7 @@
 	/** Mark one section of a day read (moving its bookmark on), or undo it. */
 	async function setRead(it, day, read) {
 		var rd = readingOf(V.rule), key = entryKey(day, 'reading'), e = V.log.entries[key] || { first: now() }, late = daysAgo(day) > 7, k = it.sec.key, x = rd[k];
+		var at = placeOf(partDone(k));
 		e.read = e.read || {}; e.from = e.from || {}; e.to = e.to || {};
 		if (read) {
 			e.read[k] = { t: it.t, list: it.list };
@@ -1399,7 +1424,7 @@
 		status('Saving…');
 		await saveVault();
 		drawTabs(); drawSettings(); drawRecord();
-		show();
+		if (UI.service === 'reading') { showReading(at ? { sec: k, top: at.top } : null); } else { show(); }
 	}
 
 	function kathismaList(start, total) { var a = []; for (var i = 0; i < total; i++) { a.push(((start - 1 + i) % 20) + 1); } return a; }
@@ -1461,10 +1486,12 @@
 		}
 		e.edited = now(); if (late) { e.corrected = true; }
 		V.log.entries[key] = e;
+		var at = placeOf(out.querySelector('.pr-done'));
 		status('Saving…');
 		await saveVault();
 		drawTabs(); drawSettings(); drawRecord();
 		var done = out.querySelector('.pr-done'); if (done) { done.innerHTML = ''; finishControls().forEach(function (k) { done.appendChild(k); }); }
+		if (at) { putBack(at.node, at.top); }
 	}
 
 	function redraw() { drawAccount(); drawTabs(); drawSettings(); drawRecord(); drawSharing(); drawFooter(); show(); }
