@@ -18,6 +18,8 @@
  *   [bow 3]          "(three prostrations)" / "(three bows)"
  *   [bow thrice]     a short prayer said three times: "(thrice, with prostrations)"
  *   [bow word]       the bare word, for a rubric: "Make a [bow word] and say …"
+ *   [bow rule words] the bare plural: "as many [bow rule words] as you wish"
+ *   [bow rule word 50] a number with the word: "50 prostrations" / "50 bows"
  */
 
 namespace PrayerRule;
@@ -160,7 +162,7 @@ class Bows {
 		return self::render( self::kind( $class ), 1, false );
 	}
 
-	private static function render( $kind, $count, $word, $thrice = false ) {
+	private static function render( $kind, $count, $word, $thrice = false, $plural = false ) {
 		if ( $thrice ) {
 			$text = 'bow' === $kind ? __( 'thrice, with bows', 'prayer-rule' ) : __( 'thrice, with prostrations', 'prayer-rule' );
 			return '<span class="pr-red pr-bow">(' . esc_html( $text ) . ')</span>';
@@ -168,6 +170,8 @@ class Bows {
 		$numbers = array( 2 => __( 'two', 'prayer-rule' ), 3 => __( 'three', 'prayer-rule' ), 4 => __( 'four', 'prayer-rule' ), 12 => __( 'twelve', 'prayer-rule' ) );
 		if ( 'great' === $kind ) {
 			$text = __( 'great prostration', 'prayer-rule' );
+		} elseif ( $plural ) {
+			$text = 'bow' === $kind ? __( 'bows', 'prayer-rule' ) : __( 'prostrations', 'prayer-rule' );
 		} elseif ( $count > 1 ) {
 			$n    = $numbers[ $count ] ?? (string) $count;
 			$text = $n . ' ' . ( 'bow' === $kind ? __( 'bows', 'prayer-rule' ) : __( 'prostrations', 'prayer-rule' ) );
@@ -183,6 +187,7 @@ class Bows {
 		$count = 1;
 		$word  = false;
 		$three = false;
+		$many  = false;
 		foreach ( (array) $atts as $att ) {
 			$att = strtolower( trim( (string) $att ) );
 			if ( ctype_digit( $att ) ) {
@@ -191,11 +196,14 @@ class Bows {
 				$three = true;
 			} elseif ( 'word' === $att ) {
 				$word = true;
+			} elseif ( 'words' === $att ) {
+				$word = true;
+				$many = true;
 			} elseif ( in_array( $att, array( 'entrance', 'departing', 'rule', 'great' ), true ) ) {
 				$class = $att;
 			}
 		}
-		return self::render( self::kind( $class ), $count, $word, $three );
+		return self::render( self::kind( $class ), $count, $word, $three, $many );
 	}
 
 	/** A line for the top of the day: what the bows are today, and why. */
