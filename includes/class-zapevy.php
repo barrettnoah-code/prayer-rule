@@ -247,6 +247,6 @@ class Zapevy {
 			return '';
 		}
 		self::$seen[ $seen ] = true;
-		return '<p class="is-style-prayer pr-zapev">' . ( $is_html ? Render::curly( $text ) : Render::text( $text ) ) . ' ' . Bows::tag( 'rule' ) . '</p>';
+		return '<p class="is-style-prayer pr-zapev">' . ( $is_html ? Render::curly( $text ) : Render::text( $text ) ) . ' ' . Bows::tag( 'rule', true ) . '</p>';
 	}
 }

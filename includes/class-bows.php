@@ -15,6 +15,8 @@
  *   [bow departing]  a bow of the departing opening
  *   [bow rule]       a bow of the rule itself (the cell rule, the zapevy)
  *   [bow great]      the great prostration after "It is truly meet": always
+ *   [bow waist]      always a waist bow ("Through the prayers of our holy fathers")
+ *   [bow rule each]  a prayer said over and over: "(with each prostration)" / "(with each bow)"
  *   [bow 3]          "(three prostrations)" / "(three bows)"
  *   [bow thrice]     a short prayer said three times: "(thrice, with prostrations)"
  *   [bow word]       the bare word, for a rubric: "Make a [bow word] and say …"
@@ -124,6 +126,9 @@ class Bows {
 		if ( 'great' === $class ) {
 			return 'great';
 		}
+		if ( 'waist' === $class ) {
+			return 'bow';
+		}
 		$info = Render::day_info();
 		if ( ! $info ) {
 			return 'prostration';
@@ -158,11 +163,15 @@ class Bows {
 	}
 
 	/** The red mark after a line, for a class. */
-	public static function tag( $class = '' ) {
-		return self::render( self::kind( $class ), 1, false );
+	public static function tag( $class = '', $each = false ) {
+		return self::render( self::kind( $class ), 1, false, false, false, $each );
 	}
 
-	private static function render( $kind, $count, $word, $thrice = false, $plural = false ) {
+	private static function render( $kind, $count, $word, $thrice = false, $plural = false, $each = false ) {
+		if ( $each ) {   // a zapev or petition repeated: once with every bow
+			$text = 'bow' === $kind ? __( 'with each bow', 'prayer-rule' ) : __( 'with each prostration', 'prayer-rule' );
+			return '<span class="pr-red pr-bow">(' . esc_html( $text ) . ')</span>';
+		}
 		if ( $thrice ) {
 			$text = 'bow' === $kind ? __( 'thrice, with bows', 'prayer-rule' ) : __( 'thrice, with prostrations', 'prayer-rule' );
 			return '<span class="pr-red pr-bow">(' . esc_html( $text ) . ')</span>';
@@ -188,6 +197,7 @@ class Bows {
 		$word  = false;
 		$three = false;
 		$many  = false;
+		$each  = false;
 		foreach ( (array) $atts as $att ) {
 			$att = strtolower( trim( (string) $att ) );
 			if ( ctype_digit( $att ) ) {
@@ -196,14 +206,16 @@ class Bows {
 				$three = true;
 			} elseif ( 'word' === $att ) {
 				$word = true;
+			} elseif ( 'each' === $att ) {
+				$each = true;
 			} elseif ( 'words' === $att ) {
 				$word = true;
 				$many = true;
-			} elseif ( in_array( $att, array( 'entrance', 'departing', 'rule', 'great' ), true ) ) {
+			} elseif ( in_array( $att, array( 'entrance', 'departing', 'rule', 'great', 'waist' ), true ) ) {
 				$class = $att;
 			}
 		}
-		return self::render( self::kind( $class ), $count, $word, $three, $many );
+		return self::render( self::kind( $class ), $count, $word, $three, $many, $each );
 	}
 
 	/** A line for the top of the day: what the bows are today, and why. */
