@@ -191,6 +191,9 @@ class Zapevy {
 			if ( preg_match( $pattern, $head, $m ) ) {
 				$title = $form;
 				$rest  = trim( mb_substr( $head, mb_strlen( $m[0] ) ) );
+				if ( self::plural( $form ) ) {   // all the names, not only the first
+					$rest = self::names_list( trim( mb_substr( $s, mb_strlen( $m[0] ) ) ), $rest );
+				}
 				break;
 			}
 		}
@@ -208,6 +211,37 @@ class Zapevy {
 			return '';
 		}
 		return 'O ' . $title . ' ' . $rest . ', pray to God for us.';
+	}
+
+	/** A title for more than one saint: "holy martyrs", "venerable fathers" … */
+	private static function plural( $title ) {
+		return (bool) preg_match( '/(martyrs|confessors|apostles|prophets|hierarchs|fathers|mothers|princes|passion-bearers|unmercenaries)$/u', $title );
+	}
+
+	/**
+	 * The names after a plural title: "Akindin, Pegasius, Aphthonius,
+	 * Elpidephorus and Anempodistus, who suffered in Persia" => "Akindin,
+	 * Pegasius, Aphthonius, Elpidephorus and Anempodistus". A name begins
+	 * with a capital; the list ends at the first part that does not
+	 * ("who suffered …", "and those with them", "bishops of …").
+	 * $fallback: the first name, when no list can be read.
+	 */
+	private static function names_list( $text, $fallback ) {
+		$text  = preg_replace( '/[\s.;:]+$/u', '', $text );
+		$parts = preg_split( '/\s*,\s*|\s+and\s+/u', $text );
+		$names = array();
+		foreach ( $parts as $part ) {
+			$part = trim( $part );
+			if ( '' === $part || ! preg_match( '/^\p{Lu}/u', $part ) ) {
+				break;
+			}
+			$names[] = $part;
+		}
+		if ( ! $names ) {
+			return $fallback;
+		}
+		$last = array_pop( $names );
+		return $names ? implode( ', ', $names ) . ' and ' . $last : $last;
 	}
 
 	/** [zapev key] */
