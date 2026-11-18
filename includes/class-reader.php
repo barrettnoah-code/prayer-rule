@@ -110,7 +110,7 @@ class Reader {
 			/* translators: %s: the evening before, e.g. Saturday, October 31 */
 			$html .= '<p class="pr-day-eve">' . Render::text( sprintf( __( 'Read on the evening before: %s.', 'prayer-rule' ), wp_date( 'l, F j', strtotime( Calendar::eve( $info['civil'] ) . ' 12:00' ) ) ) ) . '</p>';
 		}
-		$html .= '<p class="pr-day-bows">' . Render::text( Bows::summary( $info ) ) . '</p>';
+		$html .= Bows::html( $info );
 		$html .= Fasting::html( Fasting::for_day( $info, Feasts::find( $info, 'matins' ) ) );
 		return $html . '</div>';
 	}

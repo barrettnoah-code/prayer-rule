@@ -17,6 +17,7 @@ ROOT = Path(__file__).resolve().parent.parent
 SOURCE = ROOT / 'tools' / 'ustav' / 'home-ustav.txt'
 FEASTS = ROOT / 'tools' / 'ustav' / 'feasts.txt'
 FASTING = ROOT / 'tools' / 'ustav' / 'fasting.txt'
+BOWS = ROOT / 'tools' / 'ustav' / 'bows.txt'
 ZAPEVY = ROOT / 'tools' / 'ustav' / 'zapevy.txt'
 WEEKDAYS = ['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat']
 PERIODS = ['lent', 'holy-week', 'bright-week', 'pentecost-season', 'trinity-week', 'apostles', 'dormition',
@@ -155,6 +156,26 @@ def plain(line):
 
 def rubric(line):
     return paragraph('! ' + line)
+
+
+def parse_bows():
+    """bows.txt => prayers (the Ustav's rule on bows, shown under "Bows today")."""
+    prayers, current = [], None
+    for number, raw in enumerate(BOWS.read_text(encoding='utf-8').splitlines(), 1):
+        line = raw.strip()
+        if not line or line.startswith('#'):
+            continue
+        if line.startswith('==='):
+            slug, title = [x.strip() for x in line[3:].split('|', 1)]
+            current = {'slug': slug, 'title': title, 'content': []}
+            prayers.append(current)
+        elif current is None:
+            sys.exit(f'bows.txt line {number}: text before the first ===')
+        elif line.startswith('== '):
+            current['content'].append(rubric(line[3:].strip()))
+        else:
+            current['content'].append(plain(line))
+    return [{'slug': p['slug'], 'title': p['title'], 'content': '\n\n'.join(p['content'])} for p in prayers]
 
 
 def parse_fasting():
@@ -326,6 +347,7 @@ def main():
                 if key not in zapevy['fixed'] and key != 'saint':
                     sys.exit(f'{p["slug"]}: no zapev "{key}"')
     out_prayers += fasting_prayers
+    out_prayers += parse_bows()
     if len({p['slug'] for p in out_prayers}) != len(out_prayers):
         sys.exit('a short name is used twice')
     out_orders = []

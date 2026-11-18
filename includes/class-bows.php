@@ -9,6 +9,16 @@
  * after Christ's Nativity", when they are waist bows. Chapter 2 (fol. 30v-38v)
  * adds Holy Week, Bright Week and the evening after a Sunday or feast.
  *
+ * The feast days are those of Chapter 3, which sets the cell apart from the
+ * church: on great feasts (the calendar's 🕀) there is no kneeling "either in
+ * church or in the cells"; on middle feasts (vigil 🕁, polyeleos 🕂) there are
+ * no prostrations in church, but "in private, in the cell, each does as he
+ * chooses"; on lesser feasts prostrations are made in private. So at home a
+ * middle feast keeps its prostrations, except the entrance and departing
+ * bows, which the Psalter printed under Patriarch Joseph (in Chapter 2) makes
+ * waist bows on a polyeleos saint and on the eves of saints with an
+ * entrance, Old Testament readings and the Great Doxology.
+ *
  * In a prayer, [bow] after a line shows "(prostration)" or "(bow)":
  *   [bow]            a bow in the service
  *   [bow entrance]   a bow of the entrance opening
@@ -82,9 +92,6 @@ class Bows {
 		if ( 1 === $rank ) {
 			return __( 'a great feast', 'prayer-rule' );
 		}
-		if ( 2 === $rank || 3 === $rank ) {
-			return __( 'a feast with a vigil or polyeleos', 'prayer-rule' );
-		}
 		if ( ! Calendar::available() && Zapevy::dated( $info )['feast'] ) {
 			return __( 'a great feast', 'prayer-rule' );
 		}
@@ -95,6 +102,25 @@ class Bows {
 			return __( 'Saturday', 'prayer-rule' );
 		}
 		return '';
+	}
+
+	/**
+	 * A middle feast (a saint with a vigil or polyeleos) on a day that is not
+	 * already one of waist bows, outside Holy Week: the entrance and
+	 * departing bows are waist bows, the rest prostrations. In Great Lent too:
+	 * ch. 2 keeps Lent's prostrations "except on Saturdays, Sundays and feasts
+	 * of saints".
+	 */
+	public static function middle_feast( $info ) {
+		$rank   = (int) ( $info['rank'] ?? 9 );
+		$before = (int) $info['before_pascha'];
+		if ( 2 !== $rank && 3 !== $rank ) {
+			return false;
+		}
+		if ( $before >= -6 && $before <= -1 ) {
+			return false;                         // Holy Week: the entrance and departing bows are to the ground "until the Resurrection service"
+		}
+		return '' === self::waist_reason( $info );
 	}
 
 	/**
@@ -141,6 +167,9 @@ class Bows {
 			return in_array( $class, array( 'entrance', 'departing', 'rule' ), true ) ? 'prostration' : 'bow';
 		}
 		if ( '' !== self::waist_reason( $info ) ) {
+			return 'bow';
+		}
+		if ( ( 'entrance' === $class || 'departing' === $class ) && self::middle_feast( $info ) ) {
 			return 'bow';
 		}
 		if ( 'entrance' === $class ) {
@@ -219,6 +248,22 @@ class Bows {
 	}
 
 	/** A line for the top of the day: what the bows are today, and why. */
+	/**
+	 * "Bows today" as a box, with the Ustav's rule on bows behind "The rule",
+	 * as the fasting box has the rule on fasting.
+	 */
+	public static function html( $info ) {
+		$line = preg_replace( '/^' . preg_quote( __( 'Bows today:', 'prayer-rule' ), '/' ) . '\s*/u', '', self::summary( $info ) );
+		$line = mb_strtoupper( mb_substr( $line, 0, 1 ) ) . mb_substr( $line, 1 );
+		$html = '<div class="pr-fasting pr-bows"><p class="pr-fasting-label">' . esc_html__( 'Bows today', 'prayer-rule' ) . '</p>';
+		$html .= '<p class="pr-fasting-today">' . Render::text( $line ) . '</p>';
+		$rule = Texts::find( 'bows-rule' );
+		if ( $rule ) {
+			$html .= '<details class="pr-fasting-rule"><summary>' . esc_html__( 'The rule', 'prayer-rule' ) . '</summary>' . Render::signs( Texts::html( $rule ) ) . '</details>';
+		}
+		return $html . '</div>';
+	}
+
 	public static function summary( $info ) {
 		$why = self::waist_reason( $info );
 		if ( 0 === (int) $info['after_pascha'] ) {
@@ -227,6 +272,9 @@ class Bows {
 		if ( '' !== $why ) {
 			/* translators: %s: the reason, e.g. Sunday */
 			return sprintf( __( 'Bows today: waist bows, not to the ground (%s). The great prostration after "It is truly meet" (in Bright Week, "Shine, shine") is always made.', 'prayer-rule' ), $why );
+		}
+		if ( self::middle_feast( $info ) ) {
+			return __( 'Bows today: prostrations to the ground, except the entrance and departing bows, which are waist bows (a feast with a vigil or polyeleos). On such a day the Ustav leaves the other prostrations in private prayer to each one’s choice.', 'prayer-rule' );
 		}
 		$before = (int) $info['before_pascha'];
 		if ( $before >= -4 && $before <= -1 ) {
